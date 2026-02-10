@@ -1,0 +1,10 @@
+__pycache__/
+
+
+data/*
+!data/.gitkeep
+
+torchani/
+
+# tagcn-bind package build
+src/tagcn_bind.egg-info/

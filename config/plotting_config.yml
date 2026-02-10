@@ -1,0 +1,16 @@
+output_dir: "output/summary_plots"
+stats_dir: "output/training_stats"
+predictions_dir: "output/predictions"
+
+plots:
+  bubble: True
+  metrics_over_epochs: True
+  true_vs_predicted: True
+
+experiments:
+  - name: "GATv2_baseline"
+    time_stamp: "20260108-125804"
+
+
+  # Add more experiments here matching the names and timestamps 
+  # from training_stats.csv 

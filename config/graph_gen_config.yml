@@ -1,0 +1,8 @@
+graph_generator_coef:
+  RcR: 5.1 # Radial cutoff
+  EtaR: [19.7] # Radial decay, needs to be torch.tensor, I think this is the Eta in the radial calc, this could be too high??! TODO look at dropping to maybe 16.0?
+  RsR: [0.80, 1.07, 1.34, 1.61, 1.88, 2.14, 2.41, 2.68, 2.95, 3.22, 3.49, 3.76, 4.03, 4.29, 4.56, 4.83] # Radial shift, needs to be torch.tensor
+  allowed_elts: ["F", "N", "Cl", "O", "Br", "C", "B", "P", "I", "S"] 
+  legacy_mode: False
+  ligand_bins: True # In terms of using these it appears that if you turn ligand_bins on you get slightly larger AEVs, probably for the internal ligand stuff
+  use_og_torchani: True # If you use the OG torchani then you get a lot more AEV features, bc you are now doing all intra molecular forces, in my tests for the first atom in the ligand this actually doubled the number of AEV features

@@ -1,0 +1,51 @@
+name: tagcn-bind-gpu
+channels:
+  - pytorch
+  - nvidia
+  - conda-forge
+  - defaults
+dependencies:
+  - python=3.8
+  - pytorch=2.4.0
+  - pytorch-cuda=12.1
+  - torchaudio
+  - torchvision
+  - pyyaml
+  - pip
+  - pip: 
+    - ase      
+    - pandas
+    - matplotlib
+    - biopandas
+    - numpy
+    - scipy
+    - scikit-learn
+    - seaborn
+    - tqdm
+    - rdkit
+    - h5py
+    - qcelemental
+    # Fix the "Not compiled with CUDA" error for torch-scatter
+    - --find-links https://data.pyg.org/whl/torch-2.4.0+cu121.html
+    - torch-scatter
+    - torch-geometric
+
+
+# We install torchani separately.
+# inside the repo folder do the following:
+# git clone https://github.com/aiqm/torchani.git  
+# cd torchani
+# git checkout 2.2.4
+# module purge
+# module load CUDA/12.1.1
+# export CUDA_HOME=$CUDA_PATH
+# export FORCE_CUDA=1
+# python setup.py install --cuaev
+# Then check torchani is working:
+# cd ..
+# python -c "import torch; import torchani; print(f'Is CUAEV installed? {torchani.aev.has_cuaev}')"
+# For the torchani repo if doing several repos run this command to clean build files:
+# git clean -fdx
+# Finally you will need to install tagcn-bind, to do this run:
+# pip install -e . 
+# inside the project root
