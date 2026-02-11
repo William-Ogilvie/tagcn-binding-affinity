@@ -13,7 +13,7 @@ datasets:
     output_file_name: "PDBbind_minus_CASF_2016_scaling"
     
 Usage:
-    python scripts/generate_graphs.py --config_path config/scaling_generation_PDBbind.yml
+    python scripts/scaling_script.py --config_path config/scaling_generation_PDBbind.yml
 """
 import argparse
 import yaml

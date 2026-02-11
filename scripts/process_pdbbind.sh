@@ -25,4 +25,4 @@ python create_val_dataset_csv.py --input_csv data/PDBbind_minus_CASF_2016_proces
 python generate_graphs.py --config_path config/graph_generation_PDBbind.yml --device auto
 
 # Generate scaling stats
-python generate_graphs.py --config_path config/scaling_generation_PDBbind.yml
+python scaling_script.py --config_path config/scaling_generation_PDBbind.yml
