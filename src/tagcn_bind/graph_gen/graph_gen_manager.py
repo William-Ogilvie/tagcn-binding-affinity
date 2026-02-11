@@ -14,6 +14,7 @@ from pathlib import Path
 from tqdm import tqdm
 from typing import Dict, Any, Optional 
 import traceback
+import sys
 
 from .graph_gen import GraphGenerator
 
@@ -121,7 +122,7 @@ class GraphGenerationManager:
         start_time = time.time()
 
         print(f"Starting sequential graph generation on {device}...")
-        for row in tqdm(rows, desc="Generating Graphs"):
+        for row in tqdm(rows, desc="Generating Graphs", file=sys.stdout):
             result = _process_single_row(row, generator, self.atom_keys, self.atom_map)
             if result is not None:
                 uid, graph, pK = result
