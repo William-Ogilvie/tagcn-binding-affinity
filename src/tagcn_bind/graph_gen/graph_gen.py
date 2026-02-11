@@ -393,7 +393,7 @@ class GraphGenerator():
         # Move computer to device (GPU if selected)
         aev_computer = aev_computer.to(self.device)
  
-        species_converter = torchani.SpeciesConverter(atom_symbols)
+        species_converter = torchani.SpeciesConverter(atom_symbols).to(self.device)
         
         # Run forward pass
         # Note: SpeciesConverter usually runs on CPU for indexing, but we pass tensors on device
