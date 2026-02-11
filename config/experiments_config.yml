@@ -11,7 +11,7 @@ experiments:
     head: 3
     num_GNN_layers: 5
     activation_function: leaky_relu
-    weight_decay: 1e-2 # Explore this
+    weight_decay: 0.01 # Explore this
     seeds: [100, 123, 15, 257, 2, 2012, 3752, 350, 843, 621] 
     ensemble_metric: "kendall" # metric to optimise ensemble weights, choose either kendall, mse or pearson
     scaling_stats_csv: "data/scaling/PDBbind_minus_CASF_2016_stats.csv" 
