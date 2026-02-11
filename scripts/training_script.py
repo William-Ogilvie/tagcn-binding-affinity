@@ -290,14 +290,15 @@ def main():
             elif ensemble_metric == "kendall": return -kendalltau(val_targets, preds)[0]
             else: raise ValueError(f"Unknown metric: {ensemble_metric}")
 
+        # TODO fix the init_weights here it makes no sense
         # Optimization
         n_models = len(seeds)
-        init_weights = np.ones(n_models) / n_models
+        init_weights_opt = np.ones(n_models) / n_models
         bounds = [(0.0, 1.0)] * n_models
         constraints = {'type': 'eq', 'fun': lambda w: np.sum(w) - 1.0}
         
         # SLSQP = Sequential Least Squares Programming
-        res = minimize(objective_fn, init_weights, method='SLSQP', bounds=bounds, constraints=constraints)
+        res = minimize(objective_fn, init_weights_opt, method='SLSQP', bounds=bounds, constraints=constraints)
         best_weights = res.x / np.sum(res.x) if res.success else init_weights
         print(f"Optimized Weights ({ensemble_metric}): {best_weights}")
         
