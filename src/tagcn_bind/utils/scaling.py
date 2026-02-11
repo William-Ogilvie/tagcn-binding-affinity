@@ -11,9 +11,10 @@ import numpy as np
 import math
 from tqdm import tqdm
 import os
+from typing import List
 
 class ScalingManager:
-    def calculate_stats(self, data_set_path: str, output_path: str, output_file_name: str):
+    def calculate_stats(self, dataset_paths: List[str], output_path: str, output_file_name: str):
         """ Calculates meand and std for continuous features (the AEVs) and targets (pK), across the whole dataset. 
         That means across all atoms across all ligands in the dataset, so we are getting a global mean and standard deviation.
         As the AEVs are the only continuous feature we just compute it for them. 
@@ -24,18 +25,27 @@ class ScalingManager:
         So that we can just apply this standardisation simply at run time we will do a "fake" standardisation for the categorical features, mean 0 std 1. 
 
         Args:
-            data_set_path(str): path to the dataset (absolute)
+            dataset_paths(List[str]): list of paths to the datasets (absolute)
             output_path(str): path to the directory you want to save the stats to (absolute)
             output_file_name(str): name of the output file (excluding .pt)
         """
 
         print("Starting Global Statistics Calculation")
-        files = [f for f in os.listdir(data_set_path) if f.endswith(".pt")]
+
+        # Loop through all the paths in data_set_paths and add to the files array
+        files = []
+        i = 0 # Track index of current file path
+        for path in dataset_paths:
+            temp_files = [(f, i) for f in os.listdir(path) if f.endswith(".pt")]
+
+            files += temp_files
+
+            i += 1
 
         n_atoms_total = 0
         # Load the first graph to get the length of the AEV feature vector to initalise sum_aev and sum_aev2
-        f_first = files[0]
-        file_path = os.path.join(data_set_path, f_first)
+        f_first = files[0][0]
+        file_path = os.path.join(dataset_paths[0], f_first)
         uid, graph, pK = torch.load(file_path, weights_only=False)
 
         len_chem_feats = graph[4]
@@ -59,9 +69,9 @@ class ScalingManager:
         sum_pk = 0.0
         sum_pk2 = 0.0 
 
-        for f_name in tqdm(files, desc = "Processing Graphs"):
+        for f_name, i in tqdm(files, desc = "Processing Graphs"):
 
-            file_path = os.path.join(data_set_path, f_name)
+            file_path = os.path.join(dataset_paths[i], f_name)
 
             # Load graph
             uid, graph, pK = torch.load(file_path, weights_only=False)

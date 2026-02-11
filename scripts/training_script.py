@@ -112,7 +112,7 @@ def main():
         activation_function = experiment["args"]["activation_function"]
         weight_decay = experiment["args"]["weight_decay"] 
         seeds = experiment["args"]["seeds"]
-        scaling_stats_csv = experiment["args"]["scaling_stats_csv"] 
+        scaling_stats_pt = experiment["args"]["scaling_stats_pt"] 
         train_data_csv = experiment["args"]["train_data_csv"]
         val_data_csv = experiment["args"]["val_data_csv"]
         test_data_csv = experiment["args"]["test_data_csv"]  
@@ -181,8 +181,8 @@ def main():
                 device = torch.device("cpu")
 
             # Initialise the trainer 
-            scaling_stats_csv = project_root / scaling_stats_csv
-            trainer = Trainer(model=model, device=device, stats_path=scaling_stats_csv)
+            scaling_stats_pt = project_root / scaling_stats_pt
+            trainer = Trainer(model=model, device=device, stats_path=scaling_stats_pt)
 
             # Training loop with early stopping
             best_val_loss = float('inf')

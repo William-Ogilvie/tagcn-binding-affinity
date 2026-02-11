@@ -1,0 +1,6 @@
+datasets:
+  - name: "PDBbind_minus_CASF_2016"
+    dataset_paths: ["data/graphs/PDBbind_train", "data/graphs/PDBbind_val"]
+    output_dir: "data/scaling"
+    output_file_name: "PDBbind_minus_CASF_2016_scaling"
+    

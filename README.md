@@ -34,6 +34,12 @@ To generate graphs from these csvs first configure the config/graph_generation.y
 python scripts/generate_graphs.py --config_path config/graph_generation_PDBbind.yml --device auto
 ```
 
+This project allows for the standardisation of the AEVs using the training set, we precompute these and then apply the standardisation in real time during training:
+
+```bash
+python scripts/generate_graphs.py --config_path config/scaling_generation_PDBbind.yml
+```
+
 Finally to run experiments first configure config/experiments_config.yml using the template provided then run:
 
 ```bash

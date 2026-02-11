@@ -29,6 +29,6 @@ scale_file_name = "CASF_2016_test_scaling_stats"
 trainer = ScalingManager()
 
 # Calculate stats
-trainer.calculate_stats(data_set_path=dataset_dir, output_path=scaling_dir, output_file_name=scale_file_name)
+trainer.calculate_stats(dataset_paths=[dataset_dir], output_path=scaling_dir, output_file_name=scale_file_name)
 
 
