@@ -392,7 +392,8 @@ class GraphGenerator():
         
         # Move computer to device (GPU if selected)
         aev_computer = aev_computer.to(self.device)
- 
+
+        # Move SpeciesConverter to GPU as well to avoid errors
         species_converter = torchani.SpeciesConverter(atom_symbols).to(self.device)
         
         # Run forward pass
