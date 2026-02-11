@@ -12,6 +12,7 @@ import math
 from tqdm import tqdm
 import os
 from typing import List
+import sys
 
 class ScalingManager:
     def calculate_stats(self, dataset_paths: List[str], output_path: str, output_file_name: str):
@@ -69,7 +70,7 @@ class ScalingManager:
         sum_pk = 0.0
         sum_pk2 = 0.0 
 
-        for f_name, i in tqdm(files, desc = "Processing Graphs"):
+        for f_name, i in tqdm(files, desc = "Processing Graphs", file=sys.stdout):
 
             file_path = os.path.join(dataset_paths[i], f_name)
 
