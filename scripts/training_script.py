@@ -186,7 +186,7 @@ def main():
 
             # Training loop with early stopping
             best_val_loss = float('inf')
-            best_val_corr = float(-'inf')
+            best_val_corr = float('-inf') # this is kinda overkill bc PC and Kendalls Tau >= -1, but have kept it in case change to a different metric later
             wait = 0
 
             print(f"Running training for {experiment_name}, model name {model_name}, seed {seed} of {i}/{len(seeds)}.")
