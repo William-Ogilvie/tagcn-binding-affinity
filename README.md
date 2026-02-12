@@ -40,11 +40,22 @@ This project allows for the standardisation of the AEVs using the training set, 
 python scripts/scaling_script.py --config_path config/scaling_generation_PDBbind.yml
 ```
 
-Finally to run experiments first configure config/experiments_config.yml using the template provided then run:
+## Training
+
+To train models first configure config/experiments_config.yml using the template provided then run:
 
 ```bash
 python scripts/training_script.py --config_path config/experiments_config.yml --device auto
 ```
+
+## Plotting
+
+We have a script called generate_plots.py that creates plots configured using a config file like config/plotting_config.yml:
+
+```bash
+python scripts/generate_plots.py --config_path config/plotting_config.yml
+```
+
 
 ## Modifications
 
