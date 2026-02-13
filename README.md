@@ -65,6 +65,8 @@ If you plan on adding more features to the model please see src/tagcn_bind/utils
 ## TODO
 Remeber to look at the EtaR, i suspect 19.7 is too high and causes the sparsity in AEVs we observe.
 
+AEV-PLIG currently doesn't process hydrogens and instead has them implicitly with a hydrogen count at each heavy atom, it could be worth having explicit hydrogens? althought it will make the graphs a lot bigger...
+
 # Acknowledgments
 
 ## AEV-PLIG
