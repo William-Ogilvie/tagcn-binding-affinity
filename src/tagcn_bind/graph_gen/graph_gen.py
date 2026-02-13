@@ -484,11 +484,21 @@ class GraphGenerator():
 
         Returns:
             List[int]: one hot encoding of the allowable objects
-        """         
-        # The original one_of_k_encoding of AEV-PLIG now restricted to just bonds
-        if x not in allowable_set:
-            raise ValueError(f"Input {x} not in allowable set {allowable_set}")
-        return list(map(lambda s: int(x==s), allowable_set))
+        """  
+        encoding = [0] * (len(allowable_set) + 1)
+
+        try:
+            index = allowable_set.index(x)
+            encoding[index] = 1
+        except ValueError:
+            # x is not in the allowable set so it's an other
+            encoding[-1] = 1
+        return encoding      
+        # AEV-PLIG version of this function included for legacy and in case we want to test: 
+        # # The original one_of_k_encoding of AEV-PLIG now restricted to just bonds
+        # if x not in allowable_set:
+        #     raise ValueError(f"Input {x} not in allowable set {allowable_set}")
+        # return list(map(lambda s: int(x==s), allowable_set))
     
     def get_atom_features(self, atom:rdchem.Atom) -> np.ndarray:
         """ computes features for the atoms:
@@ -593,9 +603,12 @@ class GraphGenerator():
                 counter += 1
         # Edges
         edges = []
-        # RDKit BondType mapping to match legacy: [Single, Aromatic, Double, Triple]
+        # RDKit BondType mapping to match legacy: [Single, Aromatic, Double, Triple, Dative, Hydgrogen, Ionic, Zero (atoms close but not formally bonded)]
+        # AEV-PLIG originally only does [Single, Aromatic, Double, Triple], this causes complexes like 2foy to be dropped from PDBbind 
         bond_encoding_list = [Chem.rdchem.BondType.SINGLE, Chem.rdchem.BondType.AROMATIC,
-                                  Chem.rdchem.BondType.DOUBLE, Chem.rdchem.BondType.TRIPLE]
+                                  Chem.rdchem.BondType.DOUBLE, Chem.rdchem.BondType.TRIPLE,
+                                  Chem.rdchem.BondType.DATIVE, Chem.rdchem.BondType.HYDROGEN,
+                                  Chem.rdchem.BondType.IONIC, Chem.rdchem.BondType.ZERO]
             
         for bond in mol.GetBonds():
             idx1 = bond.GetBeginAtomIdx()
@@ -617,11 +630,11 @@ class GraphGenerator():
 
         # Sort edges by atom indices (legacy behaviour, helps with determinism)
         if edges:
-            edges_df = pd.DataFrame(edges, columns = ["atom1", "atom2", "single", "aromatic", "double", "triple"])
+            edges_df = pd.DataFrame(edges, columns = ["atom1", "atom2", "single", "aromatic", "double", "triple", "dative", "hydrogen", "ionic", "zero", "other"])
             edges_df = edges_df.sort_values(by=["atom1", "atom2"])
 
             edge_index = edges_df[["atom1", "atom2"]].values.tolist()
-            edge_attr = edges_df[["single", "aromatic", "double", "triple"]].values.tolist()
+            edge_attr = edges_df[["single", "aromatic", "double", "triple", "dative", "hydrogen", "ionic", "zero", "other"]].values.tolist()
         else:
             edge_index = []
             edge_attr = []

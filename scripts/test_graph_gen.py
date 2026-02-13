@@ -44,8 +44,8 @@ pdb_atom_keys_path = project_root / "config" / "PDB_Atom_Keys.csv"
 atom_keys = pd.read_csv(pdb_atom_keys_path, sep=",")
 
 # Get path to pdb and sdf files
-pdb_path = project_root / "data" / "test" / "2fou" / "2fou_protein.pdb"
-sdf_path = project_root / "data" / "test" / "2fou" / "2fou_ligand.sdf"
+pdb_path = project_root / "data" / "test" / "2foy" / "2foy_protein.pdb"
+sdf_path = project_root / "data" / "test" / "2foy" / "2foy_ligand.sdf"
 
 # Se ligand to test the allowed elts
 #sdf_path = project_root / "data" / "test" / "1a30" / "SE4_ideal.sdf"
