@@ -154,6 +154,19 @@ class GraphGenerator():
             suppl_loose = Chem.SDMolSupplier(str(sdf_path), removeHs = False, sanitize = False)
             mol = suppl_loose[0] if len(suppl_loose) > 0 else None
 
+            # If standard lenient loading failed, try manual fix for 'Du' atoms which RDKit rejects
+            if mol is None:
+                try:
+                    with open(str(sdf_path), 'r') as f:
+                        sdf_content = f.read()
+                    if 'Du' in sdf_content:
+                        new_content = sdf_content.replace('Du', '*')
+                        mol = Chem.MolFromMolBlock(new_content, removeHs=False, sanitize=False)
+                        if mol:
+                            print(f"Loaded {sdf_path} with manual 'Du' -> '*' replacement")
+                except Exception as e:
+                    print(f"Manual 'Du' fix failed for {sdf_path}: {e}")
+
             if mol is not None:
                 try:
                     # Create a custom sanitization setting
@@ -503,7 +516,7 @@ class GraphGenerator():
         # Number of Hyrogens
         features.append(len([x for x in atom.GetNeighbors() if x.GetSymbol() == "H"]))
 
-        # Explicit Valence
+        # Explicit Valence 
         features.append(atom.GetExplicitValence())
 
         # Aromaticity
@@ -512,7 +525,7 @@ class GraphGenerator():
         # In Ring
         features.append(int(atom.IsInRing()))
 
-        return np.array(features) 
+        return np.array(features)
      
     def mol_to_graph(self, mol: rdchem.Mol, aevs: torch.Tensor, mol_df: pd.DataFrame) -> Tuple[int, List[np.ndarray], List[List[int]], List[List[float]]]:
         """ converts molecule and AEVs to graph representation, using the features get_atom_features, and also recording the bonds as edge features
