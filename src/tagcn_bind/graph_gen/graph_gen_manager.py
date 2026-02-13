@@ -103,7 +103,7 @@ class GraphGenerationManager:
         """
         df = pd.read_csv(data_csv_path)
         rows = df.to_dict("records")
-        mol_graphs = {}
+        
 
         # Prepare the generator configuration
         # We instantiate the generator here. 
@@ -120,6 +120,7 @@ class GraphGenerationManager:
         )
 
         start_time = time.time()
+        graph_counter = 0
 
         print(f"Starting sequential graph generation on {device}...")
         for row in tqdm(rows, desc="Generating Graphs", file=sys.stdout):
@@ -129,8 +130,9 @@ class GraphGenerationManager:
 
                 print(f"Saving graph to {output_path} as {uid}_graph.pt")
                 torch.save((uid, graph, pK), f"{output_path}/{uid}_graph.pt")
+                graph_counter += 1
                 
 
-        print(f"Graph generation complete. Processed {len(mol_graphs)}/{len(rows)} successfully.")
+        print(f"Graph generation complete. Processed {graph_counter}/{len(rows)} successfully.")
         print(f"Time taken: {time.time() - start_time:.2f}s")
 
