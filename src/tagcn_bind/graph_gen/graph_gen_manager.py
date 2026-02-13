@@ -135,8 +135,10 @@ class GraphGenerationManager:
             if result is not None:
                 uid, graph, pK = result
 
-                print(f"Saving graph to {output_path} as {uid}_graph.pt, and to shard {shard_index}.")
-                torch.save((uid, graph, pK), f"{output_path}/{uid}_graph.pt")
+                print(f"Saving graph to {output_path} as {uid} to shard {shard_index}.")
+                # We used to save the graphs individually but due to slow i/o speeds on the supercomputer we are going to save them in blocks of 1,000 
+                # print(f"Saving graph to {output_path} as {uid}_graph.pt, and to shard {shard_index}.") 
+                # torch.save((uid, graph, pK), f"{output_path}/{uid}_graph.pt")
                 shard[uid] = (uid, graph, pK) 
                 shard_counter += 1
                 graph_counter += 1
@@ -144,7 +146,7 @@ class GraphGenerationManager:
 
                 # If we have 1,000 elements in the shard we will save it:
                 if shard_counter == 1000:
-                    print(f"Saving shard {shard_index}")
+                    print(f"Saving shard {shard_index} to {output_path}")
                     torch.save(shard, f"{output_path}/shard_{shard_index}.pt")
                     shard_index += 1
 
