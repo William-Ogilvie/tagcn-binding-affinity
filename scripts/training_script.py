@@ -11,7 +11,7 @@ import torch
 import time
 from pathlib import Path
 import yaml
-from tagcn_bind import Trainer, GATv2Net, init_weights, PDBDataset
+from tagcn_bind import Trainer, GATv2Net, TAGCNet, init_weights, PDBDataset
 from torch_geometric.loader import DataLoader
 from scipy.optimize import minimize
 from scipy.stats import pearsonr, kendalltau
@@ -25,12 +25,13 @@ script_path = Path(__file__).resolve()
 # Go up two levels to get the project root:
 project_root = script_path.parent.parent
 
-def initalise_model(model_name, node_feat_dim, edge_feat_dim, hidden_dim, head, num_GNN_layers, activation):
+def initalise_model(model_name, node_feat_dim, edge_feat_dim, hidden_dim, num_GNN_layers, activation, head=3, K=3):
 
     # Generate a config dict:
     config_dict = {
         "num_gnn_layers": num_GNN_layers,
         "head": head,
+        "K": 3,
         "hidden_dim": hidden_dim,
         "activation": activation
     }
@@ -38,6 +39,8 @@ def initalise_model(model_name, node_feat_dim, edge_feat_dim, hidden_dim, head, 
     if model_name == "GATv2":
         model = GATv2Net(node_feature_dim=node_feat_dim, edge_feature_dim=edge_feat_dim, config=config_dict)
         return model
+    elif model_name == "TAGCN":
+        model = TAGCNet(node_feature_dim=node_feat_dim, edge_feature_dim=edge_feat_dim, config=config_dict)
     else:
         raise ValueError(f"Coulnd't identify model name: {model_name}")
     
@@ -108,6 +111,7 @@ def main():
         early_stopping_metric = experiment["args"]["early_stopping_metric"] 
         hidden_dim = experiment["args"]["hidden_dim"]
         head = experiment["args"]["head"]
+        K_param = experiment["args"]["K"]
         num_GNN_layers = experiment["args"]["num_GNN_layers"]
         activation_function = experiment["args"]["activation_function"]
         weight_decay = experiment["args"]["weight_decay"] 
@@ -163,7 +167,7 @@ def main():
             node_feat_dim, edge_feat_dim = find_feat_edge_dim(train_graphs_dir=train_graphs_dir)
 
             # Get the model 
-            model = initalise_model(model_name=model_name, edge_feat_dim=edge_feat_dim, node_feat_dim=node_feat_dim, hidden_dim=hidden_dim, head=head, num_GNN_layers=num_GNN_layers, activation=activation_function)
+            model = initalise_model(model_name=model_name, edge_feat_dim=edge_feat_dim, node_feat_dim=node_feat_dim, hidden_dim=hidden_dim, head=head, num_GNN_layers=num_GNN_layers, activation=activation_function, K=K_param)
 
             # Initalise weights
             model.apply(init_weights)

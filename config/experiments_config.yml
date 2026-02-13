@@ -9,6 +9,35 @@ experiments:
     early_stopping_metric: "kendall" # choose mse, kendall, or pearson
     hidden_dim: 256
     head: 3
+    K: 3 # Not relavant to GATv2
+    num_GNN_layers: 5
+    activation_function: leaky_relu
+    weight_decay: 0.01 # Explore this
+    seeds: [100, 123, 15, 257, 2, 2012, 3752, 350, 843, 621] 
+    ensemble_metric: "kendall" # metric to optimise ensemble weights, choose either kendall, mse or pearson
+    scaling_stats_pt: "data/scaling/PDBbind_minus_CASF_2016_scaling.pt" 
+    train_data_csv: "data/PDBbind_processed_train.csv"
+    val_data_csv: "data/PDBbind_processed_val.csv"
+    test_data_csv: "data/CASF_2016_processed.csv"    
+    train_graphs_dir: "data/graphs/PDBbind_train" 
+    val_graphs_dir: "data/graphs/PDBbind_val"
+    test_graphs_dir: "data/graphs/CASF_2016"
+    model_save_dir: "output/models"
+    predictions_save_dir: "output/predictions"
+    save_training_stats_dir: "output/training_stats"
+    plots_dir: "output/plots_dir"
+
+- name: TAGCN-K-3-L-5
+  args:
+    model: TAGCN 
+    epochs: 1000 # high epochs for early stopping
+    batch_size: 128
+    lr: 0.001
+    early_stopping: 50
+    early_stopping_metric: "kendall" # choose mse, kendall, or pearson
+    hidden_dim: 256
+    head: 3 # Not relavant to GATv2
+    K: 3 
     num_GNN_layers: 5
     activation_function: leaky_relu
     weight_decay: 0.01 # Explore this
