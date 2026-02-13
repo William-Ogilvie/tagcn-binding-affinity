@@ -121,6 +121,13 @@ class GraphGenerationManager:
 
         start_time = time.time()
         graph_counter = 0
+        shard_counter = 0
+        shard_index = 0
+
+        # On the supercomputer there is a bottle neck with I/O time, to solve this
+        # we are going to save the graphs in blocks of 1,000 shards and then just load the shards
+        shard = dict()
+        shard_data = []
 
         print(f"Starting sequential graph generation on {device}...")
         for row in tqdm(rows, desc="Generating Graphs", file=sys.stdout):
@@ -128,9 +135,32 @@ class GraphGenerationManager:
             if result is not None:
                 uid, graph, pK = result
 
-                print(f"Saving graph to {output_path} as {uid}_graph.pt")
+                print(f"Saving graph to {output_path} as {uid}_graph.pt, and to shard {shard_index}.")
                 torch.save((uid, graph, pK), f"{output_path}/{uid}_graph.pt")
+                shard[uid] = (uid, graph, pK) 
+                shard_counter += 1
                 graph_counter += 1
+                shard_data.append({"unique_id": uid, "shard": shard_index})
+
+                # If we have 1,000 elements in the shard we will save it:
+                if shard_counter == 1000:
+                    print(f"Saving shard {shard_index}")
+                    torch.save(shard, f"{output_path}/shard_{shard_index}.pt")
+                    shard_index += 1
+
+                    # Reset counter
+                    shard_counter = 0
+                    shard = dict()
+                    
+
+        # Save the final shard 
+        print(f"Saving shard {shard_index}")
+        torch.save(shard, f"{output_path}/shard_{shard_index}.pt")
+
+        # Save the shard dataframe for loop up
+        shard_df = pd.DataFrame(shard_data) 
+        shard_df.to_csv(f"{output_path}/shard_data.csv", index=False)  
+                    
                 
 
         print(f"Graph generation complete. Processed {graph_counter}/{len(rows)} successfully.")
