@@ -15,6 +15,7 @@ class PDBDataset(Dataset):
         Args: 
             data_dir (str): path to the graphs
         """  
+        super().__init__()
         path_to_shard_csv = data_dir / "shard_data.csv"      
         self.df = pd.read_csv(path_to_shard_csv) # Read csv to get unique_ids and shards
         self.data_dir = data_dir # Location of graphs
@@ -24,7 +25,7 @@ class PDBDataset(Dataset):
 
     @lru_cache(maxsize=2) # Keeps the current shard in RAM
     def _load_shard(self, shard_file):
-        file_path = os.path.join(self.shard_dir, shard_file)
+        file_path = self.data_dir / shard_file
         return torch.load(file_path, weights_only=False)
 
     def __len__(self):

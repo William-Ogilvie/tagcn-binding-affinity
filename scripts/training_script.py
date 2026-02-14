@@ -126,6 +126,7 @@ def main():
         ensemble_metric = experiment["args"]["ensemble_metric"]
         save_training_stats_dir = experiment["args"]["save_training_stats_dir"]
         plots_dir = experiment["args"]["plots_dir"]
+        scaling_stats_path = project_root / scaling_stats_pt
 
         # Setup output folders
         model_save_dir = project_root / model_save_dir
@@ -194,8 +195,7 @@ def main():
                 device = torch.device("cpu")
 
             # Initialise the trainer 
-            scaling_stats_pt = project_root / scaling_stats_pt
-            trainer = Trainer(model=model, device=device, stats_path=scaling_stats_pt)
+            trainer = Trainer(model=model, device=device, stats_path=scaling_stats_path)
 
             # Training loop with early stopping
             best_val_loss = float('inf')
@@ -319,7 +319,10 @@ def main():
 
         # Optimization
         n_models = len(seeds)
-        init_weights_opt = np.ones(n_models) / n_models
+        # Initialize weights using the utility function as requested
+        weights_tensor = torch.zeros(n_models)
+        init_weights(weights_tensor)
+        init_weights_opt = weights_tensor.numpy()
         bounds = [(0.0, 1.0)] * n_models
         constraints = {'type': 'eq', 'fun': lambda w: np.sum(w) - 1.0}
         
