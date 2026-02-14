@@ -18,6 +18,8 @@ from scipy.stats import pearsonr, kendalltau
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
+import sys
+from tqdm import tqdm
 
 # Get the absolute path of the current script
 script_path = Path(__file__).resolve()
@@ -210,7 +212,7 @@ def main():
             seed_val_pearson = []
             seed_val_kendall = []
 
-            for epoch in range(epochs):
+            for epoch in tqdm(range(epochs), desc="Training Epochs", file=sys.stdout):
 
                 train_loss, train_kendall_corr, train_pearson_corr = trainer.train_epoch(loader=train_loader, optimizer=optimizer, criterion=criterion)
                 val_loss, val_kendall_corr, val_pearson_corr = trainer.validate(loader=val_loader, criterion=criterion)
@@ -220,7 +222,7 @@ def main():
                 seed_val_pearson.append(val_pearson_corr)
                 seed_val_kendall.append(val_kendall_corr)
 
-                print(f"Epoch {epoch:03d}/{epochs} | Train: {train_loss:.4f} | Val: {val_loss:.4f}")
+                tqdm.write(f"Epoch {epoch:03d}/{epochs} | Train: {train_loss:.4f} | Val: {val_loss:.4f}")
 
                 # Check for early stopping, we have a choise to stop on either mse (loss), kendalls tau or pearsons
                 if early_stopping_metric == "mse":
