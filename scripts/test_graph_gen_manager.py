@@ -12,6 +12,7 @@ import pickle
 import numpy as np
 import pandas as pd
 from tagcn_bind import GraphGenerationManager
+import math
 
 def main():
     # Get the absolute path of the current script
@@ -64,33 +65,34 @@ def main():
         return
 
     # List all .pt files
-    pt_files = list(output_path.glob("*_graph.pt"))
-    num_graphs = len(pt_files)
-    print(f"Found {num_graphs} graph files in {output_path}.")
+    pt_files = list(output_path.glob("*.pt"))
+    num_shards = len(pt_files)
+    print(f"Found {num_shards}  files in {output_path}.")
     
     # Load CSV to compare
     if data_csv_path.exists():
         df = pd.read_csv(data_csv_path)
-        expected_count = len(df)
+        expected_count = math.ceil(len(df) / 1000)
         
-        if num_graphs == expected_count:
-            print(f"SUCCESS: Graph count matches expected ({expected_count}).")
+        if num_shards == expected_count:
+            print(f"SUCCESS: Shard count matches expected ({expected_count}).")
         else:
-            print(f"WARNING: Graph count ({num_graphs}) does not match expected ({expected_count}).")
+            print(f"WARNING: Shard count ({num_shards}) does not match expected ({expected_count}).")
     else:
         print(f"WARNING: CSV file {data_csv_path} not found for comparison.")
         df = None
 
-    if num_graphs > 0:
+    if num_shards > 0:
         # Inspect first file
-        first_file = pt_files[0]
-        print(f"\nInspecting file: {first_file.name}")
+        first_shard = pt_files[0]
+        print(f"\nInspecting shard: {first_shard.name}")
         
         try:
-            # Load the tuple (unique_id, graph, pK), set weights_only=False as we made this .pt object and so trust it
-            loaded_data = torch.load(first_file, weights_only=False)
-            uid, graph, pK = loaded_data
-            
+            # First load the shard
+            loaded_shard = torch.load(first_shard, weights_only=False)
+            # Load the tuple (unique_id, graph, pK) of the first unique id 
+            graph_id = list(loaded_shard.keys())[0]
+            uid, graph, pK = loaded_shard[graph_id] 
             print(f"Loaded Unique ID: {uid}")
             print(f"Loaded pK: {pK}")
 

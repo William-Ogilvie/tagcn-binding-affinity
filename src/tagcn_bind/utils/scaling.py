@@ -80,10 +80,10 @@ class ScalingManager:
             # Load the shard 
             shard_path = os.path.join(dataset_paths[i], shard)
 
-            shard_file = torch.laod(shard_path, weights_only=False)
+            shard_file = torch.load(shard_path, weights_only=False)
 
             # Loop through the keys of the shard
-            for graph_id in tqdm(shard_path.keys(), dec= f"Processing shard {shard_path}", file=sys.stdout):
+            for graph_id in tqdm(shard_file.keys(), desc= f"Processing shard {shard_path}", file=sys.stdout):
 
                 # Load graph
                 uid, graph, pK = shard_file[graph_id]
@@ -126,9 +126,9 @@ class ScalingManager:
         # Find Global Stats
         mean = sum_aev / n_atoms_total
         variance = (sum_aev2 / n_atoms_total) - (mean**2)
-        # The +1e-16 is to ensure we don't divide by 0, so suppose the AEVs are all zero for some column we don't want 
+        # The +1e-64 is to ensure we don't divide by 0, so suppose the AEVs are all zero for some column we don't want 
         # a zero standard deviation as will get divide by 0 error. 
-        std = np.sqrt(variance + 1e-16)
+        std = np.sqrt(variance + 1e-64)
 
         # Concatenate these with the fake standardisations
         mean = np.concatenate((fake_mean, mean), axis=0)

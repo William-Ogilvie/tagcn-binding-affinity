@@ -6,6 +6,7 @@ This script will test the ScalingManager class, we assume you already have made 
 """
 from pathlib import Path
 from tagcn_bind import ScalingManager
+import torch
 
 # Get the absolute path of the current script
 script_path = Path(__file__).resolve()
@@ -31,4 +32,18 @@ trainer = ScalingManager()
 # Calculate stats
 trainer.calculate_stats(dataset_paths=[dataset_dir], output_path=scaling_dir, output_file_name=scale_file_name)
 
+# Load the outputted scaling file and diplay the results
+scale_file_name += ".pt"
+scale_path = scaling_dir / scale_file_name 
 
+scale_file = torch.load(scale_path, weights_only=False)
+
+# Check keys match and print values
+if set(scale_file.keys()) == {"mean", "std", "target_mean", "target_std"}:
+    print("Keys match")
+    print("Mean: ", scale_file["mean"])
+    print("std: ", scale_file["std"])
+    print("target_mean: ", scale_file["target_mean"])
+    print("target_std: ", scale_file["target_std"])
+else:
+    print(f"WARNING keys do not match, found keys: {list(scale_file.keys())}")
