@@ -160,8 +160,22 @@ def main():
         for i, seed in enumerate(seeds):
 
             # Create DataLoaders, handles batching, shuffling and multiprocessing
-            train_loader = DataLoader(dataset=train_set, batch_size=batch_size, shuffle=True)
-            val_loader = DataLoader(dataset=val_set, batch_size=batch_size, shuffle=False)
+            train_loader = DataLoader(
+                dataset=train_set,
+                batch_size=batch_size,
+                shuffle=True,
+                num_workers = 4, # num subprocessed used for data loading
+                pin_memory = True, # copy tensors into CUDA before returning them
+                prefetch_factor = 2 # number of batches loaded in advance by each worker (so they have something to do while training)
+            )
+            val_loader = DataLoader(
+                dataset=val_set,
+                batch_size=batch_size, 
+                shuffle=False,
+                num_workers = 2, # Validation set is only 10% of the size of the training set so need less workers
+                pin_memory = True,
+                prefetch_factor = 2
+            )
 
             # Get the node and edge feature dimensions
             node_feat_dim, edge_feat_dim = find_feat_edge_dim(train_graphs_dir=train_graphs_dir)
@@ -255,8 +269,22 @@ def main():
         train_time = time.time() - start_time      
 
         # Loaders for inference (no shuffle)
-        val_loader_inf = DataLoader(dataset=val_set, batch_size=batch_size, shuffle=False)
-        test_loader_inf = DataLoader(dataset=test_set, batch_size=batch_size, shuffle=False)
+        val_loader_inf = DataLoader(
+            dataset=val_set, 
+            batch_size=batch_size, 
+            shuffle=False,
+            num_workers = 2,
+            pin_memory = True,
+            prefetch_factor = 2
+        )
+        test_loader_inf = DataLoader(
+            dataset=test_set,
+            batch_size=batch_size,
+            shuffle=False,
+            num_workers = 0, # for test set isn't much point in using multiple workers due to size of data set
+            pin_memory = True,
+            prefetch_factor = 0
+        )
         
         val_preds_list = []
         test_preds_list = []
