@@ -141,9 +141,9 @@ def main():
         save_training_stats_dir.mkdir(parents = True, exist_ok = True)
         plots_dir.mkdir(parents = True, exist_ok = True)
 
-        train_dataset_name = train_data_csv.split("/")[0][:-4]
-        val_dataset_name = val_data_csv.split("/")[0][:-4]
-        test_dataset_name = test_data_csv.split("/")[0][:-4]
+        train_dataset_name = train_data_csv.split("/")[-1][:-4]
+        val_dataset_name = val_data_csv.split("/")[-1][:-4]
+        test_dataset_name = test_data_csv.split("/")[-1][:-4]
         
  
         train_graphs_dir = project_root / train_graphs_dir
