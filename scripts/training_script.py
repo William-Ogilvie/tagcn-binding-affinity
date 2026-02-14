@@ -47,24 +47,22 @@ def initalise_model(model_name, node_feat_dim, edge_feat_dim, hidden_dim, num_GN
 def find_feat_edge_dim(train_graphs_dir):
 
     # Load the first graph in training and get the dimension of the node and edge features
-    pt_files = list(train_graphs_dir.glob("*_graph.pt"))
-
-    first_graph = pt_files[0]
-
-    try:
-        loaded_graph = torch.load(first_graph, weights_only=False)
-
-        uid, graph, pK = loaded_graph
-
-        feat_dim = len(graph[1][0])
-
-        edge_dim = len(graph[3][0])
-
-        return feat_dim, edge_dim
-    
-
+    # Remember graphs are stored as shards 
+    shard_files = list(train_graphs_dir.glob("*.pt"))
+    try: 
+        first_shard_path = shard_files[0]
+        first_shard = torch.load(first_shard_path, weights_only=False)
     except Exception as e:
-        raise ValueError(f"ERROR: Failed to inspect graph: {e}")   
+        raise ValueError(f"ERROR: Failed to inspect shard: {e}")  
+    
+    first_id = list(first_shard.keys())[0]
+    uid, graph, pK = first_shard[first_id]
+
+    feat_dim = len(graph[1][0])
+
+    edge_dim = len(graph[3][0])
+
+    return feat_dim, edge_dim
 
 def parse_args():
     parser = argparse.ArgumentParser(description="Train a GNN model for binding affinity prediction.")
