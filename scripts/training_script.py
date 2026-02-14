@@ -319,10 +319,8 @@ def main():
 
         # Optimization
         n_models = len(seeds)
-        # Initialize weights using the utility function as requested
-        weights_tensor = torch.zeros(n_models)
-        init_weights(weights_tensor)
-        init_weights_opt = weights_tensor.numpy()
+        # Initialize ensemble weights uniformly (1/N)
+        init_weights_opt = np.ones(n_models) / n_models 
         bounds = [(0.0, 1.0)] * n_models
         constraints = {'type': 'eq', 'fun': lambda w: np.sum(w) - 1.0}
         

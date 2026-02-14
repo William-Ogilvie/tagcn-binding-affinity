@@ -3,8 +3,6 @@ import numpy as np
 from scipy.stats import pearsonr
 from sklearn.metrics import mean_squared_error
 
-# TODO querry this function may be mistake with layer.bias not being bool and the expression defaulting to false not sure
-# Have changed it temporarily to is not None
 def init_weights(layer):
     """ Xavier Normal initialization for weights, Zeros for bias. """
     if hasattr(layer, "weight") and "BatchNorm" not in str(layer):

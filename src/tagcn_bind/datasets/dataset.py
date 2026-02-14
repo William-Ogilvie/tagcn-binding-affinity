@@ -28,7 +28,7 @@ class PDBDataset(Dataset):
         file_path = self.data_dir / shard_file
         return torch.load(file_path, weights_only=False)
 
-    def __len__(self):
+    def len(self):
         """ number of ids in the dataset
 
         Returns:
