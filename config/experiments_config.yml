@@ -49,7 +49,7 @@ experiments:
     test_data_csv: "data/CASF_2016_processed.csv"    
     train_graphs_dir: "data/graphs/PDBbind_train" 
     val_graphs_dir: "data/graphs/PDBbind_val"
-    test_graphs_dir: "data/graphs/CASF_2016"
+    test_graphs_dir: "data/graphs/CASF-2016"
     model_save_dir: "output/models"
     predictions_save_dir: "output/predictions"
     save_training_stats_dir: "output/training_stats"
