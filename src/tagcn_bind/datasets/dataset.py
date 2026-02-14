@@ -20,7 +20,7 @@ class PDBDataset(Dataset):
         self.data_dir = data_dir # Location of graphs
         self.ids = self.df["unique_id"].tolist()
         # Creating mapping between unique ids and shards
-        self.shard_map = dict(zip(self.df["unique_id"], self.df["shard_id"]))       
+        self.shard_map = dict(zip(self.df["unique_id"], self.df["shard"]))       
 
     @lru_cache(maxsize=2) # Keeps the current shard in RAM
     def _load_shard(self, shard_file):
