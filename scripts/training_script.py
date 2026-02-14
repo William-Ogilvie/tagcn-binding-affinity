@@ -139,16 +139,13 @@ def main():
         predictions_save_dir.mkdir(parents = True, exist_ok = True)
         save_training_stats_dir.mkdir(parents = True, exist_ok = True)
         plots_dir.mkdir(parents = True, exist_ok = True)
-
-        train_data_csv = project_root / train_data_csv
-        val_data_csv = project_root / val_data_csv
-        test_data_csv = project_root / test_data_csv
+ 
         train_graphs_dir = project_root / train_graphs_dir
         val_graphs_dir = project_root / val_graphs_dir
         test_graphs_dir = project_root / test_graphs_dir
-        train_set = PDBDataset(data_dir=train_graphs_dir, csv_path=train_data_csv)
-        val_set = PDBDataset(data_dir=val_graphs_dir, csv_path=val_data_csv)
-        test_set = PDBDataset(data_dir=test_graphs_dir, csv_path=test_data_csv)
+        train_set = PDBDataset(data_dir=train_graphs_dir)
+        val_set = PDBDataset(data_dir=val_graphs_dir)
+        test_set = PDBDataset(data_dir=test_graphs_dir)
 
         # Lists to store history for plotting across seeds
         all_seeds_train_loss = []
