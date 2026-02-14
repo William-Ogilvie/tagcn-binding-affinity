@@ -25,7 +25,7 @@ class PDBDataset(Dataset):
 
     @lru_cache(maxsize=2) # Keeps the current shard in RAM
     def _load_shard(self, shard_file):
-        shard_file_name = f"shard_{0}.pt"
+        shard_file_name = f"shard_{shard_file}.pt"
         file_path = self.data_dir / shard_file_name
         return torch.load(file_path, weights_only=False)
 
