@@ -140,13 +140,18 @@ def main():
         predictions_save_dir.mkdir(parents = True, exist_ok = True)
         save_training_stats_dir.mkdir(parents = True, exist_ok = True)
         plots_dir.mkdir(parents = True, exist_ok = True)
+
+        train_dataset_name = train_data_csv.split("/")[0][:-4]
+        val_dataset_name = val_data_csv.split("/")[0][:-4]
+        test_dataset_name = test_data_csv.split("/")[0][:-4]
+        
  
         train_graphs_dir = project_root / train_graphs_dir
         val_graphs_dir = project_root / val_graphs_dir
         test_graphs_dir = project_root / test_graphs_dir
-        train_set = PDBDataset(data_dir=train_graphs_dir)
-        val_set = PDBDataset(data_dir=val_graphs_dir)
-        test_set = PDBDataset(data_dir=test_graphs_dir)
+        train_set = PDBDataset(data_dir=train_graphs_dir, dataset_name=train_dataset_name)
+        val_set = PDBDataset(data_dir=val_graphs_dir, dataset_name=val_dataset_name)
+        test_set = PDBDataset(data_dir=test_graphs_dir, dataset_name=test_dataset_name)
 
         # Lists to store history for plotting across seeds
         all_seeds_train_loss = []
@@ -222,7 +227,7 @@ def main():
                 seed_val_pearson.append(val_pearson_corr)
                 seed_val_kendall.append(val_kendall_corr)
 
-                tqdm.write(f"Epoch {epoch:03d}/{epochs} | Train: {train_loss:.4f} | Val: {val_loss:.4f}")
+                tqdm.write(f"Epoch {epoch:03d}/{epochs} | Train loss: {train_loss:.4f} | Val loss: {val_loss:.4f} | Train Pearson: {train_pearson_corr:.4f} | Val Pearson: {val_pearson_corr:.4f} | Train Kendall: {train_kendall_corr:.4f} | Val Kendall: {val_kendall_corr:.4f}")
 
                 # Check for early stopping, we have a choise to stop on either mse (loss), kendalls tau or pearsons
                 if early_stopping_metric == "mse":
