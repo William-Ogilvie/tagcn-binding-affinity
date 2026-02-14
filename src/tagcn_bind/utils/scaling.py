@@ -83,7 +83,7 @@ class ScalingManager:
             shard_file = torch.laod(shard_path, weights_only=False)
 
             # Loop through the keys of the shard
-            for graph_id in shard_path.keys():
+            for graph_id in tqdm(shard_path.keys(), dec= f"Processing shard {shard_path}", file=sys.stdout):
 
                 # Load graph
                 uid, graph, pK = shard_file[graph_id]
