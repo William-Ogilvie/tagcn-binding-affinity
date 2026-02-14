@@ -11,7 +11,7 @@ import torch
 import time
 from pathlib import Path
 import yaml
-from tagcn_bind import Trainer, GATv2Net, TAGCNet, init_weights, PDBDataset
+from tagcn_bind import Trainer, GATv2Net, GATv2Net_v2, TAGCNet, TAGCNet_v2, init_weights, PDBDataset
 from torch_geometric.loader import DataLoader
 from scipy.optimize import minimize
 from scipy.stats import pearsonr, kendalltau
@@ -27,7 +27,7 @@ script_path = Path(__file__).resolve()
 # Go up two levels to get the project root:
 project_root = script_path.parent.parent
 
-def initalise_model(model_name, node_feat_dim, edge_feat_dim, hidden_dim, num_GNN_layers, activation, head=3, K=3):
+def initalise_model(model_name, node_feat_dim, edge_feat_dim, hidden_dim, num_GNN_layers, activation, head=3, K=3, dropout_rate=0.0):
 
     # Generate a config dict:
     config_dict = {
@@ -35,7 +35,9 @@ def initalise_model(model_name, node_feat_dim, edge_feat_dim, hidden_dim, num_GN
         "head": head,
         "K": 3,
         "hidden_dim": hidden_dim,
-        "activation": activation
+        "activation": activation,
+        "dropout_rate": dropout_rate,
+        "training": True
     }
 
     if model_name == "GATv2":
@@ -43,6 +45,10 @@ def initalise_model(model_name, node_feat_dim, edge_feat_dim, hidden_dim, num_GN
         return model
     elif model_name == "TAGCN":
         model = TAGCNet(node_feature_dim=node_feat_dim, edge_feature_dim=edge_feat_dim, config=config_dict)
+    elif model_name == "GATv2_v2": 
+        model = GATv2Net_v2(node_feature_dim=node_feat_dim, edge_feature_dim=edge_feat_dim, config=config_dict)
+    elif model_name == "TAGCN_v2":
+        model = TAGCNet_v2(node_feature_dim=node_feat_dim, edge_feature_dim=edge_feat_dim, config=config_dict)
     else:
         raise ValueError(f"Coulnd't identify model name: {model_name}")
     
@@ -112,6 +118,7 @@ def main():
         hidden_dim = experiment["args"]["hidden_dim"]
         head = experiment["args"]["head"]
         K_param = experiment["args"]["K"]
+        dropout_rate = experiment["args"]["dropout_rate"]
         num_GNN_layers = experiment["args"]["num_GNN_layers"]
         activation_function = experiment["args"]["activation_function"]
         weight_decay = experiment["args"]["weight_decay"] 
@@ -286,6 +293,7 @@ def main():
             num_workers = 0, # for test set isn't much point in using multiple workers due to size of data set
             pin_memory = True
         )
+
         
         val_preds_list = []
         test_preds_list = []
@@ -298,7 +306,13 @@ def main():
             
             # Load model weights into the existing trainer's model
             trainer.model.load_state_dict(torch.load(model_path, weights_only=False))
+
+
+            # If the model uses dropout it needs to be turned off here:
+            if model_name == "GATv2_v2" or model_name == "TAGCN_v2":
+                trainer.model.training = False
             
+
             # Predict Validation
             v_preds, v_y = trainer.predict(val_loader_inf)
             val_preds_list.append(v_preds)
