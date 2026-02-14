@@ -33,21 +33,26 @@ class ScalingManager:
 
         print("Starting Global Statistics Calculation")
 
+        # It is important to remember that we save the graphs in shards of 1,000
+
         # Loop through all the paths in data_set_paths and add to the files array
-        files = []
+        shards = []
         i = 0 # Track index of current file path
         for path in dataset_paths:
             temp_files = [(f, i) for f in os.listdir(path) if f.endswith(".pt")]
 
-            files += temp_files
+            shards += temp_files
 
             i += 1
 
         n_atoms_total = 0
         # Load the first graph to get the length of the AEV feature vector to initalise sum_aev and sum_aev2
-        f_first = files[0][0]
-        file_path = os.path.join(dataset_paths[0], f_first)
-        uid, graph, pK = torch.load(file_path, weights_only=False)
+        s_first = shards[0][0]
+        file_path = os.path.join(dataset_paths[0], s_first)
+        first_shard = torch.load(file_path, weights_only=False)
+        exple_idx = list(first_shard.keys())[0]
+
+        uid, graph, pK = first_shard[exple_idx]
 
         len_chem_feats = graph[4]
         len_aev_feats = graph[5]  
@@ -63,51 +68,60 @@ class ScalingManager:
         fake_mean = np.zeros(len_chem_feats, dtype = feat_dtype)
         fake_std = np.ones(len_chem_feats, dtype = feat_dtype)
 
-        # For the targets we need to know the number of files
-        num_files = len(files)
+        # For the targets we need to know the number of graphs
+        num_graphs = 0
 
         # Initalise empty values for the pK standardisation
         sum_pk = 0.0
         sum_pk2 = 0.0 
 
-        for f_name, i in tqdm(files, desc = "Processing Graphs", file=sys.stdout):
+        # Loop through the shards
+        for shard, i in tqdm(shards, desc = "Processing Shards", file=sys.stdout):
+            # Load the shard 
+            shard_path = os.path.join(dataset_paths[i], shard)
 
-            file_path = os.path.join(dataset_paths[i], f_name)
+            shard_file = torch.laod(shard_path, weights_only=False)
 
-            # Load graph
-            uid, graph, pK = torch.load(file_path, weights_only=False)
+            # Loop through the keys of the shard
+            for graph_id in shard_path.keys():
 
-            # Update the target sums
-            sum_pk += pK
-            sum_pk2 += pK ** 2
+                # Load graph
+                uid, graph, pK = shard_file[graph_id]
 
-            # Get the features vector (technically just a python list) at index 1 of the graph (which is a tuple)
-            # Also grab the length of the chemical features (these are our categorical), and the length of the AEVs (these are our numeric/continuous) 
-            features = graph[1]
-            len_chem_feats = graph[4]
-            len_aev_feats = graph[5]
+                # Update the target sums
+                sum_pk += pK
+                sum_pk2 += pK ** 2
+
+                # Update the total number of graphs for target average
+                num_graphs += 1
+
+                # Get the features vector (technically just a python list) at index 1 of the graph (which is a tuple)
+                # Also grab the length of the chemical features (these are our categorical), and the length of the AEVs (these are our numeric/continuous) 
+                features = graph[1]
+                len_chem_feats = graph[4]
+                len_aev_feats = graph[5]
 
 
-            # Features is a list of numpy arrays, where each array is for each atom in the ligand
-            # the first len_chem_feats are chemical features which are categorical, we care about the last 
-            # len_aev_feats which are the AEVs
-            
-            # Loop through features adding the AEVs to the running totals
-            for atom in features:
+                # Features is a list of numpy arrays, where each array is for each atom in the ligand
+                # the first len_chem_feats are chemical features which are categorical, we care about the last 
+                # len_aev_feats which are the AEVs
+                
+                # Loop through features adding the AEVs to the running totals
+                for atom in features:
 
-                # atom will be a numpy array
-                aevs = atom[len_chem_feats:]
+                    # atom will be a numpy array
+                    aevs = atom[len_chem_feats:]
 
-                # Sanity check aevs right length
-                if len(aevs) != len_aev_feats:
-                    raise ValueError(f"AEV vector not of expected length for atom of file {file_path}")
+                    # Sanity check aevs right length
+                    if len(aevs) != len_aev_feats:
+                        raise ValueError(f"AEV vector not of expected length for atom of file {file_path}")
 
-                # add to running total
-                sum_aev += aevs
-                sum_aev2 += aevs**2
+                    # add to running total
+                    sum_aev += aevs
+                    sum_aev2 += aevs**2
 
-                # update the atom count by 1
-                n_atoms_total += 1
+                    # update the atom count by 1
+                    n_atoms_total += 1
 
         # Find Global Stats
         mean = sum_aev / n_atoms_total
@@ -121,8 +135,8 @@ class ScalingManager:
         std = np.concatenate((fake_std, std), axis=0)
 
         # Do the same for the targets
-        target_mean = sum_pk / num_files
-        target_variance = (sum_pk2 / num_files) - (target_mean ** 2)
+        target_mean = sum_pk / num_graphs
+        target_variance = (sum_pk2 / num_graphs) - (target_mean ** 2)
         target_std = math.sqrt(max(0.0, target_variance))
 
         # Save these stats to the output path
