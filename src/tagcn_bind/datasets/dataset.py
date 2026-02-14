@@ -5,6 +5,7 @@ import pandas as pd
 import os
 from functools import lru_cache
 from tqdm import tqdm
+import sys
 
 class PDBDataset(InMemoryDataset):
     def __init__(self, data_dir: str, dataset_name: str, transform=None, pre_transform=None):
@@ -33,11 +34,11 @@ class PDBDataset(InMemoryDataset):
         # Get unique shard numbers to avoid reloading the same shard multiple times
         shard_nums = self.df["shard"].unique()
 
-        for s_num in tqdm(shard_nums, desc="Loading Shards"):
+        for s_num in tqdm(shard_nums, desc="Loading Shards", file=sys.stdout):
             shard_path = self.data_dir / f"shard_{s_num}.pt"
             shard_dict = torch.load(shard_path, weights_only=False)
 
-            for pdb_id, contents in shard_dict.items():
+            for pdb_id, contents in tqdm(shard_dict.items(), desc=f"Loading shard {s_num}", file=sys.stdout):
 
                 uid, graph, pK = contents
 
