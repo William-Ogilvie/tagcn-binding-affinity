@@ -65,6 +65,8 @@ class PDBDataset(InMemoryDataset):
 
 
 # Actually the below is too slow on the supercomputer due to slow i/o. So we revert back to InMemoryDataset as above
+# On the supercomputer we go from one epoch roughly every 15-20 minutes down to 2-3 epochs a second...
+
 # We are going to use Dataset over InMemoryDataset from AEV-PLIG, due to lazy loading. 
 # our datasets are quite large and so potentially we don't have the space to feed the entire dataset into RAM. 
 # So instead we will just load the batches as we need them.

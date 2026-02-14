@@ -284,8 +284,7 @@ def main():
             batch_size=batch_size,
             shuffle=False,
             num_workers = 0, # for test set isn't much point in using multiple workers due to size of data set
-            pin_memory = True,
-            prefetch_factor = 0
+            pin_memory = True
         )
         
         val_preds_list = []
