@@ -14,8 +14,7 @@ experiments:
     num_GNN_layers: 5
     activation_function: leaky_relu
     weight_decay: 0.0001 # Explore this
-    seeds: [100, 123, 15, 257, 2, 2012, 3752, 350, 843, 621] 
-    ensemble_metric: "kendall" # metric to optimise ensemble weights, choose either kendall, mse or pearson
+    seeds: [100, 123, 15, 257, 2, 2012, 3752, 350, 843, 621]  
     scaling_stats_pt: "data/scaling/PDBbind_minus_CASF_2016_scaling.pt" 
     train_data_csv: "data/PDBbind_processed_train.csv"
     val_data_csv: "data/PDBbind_processed_val.csv"
@@ -44,7 +43,6 @@ experiments:
     activation_function: leaky_relu
     weight_decay: 0.0001 # Explore this
     seeds: [100, 123, 15, 257, 2, 2012, 3752, 350, 843, 621] 
-    ensemble_metric: "kendall" # metric to optimise ensemble weights, choose either kendall, mse or pearson
     scaling_stats_pt: "data/scaling/PDBbind_minus_CASF_2016_scaling.pt" 
     train_data_csv: "data/PDBbind_processed_train.csv"
     val_data_csv: "data/PDBbind_processed_val.csv"
@@ -73,7 +71,6 @@ experiments:
     activation_function: leaky_relu
     weight_decay: 0.0001 # Explore this
     seeds: [100, 123, 15, 257, 2, 2012, 3752, 350, 843, 621] 
-    ensemble_metric: "kendall" # metric to optimise ensemble weights, choose either kendall, mse or pearson
     scaling_stats_pt: "data/scaling/PDBbind_minus_CASF_2016_scaling.pt" 
     train_data_csv: "data/PDBbind_processed_train.csv"
     val_data_csv: "data/PDBbind_processed_val.csv"
@@ -102,7 +99,6 @@ experiments:
     activation_function: leaky_relu
     weight_decay: 0.0001 # Explore this
     seeds: [100, 123, 15, 257, 2, 2012, 3752, 350, 843, 621] 
-    ensemble_metric: "kendall" # metric to optimise ensemble weights, choose either kendall, mse or pearson
     scaling_stats_pt: "data/scaling/PDBbind_minus_CASF_2016_scaling.pt" 
     train_data_csv: "data/PDBbind_processed_train.csv"
     val_data_csv: "data/PDBbind_processed_val.csv"
@@ -110,6 +106,146 @@ experiments:
     train_graphs_dir: "data/graphs/PDBbind_train" 
     val_graphs_dir: "data/graphs/PDBbind_val"
     test_graphs_dir: "data/graphs/CASF-2016"
+    model_save_dir: "output/models"
+    predictions_save_dir: "output/predictions"
+    save_training_stats_dir: "output/training_stats"
+    plots_dir: "output/plots_dir"
+
+- name: AEV-PLIG-Legacy-Kendall-Weight-Decay
+  args:
+    model: GATv2 
+    epochs: 1000 # high epochs for early stopping
+    batch_size: 128
+    lr: 0.001
+    early_stopping: 50
+    early_stopping_metric: "kendall" # choose mse, kendall, or pearson
+    hidden_dim: 256
+    head: 3
+    K: 3 # Not relavant to GATv2
+    dropout_rate: 0.0 # Not relavant to GATv2
+    num_GNN_layers: 5
+    activation_function: leaky_relu
+    weight_decay: 0.0001 # Explore this
+    seeds: [100, 123, 15, 257, 2, 2012, 3752, 350, 843, 621] 
+    scaling_stats_pt: "data/scaling/PDBbind_minus_CASF_2016_legacy_scaling.pt" 
+    train_data_csv: "data/PDBbind_processed_train.csv"
+    val_data_csv: "data/PDBbind_processed_val.csv"
+    test_data_csv: "data/CASF_2016_processed.csv"    
+    train_graphs_dir: "data/graphs/PDBbind_legacy_train" 
+    val_graphs_dir: "data/graphs/PDBbind_legacy_val"
+    test_graphs_dir: "data/graphs/CASF-2016_legacy"
+    model_save_dir: "output/models"
+    predictions_save_dir: "output/predictions"
+    save_training_stats_dir: "output/training_stats"
+    plots_dir: "output/plots_dir"
+
+- name: AEV-PLIG-True-Legacy
+  args:
+    model: GATv2 
+    epochs: 1000 # high epochs for early stopping
+    batch_size: 128
+    lr: 0.001
+    early_stopping: 50
+    early_stopping_metric: "pearson" # AEV-PLIG did early stopping by pearson, technically using a rolling average of the previous 8 epochs
+    hidden_dim: 256
+    head: 3
+    K: 3 # Not relavant to GATv2
+    dropout_rate: 0.0 # Not relavant to GATv2
+    num_GNN_layers: 5
+    activation_function: leaky_relu
+    weight_decay: 0.0 # AEV-PLIG had no weight decay
+    seeds: [100, 123, 15, 257, 2, 2012, 3752, 350, 843, 621] 
+    scaling_stats_pt: "data/scaling/PDBbind_minus_CASF_2016_legacy_scaling.pt" 
+    train_data_csv: "data/PDBbind_processed_train.csv"
+    val_data_csv: "data/PDBbind_processed_val.csv"
+    test_data_csv: "data/CASF_2016_processed.csv"    
+    train_graphs_dir: "data/graphs/PDBbind_legacy_train" 
+    val_graphs_dir: "data/graphs/PDBbind_legacy_val"
+    test_graphs_dir: "data/graphs/CASF-2016_legacy"
+    model_save_dir: "output/models"
+    predictions_save_dir: "output/predictions"
+    save_training_stats_dir: "output/training_stats"
+    plots_dir: "output/plots_dir"
+
+- name: TAGCN-K-3-L-5-Legacy
+  args:
+    model: TAGCN 
+    epochs: 1000 # high epochs for early stopping
+    batch_size: 128
+    lr: 0.001
+    early_stopping: 50
+    early_stopping_metric: "kendall" # choose mse, kendall, or pearson
+    hidden_dim: 256 # Now here there is a key choice, in the AEV-PLIG architecutre each attention head of GATv2 is of size hidden_dim, so GATv2 will have roughly heads fold more parameters unless we scale the hidden_dim here for TAGCN
+    head: 3 # Not relevant to TAGCN
+    K: 3 
+    dropout_rate: 0.0 # Not relevant to OG TAGCN
+    num_GNN_layers: 5
+    activation_function: leaky_relu
+    weight_decay: 0.0001 # Explore this
+    seeds: [100, 123, 15, 257, 2, 2012, 3752, 350, 843, 621] 
+    scaling_stats_pt: "data/scaling/PDBbind_minus_CASF_2016_legacy_scaling.pt" 
+    train_data_csv: "data/PDBbind_processed_train.csv"
+    val_data_csv: "data/PDBbind_processed_val.csv"
+    test_data_csv: "data/CASF_2016_processed.csv"    
+    train_graphs_dir: "data/graphs/PDBbind_legacy_train" 
+    val_graphs_dir: "data/graphs/PDBbind_legacy_val"
+    test_graphs_dir: "data/graphs/CASF-2016_legacy"
+    model_save_dir: "output/models"
+    predictions_save_dir: "output/predictions"
+    save_training_stats_dir: "output/training_stats"
+    plots_dir: "output/plots_dir"
+
+- name: AEV-PLIG-Legacy-v2
+  args:
+    model: GATv2_v2 
+    epochs: 1000 # high epochs for early stopping
+    batch_size: 128
+    lr: 0.001
+    early_stopping: 50
+    early_stopping_metric: "kendall" # choose mse, kendall, or pearson
+    hidden_dim: 256
+    head: 3
+    K: 3 # Not relavant to GATv2
+    dropout_rate: 0.2 # experiment with this!
+    num_GNN_layers: 5
+    activation_function: leaky_relu
+    weight_decay: 0.0001 # Explore this
+    seeds: [100, 123, 15, 257, 2, 2012, 3752, 350, 843, 621] 
+    scaling_stats_pt: "data/scaling/PDBbind_minus_CASF_2016_legacy_scaling.pt" 
+    train_data_csv: "data/PDBbind_processed_train.csv"
+    val_data_csv: "data/PDBbind_processed_val.csv"
+    test_data_csv: "data/CASF_2016_processed.csv"    
+    train_graphs_dir: "data/graphs/PDBbind_legacy_train" 
+    val_graphs_dir: "data/graphs/PDBbind_legacy_val"
+    test_graphs_dir: "data/graphs/CASF-2016_legacy"
+    model_save_dir: "output/models"
+    predictions_save_dir: "output/predictions"
+    save_training_stats_dir: "output/training_stats"
+    plots_dir: "output/plots_dir"
+
+- name: TAGCN-K-3-L-5-Legacy-v2
+  args:
+    model: TAGCN_v2 
+    epochs: 1000 # high epochs for early stopping
+    batch_size: 128
+    lr: 0.001
+    early_stopping: 50
+    early_stopping_metric: "kendall" # choose mse, kendall, or pearson
+    hidden_dim: 256 # Now here there is a key choice, in the AEV-PLIG architecutre each attention head of GATv2 is of size hidden_dim, so GATv2 will have roughly heads fold more parameters unless we scale the hidden_dim here for TAGCN
+    head: 3 # Not relevant to TAGCN
+    K: 3 
+    dropout_rate: 0.2 # Experiment with this!
+    num_GNN_layers: 5
+    activation_function: leaky_relu
+    weight_decay: 0.0001 # Explore this
+    seeds: [100, 123, 15, 257, 2, 2012, 3752, 350, 843, 621] 
+    scaling_stats_pt: "data/scaling/PDBbind_minus_CASF_2016_legacy_scaling.pt" 
+    train_data_csv: "data/PDBbind_processed_train.csv"
+    val_data_csv: "data/PDBbind_processed_val.csv"
+    test_data_csv: "data/CASF_2016_processed.csv"    
+    train_graphs_dir: "data/graphs/PDBbind_legacy_train" 
+    val_graphs_dir: "data/graphs/PDBbind_legacy_val"
+    test_graphs_dir: "data/graphs/CASF-2016_legacy"
     model_save_dir: "output/models"
     predictions_save_dir: "output/predictions"
     save_training_stats_dir: "output/training_stats"

@@ -132,8 +132,7 @@ def main():
         val_graphs_dir = experiment["args"]["val_graphs_dir"]
         test_graphs_dir = experiment["args"]["test_graphs_dir"]
         model_save_dir = experiment["args"]["model_save_dir"]
-        predictions_save_dir = experiment["args"]["predictions_save_dir"] 
-        ensemble_metric = experiment["args"]["ensemble_metric"]
+        predictions_save_dir = experiment["args"]["predictions_save_dir"]  
         save_training_stats_dir = experiment["args"]["save_training_stats_dir"]
         plots_dir = experiment["args"]["plots_dir"]
         scaling_stats_path = project_root / scaling_stats_pt
@@ -194,7 +193,7 @@ def main():
             node_feat_dim, edge_feat_dim = find_feat_edge_dim(train_graphs_dir=train_graphs_dir)
 
             # Get the model 
-            model = initalise_model(model_name=model_name, edge_feat_dim=edge_feat_dim, node_feat_dim=node_feat_dim, hidden_dim=hidden_dim, head=head, num_GNN_layers=num_GNN_layers, activation=activation_function, K=K_param)
+            model = initalise_model(model_name=model_name, edge_feat_dim=edge_feat_dim, node_feat_dim=node_feat_dim, hidden_dim=hidden_dim, head=head, num_GNN_layers=num_GNN_layers, activation=activation_function, K=K_param, dropout_rate=dropout_rate)
 
             # Ensure model is in double precision to match the dataset
             model = model.double()

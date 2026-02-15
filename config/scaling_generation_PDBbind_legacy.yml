@@ -1,0 +1,6 @@
+datasets:
+  - name: "PDBbind_minus_CASF_2016_legacy"
+    dataset_paths: ["data/graphs/PDBbind_legacy_train", "data/graphs/PDBbind_legacy_val"]
+    output_dir: "data/scaling"
+    output_file_name: "PDBbind_minus_CASF_2016_legacy_scaling"
+    
