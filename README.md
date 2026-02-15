@@ -67,6 +67,8 @@ Remeber to look at the EtaR, i suspect 19.7 is too high and causes the sparsity 
 
 It seems the models overfit to the training data quite considerable (see models.py), have introduced new models to help combat this but could also look at increased weight decay etc.
 
+Another important thing is that TAG doesn't include edge attributes like GAT does, so the edge features (bond types) aren't being passed to the model. If TAG can still perform well this would suggest these are maybe redundant if you already have AEVs as node features?
+
 AEV-PLIG currently doesn't process hydrogens and instead has them implicitly with a hydrogen count at each heavy atom, it could be worth having explicit hydrogens? althought it will make the graphs a lot bigger...
 
 # Acknowledgments

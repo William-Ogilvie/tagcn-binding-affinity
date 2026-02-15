@@ -143,7 +143,7 @@ class TAGCNet(torch.nn.Module):
 
         # Message passing (GNN layers)
         for layer, bn in zip(self.GNN_layers, self.BN_layers):
-            x = layer(x, edge_index, edge_attr)
+            x = layer(x, edge_index)
             x = self.activation(x)
             x = bn(x)
 
@@ -182,7 +182,7 @@ Fixes:
 3. Reduce the size of the MLP
 """
 
-class GATv2Net_v2(torch.nn.Module):
+class TAGCNet_v2(torch.nn.Module):
     def __init__(self, node_feature_dim: int, edge_feature_dim: int, config: dict):
         """
         Args:
@@ -190,7 +190,7 @@ class GATv2Net_v2(torch.nn.Module):
             edge_feature_dim (int): Input dimension of edge features.
             config (dict): config dictionary containing hyperparameters  
         """
-        super(GATv2Net, self).__init__()
+        super(TAGCNet_v2, self).__init__()
 
         # Hyperparameters from Config
         self.n_gnn_layers = config["num_gnn_layers"]
@@ -224,7 +224,7 @@ class GATv2Net_v2(torch.nn.Module):
         # MLP, reducded first layer from 1024 to 512
         # As concatenate mean pool and max pool (as in AEV-PLIG) the final_dim * 2
 
-        final_gnn_dim = self.hidden_dim * self.head
+        final_gnn_dim = self.hidden_dim
 
         self.fc1 = nn.Linear(final_gnn_dim * 2, 512)
         self.bn_connect1 = nn.BatchNorm1d(512)
@@ -240,10 +240,10 @@ class GATv2Net_v2(torch.nn.Module):
 
         # Message passing (GNN layers)
         for layer, bn in zip(self.GNN_layers, self.BN_layers):
-            x = layer(x, edge_index, edge_attr)
+            x = layer(x, edge_index)
             x = bn(x)
             x = self.activation(x)
-            F.dropout(input=x, p=self.dropout_rate, training=self.training) 
+            x = F.dropout(input=x, p=self.dropout_rate, training=self.training)
 
         # Global pooling
         # concatenate Global Average and Global Max pooling 
@@ -251,14 +251,14 @@ class GATv2Net_v2(torch.nn.Module):
 
         # MLP, heavier regularization
         x = self.activation(self.bn_connect1(self.fc1(x)))
-        x = F.dropout(input=x, p=self.dropout_rate, training=self.training) 
+        x = F.dropout(input=x, p=self.dropout_rate, training=self.training)
         x = self.activation(self.bn_connect2(self.fc2(x)))
-        x = F.dropout(input=x, p=self.dropout_rate, training=self.training) 
+        x = F.dropout(input=x, p=self.dropout_rate, training=self.training)
 
         return self.out(x)
     
 
-class TAGCNet_v2(torch.nn.Module):
+class GATv2Net_v2(torch.nn.Module):
     def __init__(self, node_feature_dim: int, edge_feature_dim: int, config: dict):
         """
         Args:
@@ -266,7 +266,7 @@ class TAGCNet_v2(torch.nn.Module):
             edge_feature_dim (int): Input dimension of edge features.
             config (dict): config dictionary containing hyperparameters  
         """
-        super(GATv2Net, self).__init__()
+        super(GATv2Net_v2, self).__init__()
 
         # Hyperparameters from Config
         self.n_gnn_layers = config["num_gnn_layers"]
@@ -320,7 +320,7 @@ class TAGCNet_v2(torch.nn.Module):
             x = layer(x, edge_index, edge_attr)
             x = bn(x)
             x = self.activation(x)
-            F.dropout(input=x, p=self.dropout_rate, training=self.training) 
+            x = F.dropout(input=x, p=self.dropout_rate, training=self.training)
 
         # Global pooling
         # concatenate Global Average and Global Max pooling 
@@ -328,8 +328,8 @@ class TAGCNet_v2(torch.nn.Module):
 
         # MLP, heavier regularization
         x = self.activation(self.bn_connect1(self.fc1(x)))
-        x = F.dropout(input=x, p=self.dropout_rate, training=self.training) 
+        x = F.dropout(input=x, p=self.dropout_rate, training=self.training)
         x = self.activation(self.bn_connect2(self.fc2(x)))
-        x = F.dropout(input=x, p=self.dropout_rate, training=self.training) 
+        x = F.dropout(input=x, p=self.dropout_rate, training=self.training)
 
         return self.out(x)
