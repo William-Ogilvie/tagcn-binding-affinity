@@ -243,7 +243,8 @@ class TAGCNet_v2(torch.nn.Module):
             x = layer(x, edge_index)
             x = bn(x)
             x = self.activation(x)
-            x = F.dropout(input=x, p=self.dropout_rate, training=self.training)
+            # Removed dropout from convolution layers for now
+            # x = F.dropout(input=x, p=self.dropout_rate, training=self.training)
 
         # Global pooling
         # concatenate Global Average and Global Max pooling 
@@ -320,7 +321,8 @@ class GATv2Net_v2(torch.nn.Module):
             x = layer(x, edge_index, edge_attr)
             x = bn(x)
             x = self.activation(x)
-            x = F.dropout(input=x, p=self.dropout_rate, training=self.training)
+            # Removed dropout from Convolution layers for now
+            # x = F.dropout(input=x, p=self.dropout_rate, training=self.training)
 
         # Global pooling
         # concatenate Global Average and Global Max pooling 
