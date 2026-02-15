@@ -33,7 +33,7 @@ def initalise_model(model_name, node_feat_dim, edge_feat_dim, hidden_dim, num_GN
     config_dict = {
         "num_gnn_layers": num_GNN_layers,
         "head": head,
-        "K": 3,
+        "K": K,
         "hidden_dim": hidden_dim,
         "activation": activation,
         "dropout_rate": dropout_rate,
