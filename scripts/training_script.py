@@ -262,7 +262,7 @@ def main():
                             break
                 elif early_stopping_metric == "pearson":
                     if val_pearson_corr > best_val_corr:
-                        best_val_corr = val_kendall_corr
+                        best_val_corr = val_pearson_corr
                         wait = 0
                         torch.save(model.state_dict(), f"{model_save_dir}/{timestamp}_{experiment_name}_model_{i}.pt")
                     else:
@@ -272,6 +272,12 @@ def main():
                             break
                 else:
                     raise ValueError(f"Invalid early stopping metric {early_stopping_metric}")
+            
+            # Store history for this seed so it can be plotted later
+            all_seeds_train_loss.append(seed_train_loss)
+            all_seeds_val_loss.append(seed_val_loss)
+            all_seeds_val_pearson.append(seed_val_pearson)
+            all_seeds_val_kendall.append(seed_val_kendall)
     
         # ---------------------------------------------------------
         # Ensemble Prediction (Equal Weights)
