@@ -42,7 +42,6 @@ def initalise_model(model_name, node_feat_dim, edge_feat_dim, hidden_dim, num_GN
 
     if model_name == "GATv2":
         model = GATv2Net(node_feature_dim=node_feat_dim, edge_feature_dim=edge_feat_dim, config=config_dict)
-        return model
     elif model_name == "TAGCN":
         model = TAGCNet(node_feature_dim=node_feat_dim, edge_feature_dim=edge_feat_dim, config=config_dict)
     elif model_name == "GATv2_v2": 
@@ -52,6 +51,8 @@ def initalise_model(model_name, node_feat_dim, edge_feat_dim, hidden_dim, num_GN
     else:
         raise ValueError(f"Coulnd't identify model name: {model_name}")
     
+    return model
+
 def find_feat_edge_dim(train_graphs_dir):
 
     # Load the first graph in training and get the dimension of the node and edge features
