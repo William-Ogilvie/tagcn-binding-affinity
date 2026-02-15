@@ -261,24 +261,55 @@ class GraphGenerator():
         # Start one after the atom_map used to encode the protein atoms 
         start_id = len_atom_map + 1
 
+        elt_map = {
+            'C': start_id + 1,
+            'N': start_id + 2,
+            'O': start_id + 3,
+            'P': start_id + 4,
+            'S': start_id + 5,
+            'F': start_id + 6,
+            'Cl': start_id + 7,
+            'Br': start_id + 8,
+            'I': start_id + 9,
+            'Mg': start_id + 10, 
+            'Ca': start_id + 11,
+            'Zn': start_id + 12,
+            'Fe': start_id + 13,
+            'Cu': start_id + 14,
+            'Mn': start_id + 15,
+            'Na': start_id + 16,
+            'K': start_id + 17,
+            'B': start_id + 18,
+            'Si': start_id + 19,
+            'Se': start_id + 20
+        }
+
+        if elem in elt_map.keys():
+            return elt_map[elem]
+        else:
+            return start_id + 21 # WARNING if you change elt_map will need to change this
+
+
+
+        # Below is the inital more simple version of the Ligand encdoing that does work but perhaps is too restrictive
         # Big three
-        if elem == 'C':
-            return start_id
-        if elem == 'N':
-            return start_id + 1
-        if elem == 'O':
-            return start_id + 2
+        # if elem == 'C':
+        #     return start_id
+        # if elem == 'N':
+        #     return start_id + 1
+        # if elem == 'O':
+        #     return start_id + 2
 
-        # "Heavies"
-        if elem in ['S', 'P']:
-            return start_id + 3
+        # # "Heavies"
+        # if elem in ['S', 'P']:
+        #     return start_id + 3
 
-        # Halogens
-        if elem in ['F', 'CL', 'BR', 'I']:
-            return start_id + 4
+        # # Halogens
+        # if elem in ['F', 'CL', 'BR', 'I']:
+        #     return start_id + 4
 
-        # Catch all
-        return start_id + 5 
+        # # Catch all
+        # return start_id + 5 
 
     
     def get_mol_aevs(self, protein_df: pd.DataFrame, ligand_df: pd.DataFrame, atom_map: pd.DataFrame) -> Tuple[pd.DataFrame, torch.Tensor]:
@@ -376,7 +407,7 @@ class GraphGenerator():
         protein_coords = target_df[["X", "Y", "Z"]].values
 
         coordinates = np.concatenate([ligand_coords, protein_coords])
-        coordinates = torch.tensor(coordinates, dtype=torch.float32, device=self.device).unsqueeze(0) # Shape: (1, Total_Atoms, 3)
+        coordinates = torch.tensor(coordinates, dtype=torch.float64, device=self.device).unsqueeze(0) # Shape: (1, Total_Atoms, 3)
 
         # Display head of ligand_df and target_df
         # print("Ligand df head: ", ligand_df.head())
@@ -439,6 +470,9 @@ class GraphGenerator():
 
         # Extract: (Batch 0) -> (Ligand Atoms) -> (Radial features)
         final_aevs = full_aevs.squeeze(0)[:mol_len, radial_indices]
+
+        # Ensure float64
+        final_aevs = final_aevs.to(dtype=torch.float64)
 
         return ligand_df, final_aevs
 
@@ -598,6 +632,7 @@ class GraphGenerator():
 
                 # Concatenate
                 combined_feats = np.concatenate([chem_feats, aev_feats])
+                combined_feats = combined_feats.astype(np.float64)
                 features.append(combined_feats)
 
                 counter += 1

@@ -196,6 +196,9 @@ def main():
             # Get the model 
             model = initalise_model(model_name=model_name, edge_feat_dim=edge_feat_dim, node_feat_dim=node_feat_dim, hidden_dim=hidden_dim, head=head, num_GNN_layers=num_GNN_layers, activation=activation_function, K=K_param)
 
+            # Ensure model is in double precision to match the dataset
+            model = model.double()
+
             # Initalise weights
             model.apply(init_weights)
 

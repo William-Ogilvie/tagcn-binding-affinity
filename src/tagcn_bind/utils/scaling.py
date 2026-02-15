@@ -59,14 +59,15 @@ class ScalingManager:
 
         # Get the dtype of the features array and the pK value
         feat_dtype = graph[1][0].dtype
+        print("Feature dtype: ", feat_dtype)
 
         # These arrays will track the running total of the AEVs and the AEVs^2 
-        sum_aev = np.zeros(len_aev_feats, dtype = feat_dtype)
-        sum_aev2 = np.zeros(len_aev_feats, dtype = feat_dtype)
+        sum_aev = np.zeros(len_aev_feats, dtype=np.float64)
+        sum_aev2 = np.zeros(len_aev_feats, dtype=np.float64)
 
         # Generate the fake standardisation for the categorical features
-        fake_mean = np.zeros(len_chem_feats, dtype = feat_dtype)
-        fake_std = np.ones(len_chem_feats, dtype = feat_dtype)
+        fake_mean = np.zeros(len_chem_feats, dtype=np.float64)
+        fake_std = np.ones(len_chem_feats, dtype=np.float64)
 
         # For the targets we need to know the number of graphs
         num_graphs = 0
@@ -126,9 +127,10 @@ class ScalingManager:
         # Find Global Stats
         mean = sum_aev / n_atoms_total
         variance = (sum_aev2 / n_atoms_total) - (mean**2)
-        # The +1e-64 is to ensure we don't divide by 0, so suppose the AEVs are all zero for some column we don't want 
-        # a zero standard deviation as will get divide by 0 error. 
-        std = np.sqrt(variance + 1e-64)
+        # The +1e-256 is to ensure we don't divide by 0, so suppose the AEVs are all zero for some column we don't want 
+        # a zero standard deviation as will get divide by 0 error. We set it to 1e-256 as we observe AEVs on the scale of 1e-100, so a minimum standard deviation of 1e-128
+        # means we can still distinguish from 0 
+        std = np.sqrt(variance + 1e-256)
 
         # Concatenate these with the fake standardisations
         mean = np.concatenate((fake_mean, mean), axis=0)
@@ -141,10 +143,10 @@ class ScalingManager:
 
         # Save these stats to the output path
         stats_to_save = {
-            'mean': torch.from_numpy(mean).float(),
-            'std': torch.from_numpy(std).float(),
-            'target_mean': torch.tensor([target_mean]).float(),
-            'target_std': torch.tensor([target_std]).float()
+            'mean': torch.from_numpy(mean).double(),
+            'std': torch.from_numpy(std).double(),
+            'target_mean': torch.tensor([target_mean]).double(),
+            'target_std': torch.tensor([target_std]).double()
         } 
         
 

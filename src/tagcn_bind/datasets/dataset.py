@@ -44,13 +44,13 @@ class PDBDataset(InMemoryDataset):
 
                 # Convert to Tensors explicitly
                 # graph[1] is x, [2] is edge_index, [3] is edge_attr
-                x = torch.tensor(np.array(graph[1]), dtype=torch.float) 
+                x = torch.tensor(np.array(graph[1]), dtype=torch.double)
 
                 # LongTensor for indicies in PyTorch Geometric
                 edge_index = torch.tensor(np.array(graph[2]), dtype=torch.long).T
 
-                edge_attr = torch.tensor(np.array(graph[3]), dtype = torch.float)
-                y = torch.tensor(np.array([pK]), dtype=torch.float)
+                edge_attr = torch.tensor(np.array(graph[3]), dtype=torch.double)
+                y = torch.tensor(np.array([pK]), dtype=torch.double)
 
                 data = Data(x=x, edge_index=edge_index, edge_attr=edge_attr, y=y) 
     

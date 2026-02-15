@@ -65,7 +65,7 @@ If you plan on adding more features to the model please see src/tagcn_bind/utils
 ## TODO
 Remeber to look at the EtaR, i suspect 19.7 is too high and causes the sparsity in AEVs we observe.
 
-It seems the models overfit to the training data quite considerable (see models.py), have introduced new models to help combat this but could also look at increased weight decay etc.
+It seems the models overfit to the training data quite considerable (see models.py), have introduced new models to help combat this but could also look at increased weight decay etc. However these may need to be tuned? Have run experiments with 50% dropout and gotten slightly worse results so maybe only 20% needed, same with weight decay originally tried 0.01 have set to 0.0001. Also previously tried dropout in convolution layers have since moved to only MLP. 
 
 Another important thing is that TAG doesn't include edge attributes like GAT does, so the edge features (bond types) aren't being passed to the model. If TAG can still perform well this would suggest these are maybe redundant if you already have AEVs as node features?
 

@@ -90,5 +90,6 @@ graph = graph_generator.mol_to_graph(mol=sdf_mol, aevs=final_aevs, mol_df=sdf_df
 # these can be quite big:
 print("len features ", graph[0])
 print("features: ", graph[1][0])
+print("features dtype: ", graph[1][0].dtype)
 print("edge index: ", graph[2])
 print("edge attr: ", graph[3])
