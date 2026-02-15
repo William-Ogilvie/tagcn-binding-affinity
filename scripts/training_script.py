@@ -151,6 +151,8 @@ def main():
         train_dataset_name = train_data_csv.split("/")[-1][:-4]
         val_dataset_name = val_data_csv.split("/")[-1][:-4]
         test_dataset_name = test_data_csv.split("/")[-1][:-4]
+
+        test_data_csv_path = project_root / test_data_csv
         
  
         train_graphs_dir = project_root / train_graphs_dir
@@ -271,21 +273,13 @@ def main():
                     raise ValueError(f"Invalid early stopping metric {early_stopping_metric}")
     
         # ---------------------------------------------------------
-        # Ensemble Optimization and Prediction
+        # Ensemble Prediction (Equal Weights)
         # ---------------------------------------------------------
-        print(f"Training finished for all seeds. Starting ensemble optimization ({ensemble_metric})...")
+        print(f"Training finished for all seeds. Starting ensemble prediction (Equal Weights)...")
 
         train_time = time.time() - start_time      
 
         # Loaders for inference (no shuffle)
-        val_loader_inf = DataLoader(
-            dataset=val_set, 
-            batch_size=batch_size, 
-            shuffle=False,
-            num_workers = 2,
-            pin_memory = True,
-            prefetch_factor = 2
-        )
         test_loader_inf = DataLoader(
             dataset=test_set,
             batch_size=batch_size,
@@ -295,9 +289,7 @@ def main():
         )
 
         
-        val_preds_list = []
         test_preds_list = []
-        val_targets = None
         test_targets = None
         
         # Iterate through trained models
@@ -311,12 +303,7 @@ def main():
             # If the model uses dropout it needs to be turned off here:
             if model_name == "GATv2_v2" or model_name == "TAGCN_v2":
                 trainer.model.training = False
-            
-
-            # Predict Validation
-            v_preds, v_y = trainer.predict(val_loader_inf)
-            val_preds_list.append(v_preds)
-            if val_targets is None: val_targets = v_y
+        
             
             # Predict Test
             t_preds, t_y = trainer.predict(test_loader_inf)
@@ -324,38 +311,21 @@ def main():
             if test_targets is None: test_targets = t_y
 
         # Stack predictions: (N_samples, N_models)
-        X_val = np.stack(val_preds_list, axis=1)
-        X_test = np.stack(test_preds_list, axis=1)
+        X_test = np.stack(test_preds_list, axis = 1)                                   
         
         def get_ensemble_pred(weights, X):
             return np.dot(X, weights)
             
-        def objective_fn(weights):
-            preds = get_ensemble_pred(weights, X_val)
-            if ensemble_metric == "mse": return np.mean((val_targets - preds)**2)
-            elif ensemble_metric == "pearson": return -pearsonr(val_targets, preds)[0]
-            elif ensemble_metric == "kendall": return -kendalltau(val_targets, preds)[0]
-            else: raise ValueError(f"Unknown metric: {ensemble_metric}")
-
-        # Optimization
+        # Use equal weights for ensemble
         n_models = len(seeds)
         # Initialize ensemble weights uniformly (1/N)
-        init_weights_opt = np.ones(n_models) / n_models 
-        bounds = [(0.0, 1.0)] * n_models
-        constraints = {'type': 'eq', 'fun': lambda w: np.sum(w) - 1.0}
-        
-        # SLSQP = Sequential Least Squares Programming
-        res = minimize(objective_fn, init_weights_opt, method='SLSQP', bounds=bounds, constraints=constraints)
-        best_weights = res.x / np.sum(res.x) if res.success else init_weights
-        print(f"Optimized Weights ({ensemble_metric}): {best_weights}")
-        
-        # Save Weights
-        torch.save({"weights": best_weights, "seeds": seeds, "metric": ensemble_metric}, 
-                   model_save_dir / f"{timestamp}_{experiment_name}_ensemble_weights.pt")
-        
+        ensemble_weights = np.ones(n_models) / n_models 
+       
+       
+      
         # Save CSV
         try:
-            test_df = pd.read_csv(test_data_csv)
+            test_df = pd.read_csv(test_data_csv_path)
             if len(test_df) != len(test_targets):
                 print(f"Warning: Test CSV has {len(test_df)} rows but predictions have {len(test_targets)}. Creating new dataframe.")
                 test_df = pd.DataFrame()
@@ -364,7 +334,7 @@ def main():
             test_df = pd.DataFrame()
             
         for idx, seed in enumerate(seeds): test_df[f"pred_seed_{seed}"] = test_preds_list[idx]
-        test_df["ensemble_pred"] = get_ensemble_pred(best_weights, X_test)
+        test_df["ensemble_pred"] = get_ensemble_pred(ensemble_weights, X_test)
         if "label" not in test_df.columns: test_df["label"] = test_targets
 
         test_df.to_csv(predictions_save_dir / f"{timestamp}_{experiment_name}_predictions.csv", index=False)
@@ -374,7 +344,7 @@ def main():
         # ---------------------------------------------------------
         
         # Calculate Ensemble Test Metrics
-        ensemble_test_preds = get_ensemble_pred(best_weights, X_test)
+        ensemble_test_preds = get_ensemble_pred(ensemble_weights, X_test)
         ensemble_test_rmse = np.sqrt(np.mean((test_targets - ensemble_test_preds)**2))
         ensemble_test_pearson, _ = pearsonr(test_targets, ensemble_test_preds)
         ensemble_test_kendall, _ = kendalltau(test_targets, ensemble_test_preds)
