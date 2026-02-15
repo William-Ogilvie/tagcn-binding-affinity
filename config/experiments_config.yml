@@ -39,7 +39,7 @@ experiments:
     hidden_dim: 256 # Now here there is a key choice, in the AEV-PLIG architecutre each attention head of GATv2 is of size hidden_dim, so GATv2 will have roughly heads fold more parameters unless we scale the hidden_dim here for TAGCN
     head: 3 # Not relevant to TAGCN
     K: 3 
-    dropout_rate: 0.0 # Not relevant to TAGCN
+    dropout_rate: 0.0 # Not relevant to OG TAGCN
     num_GNN_layers: 5
     activation_function: leaky_relu
     weight_decay: 0.01 # Explore this
@@ -68,7 +68,7 @@ experiments:
     hidden_dim: 256
     head: 3
     K: 3 # Not relavant to GATv2
-    dropout_rate: 0.0 # Not relavant to GATv2
+    dropout_rate: 0.5 # experiment with this!
     num_GNN_layers: 5
     activation_function: leaky_relu
     weight_decay: 0.01 # Explore this
@@ -97,7 +97,7 @@ experiments:
     hidden_dim: 256 # Now here there is a key choice, in the AEV-PLIG architecutre each attention head of GATv2 is of size hidden_dim, so GATv2 will have roughly heads fold more parameters unless we scale the hidden_dim here for TAGCN
     head: 3 # Not relevant to TAGCN
     K: 3 
-    dropout_rate: 0.0 # Not relevant to TAGCN
+    dropout_rate: 0.5 # Experiment with this!
     num_GNN_layers: 5
     activation_function: leaky_relu
     weight_decay: 0.01 # Explore this
