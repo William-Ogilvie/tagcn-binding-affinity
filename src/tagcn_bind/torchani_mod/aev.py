@@ -556,7 +556,7 @@ class AEVComputer(torch.nn.Module):
             aev = compute_aev(species, coordinates, index_diff, self.triu_index, self.constants(), self.sizes, (cell, shifts))
 
         # Reduce to the first molecule
-        indices = torch.arange(species.shape[1]) < index_diff
+        indices = torch.arange(species.shape[1], device=species.device) < index_diff
         species = indices * (species + 1) - 1
         aev = indices.unsqueeze(-1) * aev
         return SpeciesAEV(species, aev)

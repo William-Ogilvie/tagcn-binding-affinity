@@ -20,7 +20,7 @@ project_root = script_path.parent.parent
 data_dir = project_root / "data" / "test"
 
 # Graph Gen config:
-graph_gen_config_path = project_root / "config" / "graph_gen_config.yml"
+graph_gen_config_path = project_root / "config" / "graph_gen_legacy_config.yml"
 
 # Load config
 with open(graph_gen_config_path, "r") as f:
