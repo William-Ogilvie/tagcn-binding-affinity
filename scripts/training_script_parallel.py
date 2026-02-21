@@ -414,7 +414,7 @@ def main():
         "test_set_kendall": test_kendall,
         "training_time_seconds": train_time
     })
-    df_stats.to_csv(stats_file, index = False)
+    df_stats.to_csv(stats_file)
 
 if __name__ == "__main__":
     main()
