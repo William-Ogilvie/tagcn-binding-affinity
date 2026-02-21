@@ -404,7 +404,7 @@ def main():
     pd.DataFrame(epoch_stats_rows).to_csv(save_training_stats_dir / f"{timestamp}_{experiment_name}_{seed}_epoch_stats.csv", index=False)
 
     # Save Stats
-    stats_file = save_training_stats_dir / f"training_stats_{experiment_name}_{seed}.csv"
+    stats_file = save_training_stats_dir / f"training_stats_{timestamp}_{experiment_name}_{seed}.csv"
     df_stats = pd.DataFrame({
         "timestamp": timestamp,
         "experiment_name": experiment_name,
