@@ -413,7 +413,7 @@ def main():
         "test_set_pearson": test_pearson,
         "test_set_kendall": test_kendall,
         "training_time_seconds": train_time
-    })
+    }, index=[0])
     df_stats.to_csv(stats_file)
 
 if __name__ == "__main__":
