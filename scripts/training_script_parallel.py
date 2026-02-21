@@ -100,7 +100,7 @@ def get_device(device_str):
 
 def get_experiment_config(full_config, experiment_name):
 
-    for exp in full_config:
+    for exp in full_config["experiments"]:
         if exp["name"] == experiment_name:
             return exp["args"]
 
