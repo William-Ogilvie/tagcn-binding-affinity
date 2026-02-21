@@ -296,7 +296,7 @@ def main():
     # ---------------------------------------------------------
     # Prediction 
     # ---------------------------------------------------------
-        print(f"Training finished for seed {seed}. Starting prediction...")
+    print(f"Training finished for seed {seed}. Starting prediction...")
 
     train_time = time.time() - start_time      
 
