@@ -221,15 +221,15 @@ class TAGCNet_v2(torch.nn.Module):
             self.BN_layers.append(BatchNorm(self.hidden_dim))
             curr_dim = self.hidden_dim 
 
-        # MLP, reducded first layer from 1024 to 512
+        # MLP
         # As concatenate mean pool and max pool (as in AEV-PLIG) the final_dim * 2
-
         final_gnn_dim = self.hidden_dim
-
-        self.fc1 = nn.Linear(final_gnn_dim * 2, 512)
-        self.bn_connect1 = nn.BatchNorm1d(512)
-        self.fc2 = nn.Linear(512, 256)
-        self.bn_connect2 = nn.BatchNorm1d(256) 
+        self.fc1 = nn.Linear(final_gnn_dim * 2, 1024)
+        self.bn_connect1 = nn.BatchNorm1d(1024)
+        self.fc2 = nn.Linear(1024, 512)
+        self.bn_connect2 = nn.BatchNorm1d(512)
+        self.fc3 = nn.Linear(512, 256)
+        self.bn_connect3 = nn.BatchNorm1d(256) 
         self.out = nn.Linear(256, 1)
 
 
@@ -254,6 +254,8 @@ class TAGCNet_v2(torch.nn.Module):
         x = self.activation(self.bn_connect1(self.fc1(x)))
         x = F.dropout(input=x, p=self.dropout_rate, training=self.training)
         x = self.activation(self.bn_connect2(self.fc2(x)))
+        x = F.dropout(input=x, p=self.dropout_rate, training=self.training)
+        x = self.activation(self.bn_connect3(self.fc3(x)))
         x = F.dropout(input=x, p=self.dropout_rate, training=self.training)
 
         return self.out(x)
@@ -299,17 +301,17 @@ class GATv2Net_v2(torch.nn.Module):
             self.BN_layers.append(BatchNorm(self.hidden_dim * self.head))
             curr_dim = self.hidden_dim * self.head
 
-        # MLP, reducded first layer from 1024 to 512
+        # MLP
         # As concatenate mean pool and max pool (as in AEV-PLIG) the final_dim * 2
-
         final_gnn_dim = self.hidden_dim * self.head
-
-        self.fc1 = nn.Linear(final_gnn_dim * 2, 512)
-        self.bn_connect1 = nn.BatchNorm1d(512)
-        self.fc2 = nn.Linear(512, 256)
-        self.bn_connect2 = nn.BatchNorm1d(256) 
+        final_gnn_dim = self.hidden_dim
+        self.fc1 = nn.Linear(final_gnn_dim * 2, 1024)
+        self.bn_connect1 = nn.BatchNorm1d(1024)
+        self.fc2 = nn.Linear(1024, 512)
+        self.bn_connect2 = nn.BatchNorm1d(512)
+        self.fc3 = nn.Linear(512, 256)
+        self.bn_connect3 = nn.BatchNorm1d(256) 
         self.out = nn.Linear(256, 1)
-
 
     def forward(self, x, edge_index, edge_attr, batch):
         # x: features
@@ -333,5 +335,6 @@ class GATv2Net_v2(torch.nn.Module):
         x = F.dropout(input=x, p=self.dropout_rate, training=self.training)
         x = self.activation(self.bn_connect2(self.fc2(x)))
         x = F.dropout(input=x, p=self.dropout_rate, training=self.training)
+        x = self.activation(self.bn_connect3(self.fc3(x)))
 
         return self.out(x)
