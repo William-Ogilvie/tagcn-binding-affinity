@@ -19,12 +19,14 @@ module purge
 # Load conda
 # Activate env
 # Move to project
+# Get a $PROJECT_ROOT variable
 
-# Generate the parameters for the config
-python generate_parallel_params.py --config_path config/experiments_config.yml --output_path config/parallel_params.txt
+# Generate the parameters for the config, do this separately not during the job
+# python generate_parallel_params.py --config_path config/experiments_config.yml --output_path config/parallel_params.txt
 
 # Get the parameters for this specific task ID from the file
-PARAMS=$(sed -n "$((SLURM_ARRAY_TASK_ID + 1))p" config/parallel_params.txt)
+PARAMS_FILE="${PROJECT_ROOT}/config/parallel_params.txt"
+PARAMS=$(sed -n "$((SLURM_ARRAY_TASK_ID + 1))p" "$PARAMS_FILE")
 
 # Split the line into variables
 EXP_NAME=$(echo $PARAMS | awk '{print $1}')
