@@ -71,6 +71,8 @@ Another important thing is that TAG doesn't include edge attributes like GAT doe
 
 AEV-PLIG currently doesn't process hydrogens and instead has them implicitly with a hydrogen count at each heavy atom, it could be worth having explicit hydrogens? althought it will make the graphs a lot bigger...
 
+Look at batch size. We are using the default of AEV-PLIG of 128 but it could be worth dropping to say 64 or even 32 as it may avoid oversmoothing although it would increase training time.
+
 # Acknowledgments
 
 ## AEV-PLIG
