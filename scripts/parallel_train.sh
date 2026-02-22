@@ -24,6 +24,10 @@ module purge
 # Generate the parameters for the config, do this separately not during the job
 # python generate_parallel_params.py --config_path config/experiments_config.yml --output_path config/parallel_params.txt
 
+# Timestamp, this must be passed as a CLI arg so it is constant across all array jobs
+# to do this do NOW=$(date +"%Y%m%d_%H%M%S"), then sbatch file $NOW
+TIMESTAMP=$1
+
 # Get the parameters for this specific task ID from the file
 PARAMS_FILE="${PROJECT_ROOT}/config/parallel_params.txt"
 PARAMS=$(sed -n "$((SLURM_ARRAY_TASK_ID + 1))p" "$PARAMS_FILE")
@@ -33,5 +37,5 @@ EXP_NAME=$(echo $PARAMS | awk '{print $1}')
 SEED=$(echo $PARAMS | awk '{print $2}')
 
 # Run your refactored worker
-python training_script_parallel.py --config_path config/experiments_config.yml --experiment_name $EXP_NAME --seed $SEED --device auto   
+python training_script_parallel.py --config_path config/experiments_config.yml --experiment_name $EXP_NAME --seed $SEED --run_id "$TIMESTAMP" --device auto   
 
