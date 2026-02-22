@@ -303,8 +303,7 @@ class GATv2Net_v2(torch.nn.Module):
 
         # MLP
         # As concatenate mean pool and max pool (as in AEV-PLIG) the final_dim * 2
-        final_gnn_dim = self.hidden_dim * self.head
-        final_gnn_dim = self.hidden_dim
+        final_gnn_dim = self.hidden_dim * self.head 
         self.fc1 = nn.Linear(final_gnn_dim * 2, 1024)
         self.bn_connect1 = nn.BatchNorm1d(1024)
         self.fc2 = nn.Linear(1024, 512)

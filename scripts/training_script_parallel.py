@@ -88,6 +88,9 @@ def parse_args():
     # Seed
     parser.add_argument("--seed", type = int, default=37, help="Random seed")
 
+    # Run ID
+    parser.add_argument("--run_id", type=str, default=None, help="Unique run ID (timestamp) to group files.")
+
     # Device
     parser.add_argument("--device", type=str, default="auto", help="Device to use (auto/cuda/cpu).")
 
@@ -126,8 +129,6 @@ def main():
 
     
     
-    # Timestamp for unique filenames
-    timestamp = time.strftime("%Y%m%d-%H%M%S")
 
     # Unpack the experiment dict 
     model_name = experiment["model"]
@@ -184,6 +185,9 @@ def main():
 
     # Get seed from CLI args
     seed = args.seed
+
+    # Get run id from CLI args for unique file names
+    run_id = args.run_id
     
     # Create DataLoaders, handles batching, shuffling and multiprocessing
     train_loader = DataLoader(
@@ -264,7 +268,7 @@ def main():
             if val_loss < best_val_loss:
                 best_val_loss = val_loss
                 wait = 0
-                torch.save(model.state_dict(), f"{model_save_dir}/{timestamp}_{experiment_name}_model_{seed}.pt")
+                torch.save(model.state_dict(), f"{model_save_dir}/{run_id}_{experiment_name}_model_{seed}.pt")
             else:
                 wait += 1
                 if wait >= early_stopping:
@@ -274,7 +278,7 @@ def main():
             if val_kendall_corr > best_val_corr:
                 best_val_corr = val_kendall_corr
                 wait = 0
-                torch.save(model.state_dict(), f"{model_save_dir}/{timestamp}_{experiment_name}_model_{seed}.pt")
+                torch.save(model.state_dict(), f"{model_save_dir}/{run_id}_{experiment_name}_model_{seed}.pt")
             else:
                 wait += 1
                 if wait >= early_stopping:
@@ -284,7 +288,7 @@ def main():
             if val_pearson_corr > best_val_corr:
                 best_val_corr = val_pearson_corr
                 wait = 0
-                torch.save(model.state_dict(), f"{model_save_dir}/{timestamp}_{experiment_name}_model_{seed}.pt")
+                torch.save(model.state_dict(), f"{model_save_dir}/{run_id}_{experiment_name}_model_{seed}.pt")
             else:
                 wait += 1
                 if wait >= early_stopping:
@@ -312,7 +316,7 @@ def main():
         
        
     # Iterate through trained models
-    model_path = model_save_dir / f"{timestamp}_{experiment_name}_model_{seed}.pt"
+    model_path = model_save_dir / f"{run_id}_{experiment_name}_model_{seed}.pt"
             
     # Load model weights into the existing trainer's model
     trainer.model.load_state_dict(torch.load(model_path, weights_only=False))
@@ -337,7 +341,7 @@ def main():
         "test_targets": test_targets  
     })
 
-    test_df.to_csv(predictions_save_dir / f"{timestamp}_{experiment_name}_{seed}_predictions.csv", index = False)
+    test_df.to_csv(predictions_save_dir / f"{run_id}_{experiment_name}_{seed}_predictions.csv", index = False)
 
     # ---------------------------------------------------------
     # Plotting and Stats Saving
@@ -356,7 +360,7 @@ def main():
     plt.title(f'Training and Validation Loss seed {seed}: {experiment_name}')
     plt.legend()
     plt.grid(True)
-    plt.savefig(plots_dir / f"{experiment_name}_{timestamp}_{seed}_loss.pdf")
+    plt.savefig(plots_dir / f"{experiment_name}_{run_id}_{seed}_loss.pdf")
     plt.close()
 
     # Plot Pearson
@@ -370,7 +374,7 @@ def main():
     plt.title(f'Validation Pearson Correlation seed {seed}: {experiment_name}')
     plt.legend()
     plt.grid(True)
-    plt.savefig(plots_dir / f"{experiment_name}_{timestamp}_{seed}_pearson.pdf")
+    plt.savefig(plots_dir / f"{experiment_name}_{run_id}_{seed}_pearson.pdf")
     plt.close()
 
     # Plot Kendall
@@ -384,7 +388,7 @@ def main():
     plt.title(f'Validation Kendall Correlation seed {seed}: {experiment_name}')
     plt.legend()
     plt.grid(True)
-    plt.savefig(plots_dir / f"{experiment_name}_{timestamp}_{seed}_kendall.pdf")
+    plt.savefig(plots_dir / f"{experiment_name}_{run_id}_{seed}_kendall.pdf")
     plt.close()
 
     # Save Per-Epoch Stats for External Plotting
@@ -401,12 +405,12 @@ def main():
             "val_kendall": seed_val_kendall[ep]
         })
     # As we want to run in parrallel these csvs must be distinct 
-    pd.DataFrame(epoch_stats_rows).to_csv(save_training_stats_dir / f"{timestamp}_{experiment_name}_{seed}_epoch_stats.csv", index=False)
+    pd.DataFrame(epoch_stats_rows).to_csv(save_training_stats_dir / f"{run_id}_{experiment_name}_{seed}_epoch_stats.csv", index=False)
 
     # Save Stats
-    stats_file = save_training_stats_dir / f"training_stats_{timestamp}_{experiment_name}_{seed}.csv"
+    stats_file = save_training_stats_dir / f"training_stats_{run_id}_{experiment_name}_{seed}.csv"
     df_stats = pd.DataFrame({
-        "timestamp": timestamp,
+        "timestamp": run_id,
         "experiment_name": experiment_name,
         "seed": seed,
         "test_set_rmse": test_rmse,
