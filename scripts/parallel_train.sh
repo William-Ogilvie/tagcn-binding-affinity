@@ -36,6 +36,6 @@ PARAMS=$(sed -n "$((SLURM_ARRAY_TASK_ID + 1))p" "$PARAMS_FILE")
 EXP_NAME=$(echo $PARAMS | awk '{print $1}')
 SEED=$(echo $PARAMS | awk '{print $2}')
 
-# Run your refactored worker
+# Run training script
 python training_script_parallel.py --config_path config/experiments_config.yml --experiment_name $EXP_NAME --seed $SEED --run_id "$TIMESTAMP" --device auto   
 
