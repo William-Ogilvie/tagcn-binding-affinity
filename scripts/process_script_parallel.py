@@ -106,7 +106,7 @@ def main():
         config = yaml.safe_load(f)
 
     # Loop through the experiments in the config
-    for experiment in config["experiments"]: 
+    for experiment in tqdm(config["experiments"], desc="Processing Experiments", file=sys.stdout): 
     
 
         # Unpack the experiment dict 
@@ -192,6 +192,7 @@ def main():
         # Prediction 
         # ---------------------------------------------------------
 
+        print(f"Getting predictions for {experiment_name} ensemble...")
         # Loaders for inference (no shuffle)
         test_loader_inf = DataLoader(
             dataset=test_set,
@@ -245,6 +246,7 @@ def main():
         # Plotting and Stats Saving
         # ---------------------------------------------------------
 
+        print(f"Finished predictions, starting epoch stats plots for {experiment_name}...")
         # Below is a copy of the plotting code from training.py, we are going to loop through all the saved rough epoch stats to recover the required information for the plots
 
         # Loop through the seeds and recover epoch stats data
@@ -361,6 +363,7 @@ def main():
             train_time_seed = df["train_time_seconds"]
             train_time += train_time_seed
 
+        print(f"Finished epoch stats plots, saving training statistics for {experiment_name}...")
         # Save Stats
         stats_file = save_training_stats_dir / "training_stats.csv"
         stats_data = {
@@ -377,6 +380,7 @@ def main():
         else:
             df_stats.to_csv(stats_file, mode='a', header=False, index=False)
 
+        print(f"{experiment_name} has been fully processed!")
 
 if __name__ == "__main__":
     main()
