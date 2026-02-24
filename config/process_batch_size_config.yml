@@ -1,5 +1,6 @@
 experiments:
 - name: AEV-PLIG-New-Graphs-128-Batch
+  run_id: "20260224_164936"
   args:
     model: GATv2 
     epochs: 1000 # high epochs for early stopping
@@ -28,6 +29,7 @@ experiments:
     plots_dir: "output/plots_dir"
 
 - name: AEV-PLIG-New-Graphs-Pearson-128-Batch
+  run_id: "20260224_164936"
   args:
     model: GATv2 
     epochs: 1000 # high epochs for early stopping
@@ -56,6 +58,7 @@ experiments:
     plots_dir: "output/plots_dir"
 
 - name: AEV-PLIG-New-Graphs-MSE-128-Batch
+  run_id: "20260224_164936" 
   args:
     model: GATv2 
     epochs: 1000 # high epochs for early stopping
@@ -84,6 +87,7 @@ experiments:
     plots_dir: "output/plots_dir"
 
 - name: AEV-PLIG-New-Graphs-64-Batch
+  run_id: "20260224_164936"
   args:
     model: GATv2 
     epochs: 1000 # high epochs for early stopping
@@ -112,6 +116,7 @@ experiments:
     plots_dir: "output/plots_dir"
 
 - name: AEV-PLIG-New-Graphs-32-Batch
+  run_id: "20260224_164936"
   args:
     model: GATv2 
     epochs: 1000 # high epochs for early stopping
@@ -140,6 +145,7 @@ experiments:
     plots_dir: "output/plots_dir"
 
 - name: TAGCN-K-1-L-5-New-Graphs-Scaled-Hidden-Dim-128-Batch
+  run_id: "20260224_164936"
   args:
     model: TAGCN 
     epochs: 1000 # high epochs for early stopping
@@ -168,6 +174,7 @@ experiments:
     plots_dir: "output/plots_dir"
 
 - name: TAGCN-K-1-L-5-New-Graphs-Pearson-Scaled-Hidden-Dim-128-Batch
+  run_id: "20260224_164936" 
   args:
     model: TAGCN 
     epochs: 1000 # high epochs for early stopping
@@ -196,6 +203,7 @@ experiments:
     plots_dir: "output/plots_dir"
 
 - name: TAGCN-K-1-L-5-New-Graphs-MSE-Scaled-Hidden-Dim-128-Batch
+  run_id: "20260224_164936" 
   args:
     model: TAGCN 
     epochs: 1000 # high epochs for early stopping
@@ -224,6 +232,7 @@ experiments:
     plots_dir: "output/plots_dir"
 
 - name: TAGCN-K-1-L-5-New-Graphs-Scaled-Hidden-Dim-64-Batch
+  run_id: "20260224_164936"  
   args:
     model: TAGCN 
     epochs: 1000 # high epochs for early stopping
@@ -252,6 +261,7 @@ experiments:
     plots_dir: "output/plots_dir"
 
 - name: TAGCN-K-1-L-5-New-Graphs-Scaled-Hidden-Dim-32-Batch
+  run_id: "20260224_164936"
   args:
     model: TAGCN 
     epochs: 1000 # high epochs for early stopping
@@ -280,6 +290,7 @@ experiments:
     plots_dir: "output/plots_dir"
 
 - name: AEV-PLIG-Legacy-Graphs-128-Batch
+  run_id: "20260224_164936"
   args:
     model: GATv2 
     epochs: 1000 # high epochs for early stopping
@@ -308,6 +319,7 @@ experiments:
     plots_dir: "output/plots_dir"
 
 - name: AEV-PLIG-Legacy-Graphs-64-Batch
+  run_id: "20260224_164936"
   args:
     model: GATv2 
     epochs: 1000 # high epochs for early stopping
@@ -336,6 +348,7 @@ experiments:
     plots_dir: "output/plots_dir"
 
 - name: AEV-PLIG-Legacy-Graphs-32-Batch
+  run_id: "20260224_164936"
   args:
     model: GATv2 
     epochs: 1000 # high epochs for early stopping
@@ -364,6 +377,7 @@ experiments:
     plots_dir: "output/plots_dir"
 
 - name: TAGCN-K-1-L-5-Legacy-Graphs-Scaled-Hidden-Dim-128-Batch
+  run_id: "20260224_164936"
   args:
     model: TAGCN 
     epochs: 1000 # high epochs for early stopping
@@ -392,6 +406,7 @@ experiments:
     plots_dir: "output/plots_dir"
 
 - name: TAGCN-K-1-L-5-Legacy-Graphs-Scaled-Hidden-Dim-64-Batch
+  run_id: "20260224_164936"
   args:
     model: TAGCN 
     epochs: 1000 # high epochs for early stopping
@@ -420,6 +435,7 @@ experiments:
     plots_dir: "output/plots_dir"
 
 - name: TAGCN-K-1-L-5-Legacy-Graphs-Scaled-Hidden-Dim-32-Batch
+  run_id: "20260224_164936" 
   args:
     model: TAGCN 
     epochs: 1000 # high epochs for early stopping
