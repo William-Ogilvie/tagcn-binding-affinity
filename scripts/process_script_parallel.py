@@ -360,7 +360,7 @@ def main():
 
             df = pd.read_csv(training_stats_rough_path)
 
-            train_time_seed = df["train_time_seconds"]
+            train_time_seed = df["training_time_seconds"][0]
             train_time += train_time_seed
 
         print(f"Finished epoch stats plots, saving training statistics for {experiment_name}...")
