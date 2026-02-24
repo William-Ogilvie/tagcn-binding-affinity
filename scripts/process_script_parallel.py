@@ -161,31 +161,8 @@ def main():
         train_graphs_dir = project_root / train_graphs_dir
         val_graphs_dir = project_root / val_graphs_dir
         test_graphs_dir = project_root / test_graphs_dir
-        train_set = PDBDataset(data_dir=train_graphs_dir, dataset_name=train_dataset_name)
-        val_set = PDBDataset(data_dir=val_graphs_dir, dataset_name=val_dataset_name)
         test_set = PDBDataset(data_dir=test_graphs_dir, dataset_name=test_dataset_name)
-
-
-        # Get run id from CLI args for unique file names
-        run_id = args.run_id
-        
-        # Create DataLoaders, handles batching, shuffling and multiprocessing
-        train_loader = DataLoader(
-            dataset=train_set,
-            batch_size=batch_size,
-            shuffle=True,
-            num_workers = 4, # num subprocessed used for data loading
-            pin_memory = True, # copy tensors into CUDA before returning them
-            prefetch_factor = 2 # number of batches loaded in advance by each worker (so they have something to do while training)
-        )
-        val_loader = DataLoader(
-            dataset=val_set,
-            batch_size=batch_size, 
-            shuffle=False,
-            num_workers = 2, # Validation set is only 10% of the size of the training set so need less workers
-            pin_memory = True,
-            prefetch_factor = 2
-        )
+  
 
         # Get the node and edge feature dimensions
         node_feat_dim, edge_feat_dim = find_feat_edge_dim(train_graphs_dir=train_graphs_dir)
