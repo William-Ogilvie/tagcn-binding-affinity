@@ -141,6 +141,9 @@ def main():
 
         # Setup output folders
         model_save_dir = project_root / model_save_dir
+        predictions_save_dir = project_root / predictions_save_dir
+        save_training_stats_dir = project_root / save_training_stats_dir
+        plots_dir = project_root / plots_dir
         
 
         model_save_dir.mkdir(parents = True, exist_ok = True)
