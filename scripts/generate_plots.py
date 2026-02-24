@@ -8,6 +8,7 @@ Usage:
     python scripts/generate_plots.py --config_path config/plotting_config.yml
 """
 
+
 import argparse
 import yaml
 import pandas as pd
@@ -26,12 +27,11 @@ def parse_args():
     parser.add_argument("--config_path", type=str, required=True, help="Relative path to the plotting config file.")
     return parser.parse_args()
 
-def plot_bubble(experiments_config, stats_dir, output_dir):
+def plot_bubble(experiments_config, stats_dir, output_dir, file_name_tag, type_x, type_x_name, type_y, type_y_name, training_time):
     """
-    Generates a bubble plot comparing experiments.
-    X-axis: Training Time
-    Y-axis: Test Set Pearson
-    Size: (Optional) Could be model size, currently fixed or based on RMSE.
+    Generates a bubble plot comparing experiments, does one both with training_time for size and another with a fixed size.
+    X-axis: type_x (function parameter)
+    Y-axis: type_Y (function parameter)    
     """
     print("Generating Bubble Plot...")
     stats_path = stats_dir / "training_stats.csv"
@@ -56,47 +56,85 @@ def plot_bubble(experiments_config, stats_dir, output_dir):
     if plot_df.empty:
         print("No matching experiments found in training_stats.csv for bubble plot.")
         return
-
-    # Plotting
-    plt.figure(figsize=(12, 8))
-    sns.set_style("whitegrid")
     
-    # Create bubble plot
-    # Size based on RMSE (inverse? or just fixed). Let's use fixed size for now, or maybe RMSE.
-    # If we want 'better' to be bigger, maybe 1/RMSE? Let's just stick to a scatter for now with hue.
-    
-    scatter = sns.scatterplot(
-        data=plot_df,
-        x="training_time_seconds",
-        y="test_set_pearson",
-        hue="experiment_name",
-        style="experiment_name",
-        size="training_time_seconds",
-        sizes=(100, 1000),
-        alpha=0.7
-    )
-
-    # Label points
-    for line in range(0, plot_df.shape[0]):
-        plt.text(
-            plot_df.iloc[line]["training_time_seconds"], 
-            plot_df.iloc[line]["test_set_pearson"] + 0.005, 
-            plot_df.iloc[line]["experiment_name"], 
-            horizontalalignment='center', 
-            size='small', 
-            color='black', 
-            weight='semibold'
+    # If the bool training_time is true then the bubble sizes are scaled by training_time (the reason we may not want this is on the cluster if you use an array job then it is almost random what hardware you get)
+    if training_time:
+        # Plotting with training time for size
+        plt.figure(figsize=(12, 8))
+        sns.set_style("whitegrid")
+        
+        # Create bubble plot 
+        scatter = sns.scatterplot(
+            data=plot_df,
+            x=type_x,
+            y=type_y,
+            hue="experiment_name", 
+            size="training_time_seconds",
+            sizes=(100, 1000),
+            alpha=0.7,
+            palette="viridis"
         )
 
-    plt.title("Model Comparison: Pearson vs Training Time", fontsize=16)
-    plt.xlabel("Training Time (seconds)", fontsize=12)
-    plt.ylabel("Test Set Pearson Correlation", fontsize=12)
-    plt.legend(bbox_to_anchor=(1.05, 1), loc='upper left')
-    plt.tight_layout()
+        # Label points
+        for line in range(0, plot_df.shape[0]):
+            plt.text(
+                plot_df.iloc[line][type_x], 
+                plot_df.iloc[line][type_y], 
+                plot_df.iloc[line]["experiment_name"],
+                plot_df.iloc[line]["training_time_seconds"], 
+                horizontalalignment='center', 
+                size='small', 
+                color='black', 
+                weight='semibold'
+            )
+
+        plt.title(f"Model Comparison: {type_x_name} vs {type_y_name}", fontsize=16)
+        plt.xlabel(f"{type_x_name}", fontsize=12)
+        plt.ylabel(f"{type_y_name}", fontsize=12)
+        plt.legend(bbox_to_anchor=(1.05, 1), loc='upper left')
+        plt.tight_layout()
+        
+        plt.savefig(output_dir / f"{file_name_tag}_comparison_bubble_plot_{type_y_name}_against_{type_x_name}_with_training_time.pdf")
+        plt.close()
+        print("Bubble plot saved with training time.")
+    else:
+        # Plotting without training time for size
+        plt.figure(figsize=(12, 8))
+        sns.set_style("whitegrid")
+        
+        # Create bubble plot 
+        scatter = sns.scatterplot(
+            data=plot_df,
+            x=type_x,
+            y=type_y,
+            hue="experiment_name",
+            s = 200, 
+            alpha=0.7,
+            palette="viridis"
+        )
+
+        # Label points
+        for line in range(0, plot_df.shape[0]):
+            plt.text(
+                plot_df.iloc[line][type_x], 
+                plot_df.iloc[line][type_y], 
+                plot_df.iloc[line]["experiment_name"], 
+                horizontalalignment='center', 
+                size='small', 
+                color='black', 
+                weight='semibold'
+            )
+
+        plt.title(f"Model Comparison: {type_x_name} vs {type_y_name}", fontsize=16)
+        plt.xlabel(f"{type_x_name}", fontsize=12)
+        plt.ylabel(f"{type_y_name}", fontsize=12)
+        plt.legend(bbox_to_anchor=(1.05, 1), loc='upper left')
+        plt.tight_layout()
+        
+        plt.savefig(output_dir / f"{file_name_tag}_comparison_bubble_plot_{type_y_name}_against_{type_x_name}_without_training_time.pdf")
+        plt.close()
+
     
-    plt.savefig(output_dir / "comparison_bubble_plot.pdf")
-    plt.close()
-    print("Bubble plot saved.")
 
 def plot_metrics_over_epochs(experiments_config, stats_dir, output_dir):
     """
@@ -223,12 +261,16 @@ def main():
     output_dir = project_root / config["output_dir"]
     stats_dir = project_root / config["stats_dir"]
     predictions_dir = project_root / config.get("predictions_dir", "output/predictions")
-    
+    file_name_tag = config["file_name_tag"]    
+
     output_dir.mkdir(parents=True, exist_ok=True)
 
     # Check which plots to generate
     if config["plots"].get("bubble", False):
-        plot_bubble(config["experiments"], stats_dir, output_dir)
+        plot_bubble(experiments_config=config["experiments"], stats_dir=stats_dir, output_dir=output_dir, file_name_tag=file_name_tag, type_x="test_set_rmse", type_x_name="Test Set RMSE", type_y="test_set_pearson", type_y_name="Test Set Pearson", training_time=False)
+        plot_bubble(experiments_config=config["experiments"], stats_dir=stats_dir, output_dir=output_dir, file_name_tag=file_name_tag, type_x="test_set_rmse", type_x_name="Test Set RMSE", type_y="test_set_kendall", type_y_name="Test Set Kendall", training_time=False)
+        plot_bubble(experiments_config=config["experiments"], stats_dir=stats_dir, output_dir=output_dir, file_name_tag=file_name_tag, type_x="test_set_pearson", type_x_name="Test Set Pearson", type_y="test_set_kendall", type_y_name="Test Set Kendall", training_time=False)
+        
         
     if config["plots"].get("metrics_over_epochs", False):
         plot_metrics_over_epochs(config["experiments"], stats_dir, output_dir)
