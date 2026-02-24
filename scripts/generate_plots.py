@@ -216,7 +216,7 @@ def plot_true_vs_predicted(experiments_config, predictions_dir, output_dir):
         
         # Get required columns 
         true_col = "test_targets" 
-        pred_col = "ensemble_pred" 
+        pred_col = "test_preds_ensemble" 
         
              
         y_pred = df[pred_col].values
