@@ -1,0 +1,45 @@
+output_dir: "output/summary_plots"
+stats_dir: "output/training_stats"
+predictions_dir: "output/predictions"
+file_name_tag: "20260225_160107"
+
+plots:
+  bubble: True
+  metrics_over_epochs: True
+  true_vs_predicted: True
+
+experiments:
+  - name: AEV-PLIG-OOD-Test-New-Graphs-128-Batch
+    time_stamp: "20260225_160107"
+  - name: AEV-PLIG-OOD-Test-New-Graphs-Pearson-128-Batch
+    time_stamp: "20260225_160107"
+  - name: AEV-PLIG-OOD-Test-New-Graphs-MSE-128-Batch
+    time_stamp: "20260225_160107" 
+  - name: AEV-PLIG-OOD-Test-New-Graphs-64-Batch
+    time_stamp: "20260225_160107"
+  - name: AEV-PLIG-OOD-Test-New-Graphs-32-Batch
+    time_stamp: "20260225_160107"
+  - name: TAGCN-K-1-L-5-OOD-Test-New-Graphs-Scaled-Hidden-Dim-128-Batch
+    time_stamp: "20260225_160107"
+  - name: TAGCN-K-1-L-5-OOD-Test-New-Graphs-Pearson-Scaled-Hidden-Dim-128-Batch
+    time_stamp: "20260225_160107" 
+  - name: TAGCN-K-1-L-5-OOD-Test-New-Graphs-MSE-Scaled-Hidden-Dim-128-Batch
+    time_stamp: "20260225_160107" 
+  - name: TAGCN-K-1-L-5-OOD-Test-New-Graphs-Scaled-Hidden-Dim-64-Batch
+    time_stamp: "20260225_160107"  
+  - name: TAGCN-K-1-L-5-OOD-Test-New-Graphs-Scaled-Hidden-Dim-32-Batch
+    time_stamp: "20260225_160107"
+  - name: AEV-PLIG-OOD-Test-Legacy-Graphs-128-Batch
+    time_stamp: "20260225_160107"
+  - name: AEV-PLIG-OOD-Test-Legacy-Graphs-64-Batch
+    time_stamp: "20260225_160107"
+  - name: AEV-PLIG-OOD-Test-Legacy-Graphs-32-Batch
+    time_stamp: "20260225_160107"
+  - name: TAGCN-K-1-L-5-OOD-Test-Legacy-Graphs-Scaled-Hidden-Dim-128-Batch
+    time_stamp: "20260225_160107"
+  - name: TAGCN-K-1-L-5-OOD-Test-Legacy-Graphs-Scaled-Hidden-Dim-64-Batch
+    time_stamp: "20260225_160107"
+  - name: TAGCN-K-1-L-5-OOD-Test-Legacy-Graphs-Scaled-Hidden-Dim-32-Batch
+    time_stamp: "20260225_160107" 
+ 
+
