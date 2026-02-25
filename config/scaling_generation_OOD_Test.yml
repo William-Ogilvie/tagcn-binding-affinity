@@ -1,0 +1,10 @@
+datasets:
+  - name: "OOD_Test"
+    dataset_paths: ["data/graphs/OOD_Test_train", "data/graphs/OOD_Test_val"]
+    output_dir: "data/scaling"
+    output_file_name: "OOD_Test_scaling"
+  - name: "OOD_Test_legacy"
+    dataset_paths: ["data/graphs/OOD_Test_legacy_train", "data/graphs/OOD_Test_legacy_val"]
+    output_dir: "data/scaling"
+    output_file_name: "OOD_Test_legacy_scaling"
+    
