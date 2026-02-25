@@ -43,7 +43,7 @@ def parse_args():
         "--split_ratio", 
         type=float, 
         default=0.1, 
-        help="Fraction of data to use for validation (default: 0.1 for 10%)."
+        help="Fraction of data to use for validation (default: 0.1 for 10%%)."
     )
     parser.add_argument(
         "--seed", 
