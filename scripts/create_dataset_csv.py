@@ -6,6 +6,9 @@ Helper script to scan a directory of protein-ligand complexes and generate
 the CSV required by GraphGenerationManager.
 
 From PDBbindv2020 the index file you want is INDEX_general_PL_data.2020
+
+Usage:
+    python create_dataset_csv.py --data_dir data/CASF-2016 --sdf_format X_ligand.sdf --pdb_format X_protein.pdb --output_csv data/CASF_2016_processed.csv --index_file data/index/INDEX_general_PL_data.2020
 """
 
 import argparse
