@@ -1,7 +1,7 @@
 datasets:
   - name: "OOD_Test_test"
     data_csv_path: "data/OOD_Test_processed_test.csv"
-    output_dir: "data/graphs/ODD_Test_test"
+    output_dir: "data/graphs/OOD_Test_test"
     atom_keys_path: "config/PDB_Atom_Keys.csv"
     graph_gen_config_path: "config/graph_gen_config.yml"
   - name: "OOD_Test_train"
