@@ -1,0 +1,15 @@
+output_dir: "output/summary_plots"
+stats_dir: "output/training_stats"
+predictions_dir: "output/predictions"
+file_name_tag: "20260226_101910"
+
+plots:
+  bubble: True
+  metrics_over_epochs: True
+  true_vs_predicted: True
+
+experiments:
+  - name: AEV-PLIG-True-True-Legacy
+    time_stamp: "20260226_101910"
+  - name: AEV-PLIG-True-True-Legacy-OOD-Test
+    time_stamp: "20260226_101910"

@@ -1,5 +1,6 @@
 experiments:
 - name: AEV-PLIG-True-True-Legacy
+  run_id: "20260226_101910"
   args:
     model: GATv2 
     epochs: 300 # Because we use an early stopping method without a break set the epochs to only be 300
@@ -30,6 +31,7 @@ experiments:
     plots_dir: "output/plots_dir"
 
 - name: AEV-PLIG-True-True-Legacy-OOD-Test
+  run_id: "20260226_101910"
   args:
     model: GATv2 
     epochs: 300 # Because we use an early stopping method without a break set the epochs to only be 300
@@ -58,4 +60,3 @@ experiments:
     predictions_save_dir: "output/predictions"
     save_training_stats_dir: "output/training_stats"
     plots_dir: "output/plots_dir"
-
