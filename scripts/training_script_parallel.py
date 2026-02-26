@@ -298,6 +298,14 @@ def main():
                 if wait >= early_stopping:
                     print(f"Early stopping triggered at epoch {epoch}")
                     break
+        elif early_stopping_metric == "kendall_rolling":
+            low = np.maximum(epoch-7, 0)
+            average_kendall = np.mean(seed_val_kendall[low:epoch+1])
+            if (average_kendall > best_val_corr):
+                best_val_corr = average_kendall
+                torch.save(model.state_dict(), f"{model_save_dir}/{run_id}_{experiment_name}_model_{seed}.pt")
+            print(f"Current average val kendall is: {average_kendall}, best average val kendall: {best_val_corr}")
+ 
         elif early_stopping_metric == "pearson_rolling":
             # This is the legacy early stopping method used, as in AEV-PLIG this doesn't actually trigger a traditional break after a certain patience, instead the idea is to
             # run the model for say 200-300 epochs and have it find the best one through this moving average method 
