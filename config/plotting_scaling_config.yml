@@ -1,0 +1,44 @@
+output_dir: "output/summary_plots"
+stats_dir: "output/training_stats"
+predictions_dir: "output/predictions"
+file_name_tag: "20260226_181430"
+
+plots:
+  bubble: True
+  metrics_over_epochs: True
+  true_vs_predicted: True
+
+experiments:
+- name: AEV-PLIG-New-Graphs-No-Scale-Rolling
+  time_stamp: "20260226_181430"
+- name: TAGCN-K-3-L-5-New-Graphs-No-Scale-Rolling
+  time_stamp: "20260226_181430"
+- name: AEV-PLIG-New-Graphs-No-Scale-AEVs-Rolling
+  time_stamp: "20260226_181430"  
+- name: TAGCN-K-3-L-5-New-Graphs-No-Scale-AEVs-Rolling
+  time_stamp: "20260226_181430"
+- name: AEV-PLIG-New-Graphs-No-Scale
+  time_stamp: "20260226_181430"
+- name: TAGCN-K-3-L-5-New-Graphs-No-Scale
+  time_stamp: "20260226_181430"
+- name: AEV-PLIG-New-Graphs-No-Scale-AEVs
+  time_stamp: "20260226_181430"
+- name: TAGCN-K-3-L-5-New-Graphs-No-Scale-AEVs
+  time_stamp: "20260226_181430"
+- name: AEV-PLIG-OOD-Test-New-Graphs-No-Scale-Rolling
+  time_stamp: "20260226_181430"
+- name: TAGCN-K-3-L-5-OOD-Test-New-Graphs-No-Scale-Rolling
+  time_stamp: "20260226_181430"
+- name: AEV-PLIG-OOD-Test-New-Graphs-No-Scale-AEVs-Rolling
+  time_stamp: "20260226_181430"
+- name: TAGCN-K-3-L-5-OOD-Test-New-Graphs-No-Scale-AEVs-Rolling
+  time_stamp: "20260226_181430"
+- name: AEV-PLIG-OOD-Test-New-Graphs-No-Scale
+  time_stamp: "20260226_181430"
+- name: TAGCN-K-3-L-5-OOD-Test-New-Graphs-No-Scale
+  time_stamp: "20260226_181430"
+- name: AEV-PLIG-OOD-Test-New-Graphs-No-Scale-AEVs
+  time_stamp: "20260226_181430"
+- name: TAGCN-K-3-L-5-OOD-Test-New-Graphs-No-Scale-AEVs
+  time_stamp: "20260226_181430" 
+ 
