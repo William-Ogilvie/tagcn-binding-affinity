@@ -9,6 +9,10 @@ plots:
   true_vs_predicted: True
 
 experiments:
+- name: AEV-PLIG-Intra-Graphs
+  time_stamp: "20260226_181430"
+- name: TAGCN-K-3-L-5-Intra-Graphs
+  time_stamp: "20260226_181430"
 - name: AEV-PLIG-Intra-Graphs-No-Scale-Rolling
   time_stamp: "20260226_181430"
 - name: TAGCN-K-3-L-5-Intra-Graphs-No-Scale-Rolling
