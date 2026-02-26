@@ -9,36 +9,36 @@ plots:
   true_vs_predicted: True
 
 experiments:
-- name: AEV-PLIG-New-Graphs-No-Scale-Rolling
+- name: AEV-PLIG-Intra-Graphs-No-Scale-Rolling
   time_stamp: "20260226_181430"
-- name: TAGCN-K-3-L-5-New-Graphs-No-Scale-Rolling
+- name: TAGCN-K-3-L-5-Intra-Graphs-No-Scale-Rolling
   time_stamp: "20260226_181430"
-- name: AEV-PLIG-New-Graphs-No-Scale-AEVs-Rolling
+- name: AEV-PLIG-Intra-Graphs-No-Scale-AEVs-Rolling
   time_stamp: "20260226_181430"  
-- name: TAGCN-K-3-L-5-New-Graphs-No-Scale-AEVs-Rolling
+- name: TAGCN-K-3-L-5-Intra-Graphs-No-Scale-AEVs-Rolling
   time_stamp: "20260226_181430"
-- name: AEV-PLIG-New-Graphs-No-Scale
+- name: AEV-PLIG-Intra-Graphs-No-Scale
   time_stamp: "20260226_181430"
-- name: TAGCN-K-3-L-5-New-Graphs-No-Scale
+- name: TAGCN-K-3-L-5-Intra-Graphs-No-Scale
   time_stamp: "20260226_181430"
-- name: AEV-PLIG-New-Graphs-No-Scale-AEVs
+- name: AEV-PLIG-Intra-Graphs-No-Scale-AEVs
   time_stamp: "20260226_181430"
-- name: TAGCN-K-3-L-5-New-Graphs-No-Scale-AEVs
+- name: TAGCN-K-3-L-5-Intra-Graphs-No-Scale-AEVs
   time_stamp: "20260226_181430"
-- name: AEV-PLIG-OOD-Test-New-Graphs-No-Scale-Rolling
+- name: AEV-PLIG-OOD-Test-Intra-Graphs-No-Scale-Rolling
   time_stamp: "20260226_181430"
-- name: TAGCN-K-3-L-5-OOD-Test-New-Graphs-No-Scale-Rolling
+- name: TAGCN-K-3-L-5-OOD-Test-Intra-Graphs-No-Scale-Rolling
   time_stamp: "20260226_181430"
-- name: AEV-PLIG-OOD-Test-New-Graphs-No-Scale-AEVs-Rolling
+- name: AEV-PLIG-OOD-Test-Intra-Graphs-No-Scale-AEVs-Rolling
   time_stamp: "20260226_181430"
-- name: TAGCN-K-3-L-5-OOD-Test-New-Graphs-No-Scale-AEVs-Rolling
+- name: TAGCN-K-3-L-5-OOD-Test-Intra-Graphs-No-Scale-AEVs-Rolling
   time_stamp: "20260226_181430"
-- name: AEV-PLIG-OOD-Test-New-Graphs-No-Scale
+- name: AEV-PLIG-OOD-Test-Intra-Graphs-No-Scale
   time_stamp: "20260226_181430"
-- name: TAGCN-K-3-L-5-OOD-Test-New-Graphs-No-Scale
+- name: TAGCN-K-3-L-5-OOD-Test-Intra-Graphs-No-Scale
   time_stamp: "20260226_181430"
-- name: AEV-PLIG-OOD-Test-New-Graphs-No-Scale-AEVs
+- name: AEV-PLIG-OOD-Test-Intra-Graphs-No-Scale-AEVs
   time_stamp: "20260226_181430"
-- name: TAGCN-K-3-L-5-OOD-Test-New-Graphs-No-Scale-AEVs
+- name: TAGCN-K-3-L-5-OOD-Test-Intra-Graphs-No-Scale-AEVs
   time_stamp: "20260226_181430" 
  

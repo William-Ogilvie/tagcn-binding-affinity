@@ -1,5 +1,5 @@
 experiments:
-- name: AEV-PLIG-New-Graphs-No-Scale-Rolling
+- name: AEV-PLIG-Intra-Graphs-No-Scale-Rolling
   args:
     model: GATv2 
     epochs: 300 # high epochs for early stopping
@@ -29,7 +29,7 @@ experiments:
     save_training_stats_dir: "output/training_stats"
     plots_dir: "output/plots_dir"
 
-- name: TAGCN-K-3-L-5-New-Graphs-No-Scale-Rolling
+- name: TAGCN-K-3-L-5-Intra-Graphs-No-Scale-Rolling
   args:
     model: TAGCN 
     epochs: 300 # high epochs for early stopping
@@ -59,7 +59,7 @@ experiments:
     save_training_stats_dir: "output/training_stats"
     plots_dir: "output/plots_dir"
 
-- name: AEV-PLIG-New-Graphs-No-Scale-AEVs-Rolling
+- name: AEV-PLIG-Intra-Graphs-No-Scale-AEVs-Rolling
   args:
     model: GATv2 
     epochs: 300 # high epochs for early stopping
@@ -89,7 +89,7 @@ experiments:
     save_training_stats_dir: "output/training_stats"
     plots_dir: "output/plots_dir"
 
-- name: TAGCN-K-3-L-5-New-Graphs-No-Scale-AEVs-Rolling
+- name: TAGCN-K-3-L-5-Intra-Graphs-No-Scale-AEVs-Rolling
   args:
     model: TAGCN 
     epochs: 300 # high epochs for early stopping
@@ -119,7 +119,7 @@ experiments:
     save_training_stats_dir: "output/training_stats"
     plots_dir: "output/plots_dir"
 
-- name: AEV-PLIG-New-Graphs-No-Scale
+- name: AEV-PLIG-Intra-Graphs-No-Scale
   args:
     model: GATv2 
     epochs: 300 # high epochs for early stopping
@@ -149,7 +149,7 @@ experiments:
     save_training_stats_dir: "output/training_stats"
     plots_dir: "output/plots_dir"
 
-- name: TAGCN-K-3-L-5-New-Graphs-No-Scale
+- name: TAGCN-K-3-L-5-Intra-Graphs-No-Scale
   args:
     model: TAGCN 
     epochs: 300 # high epochs for early stopping
@@ -179,7 +179,7 @@ experiments:
     save_training_stats_dir: "output/training_stats"
     plots_dir: "output/plots_dir"
 
-- name: AEV-PLIG-New-Graphs-No-Scale-AEVs
+- name: AEV-PLIG-Intra-Graphs-No-Scale-AEVs
   args:
     model: GATv2 
     epochs: 300 # high epochs for early stopping
@@ -209,7 +209,7 @@ experiments:
     save_training_stats_dir: "output/training_stats"
     plots_dir: "output/plots_dir"
 
-- name: TAGCN-K-3-L-5-New-Graphs-No-Scale-AEVs
+- name: TAGCN-K-3-L-5-Intra-Graphs-No-Scale-AEVs
   args:
     model: TAGCN 
     epochs: 300 # high epochs for early stopping
@@ -240,7 +240,7 @@ experiments:
     plots_dir: "output/plots_dir"
 
 
-# - name: AEV-PLIG-New-Graphs-32-batch-No-Scale-Rolling
+# - name: AEV-PLIG-Intra-Graphs-32-batch-No-Scale-Rolling
 #   args:
 #     model: GATv2 
 #     epochs: 300 # high epochs for early stopping
@@ -270,7 +270,7 @@ experiments:
 #     save_training_stats_dir: "output/training_stats"
 #     plots_dir: "output/plots_dir"
 
-# - name: TAGCN-K-3-L-5-New-Graphs-32-batch-No-Scale-Rolling
+# - name: TAGCN-K-3-L-5-Intra-Graphs-32-batch-No-Scale-Rolling
 #   args:
 #     model: TAGCN 
 #     epochs: 300 # high epochs for early stopping
@@ -299,7 +299,7 @@ experiments:
 #     predictions_save_dir: "output/predictions"
 #     save_training_stats_dir: "output/training_stats"
 #     plots_dir: "output/plots_dir"
-# - name: TAGCN-K-3-L-5-New-Graphs-Scaled-Hidden-Dim-No-Scale-Rolling
+# - name: TAGCN-K-3-L-5-Intra-Graphs-Scaled-Hidden-Dim-No-Scale-Rolling
 #   args:
 #     model: TAGCN 
 #     epochs: 300 # high epochs for early stopping
@@ -329,7 +329,7 @@ experiments:
 #     save_training_stats_dir: "output/training_stats"
 #     plots_dir: "output/plots_dir"
 
-# - name: TAGCN-K-1-L-5-New-Graphs-Scaled-Hidden-Dim-No-Scale-Rolling
+# - name: TAGCN-K-1-L-5-Intra-Graphs-Scaled-Hidden-Dim-No-Scale-Rolling
 #   args:
 #     model: TAGCN 
 #     epochs: 300 # high epochs for early stopping
@@ -359,7 +359,7 @@ experiments:
 #     save_training_stats_dir: "output/training_stats"
 #     plots_dir: "output/plots_dir"
 
-# - name: AEV-PLIG-New-Graphs-v2-No-Scale-Rolling
+# - name: AEV-PLIG-Intra-Graphs-v2-No-Scale-Rolling
 #   args:
 #     model: GATv2_v2 
 #     epochs: 300 # high epochs for early stopping
@@ -389,7 +389,7 @@ experiments:
 #     save_training_stats_dir: "output/training_stats"
 #     plots_dir: "output/plots_dir"
 
-# - name: TAGCN-K-3-L-5-New-Graphs-v2-No-Scale-Rolling
+# - name: TAGCN-K-3-L-5-Intra-Graphs-v2-No-Scale-Rolling
 #   args:
 #     model: TAGCN_v2 
 #     epochs: 300 # high epochs for early stopping
@@ -419,7 +419,7 @@ experiments:
 #     save_training_stats_dir: "output/training_stats"
 #     plots_dir: "output/plots_dir"
 
-# - name: TAGCN-K-1-L-5-New-Graphs-Scaled-Hidden-Dim-v2-No-Scale-Rolling
+# - name: TAGCN-K-1-L-5-Intra-Graphs-Scaled-Hidden-Dim-v2-No-Scale-Rolling
 #   args:
 #     model: TAGCN_v2 
 #     epochs: 300 # high epochs for early stopping
@@ -449,7 +449,7 @@ experiments:
 #     save_training_stats_dir: "output/training_stats"
 #     plots_dir: "output/plots_dir"
 
-# - name: AEV-PLIG-Legacy-Kendall-Weight-Decay-No-Scale-Rolling
+# - name: AEV-PLIG-Inter-Kendall-Weight-Decay-No-Scale-Rolling
 #   args:
 #     model: GATv2 
 #     epochs: 300 # high epochs for early stopping
@@ -479,7 +479,7 @@ experiments:
 #     save_training_stats_dir: "output/training_stats"
 #     plots_dir: "output/plots_dir"
 
-# - name: AEV-PLIG-True-Legacy-No-Scale-Rolling
+# - name: AEV-PLIG-True-Inter-No-Scale-Rolling
 #   args:
 #     model: GATv2 
 #     epochs: 300 # high epochs for early stopping
@@ -509,7 +509,7 @@ experiments:
 #     save_training_stats_dir: "output/training_stats"
 #     plots_dir: "output/plots_dir"
 
-# - name: TAGCN-K-3-L-5-Legacy-No-Scale-Rolling
+# - name: TAGCN-K-3-L-5-Inter-No-Scale-Rolling
 #   args:
 #     model: TAGCN 
 #     epochs: 300 # high epochs for early stopping
@@ -539,7 +539,7 @@ experiments:
 #     save_training_stats_dir: "output/training_stats"
 #     plots_dir: "output/plots_dir"
 
-# - name: AEV-PLIG-Legacy-v2-No-Scale-Rolling
+# - name: AEV-PLIG-Inter-v2-No-Scale-Rolling
 #   args:
 #     model: GATv2_v2 
 #     epochs: 300 # high epochs for early stopping
@@ -569,7 +569,7 @@ experiments:
 #     save_training_stats_dir: "output/training_stats"
 #     plots_dir: "output/plots_dir"
 
-# - name: TAGCN-K-3-L-5-Legacy-v2-No-Scale-Rolling
+# - name: TAGCN-K-3-L-5-Inter-v2-No-Scale-Rolling
 #   args:
 #     model: TAGCN_v2 
 #     epochs: 300 # high epochs for early stopping
@@ -599,7 +599,7 @@ experiments:
 #     save_training_stats_dir: "output/training_stats"
 #     plots_dir: "output/plots_dir"
 
-- name: AEV-PLIG-OOD-Test-New-Graphs-No-Scale-Rolling
+- name: AEV-PLIG-OOD-Test-Intra-Graphs-No-Scale-Rolling
   args:
     model: GATv2 
     epochs: 300 # high epochs for early stopping
@@ -629,7 +629,7 @@ experiments:
     save_training_stats_dir: "output/training_stats"
     plots_dir: "output/plots_dir"
 
-- name: TAGCN-K-3-L-5-OOD-Test-New-Graphs-No-Scale-Rolling
+- name: TAGCN-K-3-L-5-OOD-Test-Intra-Graphs-No-Scale-Rolling
   args:
     model: TAGCN 
     epochs: 300 # high epochs for early stopping
@@ -659,7 +659,7 @@ experiments:
     save_training_stats_dir: "output/training_stats"
     plots_dir: "output/plots_dir"  
 
-- name: AEV-PLIG-OOD-Test-New-Graphs-No-Scale-AEVs-Rolling
+- name: AEV-PLIG-OOD-Test-Intra-Graphs-No-Scale-AEVs-Rolling
   args:
     model: GATv2 
     epochs: 300 # high epochs for early stopping
@@ -689,7 +689,7 @@ experiments:
     save_training_stats_dir: "output/training_stats"
     plots_dir: "output/plots_dir"
 
-- name: TAGCN-K-3-L-5-OOD-Test-New-Graphs-No-Scale-AEVs-Rolling
+- name: TAGCN-K-3-L-5-OOD-Test-Intra-Graphs-No-Scale-AEVs-Rolling
   args:
     model: TAGCN 
     epochs: 300 # high epochs for early stopping
@@ -719,7 +719,7 @@ experiments:
     save_training_stats_dir: "output/training_stats"
     plots_dir: "output/plots_dir"
 
-- name: AEV-PLIG-OOD-Test-New-Graphs-No-Scale
+- name: AEV-PLIG-OOD-Test-Intra-Graphs-No-Scale
   args:
     model: GATv2 
     epochs: 1000 # high epochs for early stopping
@@ -749,7 +749,7 @@ experiments:
     save_training_stats_dir: "output/training_stats"
     plots_dir: "output/plots_dir"
 
-- name: TAGCN-K-3-L-5-OOD-Test-New-Graphs-No-Scale
+- name: TAGCN-K-3-L-5-OOD-Test-Intra-Graphs-No-Scale
   args:
     model: TAGCN 
     epochs: 1000 # high epochs for early stopping
@@ -779,7 +779,7 @@ experiments:
     save_training_stats_dir: "output/training_stats"
     plots_dir: "output/plots_dir"  
 
-- name: AEV-PLIG-OOD-Test-New-Graphs-No-Scale-AEVs
+- name: AEV-PLIG-OOD-Test-Intra-Graphs-No-Scale-AEVs
   args:
     model: GATv2 
     epochs: 1000 # high epochs for early stopping
@@ -809,7 +809,7 @@ experiments:
     save_training_stats_dir: "output/training_stats"
     plots_dir: "output/plots_dir"
 
-- name: TAGCN-K-3-L-5-OOD-Test-New-Graphs-No-Scale-AEVs
+- name: TAGCN-K-3-L-5-OOD-Test-Intra-Graphs-No-Scale-AEVs
   args:
     model: TAGCN 
     epochs: 1000 # high epochs for early stopping

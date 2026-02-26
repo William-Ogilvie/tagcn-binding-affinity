@@ -123,10 +123,11 @@ class Trainer:
             
             out = self.model(data.x, data.edge_index, data.edge_attr, data.batch)
             
-            # out now needs to be de standardised
-            out = out * self.target_std + self.target_mean
-            # Similarly with data.y
-            data.y = data.y * self.target_std + self.target_mean
+            # out now needs to be de standardised if required
+            if standardise_targets:
+                out = out * self.target_std + self.target_mean
+                # Similarly with data.y
+                data.y = data.y * self.target_std + self.target_mean
             all_preds.append(out.view(-1).cpu().numpy())
             all_labels.append(data.y.cpu().numpy())
             
