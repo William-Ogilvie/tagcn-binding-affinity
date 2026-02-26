@@ -158,6 +158,10 @@ def main():
     plots_dir = experiment["plots_dir"]
     scaling_stats_path = project_root / scaling_stats_pt
 
+    # As we added the standardisation options later we use .get so they default to True for earlier models
+    standardise_aevs = experiment.get("standardise_aevs", True)
+    standardise_targets = experiment.get("standardise_targets", True)
+
     # Setup output folders
     model_save_dir = project_root / model_save_dir
     predictions_save_dir = project_root / predictions_save_dir / "rough"
@@ -251,8 +255,8 @@ def main():
 
     for epoch in tqdm(range(epochs), desc="Training Epochs", file=sys.stdout):
 
-        train_loss, train_kendall_corr, train_pearson_corr = trainer.train_epoch(loader=train_loader, optimizer=optimizer, criterion=criterion)
-        val_loss, val_kendall_corr, val_pearson_corr = trainer.validate(loader=val_loader, criterion=criterion)
+        train_loss, train_kendall_corr, train_pearson_corr = trainer.train_epoch(loader=train_loader, optimizer=optimizer, criterion=criterion, standardise_aevs=standardise_aevs, standardise_targets=standardise_targets)
+        val_loss, val_kendall_corr, val_pearson_corr = trainer.validate(loader=val_loader, criterion=criterion, standardise_aevs=standardise_aevs, standardise_targets=standardise_targets)
                 
         seed_train_loss.append(train_loss)
         seed_val_loss.append(val_loss)
@@ -294,6 +298,16 @@ def main():
                 if wait >= early_stopping:
                     print(f"Early stopping triggered at epoch {epoch}")
                     break
+        elif early_stopping_metric == "pearson_rolling":
+            # This is the legacy early stopping method used, as in AEV-PLIG this doesn't actually trigger a traditional break after a certain patience, instead the idea is to
+            # run the model for say 200-300 epochs and have it find the best one through this moving average method 
+            low = np.maximum(epoch-7, 0)
+            average_pearson = np.mean(seed_val_pearson[low:epoch+1])
+            if (average_pearson > best_val_corr):
+                best_val_corr = average_pearson
+                torch.save(model.state_dict(), f"{model_save_dir}/{run_id}_{experiment_name}_model_{seed}.pt")
+            print(f"Current average val pearson is: {average_pearson}, best average val pearson: {best_val_corr}")
+        
         else:
             raise ValueError(f"Invalid early stopping metric {early_stopping_metric}")
             
@@ -328,7 +342,7 @@ def main():
         
             
     # Predict Test
-    test_preds, test_targets = trainer.predict(test_loader_inf)
+    test_preds, test_targets = trainer.predict(test_loader_inf, standardise_aevs=standardise_aevs, standardise_targets=standardise_targets)
     
     
     # Calculate Ensemble Test Metrics 

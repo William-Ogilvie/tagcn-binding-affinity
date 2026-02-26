@@ -139,6 +139,12 @@ def main():
         plots_dir = experiment["args"]["plots_dir"]
         scaling_stats_path = project_root / scaling_stats_pt
 
+        # As we added the standardisation options later we use .get so they default to True for earlier models
+        standardise_aevs = experiment["args"].get("standardise_aevs", True)
+        standardise_targets = experiment["args"].get("standardise_targets", True)
+
+
+
         # Setup output folders
         model_save_dir = project_root / model_save_dir
         predictions_save_dir = project_root / predictions_save_dir
@@ -221,7 +227,7 @@ def main():
             
                 
             # Predict Test
-            test_preds, test_targets = trainer.predict(test_loader_inf)
+            test_preds, test_targets = trainer.predict(test_loader_inf, standardise_aevs=standardise_aevs, standardise_targets=standardise_targets)
             ensemble_test_preds.append(test_preds)
 
             # Add predictions to test_df_dict

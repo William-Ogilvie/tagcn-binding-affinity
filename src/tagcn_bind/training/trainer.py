@@ -26,7 +26,7 @@ class Trainer:
         self.target_mean = stats["target_mean"].to(device)
         self.target_std = stats["target_std"].to(device)
 
-    def train_epoch(self, loader, optimizer, criterion):
+    def train_epoch(self, loader, optimizer, criterion, standardise_aevs, standardise_targets):
         self.model.train()
         total_loss = 0
         all_preds = []
@@ -36,11 +36,13 @@ class Trainer:
             # data is a "Batch" object from PyTorch Geometric
             data = data.to(self.device)
 
-            # standardise the node features
-            data.x = (data.x - self.mean) / self.std
+            # standardise the node features if required
+            if standardise_aevs:
+                data.x = (data.x - self.mean) / self.std
 
-            # Standardise the target
-            data.y = (data.y - self.target_mean) / self.target_std
+            # Standardise the target if required
+            if standardise_targets:
+                data.y = (data.y - self.target_mean) / self.target_std
 
             # reset gradients
             optimizer.zero_grad()
@@ -70,7 +72,7 @@ class Trainer:
         return total_loss / len(loader.dataset), kendall_corr, pearson_corr
     
     @torch.no_grad()
-    def validate(self, loader, criterion):
+    def validate(self, loader, criterion, standardise_aevs, standardise_targets):
         self.model.eval()
         total_loss = 0
         all_preds = []
@@ -79,11 +81,13 @@ class Trainer:
         for data in loader:
             data = data.to(self.device)
 
-            # standardise
-            data.x = (data.x - self.mean) / self.std
+            # standardise aevs if required
+            if standardise_aevs:
+                data.x = (data.x - self.mean) / self.std
 
-            # Standardise the target
-            data.y = (data.y - self.target_mean) / self.target_std
+            # Standardise the target if required
+            if standardise_targets:
+                data.y = (data.y - self.target_mean) / self.target_std
 
             # predict
             out = self.model(data.x, data.edge_index, data.edge_attr, data.batch)
@@ -103,15 +107,19 @@ class Trainer:
         return total_loss / len(loader.dataset), kendall_corr, pearson_corr
 
     @torch.no_grad()
-    def predict(self, loader):
+    def predict(self, loader, standardise_aevs, standardise_targets):
         self.model.eval()
         all_preds = []
         all_labels = []
 
         for data in loader:
             data = data.to(self.device)
-            data.x = (data.x - self.mean) / self.std
-            data.y = (data.y - self.target_mean) / self.target_std
+            # standardise aevs if required
+            if standardise_aevs:
+                data.x = (data.x - self.mean) / self.std
+            # standardise targets if required
+            if standardise_targets: 
+                data.y = (data.y - self.target_mean) / self.target_std
             
             out = self.model(data.x, data.edge_index, data.edge_attr, data.batch)
             
