@@ -5,8 +5,8 @@ file_name_tag: "20260226_201430"
 
 plots:
   bubble: True
-  metrics_over_epochs: True
-  true_vs_predicted: True
+  metrics_over_epochs: False
+  true_vs_predicted: False
 
 experiments:
 # - name: AEV-PLIG-Intra-Graphs
