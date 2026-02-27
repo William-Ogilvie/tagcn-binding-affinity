@@ -1,7 +1,7 @@
 output_dir: "output/summary_plots"
 stats_dir: "output/training_stats"
 predictions_dir: "output/predictions"
-file_name_tag: "20260222_102602"
+file_name_tag: "20260227_102602"
 
 plots:
   bubble: True
@@ -13,22 +13,22 @@ experiments:
     time_stamp: "20260222_102602"
   - name: TAGCN-K-3-L-5-New-Graphs
     time_stamp: "20260222_102602"
-  - name: AEV-PLIG-New-Graphs-32-batch
-    time_stamp: "20260222_102602"
-  - name: TAGCN-K-3-L-5-New-Graphs-32-batch
-    time_stamp: "20260222_102602" 
-  - name: TAGCN-K-3-L-5-New-Graphs-Scaled-Hidden-Dim
-    time_stamp: "20260222_102602" 
-  - name: TAGCN-K-1-L-5-New-Graphs-Scaled-Hidden-Dim
-    time_stamp: "20260222_102602" 
+  # - name: AEV-PLIG-New-Graphs-32-batch
+  #   time_stamp: "20260222_102602"
+  # - name: TAGCN-K-3-L-5-New-Graphs-32-batch
+  #   time_stamp: "20260222_102602" 
+  # - name: TAGCN-K-3-L-5-New-Graphs-Scaled-Hidden-Dim
+  #   time_stamp: "20260222_102602" 
+  # - name: TAGCN-K-1-L-5-New-Graphs-Scaled-Hidden-Dim
+  #   time_stamp: "20260222_102602" 
   - name: AEV-PLIG-New-Graphs-v2
     time_stamp: "20260222_102602"
   - name: TAGCN-K-3-L-5-New-Graphs-v2
     time_stamp: "20260222_102602"
-  - name: TAGCN-K-1-L-5-New-Graphs-Scaled-Hidden-Dim-v2
-    time_stamp: "20260222_102602"  
-  - name: AEV-PLIG-Legacy-Kendall-Weight-Decay
-    time_stamp: "20260222_102602"
+  # - name: TAGCN-K-1-L-5-New-Graphs-Scaled-Hidden-Dim-v2
+  #   time_stamp: "20260222_102602"  
+  # - name: AEV-PLIG-Legacy-Kendall-Weight-Decay
+  #   time_stamp: "20260222_102602"
   - name: AEV-PLIG-True-Legacy
     time_stamp: "20260222_102602"
   - name: TAGCN-K-3-L-5-Legacy
