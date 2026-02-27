@@ -5,14 +5,14 @@ file_name_tag: "20260227_155949"
 
 plots:
   bubble: True
-  metrics_over_epochs: True
-  true_vs_predicted: True
+  metrics_over_epochs: False
+  true_vs_predicted: False
 
 experiments:
   - name: AEV-PLIG-OOD-Test-New-Graphs
     time_stamp: "20260225_155949"
-  # - name: TAGCN-K-3-L-5-OOD-Test-New-Graphs
-  #   time_stamp: "20260225_155949"
+  - name: TAGCN-K-3-L-5-OOD-Test-New-Graphs
+    time_stamp: "20260225_155949"
   # - name: AEV-PLIG-OOD-Test-New-Graphs-32-batch
   #   time_stamp: "20260225_155949"
   # - name: TAGCN-K-3-L-5-OOD-Test-New-Graphs-32-batch
@@ -29,7 +29,7 @@ experiments:
   #   time_stamp: "20260225_155949"  
   # - name: AEV-PLIG-OOD-Test-Legacy-Kendall-Weight-Decay
   #   time_stamp: "20260225_155949"
-  - name: AEV-PLIG-OOD-Test-True-Legacy
+  - name: AEV-PLIG-True-OOD-Test-Legacy
     time_stamp: "20260225_155949"
   - name: TAGCN-K-3-L-5-OOD-Test-Legacy
     time_stamp: "20260225_155949"
