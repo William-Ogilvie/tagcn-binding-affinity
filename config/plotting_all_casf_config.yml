@@ -1,0 +1,101 @@
+output_dir: "output/summary_plots"
+stats_dir: "output/training_stats"
+predictions_dir: "output/predictions"
+file_name_tag: "20260228_110402"
+
+plots:
+  bubble: True
+  metrics_over_epochs: False
+  true_vs_predicted: False
+
+experiments:
+  - name: AEV-PLIG-New-Graphs
+    time_stamp: "20260222_102602"
+  - name: TAGCN-K-3-L-5-New-Graphs
+    time_stamp: "20260222_102602"
+  - name: AEV-PLIG-New-Graphs-32-batch
+    time_stamp: "20260222_102602"
+  - name: TAGCN-K-3-L-5-New-Graphs-32-batch
+    time_stamp: "20260222_102602" 
+  - name: TAGCN-K-3-L-5-New-Graphs-Scaled-Hidden-Dim
+    time_stamp: "20260222_102602" 
+  - name: TAGCN-K-1-L-5-New-Graphs-Scaled-Hidden-Dim
+    time_stamp: "20260222_102602" 
+  - name: AEV-PLIG-New-Graphs-v2
+    time_stamp: "20260222_102602"
+  - name: TAGCN-K-3-L-5-New-Graphs-v2
+    time_stamp: "20260222_102602"
+  - name: TAGCN-K-1-L-5-New-Graphs-Scaled-Hidden-Dim-v2
+    time_stamp: "20260222_102602"  
+  - name: AEV-PLIG-Legacy-Kendall-Weight-Decay
+    time_stamp: "20260222_102602"
+  - name: AEV-PLIG-True-Legacy
+    time_stamp: "20260222_102602"
+  - name: TAGCN-K-3-L-5-Legacy
+    time_stamp: "20260222_102602"
+  - name: AEV-PLIG-Legacy-v2
+    time_stamp: "20260222_102602"
+  - name: TAGCN-K-3-L-5-Legacy-v2
+    time_stamp: "20260222_102602"
+  - name: AEV-PLIG-New-Graphs-128-Batch
+    time_stamp: "20260224_164936"
+  - name: AEV-PLIG-New-Graphs-Pearson-128-Batch
+    time_stamp: "20260224_164936"
+  - name: AEV-PLIG-New-Graphs-MSE-128-Batch
+    time_stamp: "20260224_164936" 
+  - name: AEV-PLIG-New-Graphs-64-Batch
+    time_stamp: "20260224_164936"
+  - name: AEV-PLIG-New-Graphs-32-Batch
+    time_stamp: "20260224_164936"
+  - name: TAGCN-K-1-L-5-New-Graphs-Scaled-Hidden-Dim-128-Batch
+    time_stamp: "20260224_164936"
+  - name: TAGCN-K-1-L-5-New-Graphs-Pearson-Scaled-Hidden-Dim-128-Batch
+    time_stamp: "20260224_164936" 
+  - name: TAGCN-K-1-L-5-New-Graphs-MSE-Scaled-Hidden-Dim-128-Batch
+    time_stamp: "20260224_164936" 
+  - name: TAGCN-K-1-L-5-New-Graphs-Scaled-Hidden-Dim-64-Batch
+    time_stamp: "20260224_164936"  
+  - name: TAGCN-K-1-L-5-New-Graphs-Scaled-Hidden-Dim-32-Batch
+    time_stamp: "20260224_164936"
+  - name: AEV-PLIG-Legacy-Graphs-128-Batch
+    time_stamp: "20260224_164936"
+  - name: AEV-PLIG-Legacy-Graphs-64-Batch
+    time_stamp: "20260224_164936"
+  - name: AEV-PLIG-Legacy-Graphs-32-Batch
+    time_stamp: "20260224_164936"
+  - name: TAGCN-K-1-L-5-Legacy-Graphs-Scaled-Hidden-Dim-128-Batch
+    time_stamp: "20260224_164936"
+  - name: TAGCN-K-1-L-5-Legacy-Graphs-Scaled-Hidden-Dim-64-Batch
+    time_stamp: "20260224_164936"
+  - name: TAGCN-K-1-L-5-Legacy-Graphs-Scaled-Hidden-Dim-32-Batch
+    time_stamp: "20260224_164936" 
+  - name: AEV-PLIG-Intra-Graphs
+    time_stamp: "20260226_181430"
+  - name: TAGCN-K-3-L-5-Intra-Graphs
+    time_stamp: "20260226_181430"
+  - name: AEV-PLIG-Intra-Graphs-No-Scale-Rolling
+    time_stamp: "20260226_181430"
+  - name: TAGCN-K-3-L-5-Intra-Graphs-No-Scale-Rolling
+    time_stamp: "20260226_181430"
+  - name: AEV-PLIG-Intra-Graphs-No-Scale-AEVs-Rolling
+    time_stamp: "20260226_181430"  
+  - name: TAGCN-K-3-L-5-Intra-Graphs-No-Scale-AEVs-Rolling
+    time_stamp: "20260226_181430"
+  - name: AEV-PLIG-Intra-Graphs-No-Scale
+    time_stamp: "20260226_181430"
+  - name: TAGCN-K-3-L-5-Intra-Graphs-No-Scale
+    time_stamp: "20260226_181430"
+  - name: AEV-PLIG-Intra-Graphs-No-Scale-AEVs
+    time_stamp: "20260226_181430"
+  - name: TAGCN-K-3-L-5-Intra-Graphs-No-Scale-AEVs
+    time_stamp: "20260226_181430"
+  - name: AEV-PLIG-Intra-Graphs-No-Scale-Targets-Rolling
+    time_stamp: "20260226_181430"
+  - name: TAGCN-K-3-L-5-Intra-Graphs-No-Scale-Targets-Rolling
+    time_stamp: "20260226_181430"
+  - name: TAGCN-K-3-L-5-Intra-Graphs-No-Scale-Targets
+    time_stamp: "20260226_181430"
+  - name: AEV-PLIG-Intra-Graphs-No-Scale-Targets
+    time_stamp: "20260226_181430"
+  - name: AEV-PLIG-True-True-Legacy
+    time_stamp: "20260226_101910"
