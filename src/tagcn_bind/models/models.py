@@ -180,6 +180,9 @@ Fixes:
 1. Apply batch norm before activation function
 2. Add in dropout after each layer
 3. Reduce the size of the MLP
+
+Note due to wanting to make a fair comparsion between network architectures we actually only go with applying dropout in the MLP layers.
+This is due to wanting to be able to isloate the affect of dropout on overfitting on CASF-2016 to OOD Test.
 """
 
 class TAGCNet_v2(torch.nn.Module):
@@ -240,9 +243,9 @@ class TAGCNet_v2(torch.nn.Module):
 
         # Message passing (GNN layers)
         for layer, bn in zip(self.GNN_layers, self.BN_layers):
-            x = layer(x, edge_index)
-            x = bn(x)
+            x = layer(x, edge_index) 
             x = self.activation(x)
+            x = bn(x)
             # Removed dropout from convolution layers for now
             # x = F.dropout(input=x, p=self.dropout_rate, training=self.training)
 
@@ -250,16 +253,19 @@ class TAGCNet_v2(torch.nn.Module):
         # concatenate Global Average and Global Max pooling 
         x = torch.cat([gmp(x, batch), gap(x, batch)], dim = 1)
 
-        # MLP, heavier regularization
-        x = self.activation(self.bn_connect1(self.fc1(x)))
+        # MLP with dropout
+        x = self.activation(self.fc1(x))
+        x = self.bn_connect1(x)
         x = F.dropout(input=x, p=self.dropout_rate, training=self.training)
-        x = self.activation(self.bn_connect2(self.fc2(x)))
+        x = self.activation(self.fc2(x))
+        x = self.bn_connect2(x)
         x = F.dropout(input=x, p=self.dropout_rate, training=self.training)
-        x = self.activation(self.bn_connect3(self.fc3(x)))
+        x = self.activation(self.fc3(x))
+        x = self.bn_connect3(x)
         x = F.dropout(input=x, p=self.dropout_rate, training=self.training)
 
         return self.out(x)
-    
+   
 
 class GATv2Net_v2(torch.nn.Module):
     def __init__(self, node_feature_dim: int, edge_feature_dim: int, config: dict):
@@ -319,9 +325,9 @@ class GATv2Net_v2(torch.nn.Module):
 
         # Message passing (GNN layers)
         for layer, bn in zip(self.GNN_layers, self.BN_layers):
-            x = layer(x, edge_index, edge_attr)
-            x = bn(x)
+            x = layer(x, edge_index, edge_attr) 
             x = self.activation(x)
+            x = bn(x)
             # Removed dropout from Convolution layers for now
             # x = F.dropout(input=x, p=self.dropout_rate, training=self.training)
 
@@ -329,11 +335,15 @@ class GATv2Net_v2(torch.nn.Module):
         # concatenate Global Average and Global Max pooling 
         x = torch.cat([gmp(x, batch), gap(x, batch)], dim = 1)
 
-        # MLP, heavier regularization
-        x = self.activation(self.bn_connect1(self.fc1(x)))
+        # MLP with dropout
+        x = self.activation(self.fc1(x))
+        x = self.bn_connect1(x)
         x = F.dropout(input=x, p=self.dropout_rate, training=self.training)
-        x = self.activation(self.bn_connect2(self.fc2(x)))
+        x = self.activation(self.fc2(x))
+        x = self.bn_connect2(x)
         x = F.dropout(input=x, p=self.dropout_rate, training=self.training)
-        x = self.activation(self.bn_connect3(self.fc3(x)))
+        x = self.activation(self.fc3(x))
+        x = self.bn_connect3(x)
+        x = F.dropout(input=x, p=self.dropout_rate, training=self.training)
 
         return self.out(x)
