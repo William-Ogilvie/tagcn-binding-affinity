@@ -278,7 +278,7 @@ def main():
             try:
                 df = pd.read_csv(filepath_or_buffer=epoch_stats_path) 
             except:
-                print(f"Failed to {epoch_stats_path} skipping.")
+                print(f"Failed to read {epoch_stats_path} skipping.")
                 continue
             all_seeds_train_loss.append(df["train_loss"])
             all_seeds_val_loss.append(df["val_loss"])
@@ -372,10 +372,14 @@ def main():
         # Final statistic to recover is the training time
         train_time = 0.0
         for seed in seeds:
-            # Load the rough training_stats
+            # Load the rough training_stats 
             training_stats_rough_path = save_training_stats_dir / "rough" / f"training_stats_{run_id}_{experiment_name}_{seed}.csv"
 
-            df = pd.read_csv(training_stats_rough_path)
+            try:
+                df = pd.read_csv(training_stats_rough_path)
+            except:
+                print(f"Failed to read {training_stats_rough_path}, skipping")
+                continue
 
             train_time_seed = df["training_time_seconds"][0]
             train_time += train_time_seed
