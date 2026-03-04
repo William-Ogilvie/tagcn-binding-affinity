@@ -275,8 +275,11 @@ def main():
         for seed in seeds:
 
             # Load the epoch stats csv
-            epoch_stats_path = save_training_stats_dir / "rough" / f"{run_id}_{experiment_name}_{seed}_epoch_stats.csv"
-
+            try:
+                epoch_stats_path = save_training_stats_dir / "rough" / f"{run_id}_{experiment_name}_{seed}_epoch_stats.csv"
+            except:
+                print(f"Failed to load {run_id}_{experiment_name}_{seed}_epoch_stats.csv skipping.")
+                continue
             df = pd.read_csv(filepath_or_buffer=epoch_stats_path)
 
             all_seeds_train_loss.append(df["train_loss"])
