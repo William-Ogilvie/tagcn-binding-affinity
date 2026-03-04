@@ -273,15 +273,13 @@ def main():
         all_seeds_train_kendall = []
         all_seeds_val_kendall = []
         for seed in seeds:
-
+            epoch_stats_path = save_training_stats_dir / "rough" / f"{run_id}_{experiment_name}_{seed}_epoch_stats.csv"
             # Load the epoch stats csv
             try:
-                epoch_stats_path = save_training_stats_dir / "rough" / f"{run_id}_{experiment_name}_{seed}_epoch_stats.csv"
+                df = pd.read_csv(filepath_or_buffer=epoch_stats_path) 
             except:
-                print(f"Failed to load {run_id}_{experiment_name}_{seed}_epoch_stats.csv skipping.")
+                print(f"Failed to {epoch_stats_path} skipping.")
                 continue
-            df = pd.read_csv(filepath_or_buffer=epoch_stats_path)
-
             all_seeds_train_loss.append(df["train_loss"])
             all_seeds_val_loss.append(df["val_loss"])
             all_seeds_train_pearson.append(df["train_pearson"])
