@@ -214,12 +214,17 @@ def main():
         ensemble_test_preds = []
         test_targets = []
         test_df_dict = {}
+        all_models_exist = True
         for seed in seeds: 
             model_path = model_save_dir / f"{run_id}_{experiment_name}_model_{seed}.pt"
                     
             # Load model weights into the existing trainer's model
-            trainer.model.load_state_dict(torch.load(model_path, weights_only=False))
-
+            try:
+                trainer.model.load_state_dict(torch.load(model_path, weights_only=False))
+            except:
+                print(f"Failed to load model: {model_path}")
+                all_models_exist = False
+                break
 
             # If the model uses dropout it needs to be turned off here:
             if model_name == "GATv2_v2" or model_name == "TAGCN_v2":
@@ -232,7 +237,12 @@ def main():
 
             # Add predictions to test_df_dict
             test_df_dict[f"test_preds_seed_{seed}"] = test_preds 
-        
+
+        # If we failed to load one of the ensemble memebers we are going to have to skip this
+        if not all_models_exist:
+            print(f"Missing models for {experiment_name}, skipping for now")
+            continue
+
         # Calculate Ensemble Test Metrics 
         ensemble_test_preds_stacked = np.stack(ensemble_test_preds) # shape: (10, N)
         ensemble_test_preds_final = np.mean(ensemble_test_preds_stacked, axis=0) 
