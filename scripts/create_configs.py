@@ -145,7 +145,7 @@ def main():
     args_base = {
         "epochs": 300,
         "batch_size": 128,
-        "lr": 0.0001,
+        "lr": 0.001,
         "weight_decay": 0.0, # for now do no weight decay
         "early_stopping": 100, # this doesn't actually matter if you use the rolling metric
         "early_stopping_metric": "pearson_rolling",
@@ -160,13 +160,21 @@ def main():
     }
 
     # We are now going to make arrays of the parameters for the grid search
+    # benchmarks = ["CASF-16", "OOD-Test"]
+    # graphs = ["intra", "inter"]
+    # models = ["TAGCN", "GATv2"]
+    # hidden_dim = [256, 512]
+    # layers = [1, 3, 5]
+    # K_values = [1, 3, 5]
+    # heads_values = [1, 3, 5]
+    # dropout_values = [0.0, 0.2]
     benchmarks = ["CASF-16", "OOD-Test"]
     graphs = ["intra", "inter"]
-    models = ["TAGCN", "GATv2"]
-    hidden_dim = [256, 512]
-    layers = [1, 3, 5]
-    K_values = [1, 3, 5]
-    heads_values = [1, 3, 5]
+    models = ["TAGCN"]
+    hidden_dim = [512]
+    layers = [5]
+    K_values = [1]
+    heads_values = [1]
     dropout_values = [0.0, 0.2]
 
     # It is worth pre-defining the arguments for the different graphs and benchmarks
@@ -219,7 +227,7 @@ def main():
                 for layer in layers:
                     for hidden_dim_val in hidden_dim:
                         for dropout in dropout_values:
-                            for k_head_index in range(0, 3):
+                            for k_head_index in range(0, len(K_values)):
                                 experiment_name = model 
                                 tmp_model = copy.deepcopy(model) 
                                 # If we have a non zero dropout the model name needs to have a _v2 at the end
