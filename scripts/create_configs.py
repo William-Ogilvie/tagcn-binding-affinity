@@ -16,7 +16,7 @@ BUBBLES = True
 TRUEVPRED = True
 METRICOEPOCH = True # metrics over epochs
 
-TIME_STAMP = "20260228_155402"
+TIME_STAMP = "20260305_160500"
 
 # - name: AEV-PLIG-Intra-Graphs-No-Scale-Rolling
 #   args:

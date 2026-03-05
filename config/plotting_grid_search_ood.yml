@@ -1,25 +1,25 @@
 output_dir: output/summary_plots
 stats_dir: output/training_stats
 predictions_dir: output/predictions
-file_name_tag: '20260228_155402'
+file_name_tag: '20260305_160500'
 plots:
   bubble: true
   metrics_over_epochs: true
   true_vs_predicted: true
 experiments:
 - name: TAGCN-K-1-L-5-Dim-512-Intra-OOD-Test
-  time_stamp: '20260228_155402'
+  time_stamp: '20260305_160500'
 - name: TAGCN-K-1-L-5-Dim-512-WD-Intra-OOD-Test
-  time_stamp: '20260228_155402'
+  time_stamp: '20260305_160500'
 - name: TAGCN-Drop-K-1-L-5-Dim-512-Intra-OOD-Test
-  time_stamp: '20260228_155402'
+  time_stamp: '20260305_160500'
 - name: TAGCN-Drop-K-1-L-5-Dim-512-WD-Intra-OOD-Test
-  time_stamp: '20260228_155402'
+  time_stamp: '20260305_160500'
 - name: TAGCN-K-1-L-5-Dim-512-Inter-OOD-Test
-  time_stamp: '20260228_155402'
+  time_stamp: '20260305_160500'
 - name: TAGCN-K-1-L-5-Dim-512-WD-Inter-OOD-Test
-  time_stamp: '20260228_155402'
+  time_stamp: '20260305_160500'
 - name: TAGCN-Drop-K-1-L-5-Dim-512-Inter-OOD-Test
-  time_stamp: '20260228_155402'
+  time_stamp: '20260305_160500'
 - name: TAGCN-Drop-K-1-L-5-Dim-512-WD-Inter-OOD-Test
-  time_stamp: '20260228_155402'
+  time_stamp: '20260305_160500'

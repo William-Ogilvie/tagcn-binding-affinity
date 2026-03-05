@@ -1,6 +1,6 @@
 experiments:
 - name: TAGCN-K-1-L-5-Dim-512-Intra-CASF-2016
-  run_id: '20260228_155402'
+  run_id: '20260305_160500'
   args:
     model: TAGCN
     epochs: 300
@@ -40,7 +40,7 @@ experiments:
     save_training_stats_dir: output/training_stats
     plots_dir: output/plots_dir
 - name: TAGCN-K-1-L-5-Dim-512-WD-Intra-CASF-2016
-  run_id: '20260228_155402'
+  run_id: '20260305_160500'
   args:
     model: TAGCN
     epochs: 300
@@ -80,7 +80,7 @@ experiments:
     save_training_stats_dir: output/training_stats
     plots_dir: output/plots_dir
 - name: TAGCN-Drop-K-1-L-5-Dim-512-Intra-CASF-2016
-  run_id: '20260228_155402'
+  run_id: '20260305_160500'
   args:
     model: TAGCN_v2
     epochs: 300
@@ -120,7 +120,7 @@ experiments:
     save_training_stats_dir: output/training_stats
     plots_dir: output/plots_dir
 - name: TAGCN-Drop-K-1-L-5-Dim-512-WD-Intra-CASF-2016
-  run_id: '20260228_155402'
+  run_id: '20260305_160500'
   args:
     model: TAGCN_v2
     epochs: 300
@@ -160,7 +160,7 @@ experiments:
     save_training_stats_dir: output/training_stats
     plots_dir: output/plots_dir
 - name: TAGCN-K-1-L-5-Dim-512-Inter-CASF-2016
-  run_id: '20260228_155402'
+  run_id: '20260305_160500'
   args:
     model: TAGCN
     epochs: 300
@@ -200,7 +200,7 @@ experiments:
     save_training_stats_dir: output/training_stats
     plots_dir: output/plots_dir
 - name: TAGCN-K-1-L-5-Dim-512-WD-Inter-CASF-2016
-  run_id: '20260228_155402'
+  run_id: '20260305_160500'
   args:
     model: TAGCN
     epochs: 300
@@ -240,7 +240,7 @@ experiments:
     save_training_stats_dir: output/training_stats
     plots_dir: output/plots_dir
 - name: TAGCN-Drop-K-1-L-5-Dim-512-Inter-CASF-2016
-  run_id: '20260228_155402'
+  run_id: '20260305_160500'
   args:
     model: TAGCN_v2
     epochs: 300
@@ -280,7 +280,7 @@ experiments:
     save_training_stats_dir: output/training_stats
     plots_dir: output/plots_dir
 - name: TAGCN-Drop-K-1-L-5-Dim-512-WD-Inter-CASF-2016
-  run_id: '20260228_155402'
+  run_id: '20260305_160500'
   args:
     model: TAGCN_v2
     epochs: 300
@@ -320,7 +320,7 @@ experiments:
     save_training_stats_dir: output/training_stats
     plots_dir: output/plots_dir
 - name: TAGCN-K-1-L-5-Dim-512-Intra-OOD-Test
-  run_id: '20260228_155402'
+  run_id: '20260305_160500'
   args:
     model: TAGCN
     epochs: 300
@@ -360,7 +360,7 @@ experiments:
     save_training_stats_dir: output/training_stats
     plots_dir: output/plots_dir
 - name: TAGCN-K-1-L-5-Dim-512-WD-Intra-OOD-Test
-  run_id: '20260228_155402'
+  run_id: '20260305_160500'
   args:
     model: TAGCN
     epochs: 300
@@ -400,7 +400,7 @@ experiments:
     save_training_stats_dir: output/training_stats
     plots_dir: output/plots_dir
 - name: TAGCN-Drop-K-1-L-5-Dim-512-Intra-OOD-Test
-  run_id: '20260228_155402'
+  run_id: '20260305_160500'
   args:
     model: TAGCN_v2
     epochs: 300
@@ -440,7 +440,7 @@ experiments:
     save_training_stats_dir: output/training_stats
     plots_dir: output/plots_dir
 - name: TAGCN-Drop-K-1-L-5-Dim-512-WD-Intra-OOD-Test
-  run_id: '20260228_155402'
+  run_id: '20260305_160500'
   args:
     model: TAGCN_v2
     epochs: 300
@@ -480,7 +480,7 @@ experiments:
     save_training_stats_dir: output/training_stats
     plots_dir: output/plots_dir
 - name: TAGCN-K-1-L-5-Dim-512-Inter-OOD-Test
-  run_id: '20260228_155402'
+  run_id: '20260305_160500'
   args:
     model: TAGCN
     epochs: 300
@@ -520,7 +520,7 @@ experiments:
     save_training_stats_dir: output/training_stats
     plots_dir: output/plots_dir
 - name: TAGCN-K-1-L-5-Dim-512-WD-Inter-OOD-Test
-  run_id: '20260228_155402'
+  run_id: '20260305_160500'
   args:
     model: TAGCN
     epochs: 300
@@ -560,7 +560,7 @@ experiments:
     save_training_stats_dir: output/training_stats
     plots_dir: output/plots_dir
 - name: TAGCN-Drop-K-1-L-5-Dim-512-Inter-OOD-Test
-  run_id: '20260228_155402'
+  run_id: '20260305_160500'
   args:
     model: TAGCN_v2
     epochs: 300
@@ -600,7 +600,7 @@ experiments:
     save_training_stats_dir: output/training_stats
     plots_dir: output/plots_dir
 - name: TAGCN-Drop-K-1-L-5-Dim-512-WD-Inter-OOD-Test
-  run_id: '20260228_155402'
+  run_id: '20260305_160500'
   args:
     model: TAGCN_v2
     epochs: 300
