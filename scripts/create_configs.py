@@ -146,7 +146,6 @@ def main():
         "epochs": 300,
         "batch_size": 128,
         "lr": 0.001,
-        "weight_decay": 0.0, # for now do no weight decay
         "early_stopping": 100, # this doesn't actually matter if you use the rolling metric
         "early_stopping_metric": "pearson_rolling",
         "activation_function": "leaky_relu",
@@ -176,6 +175,8 @@ def main():
     K_values = [1]
     heads_values = [1]
     dropout_values = [0.0, 0.2]
+    weight_decay_values = [0.0, 0.0001]
+
 
     # It is worth pre-defining the arguments for the different graphs and benchmarks
     args_casf_intra = {
@@ -227,61 +228,66 @@ def main():
                 for layer in layers:
                     for hidden_dim_val in hidden_dim:
                         for dropout in dropout_values:
-                            for k_head_index in range(0, len(K_values)):
-                                experiment_name = model 
-                                tmp_model = copy.deepcopy(model) 
-                                # If we have a non zero dropout the model name needs to have a _v2 at the end
-                                if dropout > 0.0:
-                                    tmp_model += "_v2"
-                                    experiment_name += "-Drop"
-                                experiment_args = {
-                                    "model": tmp_model,
-                                    "K": K_values[k_head_index],
-                                    "head": heads_values[k_head_index]
-                                }
+                            for weight_decay in weight_decay_values:
+                                for k_head_index in range(0, len(K_values)):
+                                    experiment_name = model 
+                                    tmp_model = copy.deepcopy(model) 
+                                    # If we have a non zero dropout the model name needs to have a _v2 at the end
+                                    if dropout > 0.0:
+                                        tmp_model += "_v2"
+                                        experiment_name += "-Drop"
+                                    experiment_args = {
+                                        "model": tmp_model,
+                                        "K": K_values[k_head_index],
+                                        "head": heads_values[k_head_index]
+                                    }
 
 
-                                if model[0:3] == "TAG": 
-                                    experiment_name += f"-K-{K_values[k_head_index]}"
-                                elif model[0:3] == "GAT":
-                                    experiment_name += f"-H-{heads_values[k_head_index]}"                             
+                                    if model[0:3] == "TAG": 
+                                        experiment_name += f"-K-{K_values[k_head_index]}"
+                                    elif model[0:3] == "GAT":
+                                        experiment_name += f"-H-{heads_values[k_head_index]}"                             
 
 
-                                
-                                experiment_args["num_GNN_layers"] = layer
-                                experiment_args["hidden_dim"] = hidden_dim_val
-                                experiment_args["dropout_rate"] = dropout
-                                
-                                experiment_name += f"-L-{layer}"
-                                experiment_name += f"-Dim-{hidden_dim_val}"
+                                    
+                                    experiment_args["num_GNN_layers"] = layer
+                                    experiment_args["hidden_dim"] = hidden_dim_val
+                                    experiment_args["dropout_rate"] = dropout
+                                    experiment_args["weight_decay"] = weight_decay
+                                    
+                                    experiment_name += f"-L-{layer}"
+                                    experiment_name += f"-Dim-{hidden_dim_val}"
+                                    
+                                    if weight_decay > 0.0:
+                                        experiment_name += f"-WD"
 
-                                if benchmark == "CASF-16" and graph == "intra":
-                                    args_bench_args = copy.deepcopy(args_casf_intra)
-                                    experiment_name += "-Intra-CASF-2016"
-                                    plotting_experiment = create_plotting_config(name=experiment_name, time_stamp=TIME_STAMP)
-                                    new_plotting_casf.append(plotting_experiment)
-                                elif benchmark == "CASF-16" and graph == "inter":
-                                    args_bench_args = copy.deepcopy(args_casf_inter)
-                                    experiment_name += "-Inter-CASF-2016"
-                                    plotting_experiment = create_plotting_config(name=experiment_name, time_stamp=TIME_STAMP)
-                                    new_plotting_casf.append(plotting_experiment) 
-                                elif benchmark == "OOD-Test" and graph == "intra":
-                                    args_bench_args = copy.deepcopy(args_ood_test_intra)
-                                    experiment_name += "-Intra-OOD-Test"
-                                    plotting_experiment = create_plotting_config(name=experiment_name, time_stamp=TIME_STAMP)
-                                    new_plotting_OOD.append(plotting_experiment) 
-                                elif benchmark == "OOD-Test" and graph == "inter":
-                                    args_bench_args = copy.deepcopy(args_ood_test_inter)
-                                    experiment_name += "-Inter-OOD-Test"
-                                    plotting_experiment = create_plotting_config(name=experiment_name, time_stamp=TIME_STAMP)
-                                    new_plotting_OOD.append(plotting_experiment)
+                                    if benchmark == "CASF-16" and graph == "intra":
+                                        args_bench_args = copy.deepcopy(args_casf_intra)
+                                        experiment_name += "-Intra-CASF-2016"
+                                        plotting_experiment = create_plotting_config(name=experiment_name, time_stamp=TIME_STAMP)
+                                        new_plotting_casf.append(plotting_experiment)
+                                    elif benchmark == "CASF-16" and graph == "inter":
+                                        args_bench_args = copy.deepcopy(args_casf_inter)
+                                        experiment_name += "-Inter-CASF-2016"
+                                        plotting_experiment = create_plotting_config(name=experiment_name, time_stamp=TIME_STAMP)
+                                        new_plotting_casf.append(plotting_experiment) 
+                                    elif benchmark == "OOD-Test" and graph == "intra":
+                                        args_bench_args = copy.deepcopy(args_ood_test_intra)
+                                        experiment_name += "-Intra-OOD-Test"
+                                        plotting_experiment = create_plotting_config(name=experiment_name, time_stamp=TIME_STAMP)
+                                        new_plotting_OOD.append(plotting_experiment) 
+                                    elif benchmark == "OOD-Test" and graph == "inter":
+                                        args_bench_args = copy.deepcopy(args_ood_test_inter)
+                                        experiment_name += "-Inter-OOD-Test"
+                                        plotting_experiment = create_plotting_config(name=experiment_name, time_stamp=TIME_STAMP)
+                                        new_plotting_OOD.append(plotting_experiment)
 
-                                experiment_args = {**experiment_args, **copy.deepcopy(args_base), **args_bench_args}
-                                
-                                experiment_config = create_experiment_config(name=experiment_name, args=experiment_args) 
-                                new_experiments.append(experiment_config) 
-                                process_config = create_process_config(name=experiment_name, time_stamp=TIME_STAMP, args=experiment_args)
-                                new_processes.append(process_config)
+                                    experiment_args = {**experiment_args, **copy.deepcopy(args_base), **args_bench_args}
+                                    
+                                    experiment_config = create_experiment_config(name=experiment_name, args=experiment_args) 
+                                    new_experiments.append(experiment_config) 
+                                    process_config = create_process_config(name=experiment_name, time_stamp=TIME_STAMP, args=experiment_args)
+                                    new_processes.append(process_config)
                                 
 
     # Get the directory where this script is located

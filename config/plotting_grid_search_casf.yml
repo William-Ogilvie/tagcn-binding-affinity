@@ -9,9 +9,17 @@ plots:
 experiments:
 - name: TAGCN-K-1-L-5-Dim-512-Intra-CASF-2016
   time_stamp: '20260228_155402'
+- name: TAGCN-K-1-L-5-Dim-512-WD-Intra-CASF-2016
+  time_stamp: '20260228_155402'
 - name: TAGCN-Drop-K-1-L-5-Dim-512-Intra-CASF-2016
+  time_stamp: '20260228_155402'
+- name: TAGCN-Drop-K-1-L-5-Dim-512-WD-Intra-CASF-2016
   time_stamp: '20260228_155402'
 - name: TAGCN-K-1-L-5-Dim-512-Inter-CASF-2016
   time_stamp: '20260228_155402'
+- name: TAGCN-K-1-L-5-Dim-512-WD-Inter-CASF-2016
+  time_stamp: '20260228_155402'
 - name: TAGCN-Drop-K-1-L-5-Dim-512-Inter-CASF-2016
+  time_stamp: '20260228_155402'
+- name: TAGCN-Drop-K-1-L-5-Dim-512-WD-Inter-CASF-2016
   time_stamp: '20260228_155402'

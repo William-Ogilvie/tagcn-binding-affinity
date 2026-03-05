@@ -9,9 +9,17 @@ plots:
 experiments:
 - name: TAGCN-K-1-L-5-Dim-512-Intra-OOD-Test
   time_stamp: '20260228_155402'
+- name: TAGCN-K-1-L-5-Dim-512-WD-Intra-OOD-Test
+  time_stamp: '20260228_155402'
 - name: TAGCN-Drop-K-1-L-5-Dim-512-Intra-OOD-Test
+  time_stamp: '20260228_155402'
+- name: TAGCN-Drop-K-1-L-5-Dim-512-WD-Intra-OOD-Test
   time_stamp: '20260228_155402'
 - name: TAGCN-K-1-L-5-Dim-512-Inter-OOD-Test
   time_stamp: '20260228_155402'
+- name: TAGCN-K-1-L-5-Dim-512-WD-Inter-OOD-Test
+  time_stamp: '20260228_155402'
 - name: TAGCN-Drop-K-1-L-5-Dim-512-Inter-OOD-Test
+  time_stamp: '20260228_155402'
+- name: TAGCN-Drop-K-1-L-5-Dim-512-WD-Inter-OOD-Test
   time_stamp: '20260228_155402'
