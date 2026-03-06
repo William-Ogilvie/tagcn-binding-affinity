@@ -9,6 +9,7 @@ Usage:
 import argparse
 import torch
 import time
+import random
 from pathlib import Path
 import yaml
 from tagcn_bind import Trainer, GATv2Net, GATv2Net_v2, TAGCNet, TAGCNet_v2, init_weights, PDBDataset
@@ -175,6 +176,16 @@ def main():
 
         # Loop through random seeds for ensemble
         for i, seed in enumerate(seeds):
+            # Set seeds for reproducibility: 
+            torch.manual_seed(int(seed))
+            if torch.cuda.is_available():
+                torch.cuda.manual_seed_all(int(seed))
+            np.random.seed(int(seed))
+            random.seed(int(seed))
+
+            # Generator for DataLoader reproducibility (handles shuffling)
+            g = torch.Generator()
+            g.manual_seed(int(seed))
 
             # Create DataLoaders, handles batching, shuffling and multiprocessing
             train_loader = DataLoader(
@@ -183,7 +194,8 @@ def main():
                 shuffle=True,
                 num_workers = 4, # num subprocessed used for data loading
                 pin_memory = True, # copy tensors into CUDA before returning them
-                prefetch_factor = 2 # number of batches loaded in advance by each worker (so they have something to do while training)
+                prefetch_factor = 2, # number of batches loaded in advance by each worker (so they have something to do while training)
+                generator=g
             )
             val_loader = DataLoader(
                 dataset=val_set,
