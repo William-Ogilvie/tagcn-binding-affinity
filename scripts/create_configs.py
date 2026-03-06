@@ -16,7 +16,8 @@ BUBBLES = True
 TRUEVPRED = True
 METRICOEPOCH = True # metrics over epochs
 
-TIME_STAMP = "20260305_160500"
+TIME_STAMP = "20260306_105600"
+TIME_STAMP_OOD = "20260306_105605"
 
 # - name: AEV-PLIG-Intra-Graphs-No-Scale-Rolling
 #   args:
@@ -159,6 +160,7 @@ def main():
     }
 
     # We are now going to make arrays of the parameters for the grid search
+    # messy grid didn't work due to no weight decay and too low lr:
     # benchmarks = ["CASF-16", "OOD-Test"]
     # graphs = ["intra", "inter"]
     # models = ["TAGCN", "GATv2"]
@@ -167,15 +169,29 @@ def main():
     # K_values = [1, 3, 5]
     # heads_values = [1, 3, 5]
     # dropout_values = [0.0, 0.2]
+    # Grid search that shows dropout + weight decay essential for OOD Test, time stamp: 20260305_160500 
+    # benchmarks = ["CASF-16", "OOD-Test"]
+    # graphs = ["intra", "inter"]
+    # models = ["TAGCN"]
+    # hidden_dim = [512]
+    # layers = [5]
+    # K_values = [1]
+    # heads_values = [1]
+    # dropout_values = [0.0, 0.2]
+    # weight_decay_values = [0.0, 0.0001]
+    # The above will need dropout and weight decay strings added to be compatiable 
+    # Grid search to explore higher hidden dim + stronger dropout/weight decay to try and beat SOTA on OOD Test
     benchmarks = ["CASF-16", "OOD-Test"]
     graphs = ["intra", "inter"]
     models = ["TAGCN"]
-    hidden_dim = [512]
+    hidden_dim = [512, 768]
     layers = [5]
     K_values = [1]
     heads_values = [1]
-    dropout_values = [0.0, 0.2]
-    weight_decay_values = [0.0, 0.0001]
+    dropout_values = [0.2, 0.5]
+    dropout_values_strings = ["0-2", "0-5"]
+    weight_decay_values = [0.0001, 0.001]
+    weight_decay_values_strings = ["0-30-1", "0-20-1"]
 
 
     # It is worth pre-defining the arguments for the different graphs and benchmarks
@@ -227,15 +243,16 @@ def main():
             for graph in graphs:
                 for layer in layers:
                     for hidden_dim_val in hidden_dim:
-                        for dropout in dropout_values:
-                            for weight_decay in weight_decay_values:
+                        for drop_idx, dropout in enumerate(dropout_values):
+                            for weight_idx, weight_decay in enumerate(weight_decay_values):
                                 for k_head_index in range(0, len(K_values)):
                                     experiment_name = model 
                                     tmp_model = copy.deepcopy(model) 
                                     # If we have a non zero dropout the model name needs to have a _v2 at the end
                                     if dropout > 0.0:
                                         tmp_model += "_v2"
-                                        experiment_name += "-Drop"
+                                        experiment_name += f"-Drop-{dropout_values_strings[drop_idx]}"
+
                                     experiment_args = {
                                         "model": tmp_model,
                                         "K": K_values[k_head_index],
@@ -259,7 +276,7 @@ def main():
                                     experiment_name += f"-Dim-{hidden_dim_val}"
                                     
                                     if weight_decay > 0.0:
-                                        experiment_name += f"-WD"
+                                        experiment_name += f"-WD-{weight_decay_values_strings[weight_idx]}"
 
                                     if benchmark == "CASF-16" and graph == "intra":
                                         args_bench_args = copy.deepcopy(args_casf_intra)
@@ -274,12 +291,12 @@ def main():
                                     elif benchmark == "OOD-Test" and graph == "intra":
                                         args_bench_args = copy.deepcopy(args_ood_test_intra)
                                         experiment_name += "-Intra-OOD-Test"
-                                        plotting_experiment = create_plotting_config(name=experiment_name, time_stamp=TIME_STAMP)
+                                        plotting_experiment = create_plotting_config(name=experiment_name, time_stamp=TIME_STAMP_OOD)
                                         new_plotting_OOD.append(plotting_experiment) 
                                     elif benchmark == "OOD-Test" and graph == "inter":
                                         args_bench_args = copy.deepcopy(args_ood_test_inter)
                                         experiment_name += "-Inter-OOD-Test"
-                                        plotting_experiment = create_plotting_config(name=experiment_name, time_stamp=TIME_STAMP)
+                                        plotting_experiment = create_plotting_config(name=experiment_name, time_stamp=TIME_STAMP_OOD)
                                         new_plotting_OOD.append(plotting_experiment)
 
                                     experiment_args = {**experiment_args, **copy.deepcopy(args_base), **args_bench_args}
@@ -303,12 +320,25 @@ def main():
                 config = yaml.safe_load(f) or {} 
         else:
             # If the config doesn't exist and we are in the plotting case we need to initalise it here
-            if i > 1:
+            if i == 2:
                 config = {
                     "output_dir": "output/summary_plots",
                     "stats_dir": "output/training_stats",
                     "predictions_dir": "output/predictions",
                     "file_name_tag": TIME_STAMP,
+                    "plots": {
+                        "bubble": BUBBLES,
+                        "metrics_over_epochs": METRICOEPOCH,
+                        "true_vs_predicted": TRUEVPRED 
+                    }
+                }
+            elif i == 3:
+                # Need a slightly different time stamp for OOD to avoid overlapping file names
+                config = {
+                    "output_dir": "output/summary_plots",
+                    "stats_dir": "output/training_stats",
+                    "predictions_dir": "output/predictions",
+                    "file_name_tag": TIME_STAMP_OOD,
                     "plots": {
                         "bubble": BUBBLES,
                         "metrics_over_epochs": METRICOEPOCH,
