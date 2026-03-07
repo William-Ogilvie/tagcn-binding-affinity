@@ -261,33 +261,24 @@ class GraphGenerator():
         # Start one after the atom_map used to encode the protein atoms 
         start_id = len_atom_map + 1
 
+        # For consitency we use the same elts as the node features
         elt_map = {
             'C': start_id + 1,
-            'N': start_id + 2,
-            'O': start_id + 3,
-            'P': start_id + 4,
-            'S': start_id + 5,
-            'F': start_id + 6,
+            'O': start_id + 2,
+            'N': start_id + 3,
+            'S': start_id + 4,
+            'F': start_id + 5,
+            'P': start_id + 6,
             'Cl': start_id + 7,
             'Br': start_id + 8,
-            'I': start_id + 9,
-            'Mg': start_id + 10, 
-            'Ca': start_id + 11,
-            'Zn': start_id + 12,
-            'Fe': start_id + 13,
-            'Cu': start_id + 14,
-            'Mn': start_id + 15,
-            'Na': start_id + 16,
-            'K': start_id + 17,
-            'B': start_id + 18,
-            'Si': start_id + 19,
-            'Se': start_id + 20
+            'B': start_id + 9,
+            'I': start_id + 10,  
         }
 
         if elem in elt_map.keys():
             return elt_map[elem]
         else:
-            return start_id + 21 # WARNING if you change elt_map will need to change this
+            return start_id + 11 # WARNING if you change elt_map will need to change this
 
 
 
@@ -518,21 +509,22 @@ class GraphGenerator():
 
         Returns:
             List[int]: one hot encoding of the allowable objects
-        """  
-        encoding = [0] * (len(allowable_set) + 1)
+        """
+        # More robust version of bond encoding with a catch all, we aren't going to use this due to having DATIVE bonds to get 100% training set coverage  
+        # encoding = [0] * (len(allowable_set) + 1)
 
-        try:
-            index = allowable_set.index(x)
-            encoding[index] = 1
-        except ValueError:
-            # x is not in the allowable set so it's an other
-            encoding[-1] = 1
-        return encoding      
+        # try:
+        #     index = allowable_set.index(x)
+        #     encoding[index] = 1
+        # except ValueError:
+        #     # x is not in the allowable set so it's an other
+        #     encoding[-1] = 1
+        # return encoding      
         # AEV-PLIG version of this function included for legacy and in case we want to test: 
         # # The original one_of_k_encoding of AEV-PLIG now restricted to just bonds
-        # if x not in allowable_set:
-        #     raise ValueError(f"Input {x} not in allowable set {allowable_set}")
-        # return list(map(lambda s: int(x==s), allowable_set))
+        if x not in allowable_set:
+            raise ValueError(f"Input {x} not in allowable set {allowable_set}")
+        return list(map(lambda s: int(x==s), allowable_set))
     
     def get_atom_features(self, atom:rdchem.Atom) -> np.ndarray:
         """ computes features for the atoms:
@@ -638,12 +630,12 @@ class GraphGenerator():
                 counter += 1
         # Edges
         edges = []
-        # RDKit BondType mapping to match legacy: [Single, Aromatic, Double, Triple, Dative, Hydgrogen, Ionic, Zero (atoms close but not formally bonded)]
+        # We are going to do [Single, Aromatic, Double, Triple, Dative] so we have full training set coverage for PDBbind, AEV-PLIG drops DATIVE bonds likely as they appear in only  
+        # 0.05% of all training complexes (15 in total)
         # AEV-PLIG originally only does [Single, Aromatic, Double, Triple], this causes complexes like 2foy to be dropped from PDBbind 
         bond_encoding_list = [Chem.rdchem.BondType.SINGLE, Chem.rdchem.BondType.AROMATIC,
                                   Chem.rdchem.BondType.DOUBLE, Chem.rdchem.BondType.TRIPLE,
-                                  Chem.rdchem.BondType.DATIVE, Chem.rdchem.BondType.HYDROGEN,
-                                  Chem.rdchem.BondType.IONIC, Chem.rdchem.BondType.ZERO]
+                                  Chem.rdchem.BondType.DATIVE]
             
         for bond in mol.GetBonds():
             idx1 = bond.GetBeginAtomIdx()
