@@ -63,8 +63,12 @@ def main():
     total_complexes = len(df)
     # We are going to store the bond information and elements in two dictionaries with arrays at each key,
     # the first number being a raw count and the second being a count of the number of complexes
-    elt_dict = dict()
+    elt_dict = {
+        "Other_Elements": [0,0]
+    }
     bond_dict = dict()
+
+    other_elements_list = ["Fe", "Se", "Ru", "*", "Si", "Ir", "As", "Cu", "Co", "V", "Pt", "Rh", "Be", "Os", "Re", "Sb", "Mg", "Zn", "Te"]
 
     # We will use an instance of the graph generator to load the sdfs
     graph_gen = GraphGenerator(1.0, 1.0, 1.0, False, [2.0], True, [2.0])
@@ -86,13 +90,23 @@ def main():
             if symbol not in elt_dict.keys():
                 elt_dict[symbol] = [1,0] # We add 1 at the end for the number of complexes
             else:
-                elt_dict[symbol][0] += 1 
+                elt_dict[symbol][0] += 1
+
+            # If the symbol is from the Other_Elements bin we need to record that too
+            if symbol in other_elements_list:
+                elt_dict["Other_Elements"][0] += 1 
             
             unique_elts.add(symbol)
 
         # Increase complex count
+        increased_other_elts = False
         for symbol in unique_elts:
             elt_dict[symbol][1] += 1
+
+            # We want to increase the second term of Other_Elements at most once per complex
+            if symbol in other_elements_list and not increased_other_elts:
+                elt_dict["Other_Elements"][1] += 1
+                increased_other_elts = True
         # For curiosity if carbon is not in the elt_dict i want to flag the sdf file
         if "C" not in unique_elts:
             non_carbon_sdfs.append(sdf_path)
@@ -139,12 +153,21 @@ def main():
                     elt_dict[symbol] = [1,0] # We add 1 at the end for the number of complexes
                 else:
                     elt_dict[symbol][0] += 1 
+
+                # If the symbol is from the Other_Elements bin we need to record that too
+                if symbol in other_elements_list:
+                    elt_dict["Other_Elements"][0] += 1
                 
                 unique_elts.add(symbol)
 
             # Increase complex count
+            increased_other_elts = False
             for symbol in unique_elts:
                 elt_dict[symbol][1] += 1
+                # We want to increase the second term of Other_Elements at most once per complex
+                if symbol in other_elements_list and not increased_other_elts:
+                    elt_dict["Other_Elements"][1] += 1
+                    increased_other_elts = True
             # For curiosity if carbon is not in the elt_dict i want to flag the sdf file
             if "C" not in unique_elts:
                 non_carbon_sdfs.append(sdf_path)
