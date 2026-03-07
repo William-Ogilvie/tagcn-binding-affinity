@@ -291,12 +291,12 @@ def main():
                                     elif benchmark == "OOD-Test" and graph == "intra":
                                         args_bench_args = copy.deepcopy(args_ood_test_intra)
                                         experiment_name += "-Intra-OOD-Test"
-                                        plotting_experiment = create_plotting_config(name=experiment_name, time_stamp=TIME_STAMP_OOD)
+                                        plotting_experiment = create_plotting_config(name=experiment_name, time_stamp=TIME_STAMP)
                                         new_plotting_OOD.append(plotting_experiment) 
                                     elif benchmark == "OOD-Test" and graph == "inter":
                                         args_bench_args = copy.deepcopy(args_ood_test_inter)
                                         experiment_name += "-Inter-OOD-Test"
-                                        plotting_experiment = create_plotting_config(name=experiment_name, time_stamp=TIME_STAMP_OOD)
+                                        plotting_experiment = create_plotting_config(name=experiment_name, time_stamp=TIME_STAMP)
                                         new_plotting_OOD.append(plotting_experiment)
 
                                     experiment_args = {**experiment_args, **copy.deepcopy(args_base), **args_bench_args}
