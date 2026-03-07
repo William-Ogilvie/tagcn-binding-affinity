@@ -27,7 +27,7 @@ def main():
     data_graphs_dir.mkdir(parents= True, exist_ok= True)
 
     # Graph Gen config:
-    graph_gen_config_path = project_root / "config" / "graph_gen_legacy_config.yml"
+    graph_gen_config_path = project_root / "config" / "graph_gen_config.yml"
 
     # Load config
     with open(graph_gen_config_path, "r") as f:

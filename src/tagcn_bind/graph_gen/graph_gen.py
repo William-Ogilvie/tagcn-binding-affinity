@@ -263,22 +263,22 @@ class GraphGenerator():
 
         # For consitency we use the same elts as the node features
         elt_map = {
-            'C': start_id + 1,
-            'O': start_id + 2,
-            'N': start_id + 3,
-            'S': start_id + 4,
-            'F': start_id + 5,
-            'P': start_id + 6,
-            'Cl': start_id + 7,
-            'Br': start_id + 8,
-            'B': start_id + 9,
-            'I': start_id + 10,  
+            'C': start_id,
+            'O': start_id + 1,
+            'N': start_id + 2,
+            'S': start_id + 3,
+            'F': start_id + 4,
+            'P': start_id + 5,
+            'Cl': start_id + 6,
+            'Br': start_id + 7,
+            'B': start_id + 8,
+            'I': start_id + 9,  
         }
 
         if elem in elt_map.keys():
             return elt_map[elem]
         else:
-            return start_id + 11 # WARNING if you change elt_map will need to change this
+            return start_id + 10 # WARNING if you change elt_map will need to change this
 
 
 
@@ -386,6 +386,9 @@ class GraphGenerator():
             # Now get the ligand species from this column in the same way we got the protein species
             ligand_species = ligand_df["ATOM_NR"].values
             protein_species = target_df["ATOM_NR"].values
+
+            # print("Ligand df: ", ligand_df)
+            # print("Target df: ", target_df) 
 
             # Assuming we never add coverage for element WXZ this should return us the catch all bin
             species_converter_len = self.map_ligand_atom_to_id(element_symbol="WXZ", len_atom_map=len_atom_map)
@@ -657,11 +660,11 @@ class GraphGenerator():
 
         # Sort edges by atom indices (legacy behaviour, helps with determinism)
         if edges:
-            edges_df = pd.DataFrame(edges, columns = ["atom1", "atom2", "single", "aromatic", "double", "triple", "dative", "hydrogen", "ionic", "zero", "other"])
+            edges_df = pd.DataFrame(edges, columns = ["atom1", "atom2", "single", "aromatic", "double", "triple", "dative"])
             edges_df = edges_df.sort_values(by=["atom1", "atom2"])
 
             edge_index = edges_df[["atom1", "atom2"]].values.tolist()
-            edge_attr = edges_df[["single", "aromatic", "double", "triple", "dative", "hydrogen", "ionic", "zero", "other"]].values.tolist()
+            edge_attr = edges_df[["single", "aromatic", "double", "triple", "dative"]].values.tolist()
         else:
             edge_index = []
             edge_attr = []
