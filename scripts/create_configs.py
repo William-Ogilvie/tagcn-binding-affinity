@@ -16,8 +16,8 @@ BUBBLES = True
 TRUEVPRED = True
 METRICOEPOCH = True # metrics over epochs
 
-TIME_STAMP = "20260306_171000"
-TIME_STAMP_OOD = "20260306_171100"
+TIME_STAMP = "20260307_151800"
+TIME_STAMP_OOD = "20260307_152000"
 
 # - name: AEV-PLIG-Intra-Graphs-No-Scale-Rolling
 #   args:
@@ -188,8 +188,8 @@ def main():
     layers = [5]
     K_values = [1]
     heads_values = [1]
-    dropout_values = [0.2, 0.5]
-    dropout_values_strings = ["0-2", "0-5"]
+    dropout_values = [0.2, 0.3]
+    dropout_values_strings = ["0-2", "0-3"]
     weight_decay_values = [0.0001, 0.001]
     weight_decay_values_strings = ["0-30-1", "0-20-1"]
 

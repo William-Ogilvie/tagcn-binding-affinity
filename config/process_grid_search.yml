@@ -1,6 +1,6 @@
 experiments:
 - name: TAGCN-Drop-0-2-K-1-L-5-Dim-512-WD-0-30-1-Intra-CASF-2016
-  run_id: '20260306_171000'
+  run_id: '20260307_151800'
   args:
     model: TAGCN_v2
     epochs: 300
@@ -40,7 +40,7 @@ experiments:
     save_training_stats_dir: output/training_stats
     plots_dir: output/plots_dir
 - name: TAGCN-Drop-0-2-K-1-L-5-Dim-512-WD-0-20-1-Intra-CASF-2016
-  run_id: '20260306_171000'
+  run_id: '20260307_151800'
   args:
     model: TAGCN_v2
     epochs: 300
@@ -79,8 +79,8 @@ experiments:
     predictions_save_dir: output/predictions
     save_training_stats_dir: output/training_stats
     plots_dir: output/plots_dir
-- name: TAGCN-Drop-0-5-K-1-L-5-Dim-512-WD-0-30-1-Intra-CASF-2016
-  run_id: '20260306_171000'
+- name: TAGCN-Drop-0-3-K-1-L-5-Dim-512-WD-0-30-1-Intra-CASF-2016
+  run_id: '20260307_151800'
   args:
     model: TAGCN_v2
     epochs: 300
@@ -91,7 +91,7 @@ experiments:
     hidden_dim: 512
     head: 1
     K: 1
-    dropout_rate: 0.5
+    dropout_rate: 0.3
     num_GNN_layers: 5
     activation_function: leaky_relu
     weight_decay: 0.0001
@@ -119,8 +119,8 @@ experiments:
     predictions_save_dir: output/predictions
     save_training_stats_dir: output/training_stats
     plots_dir: output/plots_dir
-- name: TAGCN-Drop-0-5-K-1-L-5-Dim-512-WD-0-20-1-Intra-CASF-2016
-  run_id: '20260306_171000'
+- name: TAGCN-Drop-0-3-K-1-L-5-Dim-512-WD-0-20-1-Intra-CASF-2016
+  run_id: '20260307_151800'
   args:
     model: TAGCN_v2
     epochs: 300
@@ -131,7 +131,7 @@ experiments:
     hidden_dim: 512
     head: 1
     K: 1
-    dropout_rate: 0.5
+    dropout_rate: 0.3
     num_GNN_layers: 5
     activation_function: leaky_relu
     weight_decay: 0.001
@@ -160,7 +160,7 @@ experiments:
     save_training_stats_dir: output/training_stats
     plots_dir: output/plots_dir
 - name: TAGCN-Drop-0-2-K-1-L-5-Dim-768-WD-0-30-1-Intra-CASF-2016
-  run_id: '20260306_171000'
+  run_id: '20260307_151800'
   args:
     model: TAGCN_v2
     epochs: 300
@@ -200,7 +200,7 @@ experiments:
     save_training_stats_dir: output/training_stats
     plots_dir: output/plots_dir
 - name: TAGCN-Drop-0-2-K-1-L-5-Dim-768-WD-0-20-1-Intra-CASF-2016
-  run_id: '20260306_171000'
+  run_id: '20260307_151800'
   args:
     model: TAGCN_v2
     epochs: 300
@@ -239,8 +239,8 @@ experiments:
     predictions_save_dir: output/predictions
     save_training_stats_dir: output/training_stats
     plots_dir: output/plots_dir
-- name: TAGCN-Drop-0-5-K-1-L-5-Dim-768-WD-0-30-1-Intra-CASF-2016
-  run_id: '20260306_171000'
+- name: TAGCN-Drop-0-3-K-1-L-5-Dim-768-WD-0-30-1-Intra-CASF-2016
+  run_id: '20260307_151800'
   args:
     model: TAGCN_v2
     epochs: 300
@@ -251,7 +251,7 @@ experiments:
     hidden_dim: 768
     head: 1
     K: 1
-    dropout_rate: 0.5
+    dropout_rate: 0.3
     num_GNN_layers: 5
     activation_function: leaky_relu
     weight_decay: 0.0001
@@ -279,8 +279,8 @@ experiments:
     predictions_save_dir: output/predictions
     save_training_stats_dir: output/training_stats
     plots_dir: output/plots_dir
-- name: TAGCN-Drop-0-5-K-1-L-5-Dim-768-WD-0-20-1-Intra-CASF-2016
-  run_id: '20260306_171000'
+- name: TAGCN-Drop-0-3-K-1-L-5-Dim-768-WD-0-20-1-Intra-CASF-2016
+  run_id: '20260307_151800'
   args:
     model: TAGCN_v2
     epochs: 300
@@ -291,7 +291,7 @@ experiments:
     hidden_dim: 768
     head: 1
     K: 1
-    dropout_rate: 0.5
+    dropout_rate: 0.3
     num_GNN_layers: 5
     activation_function: leaky_relu
     weight_decay: 0.001
@@ -320,7 +320,7 @@ experiments:
     save_training_stats_dir: output/training_stats
     plots_dir: output/plots_dir
 - name: TAGCN-Drop-0-2-K-1-L-5-Dim-512-WD-0-30-1-Inter-CASF-2016
-  run_id: '20260306_171000'
+  run_id: '20260307_151800'
   args:
     model: TAGCN_v2
     epochs: 300
@@ -360,7 +360,7 @@ experiments:
     save_training_stats_dir: output/training_stats
     plots_dir: output/plots_dir
 - name: TAGCN-Drop-0-2-K-1-L-5-Dim-512-WD-0-20-1-Inter-CASF-2016
-  run_id: '20260306_171000'
+  run_id: '20260307_151800'
   args:
     model: TAGCN_v2
     epochs: 300
@@ -399,8 +399,8 @@ experiments:
     predictions_save_dir: output/predictions
     save_training_stats_dir: output/training_stats
     plots_dir: output/plots_dir
-- name: TAGCN-Drop-0-5-K-1-L-5-Dim-512-WD-0-30-1-Inter-CASF-2016
-  run_id: '20260306_171000'
+- name: TAGCN-Drop-0-3-K-1-L-5-Dim-512-WD-0-30-1-Inter-CASF-2016
+  run_id: '20260307_151800'
   args:
     model: TAGCN_v2
     epochs: 300
@@ -411,7 +411,7 @@ experiments:
     hidden_dim: 512
     head: 1
     K: 1
-    dropout_rate: 0.5
+    dropout_rate: 0.3
     num_GNN_layers: 5
     activation_function: leaky_relu
     weight_decay: 0.0001
@@ -439,8 +439,8 @@ experiments:
     predictions_save_dir: output/predictions
     save_training_stats_dir: output/training_stats
     plots_dir: output/plots_dir
-- name: TAGCN-Drop-0-5-K-1-L-5-Dim-512-WD-0-20-1-Inter-CASF-2016
-  run_id: '20260306_171000'
+- name: TAGCN-Drop-0-3-K-1-L-5-Dim-512-WD-0-20-1-Inter-CASF-2016
+  run_id: '20260307_151800'
   args:
     model: TAGCN_v2
     epochs: 300
@@ -451,7 +451,7 @@ experiments:
     hidden_dim: 512
     head: 1
     K: 1
-    dropout_rate: 0.5
+    dropout_rate: 0.3
     num_GNN_layers: 5
     activation_function: leaky_relu
     weight_decay: 0.001
@@ -480,7 +480,7 @@ experiments:
     save_training_stats_dir: output/training_stats
     plots_dir: output/plots_dir
 - name: TAGCN-Drop-0-2-K-1-L-5-Dim-768-WD-0-30-1-Inter-CASF-2016
-  run_id: '20260306_171000'
+  run_id: '20260307_151800'
   args:
     model: TAGCN_v2
     epochs: 300
@@ -520,7 +520,7 @@ experiments:
     save_training_stats_dir: output/training_stats
     plots_dir: output/plots_dir
 - name: TAGCN-Drop-0-2-K-1-L-5-Dim-768-WD-0-20-1-Inter-CASF-2016
-  run_id: '20260306_171000'
+  run_id: '20260307_151800'
   args:
     model: TAGCN_v2
     epochs: 300
@@ -559,8 +559,8 @@ experiments:
     predictions_save_dir: output/predictions
     save_training_stats_dir: output/training_stats
     plots_dir: output/plots_dir
-- name: TAGCN-Drop-0-5-K-1-L-5-Dim-768-WD-0-30-1-Inter-CASF-2016
-  run_id: '20260306_171000'
+- name: TAGCN-Drop-0-3-K-1-L-5-Dim-768-WD-0-30-1-Inter-CASF-2016
+  run_id: '20260307_151800'
   args:
     model: TAGCN_v2
     epochs: 300
@@ -571,7 +571,7 @@ experiments:
     hidden_dim: 768
     head: 1
     K: 1
-    dropout_rate: 0.5
+    dropout_rate: 0.3
     num_GNN_layers: 5
     activation_function: leaky_relu
     weight_decay: 0.0001
@@ -599,8 +599,8 @@ experiments:
     predictions_save_dir: output/predictions
     save_training_stats_dir: output/training_stats
     plots_dir: output/plots_dir
-- name: TAGCN-Drop-0-5-K-1-L-5-Dim-768-WD-0-20-1-Inter-CASF-2016
-  run_id: '20260306_171000'
+- name: TAGCN-Drop-0-3-K-1-L-5-Dim-768-WD-0-20-1-Inter-CASF-2016
+  run_id: '20260307_151800'
   args:
     model: TAGCN_v2
     epochs: 300
@@ -611,7 +611,7 @@ experiments:
     hidden_dim: 768
     head: 1
     K: 1
-    dropout_rate: 0.5
+    dropout_rate: 0.3
     num_GNN_layers: 5
     activation_function: leaky_relu
     weight_decay: 0.001
@@ -640,7 +640,7 @@ experiments:
     save_training_stats_dir: output/training_stats
     plots_dir: output/plots_dir
 - name: TAGCN-Drop-0-2-K-1-L-5-Dim-512-WD-0-30-1-Intra-OOD-Test
-  run_id: '20260306_171000'
+  run_id: '20260307_151800'
   args:
     model: TAGCN_v2
     epochs: 300
@@ -680,7 +680,7 @@ experiments:
     save_training_stats_dir: output/training_stats
     plots_dir: output/plots_dir
 - name: TAGCN-Drop-0-2-K-1-L-5-Dim-512-WD-0-20-1-Intra-OOD-Test
-  run_id: '20260306_171000'
+  run_id: '20260307_151800'
   args:
     model: TAGCN_v2
     epochs: 300
@@ -719,8 +719,8 @@ experiments:
     predictions_save_dir: output/predictions
     save_training_stats_dir: output/training_stats
     plots_dir: output/plots_dir
-- name: TAGCN-Drop-0-5-K-1-L-5-Dim-512-WD-0-30-1-Intra-OOD-Test
-  run_id: '20260306_171000'
+- name: TAGCN-Drop-0-3-K-1-L-5-Dim-512-WD-0-30-1-Intra-OOD-Test
+  run_id: '20260307_151800'
   args:
     model: TAGCN_v2
     epochs: 300
@@ -731,7 +731,7 @@ experiments:
     hidden_dim: 512
     head: 1
     K: 1
-    dropout_rate: 0.5
+    dropout_rate: 0.3
     num_GNN_layers: 5
     activation_function: leaky_relu
     weight_decay: 0.0001
@@ -759,8 +759,8 @@ experiments:
     predictions_save_dir: output/predictions
     save_training_stats_dir: output/training_stats
     plots_dir: output/plots_dir
-- name: TAGCN-Drop-0-5-K-1-L-5-Dim-512-WD-0-20-1-Intra-OOD-Test
-  run_id: '20260306_171000'
+- name: TAGCN-Drop-0-3-K-1-L-5-Dim-512-WD-0-20-1-Intra-OOD-Test
+  run_id: '20260307_151800'
   args:
     model: TAGCN_v2
     epochs: 300
@@ -771,7 +771,7 @@ experiments:
     hidden_dim: 512
     head: 1
     K: 1
-    dropout_rate: 0.5
+    dropout_rate: 0.3
     num_GNN_layers: 5
     activation_function: leaky_relu
     weight_decay: 0.001
@@ -800,7 +800,7 @@ experiments:
     save_training_stats_dir: output/training_stats
     plots_dir: output/plots_dir
 - name: TAGCN-Drop-0-2-K-1-L-5-Dim-768-WD-0-30-1-Intra-OOD-Test
-  run_id: '20260306_171000'
+  run_id: '20260307_151800'
   args:
     model: TAGCN_v2
     epochs: 300
@@ -840,7 +840,7 @@ experiments:
     save_training_stats_dir: output/training_stats
     plots_dir: output/plots_dir
 - name: TAGCN-Drop-0-2-K-1-L-5-Dim-768-WD-0-20-1-Intra-OOD-Test
-  run_id: '20260306_171000'
+  run_id: '20260307_151800'
   args:
     model: TAGCN_v2
     epochs: 300
@@ -879,8 +879,8 @@ experiments:
     predictions_save_dir: output/predictions
     save_training_stats_dir: output/training_stats
     plots_dir: output/plots_dir
-- name: TAGCN-Drop-0-5-K-1-L-5-Dim-768-WD-0-30-1-Intra-OOD-Test
-  run_id: '20260306_171000'
+- name: TAGCN-Drop-0-3-K-1-L-5-Dim-768-WD-0-30-1-Intra-OOD-Test
+  run_id: '20260307_151800'
   args:
     model: TAGCN_v2
     epochs: 300
@@ -891,7 +891,7 @@ experiments:
     hidden_dim: 768
     head: 1
     K: 1
-    dropout_rate: 0.5
+    dropout_rate: 0.3
     num_GNN_layers: 5
     activation_function: leaky_relu
     weight_decay: 0.0001
@@ -919,8 +919,8 @@ experiments:
     predictions_save_dir: output/predictions
     save_training_stats_dir: output/training_stats
     plots_dir: output/plots_dir
-- name: TAGCN-Drop-0-5-K-1-L-5-Dim-768-WD-0-20-1-Intra-OOD-Test
-  run_id: '20260306_171000'
+- name: TAGCN-Drop-0-3-K-1-L-5-Dim-768-WD-0-20-1-Intra-OOD-Test
+  run_id: '20260307_151800'
   args:
     model: TAGCN_v2
     epochs: 300
@@ -931,7 +931,7 @@ experiments:
     hidden_dim: 768
     head: 1
     K: 1
-    dropout_rate: 0.5
+    dropout_rate: 0.3
     num_GNN_layers: 5
     activation_function: leaky_relu
     weight_decay: 0.001
@@ -960,7 +960,7 @@ experiments:
     save_training_stats_dir: output/training_stats
     plots_dir: output/plots_dir
 - name: TAGCN-Drop-0-2-K-1-L-5-Dim-512-WD-0-30-1-Inter-OOD-Test
-  run_id: '20260306_171000'
+  run_id: '20260307_151800'
   args:
     model: TAGCN_v2
     epochs: 300
@@ -1000,7 +1000,7 @@ experiments:
     save_training_stats_dir: output/training_stats
     plots_dir: output/plots_dir
 - name: TAGCN-Drop-0-2-K-1-L-5-Dim-512-WD-0-20-1-Inter-OOD-Test
-  run_id: '20260306_171000'
+  run_id: '20260307_151800'
   args:
     model: TAGCN_v2
     epochs: 300
@@ -1039,8 +1039,8 @@ experiments:
     predictions_save_dir: output/predictions
     save_training_stats_dir: output/training_stats
     plots_dir: output/plots_dir
-- name: TAGCN-Drop-0-5-K-1-L-5-Dim-512-WD-0-30-1-Inter-OOD-Test
-  run_id: '20260306_171000'
+- name: TAGCN-Drop-0-3-K-1-L-5-Dim-512-WD-0-30-1-Inter-OOD-Test
+  run_id: '20260307_151800'
   args:
     model: TAGCN_v2
     epochs: 300
@@ -1051,7 +1051,7 @@ experiments:
     hidden_dim: 512
     head: 1
     K: 1
-    dropout_rate: 0.5
+    dropout_rate: 0.3
     num_GNN_layers: 5
     activation_function: leaky_relu
     weight_decay: 0.0001
@@ -1079,8 +1079,8 @@ experiments:
     predictions_save_dir: output/predictions
     save_training_stats_dir: output/training_stats
     plots_dir: output/plots_dir
-- name: TAGCN-Drop-0-5-K-1-L-5-Dim-512-WD-0-20-1-Inter-OOD-Test
-  run_id: '20260306_171000'
+- name: TAGCN-Drop-0-3-K-1-L-5-Dim-512-WD-0-20-1-Inter-OOD-Test
+  run_id: '20260307_151800'
   args:
     model: TAGCN_v2
     epochs: 300
@@ -1091,7 +1091,7 @@ experiments:
     hidden_dim: 512
     head: 1
     K: 1
-    dropout_rate: 0.5
+    dropout_rate: 0.3
     num_GNN_layers: 5
     activation_function: leaky_relu
     weight_decay: 0.001
@@ -1120,7 +1120,7 @@ experiments:
     save_training_stats_dir: output/training_stats
     plots_dir: output/plots_dir
 - name: TAGCN-Drop-0-2-K-1-L-5-Dim-768-WD-0-30-1-Inter-OOD-Test
-  run_id: '20260306_171000'
+  run_id: '20260307_151800'
   args:
     model: TAGCN_v2
     epochs: 300
@@ -1160,7 +1160,7 @@ experiments:
     save_training_stats_dir: output/training_stats
     plots_dir: output/plots_dir
 - name: TAGCN-Drop-0-2-K-1-L-5-Dim-768-WD-0-20-1-Inter-OOD-Test
-  run_id: '20260306_171000'
+  run_id: '20260307_151800'
   args:
     model: TAGCN_v2
     epochs: 300
@@ -1199,8 +1199,8 @@ experiments:
     predictions_save_dir: output/predictions
     save_training_stats_dir: output/training_stats
     plots_dir: output/plots_dir
-- name: TAGCN-Drop-0-5-K-1-L-5-Dim-768-WD-0-30-1-Inter-OOD-Test
-  run_id: '20260306_171000'
+- name: TAGCN-Drop-0-3-K-1-L-5-Dim-768-WD-0-30-1-Inter-OOD-Test
+  run_id: '20260307_151800'
   args:
     model: TAGCN_v2
     epochs: 300
@@ -1211,7 +1211,7 @@ experiments:
     hidden_dim: 768
     head: 1
     K: 1
-    dropout_rate: 0.5
+    dropout_rate: 0.3
     num_GNN_layers: 5
     activation_function: leaky_relu
     weight_decay: 0.0001
@@ -1239,8 +1239,8 @@ experiments:
     predictions_save_dir: output/predictions
     save_training_stats_dir: output/training_stats
     plots_dir: output/plots_dir
-- name: TAGCN-Drop-0-5-K-1-L-5-Dim-768-WD-0-20-1-Inter-OOD-Test
-  run_id: '20260306_171000'
+- name: TAGCN-Drop-0-3-K-1-L-5-Dim-768-WD-0-20-1-Inter-OOD-Test
+  run_id: '20260307_151800'
   args:
     model: TAGCN_v2
     epochs: 300
@@ -1251,7 +1251,7 @@ experiments:
     hidden_dim: 768
     head: 1
     K: 1
-    dropout_rate: 0.5
+    dropout_rate: 0.3
     num_GNN_layers: 5
     activation_function: leaky_relu
     weight_decay: 0.001
