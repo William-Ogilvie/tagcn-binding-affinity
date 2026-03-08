@@ -16,8 +16,8 @@ BUBBLES = True
 TRUEVPRED = True
 METRICOEPOCH = True # metrics over epochs
 
-TIME_STAMP = "20260307_151800"
-TIME_STAMP_OOD = "20260307_152000"
+TIME_STAMP = "20260308_082900"
+TIME_STAMP_OOD = "20260308_083000"
 
 # - name: AEV-PLIG-Intra-Graphs-No-Scale-Rolling
 #   args:
@@ -181,18 +181,29 @@ def main():
     # weight_decay_values = [0.0, 0.0001]
     # The above will need dropout and weight decay strings added to be compatiable 
     # Grid search to explore higher hidden dim + stronger dropout/weight decay to try and beat SOTA on OOD Test
+    # benchmarks = ["CASF-16", "OOD-Test"]
+    # graphs = ["intra", "inter"]
+    # models = ["TAGCN"]
+    # hidden_dim = [512, 768]
+    # layers = [5]
+    # K_values = [1]
+    # heads_values = [1]
+    # dropout_values = [0.2, 0.3]
+    # dropout_values_strings = ["0-2", "0-3"]
+    # weight_decay_values = [0.0001, 0.001]
+    # weight_decay_values_strings = ["0-30-1", "0-20-1"]
+    # Due to trying the other element graphs (time stamp: 1518000 for the above) we need to rerun an unregularised set of experiments on TAGCN and AEV-PLIG to see if they are truly worse
     benchmarks = ["CASF-16", "OOD-Test"]
     graphs = ["intra", "inter"]
-    models = ["TAGCN"]
-    hidden_dim = [512, 768]
+    models = ["TAGCN", "GATv2"]
+    hidden_dim = [768]
     layers = [5]
     K_values = [1]
-    heads_values = [1]
-    dropout_values = [0.2, 0.3]
-    dropout_values_strings = ["0-2", "0-3"]
-    weight_decay_values = [0.0001, 0.001]
-    weight_decay_values_strings = ["0-30-1", "0-20-1"]
-
+    heads_values = [3]
+    dropout_values = [0.0]
+    dropout_values_strings = ["0-0"]
+    weight_decay_values = [0.0]
+    weight_decay_values_strings = ["0-0"]
 
     # It is worth pre-defining the arguments for the different graphs and benchmarks
     args_casf_intra = {
