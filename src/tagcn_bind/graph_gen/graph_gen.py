@@ -254,7 +254,6 @@ class GraphGenerator():
         Returns:
             int: the dummy atomic number encoding
         """        
-
         # Clean input
         elem = element_symbol.strip().upper()
 
@@ -272,13 +271,53 @@ class GraphGenerator():
             'Cl': start_id + 6,
             'Br': start_id + 7,
             'B': start_id + 8,
-            'I': start_id + 9,  
+            'I': start_id + 9,
+            "Fe": start_id + 10,
+            "Ru": start_id + 11,
+            "Se": start_id + 12  
         }
+
+        metalloids_list = ["Si", "As", "Sb", "Te"]
+        rare_metals = ["Be", "Mg", "Ir", "Cu", "Co", "V", "Pt", "Rh", "Os", "Re", "Zn"]
+    
 
         if elem in elt_map.keys():
             return elt_map[elem]
+        elif elem in metalloids_list:
+            return start_id + 13
+        elif elem in rare_metals:
+            return start_id + 14
         else:
-            return start_id + 10 # WARNING if you change elt_map will need to change this
+            return start_id + 15 # WARNING if you change elt_map will need to change this
+
+
+
+
+        # Older version with the Other_Elements bin
+        # # Clean input
+        # elem = element_symbol.strip().upper()
+
+        # # Start one after the atom_map used to encode the protein atoms 
+        # start_id = len_atom_map + 1
+
+        # # For consitency we use the same elts as the node features
+        # elt_map = {
+        #     'C': start_id,
+        #     'O': start_id + 1,
+        #     'N': start_id + 2,
+        #     'S': start_id + 3,
+        #     'F': start_id + 4,
+        #     'P': start_id + 5,
+        #     'Cl': start_id + 6,
+        #     'Br': start_id + 7,
+        #     'B': start_id + 8,
+        #     'I': start_id + 9,  
+        # }
+
+        # if elem in elt_map.keys():
+        #     return elt_map[elem]
+        # else:
+        #     return start_id + 10 # WARNING if you change elt_map will need to change this
 
 
 
@@ -486,17 +525,37 @@ class GraphGenerator():
         Returns:
             List[int]: one hot encodings of these accepted elements + other
         """        
-        
-        # The encoding will have one extra spot for "other", this is different to AEV-PLIG that requires all elements of the liagand to lie in the allowed_elts array
-        encoding = [0] * (len(allowable_set) + 1)
-        
+        # The newer encoding has the allowed elts group, the rare metals, metalloids and then a catch all
+        encoding = [0] * (len(allowable_set) + 3)
+
+        metalloids_list = ["Si", "As", "Sb", "Te"]
+        rare_metals_list = ["Be", "Mg", "Ir", "Cu", "Co", "V", "Pt", "Rh", "Os", "Re", "Zn"]
         try:
             index = allowable_set.index(x)
             encoding[index] = 1
-        except ValueError:
-            # x is not in the allowable_set so it's an "other"
-            encoding[-1] = 1
+        except:
+            if x in metalloids_list:
+                encoding[-3] = 1
+            elif x in rare_metals_list:
+                encoding[-2] = 1
+            else:
+                encoding[-1] = 1
         return encoding
+            
+
+
+
+        # This is the older encoding 
+        # The encoding will have one extra spot for "other", this is different to AEV-PLIG that requires all elements of the liagand to lie in the allowed_elts array
+        # encoding = [0] * (len(allowable_set) + 1)
+        
+        # try:
+        #     index = allowable_set.index(x)
+        #     encoding[index] = 1
+        # except ValueError:
+        #     # x is not in the allowable_set so it's an "other"
+        #     encoding[-1] = 1
+        # return encoding
     
     @staticmethod
     def one_of_k_encoding_bonds(x, allowable_set: list) -> List[int]:
@@ -546,9 +605,9 @@ class GraphGenerator():
         """        
         features = []
     
-        # Atom symbol one-hot
-        features.extend(self.one_of_k_encoding_atoms(atom.GetSymbol(), self.allowed_elts))
-        
+        # Atom symbol one-hot 
+        features.extend(self.one_of_k_encoding_atoms(atom.GetSymbol(), self.allowed_elts))       
+
         # Number of heavy atom neighbours
         features.append(len([x for x in atom.GetNeighbors() if x.GetSymbol() != "H"]))
 
