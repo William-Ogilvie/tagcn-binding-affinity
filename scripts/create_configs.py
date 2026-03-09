@@ -16,8 +16,10 @@ BUBBLES = True
 TRUEVPRED = True
 METRICOEPOCH = True # metrics over epochs
 
-TIME_STAMP = "20260308_185500"
-TIME_STAMP_OOD = "20260308_185600"
+TIME_STAMP = "20260309_163100" 
+#"20260308_185500"
+TIME_STAMP_OOD = "20260309_163200" 
+#"20260308_185600"
 
 # - name: AEV-PLIG-Intra-Graphs-No-Scale-Rolling
 #   args:
@@ -206,6 +208,18 @@ def main():
     weight_decay_values_strings = ["0-0"]
     # The above seems to have falled on the other_element graphs
     # Re running for time stamp 185500 on 8th 03 both sets for the more "refined" graphs
+    benchmarks = ["OOD-Test"]
+    graphs = ["intra"]
+    models = ["TAGCN"]
+    hidden_dim = [512] # also tried [512]
+    layers = [5]
+    K_values = [1] # also tried [1, 2]
+    heads_values = [1]
+    dropout_values = [0.2]
+    dropout_values_strings = ["0-2"]
+    weight_decay_values = [0.0001]
+    weight_decay_values_strings = ["0-30-1"]
+
 
     # It is worth pre-defining the arguments for the different graphs and benchmarks
     args_casf_intra = {
