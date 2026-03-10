@@ -1,0 +1,49 @@
+output_dir: output/summary_plots
+stats_dir: output/training_stats
+predictions_dir: output/predictions
+file_name_tag: '20260308_185600'
+plots:
+  bubble: true
+  metrics_over_epochs: false
+  true_vs_predicted: false
+experiments:
+- name: TAGCN-Drop-0-2-K-1-L-5-Dim-512-WD-0-30-1-Intra-OOD-Test
+  time_stamp: '20260308_185500'
+- name: TAGCN-Drop-0-2-K-1-L-5-Dim-512-WD-0-20-1-Intra-OOD-Test
+  time_stamp: '20260308_185500'
+- name: TAGCN-Drop-0-3-K-1-L-5-Dim-512-WD-0-30-1-Intra-OOD-Test
+  time_stamp: '20260308_185500'
+- name: TAGCN-Drop-0-3-K-1-L-5-Dim-512-WD-0-20-1-Intra-OOD-Test
+  time_stamp: '20260308_185500'
+- name: TAGCN-Drop-0-2-K-1-L-5-Dim-768-WD-0-30-1-Intra-OOD-Test
+  time_stamp: '20260308_185500'
+- name: TAGCN-Drop-0-2-K-1-L-5-Dim-768-WD-0-20-1-Intra-OOD-Test
+  time_stamp: '20260308_185500'
+- name: TAGCN-Drop-0-3-K-1-L-5-Dim-768-WD-0-30-1-Intra-OOD-Test
+  time_stamp: '20260308_185500'
+- name: TAGCN-Drop-0-3-K-1-L-5-Dim-768-WD-0-20-1-Intra-OOD-Test
+  time_stamp: '20260308_185500'
+- name: TAGCN-Drop-0-2-K-1-L-5-Dim-512-WD-0-30-1-Inter-OOD-Test
+  time_stamp: '20260308_185500'
+- name: TAGCN-Drop-0-2-K-1-L-5-Dim-512-WD-0-20-1-Inter-OOD-Test
+  time_stamp: '20260308_185500'
+- name: TAGCN-Drop-0-3-K-1-L-5-Dim-512-WD-0-30-1-Inter-OOD-Test
+  time_stamp: '20260308_185500'
+- name: TAGCN-Drop-0-3-K-1-L-5-Dim-512-WD-0-20-1-Inter-OOD-Test
+  time_stamp: '20260308_185500'
+- name: TAGCN-Drop-0-2-K-1-L-5-Dim-768-WD-0-30-1-Inter-OOD-Test
+  time_stamp: '20260308_185500'
+- name: TAGCN-Drop-0-2-K-1-L-5-Dim-768-WD-0-20-1-Inter-OOD-Test
+  time_stamp: '20260308_185500'
+- name: TAGCN-Drop-0-3-K-1-L-5-Dim-768-WD-0-30-1-Inter-OOD-Test
+  time_stamp: '20260308_185500'
+- name: TAGCN-Drop-0-3-K-1-L-5-Dim-768-WD-0-20-1-Inter-OOD-Test
+  time_stamp: '20260308_185500'
+- name: TAGCN-K-1-L-5-Dim-768-Intra-OOD-Test
+  time_stamp: '20260308_185500'
+- name: TAGCN-K-1-L-5-Dim-768-Inter-OOD-Test
+  time_stamp: '20260308_185500'
+- name: GATv2-H-3-L-5-Dim-256-Intra-OOD-Test
+  time_stamp: '20260308_185500'
+- name: GATv2-H-3-L-5-Dim-256-Inter-OOD-Test
+  time_stamp: '20260308_185500'
