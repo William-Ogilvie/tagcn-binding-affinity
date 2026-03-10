@@ -1,7 +1,7 @@
 output_dir: output/summary_plots
 stats_dir: output/training_stats
 predictions_dir: output/predictions
-file_name_tag: '20260308_185600'
+file_name_tag: 'full_ish_grid_search_ood'
 plots:
   bubble: true
   metrics_over_epochs: true
