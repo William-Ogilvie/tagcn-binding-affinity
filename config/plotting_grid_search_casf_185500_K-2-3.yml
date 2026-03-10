@@ -47,4 +47,7 @@ experiments:
   time_stamp: '20260308_185500'
 - name: GATv2-H-3-L-5-Dim-256-Inter-CASF-2016
   time_stamp: '20260308_185500'
-
+- name: TAGCN-Drop-0-2-K-2-L-5-Dim-512-WD-0-30-1-Intra-CASF-2016
+  time_stamp: '20260308_185500'
+- name: TAGCN-Drop-0-2-K-1-L-5-Dim-512-WD-0-30-1-Inter-CASF-2016
+  time_stamp: '20260308_185500'
