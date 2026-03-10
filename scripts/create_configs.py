@@ -16,9 +16,9 @@ BUBBLES = True
 TRUEVPRED = True
 METRICOEPOCH = True # metrics over epochs
 
-TIME_STAMP = "20260309_163100" 
+TIME_STAMP = "20260310_200900" 
 #"20260308_185500"
-TIME_STAMP_OOD = "20260309_163200" 
+TIME_STAMP_OOD = "20260310_201000" 
 #"20260308_185600"
 
 # - name: AEV-PLIG-Intra-Graphs-No-Scale-Rolling
@@ -195,30 +195,42 @@ def main():
     # weight_decay_values = [0.0001, 0.001]
     # weight_decay_values_strings = ["0-30-1", "0-20-1"]
     # Due to trying the other element graphs (time stamp: 1518000 for the above) we need to rerun an unregularised set of experiments on TAGCN and AEV-PLIG to see if they are truly worse
-    benchmarks = ["CASF-16", "OOD-Test"]
-    graphs = ["intra", "inter"]
-    models = ["TAGCN", "GATv2"]
-    hidden_dim = [768]
-    layers = [5]
-    K_values = [1]
-    heads_values = [3]
-    dropout_values = [0.0]
-    dropout_values_strings = ["0-0"]
-    weight_decay_values = [0.0]
-    weight_decay_values_strings = ["0-0"]
+    # benchmarks = ["CASF-16", "OOD-Test"]
+    # graphs = ["intra", "inter"]
+    # models = ["TAGCN", "GATv2"]
+    # hidden_dim = [768]
+    # layers = [5]
+    # K_values = [1]
+    # heads_values = [3]
+    # dropout_values = [0.0]
+    # dropout_values_strings = ["0-0"]
+    # weight_decay_values = [0.0]
+    # weight_decay_values_strings = ["0-0"]
     # The above seems to have falled on the other_element graphs
     # Re running for time stamp 185500 on 8th 03 both sets for the more "refined" graphs
+    # benchmarks = ["OOD-Test"]
+    # graphs = ["intra"]
+    # models = ["TAGCN"]
+    # hidden_dim = [512] # also tried [512]
+    # layers = [5]
+    # K_values = [1] # also tried [1, 2]
+    # heads_values = [1]
+    # dropout_values = [0.2]
+    # dropout_values_strings = ["0-2"]
+    # weight_decay_values = [0.0001]
+    # weight_decay_values_strings = ["0-30-1"]
+    # Now trying lower number of layers but with K=2/3 to see if improved performance
     benchmarks = ["OOD-Test"]
     graphs = ["intra"]
     models = ["TAGCN"]
     hidden_dim = [512] # also tried [512]
-    layers = [5]
-    K_values = [1] # also tried [1, 2]
-    heads_values = [1]
-    dropout_values = [0.2]
-    dropout_values_strings = ["0-2"]
-    weight_decay_values = [0.0001]
-    weight_decay_values_strings = ["0-30-1"]
+    layers = [2]
+    K_values = [1, 2] # also tried [1, 2]
+    heads_values = [1, 1]
+    dropout_values = [0.0, 0.2]
+    dropout_values_strings = ["0-0", "0-2"]
+    weight_decay_values = [0.0, 0.0001]
+    weight_decay_values_strings = ["0-0", "0-30-1"]
 
 
     # It is worth pre-defining the arguments for the different graphs and benchmarks

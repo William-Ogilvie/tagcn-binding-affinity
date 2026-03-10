@@ -13,7 +13,6 @@ import argparse
 import torch
 import time
 import os
-impoot rs
 import random
 from pathlib import Path
 import yaml
@@ -197,18 +196,13 @@ def main():
     torch.manual_seed(int(seed))
     if torch.cuda.is_available():
         torch.cuda.manual_seed_all(int(seed))
-    np.random.seed(int(se)
-
-    # Enforce deterministic algorithms
-    torch.use_deterministic_algorithms(True, warn_only=Truee
-    torch.backends.cudnn.benchmark = False
-    os.environ["CUBLAS_WORKSPACE_CONFIG"] = ":4096:8"d))
+    np.random.seed(int(seed))
     random.seed(int(seed))
 
-    # Enforce deterministic algorithms
-    torch.use_deterministic_algorithms(True, warn_only=True)
-    torch.backends.cudnn.benchmark = False
-    os.environ["CUBLAS_WORKSPACE_CONFIG"] = ":4096:8"
+    # Enforce deterministic algorithms, look into this: https://docs.pytorch.org/docs/stable/notes/randomness.html 
+    # torch.use_deterministic_algorithms(True, warn_only=True)
+    # torch.backends.cudnn.benchmark = False
+    # os.environ["CUBLAS_WORKSPACE_CONFIG"] = ":4096:8"
 
     # Get run id from CLI args for unique file names
     run_id = args.run_id

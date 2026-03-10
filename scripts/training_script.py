@@ -9,6 +9,7 @@ Usage:
 import argparse
 import torch
 import time
+import os
 import random
 from pathlib import Path
 import yaml
@@ -182,6 +183,11 @@ def main():
                 torch.cuda.manual_seed_all(int(seed))
             np.random.seed(int(seed))
             random.seed(int(seed))
+            
+            # Enforce deterministic algorithms
+            # torch.use_deterministic_algorithms(True, warn_only=True)
+            # torch.backends.cudnn.benchmark = False
+            # os.environ["CUBLAS_WORKSPACE_CONFIG"] = ":4096:8"
 
             # Generator for DataLoader reproducibility (handles shuffling)
             g = torch.Generator()
