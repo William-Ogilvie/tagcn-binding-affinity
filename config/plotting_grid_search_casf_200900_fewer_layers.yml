@@ -1,9 +1,9 @@
 output_dir: output/summary_plots
 stats_dir: output/training_stats
 predictions_dir: output/predictions
-file_name_tag: '20260311_080900'
+file_name_tag: 'fewer_layers_casf'
 plots:
   bubble: true
-  metrics_over_epochs: true
-  true_vs_predicted: true
+  metrics_over_epochs: false
+  true_vs_predicted: false
 experiments: []
