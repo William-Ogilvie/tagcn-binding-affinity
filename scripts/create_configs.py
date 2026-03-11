@@ -231,6 +231,20 @@ def main():
     dropout_values_strings = ["0-0", "0-2"]
     weight_decay_values = [0.0, 0.0001]
     weight_decay_values_strings = ["0-0", "0-30-1"]
+    # The above was super effective!!! 20260310_201000
+    # Now trying just one layer!
+    benchmarks = ["OOD-Test"]
+    graphs = ["intra"]
+    models = ["TAGCN"]
+    hidden_dim = [512] # also tried [512]
+    layers = [1]
+    K_values = [2] # also tried [1, 2]
+    heads_values = [1]
+    dropout_values = [0.2]
+    dropout_values_strings = ["0-2"]
+    weight_decay_values = [0.0001]
+    weight_decay_values_strings = ["0-30-1"]
+
 
 
     # It is worth pre-defining the arguments for the different graphs and benchmarks
