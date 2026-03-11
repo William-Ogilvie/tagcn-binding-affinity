@@ -1,6 +1,6 @@
 experiments:
 - name: TAGCN-Drop-0-2-K-2-L-1-Dim-512-WD-0-30-1-Intra-OOD-Test
-  run_id: '20260311_080900'
+  run_id: '20260311_081000'
   args:
     model: TAGCN_v2
     epochs: 300
