@@ -320,12 +320,16 @@ def main():
                                         tmp_model += "_v2"
                                         experiment_name += f"-Drop-{dropout_values_strings[drop_idx]}"
     
-                                    if len(K_values[0]) > 1:
+                                    if type(K_values[k_head_index]) == list:
                                         if tmp_model[-1] == "2":
                                             tmp_model = tmp_model.split("2")[0]
                                             tmp_model += "3"
                                         else:
                                             tmp_model += "_v3"
+
+
+
+
 
                                     experiment_args = {
                                         "model": tmp_model,
@@ -334,10 +338,16 @@ def main():
                                     }
 
 
-                                    if model[0:3] == "TAG": 
-                                        experiment_name += f"-K-{K_values[k_head_index]}"
+                                    if model[0:3] == "TAG":
+                                        if type(K_values[k_head_index]) == list:
+                                            tmp_str = ""  
+                                            for k in K_values[k_head_index]:
+                                                tmp_str += f"{k}-"
+                                            experiment_name += f"-K-{tmp_str}"
+                                        else:
+                                            experiment_name += f"-K-{K_values[k_head_index]}-"
                                     elif model[0:3] == "GAT":
-                                        experiment_name += f"-H-{heads_values[k_head_index]}"                             
+                                        experiment_name += f"-H-{heads_values[k_head_index]}-"                             
 
 
                                     
@@ -346,7 +356,7 @@ def main():
                                     experiment_args["dropout_rate"] = dropout
                                     experiment_args["weight_decay"] = weight_decay
                                     
-                                    experiment_name += f"-L-{layer}"
+                                    experiment_name += f"L-{layer}"
                                     experiment_name += f"-Dim-{hidden_dim_val}"
                                     
                                     if weight_decay > 0.0:
