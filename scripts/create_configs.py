@@ -16,9 +16,9 @@ BUBBLES = True
 TRUEVPRED = True
 METRICOEPOCH = True # metrics over epochs
 
-TIME_STAMP = "20260311_080900" 
+TIME_STAMP = "20260313_094900" 
 #"20260308_185500"
-TIME_STAMP_OOD = "20260311_081000" 
+TIME_STAMP_OOD = "20260311_095000" 
 #"20260308_185600"
 
 # - name: AEV-PLIG-Intra-Graphs-No-Scale-Rolling
@@ -220,25 +220,39 @@ def main():
     # weight_decay_values = [0.0001]
     # weight_decay_values_strings = ["0-30-1"]
     # Now trying lower number of layers but with K=2/3 to see if improved performance
-    benchmarks = ["OOD-Test"]
-    graphs = ["intra"]
-    models = ["TAGCN"]
-    hidden_dim = [512] # also tried [512]
-    layers = [2]
-    K_values = [1, 2] # also tried [1, 2]
-    heads_values = [1, 1]
-    dropout_values = [0.0, 0.2]
-    dropout_values_strings = ["0-0", "0-2"]
-    weight_decay_values = [0.0, 0.0001]
-    weight_decay_values_strings = ["0-0", "0-30-1"]
+    # benchmarks = ["OOD-Test"]
+    # graphs = ["intra"]
+    # models = ["TAGCN"]
+    # hidden_dim = [512] # also tried [512]
+    # layers = [2]
+    # K_values = [1, 2] # also tried [1, 2]
+    # heads_values = [1, 1]
+    # dropout_values = [0.0, 0.2]
+    # dropout_values_strings = ["0-0", "0-2"]
+    # weight_decay_values = [0.0, 0.0001]
+    # weight_decay_values_strings = ["0-0", "0-30-1"]
     # The above was super effective!!! 20260310_201000
     # Now trying just one layer!
+    # benchmarks = ["OOD-Test"]
+    # graphs = ["intra"]
+    # models = ["TAGCN"]
+    # hidden_dim = [512] # also tried [512]
+    # layers = [1]
+    # K_values = [2] # also tried [1, 2]
+    # heads_values = [1]
+    # dropout_values = [0.2]
+    # dropout_values_strings = ["0-2"]
+    # weight_decay_values = [0.0001]
+    # weight_decay_values_strings = ["0-30-1"]
+    # - name: TAGCN-Drop-0-2-K-2-L-1-Dim-512-WD-0-30-1-Intra-OOD-Test
+    # time_stamp: '20260311_081000'
+    # Now try 2 layers but go K=2 to K=1
     benchmarks = ["OOD-Test"]
-    graphs = ["intra"]
+    graphs = ["inter", "intra"]
     models = ["TAGCN"]
     hidden_dim = [512] # also tried [512]
     layers = [1]
-    K_values = [2] # also tried [1, 2]
+    K_values = [[2, 1]] # this means first layer K=2 second layer K=1
     heads_values = [1]
     dropout_values = [0.2]
     dropout_values_strings = ["0-2"]
@@ -305,10 +319,17 @@ def main():
                                     if dropout > 0.0:
                                         tmp_model += "_v2"
                                         experiment_name += f"-Drop-{dropout_values_strings[drop_idx]}"
+    
+                                    if len(K_values[0]) > 1:
+                                        if tmp_model[-1] == "2":
+                                            tmp_model = tmp_model.split("2")[0]
+                                            tmp_model += "3"
+                                        else:
+                                            tmp_model += "_v3"
 
                                     experiment_args = {
                                         "model": tmp_model,
-                                        "K": K_values[k_head_index],
+                                        "K": copy.deepcopy(K_values[k_head_index]),
                                         "head": heads_values[k_head_index]
                                     }
 

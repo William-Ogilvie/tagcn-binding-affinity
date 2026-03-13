@@ -347,3 +347,86 @@ class GATv2Net_v2(torch.nn.Module):
         x = F.dropout(input=x, p=self.dropout_rate, training=self.training)
 
         return self.out(x)
+
+# This model will take a list of K values and set the layers of the convolution in order 
+class TAGCNet_v3(torch.nn.Module):
+    def __init__(self, node_feature_dim: int, edge_feature_dim: int, config: dict):
+        """
+        Args:
+            node_feature_dim (int): Input dimension of node features.
+            edge_feature_dim (int): Input dimension of edge features.
+            config (dict): config dictionary containing hyperparameters  
+        """
+        super(TAGCNet_v3, self).__init__()
+
+        # Hyperparameters from Config
+        self.n_gnn_layers = config["num_gnn_layers"]
+        self.K = config["K"] # This will now be a list of K values
+        self.hidden_dim = config["hidden_dim"]
+        self.dropout_rate = config["dropout_rate"]
+        self.training = config["training"]
+         
+        # Get activation function 
+        if config["activation"] == 'relu':
+            self.activation = F.relu
+        elif config["activation"] == 'leaky_relu':
+            self.activation = F.leaky_relu
+        else:
+            raise ValueError(f"Unsupported activation: {self.activation}")
+        
+        self.GNN_layers = nn.ModuleList()
+        self.BN_layers = nn.ModuleList()
+
+        # First layer handles raw input features (e.g. 448)
+        curr_dim = node_feature_dim
+
+        # do self.n_gnn_layers of TAGConv followed by BatchNorm
+        for i in range(self.n_gnn_layers):
+            self.GNN_layers.append(
+                TAGConv(in_channels=curr_dim, out_channels=self.hidden_dim, K=self.K[i]) # here we apply the K values in the order they are provided
+            )
+            self.BN_layers.append(BatchNorm(self.hidden_dim))
+            curr_dim = self.hidden_dim 
+
+        # MLP
+        # As concatenate mean pool and max pool (as in AEV-PLIG) the final_dim * 2
+        final_gnn_dim = self.hidden_dim
+        self.fc1 = nn.Linear(final_gnn_dim * 2, 1024)
+        self.bn_connect1 = nn.BatchNorm1d(1024)
+        self.fc2 = nn.Linear(1024, 512)
+        self.bn_connect2 = nn.BatchNorm1d(512)
+        self.fc3 = nn.Linear(512, 256)
+        self.bn_connect3 = nn.BatchNorm1d(256) 
+        self.out = nn.Linear(256, 1)
+
+
+    def forward(self, x, edge_index, edge_attr, batch):
+        # x: features
+        # edge_index: [2, num_edges]
+        # batch: [num_atoms] (tells which atom belongs to which molecule)
+
+        # Message passing (GNN layers)
+        for layer, bn in zip(self.GNN_layers, self.BN_layers):
+            x = layer(x, edge_index) 
+            x = self.activation(x)
+            x = bn(x)
+            # Removed dropout from convolution layers for now
+            # x = F.dropout(input=x, p=self.dropout_rate, training=self.training)
+
+        # Global pooling
+        # concatenate Global Average and Global Max pooling 
+        x = torch.cat([gmp(x, batch), gap(x, batch)], dim = 1)
+
+        # MLP with dropout
+        x = self.activation(self.fc1(x))
+        x = self.bn_connect1(x)
+        x = F.dropout(input=x, p=self.dropout_rate, training=self.training)
+        x = self.activation(self.fc2(x))
+        x = self.bn_connect2(x)
+        x = F.dropout(input=x, p=self.dropout_rate, training=self.training)
+        x = self.activation(self.fc3(x))
+        x = self.bn_connect3(x)
+        x = F.dropout(input=x, p=self.dropout_rate, training=self.training)
+
+        return self.out(x)
+ 
