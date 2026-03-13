@@ -1,7 +1,7 @@
 output_dir: output/summary_plots
 stats_dir: output/training_stats
 predictions_dir: output/predictions
-file_name_tag: '20260311_095000'
+file_name_tag: 'k-2-1_layers'
 plots:
   bubble: true
   metrics_over_epochs: true
