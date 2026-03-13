@@ -16,9 +16,9 @@ BUBBLES = True
 TRUEVPRED = True
 METRICOEPOCH = True # metrics over epochs
 
-TIME_STAMP = "20260313_094900" 
+TIME_STAMP = "20260313_174800" 
 #"20260308_185500"
-TIME_STAMP_OOD = "20260311_095000" 
+TIME_STAMP_OOD = "20260313_175000" 
 #"20260308_185600"
 
 # - name: AEV-PLIG-Intra-Graphs-No-Scale-Rolling
@@ -251,7 +251,7 @@ def main():
     graphs = ["inter", "intra"]
     models = ["TAGCN"]
     hidden_dim = [512] # also tried [512]
-    layers = [1]
+    layers = [2]
     K_values = [[2, 1]] # this means first layer K=2 second layer K=1
     heads_values = [1]
     dropout_values = [0.2]
