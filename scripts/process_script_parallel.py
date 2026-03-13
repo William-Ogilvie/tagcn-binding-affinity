@@ -14,7 +14,7 @@ import torch
 import time
 from pathlib import Path
 import yaml
-from tagcn_bind import Trainer, GATv2Net, GATv2Net_v2, TAGCNet, TAGCNet_v2, init_weights, PDBDataset
+from tagcn_bind import Trainer, GATv2Net, GATv2Net_v2, TAGCNet, TAGCNet_v2, TAGCNet_v3, init_weights, PDBDataset
 from torch_geometric.loader import DataLoader
 from scipy.optimize import minimize
 from scipy.stats import pearsonr, kendalltau
@@ -51,6 +51,9 @@ def initalise_model(model_name, node_feat_dim, edge_feat_dim, hidden_dim, num_GN
         model = GATv2Net_v2(node_feature_dim=node_feat_dim, edge_feature_dim=edge_feat_dim, config=config_dict)
     elif model_name == "TAGCN_v2":
         model = TAGCNet_v2(node_feature_dim=node_feat_dim, edge_feature_dim=edge_feat_dim, config=config_dict)
+    elif model_name == "TAGCN_v3":
+        model = TAGCNet_v3(node_feature_dim=node_feat_dim, edge_feature_dim=edge_feat_dim, config=config_dict)
+ 
     else:
         raise ValueError(f"Coulnd't identify model name: {model_name}")
     
