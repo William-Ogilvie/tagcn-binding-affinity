@@ -1,0 +1,9 @@
+output_dir: output/summary_plots
+stats_dir: output/training_stats
+predictions_dir: output/predictions
+file_name_tag: '20260313_094900'
+plots:
+  bubble: true
+  metrics_over_epochs: true
+  true_vs_predicted: true
+experiments: []
