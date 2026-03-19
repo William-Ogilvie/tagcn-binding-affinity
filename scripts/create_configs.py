@@ -16,9 +16,9 @@ BUBBLES = True
 TRUEVPRED = True
 METRICOEPOCH = True # metrics over epochs
 
-TIME_STAMP = "20260317_182500" 
+TIME_STAMP = "20260319_140200" 
 #"20260308_185500"
-TIME_STAMP_OOD = "20260317_182600" 
+TIME_STAMP_OOD = "20260319_140300" 
 #"20260308_185600"
 
 # - name: AEV-PLIG-Intra-Graphs-No-Scale-Rolling
@@ -260,13 +260,28 @@ def main():
     # weight_decay_values_strings = ["0-30-1"]
     # tried the above time_stamp: 20260313_174800
     # Now going to perform a final grid search 
+    # benchmarks = ["OOD-Test"]
+    # graphs = ["inter", "intra"]
+    # models = ["TAGCN"]
+    # hidden_dim = [256, 512, 768] # also tried [512]
+    # layers = [2]
+    # K_values = [1, 2, 3, [2, 1]] # this means first layer K=2 second layer K=1
+    # heads_values = [1, 1, 1, 1]
+    # dropout_values = [0.0, 0.2]
+    # dropout_values_strings = ["0-0", "0-2"]
+    # weight_decay_values = [0.0, 0.0001]
+    # weight_decay_values_strings = ["0-0", "0-30-1"]
+    # The above are under 182500 grid_search_fewer_layers
+    # It seems from the above that models like TAGCN-Drop-0-2-K-2-1-L-2-Dim-512-Inter-OOD-Test, TAGCN-Drop-0-2-K-2-1-L-2-Dim-768-Intra-OOD-Test
+    # and TAGCN-Drop-0-2-K-2-1-L-2-Dim-768-WD-0-30-1-Intra-OOD-Test work very well
+    # Just for fun we would like to try a 3-2-1 model just to see what that is like
     benchmarks = ["OOD-Test"]
     graphs = ["inter", "intra"]
     models = ["TAGCN"]
-    hidden_dim = [256, 512, 768] # also tried [512]
-    layers = [2]
-    K_values = [1, 2, 3, [2, 1]] # this means first layer K=2 second layer K=1
-    heads_values = [1, 1, 1, 1]
+    hidden_dim = [256, 512, 768, 1024] # also tried [512]
+    layers = [3]
+    K_values = [[3, 2, 1]] # this means first layer K=2 second layer K=1
+    heads_values = [1]
     dropout_values = [0.0, 0.2]
     dropout_values_strings = ["0-0", "0-2"]
     weight_decay_values = [0.0, 0.0001]

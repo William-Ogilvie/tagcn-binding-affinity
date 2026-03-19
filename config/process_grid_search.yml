@@ -1,126 +1,6 @@
 experiments:
-- name: TAGCN-K-1-L-2-Dim-256-Inter-OOD-Test
-  run_id: '20260317_182500'
-  args:
-    model: TAGCN
-    epochs: 300
-    batch_size: 128
-    lr: 0.001
-    early_stopping: 100
-    early_stopping_metric: pearson_rolling
-    hidden_dim: 256
-    head: 1
-    K: 1
-    dropout_rate: 0.0
-    num_GNN_layers: 2
-    activation_function: leaky_relu
-    weight_decay: 0.0
-    seeds:
-    - 100
-    - 123
-    - 15
-    - 257
-    - 2
-    - 2012
-    - 3752
-    - 350
-    - 843
-    - 621
-    standardise_aevs: false
-    standardise_targets: true
-    scaling_stats_pt: data/scaling/OOD_Test_legacy_scaling.pt
-    train_data_csv: data/OOD_Test_processed_train.csv
-    val_data_csv: data/OOD_Test_processed_val.csv
-    test_data_csv: data/OOD_Test_processed_test.csv
-    train_graphs_dir: data/graphs/OOD_Test_legacy_train
-    val_graphs_dir: data/graphs/OOD_Test_legacy_val
-    test_graphs_dir: data/graphs/OOD_Test_legacy_test
-    model_save_dir: output/models
-    predictions_save_dir: output/predictions
-    save_training_stats_dir: output/training_stats
-    plots_dir: output/plots_dir
-- name: TAGCN-K-2-L-2-Dim-256-Inter-OOD-Test
-  run_id: '20260317_182500'
-  args:
-    model: TAGCN
-    epochs: 300
-    batch_size: 128
-    lr: 0.001
-    early_stopping: 100
-    early_stopping_metric: pearson_rolling
-    hidden_dim: 256
-    head: 1
-    K: 2
-    dropout_rate: 0.0
-    num_GNN_layers: 2
-    activation_function: leaky_relu
-    weight_decay: 0.0
-    seeds:
-    - 100
-    - 123
-    - 15
-    - 257
-    - 2
-    - 2012
-    - 3752
-    - 350
-    - 843
-    - 621
-    standardise_aevs: false
-    standardise_targets: true
-    scaling_stats_pt: data/scaling/OOD_Test_legacy_scaling.pt
-    train_data_csv: data/OOD_Test_processed_train.csv
-    val_data_csv: data/OOD_Test_processed_val.csv
-    test_data_csv: data/OOD_Test_processed_test.csv
-    train_graphs_dir: data/graphs/OOD_Test_legacy_train
-    val_graphs_dir: data/graphs/OOD_Test_legacy_val
-    test_graphs_dir: data/graphs/OOD_Test_legacy_test
-    model_save_dir: output/models
-    predictions_save_dir: output/predictions
-    save_training_stats_dir: output/training_stats
-    plots_dir: output/plots_dir
-- name: TAGCN-K-3-L-2-Dim-256-Inter-OOD-Test
-  run_id: '20260317_182500'
-  args:
-    model: TAGCN
-    epochs: 300
-    batch_size: 128
-    lr: 0.001
-    early_stopping: 100
-    early_stopping_metric: pearson_rolling
-    hidden_dim: 256
-    head: 1
-    K: 3
-    dropout_rate: 0.0
-    num_GNN_layers: 2
-    activation_function: leaky_relu
-    weight_decay: 0.0
-    seeds:
-    - 100
-    - 123
-    - 15
-    - 257
-    - 2
-    - 2012
-    - 3752
-    - 350
-    - 843
-    - 621
-    standardise_aevs: false
-    standardise_targets: true
-    scaling_stats_pt: data/scaling/OOD_Test_legacy_scaling.pt
-    train_data_csv: data/OOD_Test_processed_train.csv
-    val_data_csv: data/OOD_Test_processed_val.csv
-    test_data_csv: data/OOD_Test_processed_test.csv
-    train_graphs_dir: data/graphs/OOD_Test_legacy_train
-    val_graphs_dir: data/graphs/OOD_Test_legacy_val
-    test_graphs_dir: data/graphs/OOD_Test_legacy_test
-    model_save_dir: output/models
-    predictions_save_dir: output/predictions
-    save_training_stats_dir: output/training_stats
-    plots_dir: output/plots_dir
-- name: TAGCN-K-2-1-L-2-Dim-256-Inter-OOD-Test
-  run_id: '20260317_182500'
+- name: TAGCN-K-3-2-1-L-3-Dim-256-Inter-OOD-Test
+  run_id: '20260319_140200'
   args:
     model: TAGCN_v3
     epochs: 300
@@ -131,10 +11,11 @@ experiments:
     hidden_dim: 256
     head: 1
     K:
+    - 3
     - 2
     - 1
     dropout_rate: 0.0
-    num_GNN_layers: 2
+    num_GNN_layers: 3
     activation_function: leaky_relu
     weight_decay: 0.0
     seeds:
@@ -161,128 +42,8 @@ experiments:
     predictions_save_dir: output/predictions
     save_training_stats_dir: output/training_stats
     plots_dir: output/plots_dir
-- name: TAGCN-K-1-L-2-Dim-256-WD-0-30-1-Inter-OOD-Test
-  run_id: '20260317_182500'
-  args:
-    model: TAGCN
-    epochs: 300
-    batch_size: 128
-    lr: 0.001
-    early_stopping: 100
-    early_stopping_metric: pearson_rolling
-    hidden_dim: 256
-    head: 1
-    K: 1
-    dropout_rate: 0.0
-    num_GNN_layers: 2
-    activation_function: leaky_relu
-    weight_decay: 0.0001
-    seeds:
-    - 100
-    - 123
-    - 15
-    - 257
-    - 2
-    - 2012
-    - 3752
-    - 350
-    - 843
-    - 621
-    standardise_aevs: false
-    standardise_targets: true
-    scaling_stats_pt: data/scaling/OOD_Test_legacy_scaling.pt
-    train_data_csv: data/OOD_Test_processed_train.csv
-    val_data_csv: data/OOD_Test_processed_val.csv
-    test_data_csv: data/OOD_Test_processed_test.csv
-    train_graphs_dir: data/graphs/OOD_Test_legacy_train
-    val_graphs_dir: data/graphs/OOD_Test_legacy_val
-    test_graphs_dir: data/graphs/OOD_Test_legacy_test
-    model_save_dir: output/models
-    predictions_save_dir: output/predictions
-    save_training_stats_dir: output/training_stats
-    plots_dir: output/plots_dir
-- name: TAGCN-K-2-L-2-Dim-256-WD-0-30-1-Inter-OOD-Test
-  run_id: '20260317_182500'
-  args:
-    model: TAGCN
-    epochs: 300
-    batch_size: 128
-    lr: 0.001
-    early_stopping: 100
-    early_stopping_metric: pearson_rolling
-    hidden_dim: 256
-    head: 1
-    K: 2
-    dropout_rate: 0.0
-    num_GNN_layers: 2
-    activation_function: leaky_relu
-    weight_decay: 0.0001
-    seeds:
-    - 100
-    - 123
-    - 15
-    - 257
-    - 2
-    - 2012
-    - 3752
-    - 350
-    - 843
-    - 621
-    standardise_aevs: false
-    standardise_targets: true
-    scaling_stats_pt: data/scaling/OOD_Test_legacy_scaling.pt
-    train_data_csv: data/OOD_Test_processed_train.csv
-    val_data_csv: data/OOD_Test_processed_val.csv
-    test_data_csv: data/OOD_Test_processed_test.csv
-    train_graphs_dir: data/graphs/OOD_Test_legacy_train
-    val_graphs_dir: data/graphs/OOD_Test_legacy_val
-    test_graphs_dir: data/graphs/OOD_Test_legacy_test
-    model_save_dir: output/models
-    predictions_save_dir: output/predictions
-    save_training_stats_dir: output/training_stats
-    plots_dir: output/plots_dir
-- name: TAGCN-K-3-L-2-Dim-256-WD-0-30-1-Inter-OOD-Test
-  run_id: '20260317_182500'
-  args:
-    model: TAGCN
-    epochs: 300
-    batch_size: 128
-    lr: 0.001
-    early_stopping: 100
-    early_stopping_metric: pearson_rolling
-    hidden_dim: 256
-    head: 1
-    K: 3
-    dropout_rate: 0.0
-    num_GNN_layers: 2
-    activation_function: leaky_relu
-    weight_decay: 0.0001
-    seeds:
-    - 100
-    - 123
-    - 15
-    - 257
-    - 2
-    - 2012
-    - 3752
-    - 350
-    - 843
-    - 621
-    standardise_aevs: false
-    standardise_targets: true
-    scaling_stats_pt: data/scaling/OOD_Test_legacy_scaling.pt
-    train_data_csv: data/OOD_Test_processed_train.csv
-    val_data_csv: data/OOD_Test_processed_val.csv
-    test_data_csv: data/OOD_Test_processed_test.csv
-    train_graphs_dir: data/graphs/OOD_Test_legacy_train
-    val_graphs_dir: data/graphs/OOD_Test_legacy_val
-    test_graphs_dir: data/graphs/OOD_Test_legacy_test
-    model_save_dir: output/models
-    predictions_save_dir: output/predictions
-    save_training_stats_dir: output/training_stats
-    plots_dir: output/plots_dir
-- name: TAGCN-K-2-1-L-2-Dim-256-WD-0-30-1-Inter-OOD-Test
-  run_id: '20260317_182500'
+- name: TAGCN-K-3-2-1-L-3-Dim-256-WD-0-30-1-Inter-OOD-Test
+  run_id: '20260319_140200'
   args:
     model: TAGCN_v3
     epochs: 300
@@ -293,10 +54,11 @@ experiments:
     hidden_dim: 256
     head: 1
     K:
+    - 3
     - 2
     - 1
     dropout_rate: 0.0
-    num_GNN_layers: 2
+    num_GNN_layers: 3
     activation_function: leaky_relu
     weight_decay: 0.0001
     seeds:
@@ -323,128 +85,8 @@ experiments:
     predictions_save_dir: output/predictions
     save_training_stats_dir: output/training_stats
     plots_dir: output/plots_dir
-- name: TAGCN-Drop-0-2-K-1-L-2-Dim-256-Inter-OOD-Test
-  run_id: '20260317_182500'
-  args:
-    model: TAGCN_v2
-    epochs: 300
-    batch_size: 128
-    lr: 0.001
-    early_stopping: 100
-    early_stopping_metric: pearson_rolling
-    hidden_dim: 256
-    head: 1
-    K: 1
-    dropout_rate: 0.2
-    num_GNN_layers: 2
-    activation_function: leaky_relu
-    weight_decay: 0.0
-    seeds:
-    - 100
-    - 123
-    - 15
-    - 257
-    - 2
-    - 2012
-    - 3752
-    - 350
-    - 843
-    - 621
-    standardise_aevs: false
-    standardise_targets: true
-    scaling_stats_pt: data/scaling/OOD_Test_legacy_scaling.pt
-    train_data_csv: data/OOD_Test_processed_train.csv
-    val_data_csv: data/OOD_Test_processed_val.csv
-    test_data_csv: data/OOD_Test_processed_test.csv
-    train_graphs_dir: data/graphs/OOD_Test_legacy_train
-    val_graphs_dir: data/graphs/OOD_Test_legacy_val
-    test_graphs_dir: data/graphs/OOD_Test_legacy_test
-    model_save_dir: output/models
-    predictions_save_dir: output/predictions
-    save_training_stats_dir: output/training_stats
-    plots_dir: output/plots_dir
-- name: TAGCN-Drop-0-2-K-2-L-2-Dim-256-Inter-OOD-Test
-  run_id: '20260317_182500'
-  args:
-    model: TAGCN_v2
-    epochs: 300
-    batch_size: 128
-    lr: 0.001
-    early_stopping: 100
-    early_stopping_metric: pearson_rolling
-    hidden_dim: 256
-    head: 1
-    K: 2
-    dropout_rate: 0.2
-    num_GNN_layers: 2
-    activation_function: leaky_relu
-    weight_decay: 0.0
-    seeds:
-    - 100
-    - 123
-    - 15
-    - 257
-    - 2
-    - 2012
-    - 3752
-    - 350
-    - 843
-    - 621
-    standardise_aevs: false
-    standardise_targets: true
-    scaling_stats_pt: data/scaling/OOD_Test_legacy_scaling.pt
-    train_data_csv: data/OOD_Test_processed_train.csv
-    val_data_csv: data/OOD_Test_processed_val.csv
-    test_data_csv: data/OOD_Test_processed_test.csv
-    train_graphs_dir: data/graphs/OOD_Test_legacy_train
-    val_graphs_dir: data/graphs/OOD_Test_legacy_val
-    test_graphs_dir: data/graphs/OOD_Test_legacy_test
-    model_save_dir: output/models
-    predictions_save_dir: output/predictions
-    save_training_stats_dir: output/training_stats
-    plots_dir: output/plots_dir
-- name: TAGCN-Drop-0-2-K-3-L-2-Dim-256-Inter-OOD-Test
-  run_id: '20260317_182500'
-  args:
-    model: TAGCN_v2
-    epochs: 300
-    batch_size: 128
-    lr: 0.001
-    early_stopping: 100
-    early_stopping_metric: pearson_rolling
-    hidden_dim: 256
-    head: 1
-    K: 3
-    dropout_rate: 0.2
-    num_GNN_layers: 2
-    activation_function: leaky_relu
-    weight_decay: 0.0
-    seeds:
-    - 100
-    - 123
-    - 15
-    - 257
-    - 2
-    - 2012
-    - 3752
-    - 350
-    - 843
-    - 621
-    standardise_aevs: false
-    standardise_targets: true
-    scaling_stats_pt: data/scaling/OOD_Test_legacy_scaling.pt
-    train_data_csv: data/OOD_Test_processed_train.csv
-    val_data_csv: data/OOD_Test_processed_val.csv
-    test_data_csv: data/OOD_Test_processed_test.csv
-    train_graphs_dir: data/graphs/OOD_Test_legacy_train
-    val_graphs_dir: data/graphs/OOD_Test_legacy_val
-    test_graphs_dir: data/graphs/OOD_Test_legacy_test
-    model_save_dir: output/models
-    predictions_save_dir: output/predictions
-    save_training_stats_dir: output/training_stats
-    plots_dir: output/plots_dir
-- name: TAGCN-Drop-0-2-K-2-1-L-2-Dim-256-Inter-OOD-Test
-  run_id: '20260317_182500'
+- name: TAGCN-Drop-0-2-K-3-2-1-L-3-Dim-256-Inter-OOD-Test
+  run_id: '20260319_140200'
   args:
     model: TAGCN_v3
     epochs: 300
@@ -455,10 +97,11 @@ experiments:
     hidden_dim: 256
     head: 1
     K:
+    - 3
     - 2
     - 1
     dropout_rate: 0.2
-    num_GNN_layers: 2
+    num_GNN_layers: 3
     activation_function: leaky_relu
     weight_decay: 0.0
     seeds:
@@ -485,128 +128,8 @@ experiments:
     predictions_save_dir: output/predictions
     save_training_stats_dir: output/training_stats
     plots_dir: output/plots_dir
-- name: TAGCN-Drop-0-2-K-1-L-2-Dim-256-WD-0-30-1-Inter-OOD-Test
-  run_id: '20260317_182500'
-  args:
-    model: TAGCN_v2
-    epochs: 300
-    batch_size: 128
-    lr: 0.001
-    early_stopping: 100
-    early_stopping_metric: pearson_rolling
-    hidden_dim: 256
-    head: 1
-    K: 1
-    dropout_rate: 0.2
-    num_GNN_layers: 2
-    activation_function: leaky_relu
-    weight_decay: 0.0001
-    seeds:
-    - 100
-    - 123
-    - 15
-    - 257
-    - 2
-    - 2012
-    - 3752
-    - 350
-    - 843
-    - 621
-    standardise_aevs: false
-    standardise_targets: true
-    scaling_stats_pt: data/scaling/OOD_Test_legacy_scaling.pt
-    train_data_csv: data/OOD_Test_processed_train.csv
-    val_data_csv: data/OOD_Test_processed_val.csv
-    test_data_csv: data/OOD_Test_processed_test.csv
-    train_graphs_dir: data/graphs/OOD_Test_legacy_train
-    val_graphs_dir: data/graphs/OOD_Test_legacy_val
-    test_graphs_dir: data/graphs/OOD_Test_legacy_test
-    model_save_dir: output/models
-    predictions_save_dir: output/predictions
-    save_training_stats_dir: output/training_stats
-    plots_dir: output/plots_dir
-- name: TAGCN-Drop-0-2-K-2-L-2-Dim-256-WD-0-30-1-Inter-OOD-Test
-  run_id: '20260317_182500'
-  args:
-    model: TAGCN_v2
-    epochs: 300
-    batch_size: 128
-    lr: 0.001
-    early_stopping: 100
-    early_stopping_metric: pearson_rolling
-    hidden_dim: 256
-    head: 1
-    K: 2
-    dropout_rate: 0.2
-    num_GNN_layers: 2
-    activation_function: leaky_relu
-    weight_decay: 0.0001
-    seeds:
-    - 100
-    - 123
-    - 15
-    - 257
-    - 2
-    - 2012
-    - 3752
-    - 350
-    - 843
-    - 621
-    standardise_aevs: false
-    standardise_targets: true
-    scaling_stats_pt: data/scaling/OOD_Test_legacy_scaling.pt
-    train_data_csv: data/OOD_Test_processed_train.csv
-    val_data_csv: data/OOD_Test_processed_val.csv
-    test_data_csv: data/OOD_Test_processed_test.csv
-    train_graphs_dir: data/graphs/OOD_Test_legacy_train
-    val_graphs_dir: data/graphs/OOD_Test_legacy_val
-    test_graphs_dir: data/graphs/OOD_Test_legacy_test
-    model_save_dir: output/models
-    predictions_save_dir: output/predictions
-    save_training_stats_dir: output/training_stats
-    plots_dir: output/plots_dir
-- name: TAGCN-Drop-0-2-K-3-L-2-Dim-256-WD-0-30-1-Inter-OOD-Test
-  run_id: '20260317_182500'
-  args:
-    model: TAGCN_v2
-    epochs: 300
-    batch_size: 128
-    lr: 0.001
-    early_stopping: 100
-    early_stopping_metric: pearson_rolling
-    hidden_dim: 256
-    head: 1
-    K: 3
-    dropout_rate: 0.2
-    num_GNN_layers: 2
-    activation_function: leaky_relu
-    weight_decay: 0.0001
-    seeds:
-    - 100
-    - 123
-    - 15
-    - 257
-    - 2
-    - 2012
-    - 3752
-    - 350
-    - 843
-    - 621
-    standardise_aevs: false
-    standardise_targets: true
-    scaling_stats_pt: data/scaling/OOD_Test_legacy_scaling.pt
-    train_data_csv: data/OOD_Test_processed_train.csv
-    val_data_csv: data/OOD_Test_processed_val.csv
-    test_data_csv: data/OOD_Test_processed_test.csv
-    train_graphs_dir: data/graphs/OOD_Test_legacy_train
-    val_graphs_dir: data/graphs/OOD_Test_legacy_val
-    test_graphs_dir: data/graphs/OOD_Test_legacy_test
-    model_save_dir: output/models
-    predictions_save_dir: output/predictions
-    save_training_stats_dir: output/training_stats
-    plots_dir: output/plots_dir
-- name: TAGCN-Drop-0-2-K-2-1-L-2-Dim-256-WD-0-30-1-Inter-OOD-Test
-  run_id: '20260317_182500'
+- name: TAGCN-Drop-0-2-K-3-2-1-L-3-Dim-256-WD-0-30-1-Inter-OOD-Test
+  run_id: '20260319_140200'
   args:
     model: TAGCN_v3
     epochs: 300
@@ -617,10 +140,11 @@ experiments:
     hidden_dim: 256
     head: 1
     K:
+    - 3
     - 2
     - 1
     dropout_rate: 0.2
-    num_GNN_layers: 2
+    num_GNN_layers: 3
     activation_function: leaky_relu
     weight_decay: 0.0001
     seeds:
@@ -647,128 +171,8 @@ experiments:
     predictions_save_dir: output/predictions
     save_training_stats_dir: output/training_stats
     plots_dir: output/plots_dir
-- name: TAGCN-K-1-L-2-Dim-512-Inter-OOD-Test
-  run_id: '20260317_182500'
-  args:
-    model: TAGCN
-    epochs: 300
-    batch_size: 128
-    lr: 0.001
-    early_stopping: 100
-    early_stopping_metric: pearson_rolling
-    hidden_dim: 512
-    head: 1
-    K: 1
-    dropout_rate: 0.0
-    num_GNN_layers: 2
-    activation_function: leaky_relu
-    weight_decay: 0.0
-    seeds:
-    - 100
-    - 123
-    - 15
-    - 257
-    - 2
-    - 2012
-    - 3752
-    - 350
-    - 843
-    - 621
-    standardise_aevs: false
-    standardise_targets: true
-    scaling_stats_pt: data/scaling/OOD_Test_legacy_scaling.pt
-    train_data_csv: data/OOD_Test_processed_train.csv
-    val_data_csv: data/OOD_Test_processed_val.csv
-    test_data_csv: data/OOD_Test_processed_test.csv
-    train_graphs_dir: data/graphs/OOD_Test_legacy_train
-    val_graphs_dir: data/graphs/OOD_Test_legacy_val
-    test_graphs_dir: data/graphs/OOD_Test_legacy_test
-    model_save_dir: output/models
-    predictions_save_dir: output/predictions
-    save_training_stats_dir: output/training_stats
-    plots_dir: output/plots_dir
-- name: TAGCN-K-2-L-2-Dim-512-Inter-OOD-Test
-  run_id: '20260317_182500'
-  args:
-    model: TAGCN
-    epochs: 300
-    batch_size: 128
-    lr: 0.001
-    early_stopping: 100
-    early_stopping_metric: pearson_rolling
-    hidden_dim: 512
-    head: 1
-    K: 2
-    dropout_rate: 0.0
-    num_GNN_layers: 2
-    activation_function: leaky_relu
-    weight_decay: 0.0
-    seeds:
-    - 100
-    - 123
-    - 15
-    - 257
-    - 2
-    - 2012
-    - 3752
-    - 350
-    - 843
-    - 621
-    standardise_aevs: false
-    standardise_targets: true
-    scaling_stats_pt: data/scaling/OOD_Test_legacy_scaling.pt
-    train_data_csv: data/OOD_Test_processed_train.csv
-    val_data_csv: data/OOD_Test_processed_val.csv
-    test_data_csv: data/OOD_Test_processed_test.csv
-    train_graphs_dir: data/graphs/OOD_Test_legacy_train
-    val_graphs_dir: data/graphs/OOD_Test_legacy_val
-    test_graphs_dir: data/graphs/OOD_Test_legacy_test
-    model_save_dir: output/models
-    predictions_save_dir: output/predictions
-    save_training_stats_dir: output/training_stats
-    plots_dir: output/plots_dir
-- name: TAGCN-K-3-L-2-Dim-512-Inter-OOD-Test
-  run_id: '20260317_182500'
-  args:
-    model: TAGCN
-    epochs: 300
-    batch_size: 128
-    lr: 0.001
-    early_stopping: 100
-    early_stopping_metric: pearson_rolling
-    hidden_dim: 512
-    head: 1
-    K: 3
-    dropout_rate: 0.0
-    num_GNN_layers: 2
-    activation_function: leaky_relu
-    weight_decay: 0.0
-    seeds:
-    - 100
-    - 123
-    - 15
-    - 257
-    - 2
-    - 2012
-    - 3752
-    - 350
-    - 843
-    - 621
-    standardise_aevs: false
-    standardise_targets: true
-    scaling_stats_pt: data/scaling/OOD_Test_legacy_scaling.pt
-    train_data_csv: data/OOD_Test_processed_train.csv
-    val_data_csv: data/OOD_Test_processed_val.csv
-    test_data_csv: data/OOD_Test_processed_test.csv
-    train_graphs_dir: data/graphs/OOD_Test_legacy_train
-    val_graphs_dir: data/graphs/OOD_Test_legacy_val
-    test_graphs_dir: data/graphs/OOD_Test_legacy_test
-    model_save_dir: output/models
-    predictions_save_dir: output/predictions
-    save_training_stats_dir: output/training_stats
-    plots_dir: output/plots_dir
-- name: TAGCN-K-2-1-L-2-Dim-512-Inter-OOD-Test
-  run_id: '20260317_182500'
+- name: TAGCN-K-3-2-1-L-3-Dim-512-Inter-OOD-Test
+  run_id: '20260319_140200'
   args:
     model: TAGCN_v3
     epochs: 300
@@ -779,10 +183,11 @@ experiments:
     hidden_dim: 512
     head: 1
     K:
+    - 3
     - 2
     - 1
     dropout_rate: 0.0
-    num_GNN_layers: 2
+    num_GNN_layers: 3
     activation_function: leaky_relu
     weight_decay: 0.0
     seeds:
@@ -809,128 +214,8 @@ experiments:
     predictions_save_dir: output/predictions
     save_training_stats_dir: output/training_stats
     plots_dir: output/plots_dir
-- name: TAGCN-K-1-L-2-Dim-512-WD-0-30-1-Inter-OOD-Test
-  run_id: '20260317_182500'
-  args:
-    model: TAGCN
-    epochs: 300
-    batch_size: 128
-    lr: 0.001
-    early_stopping: 100
-    early_stopping_metric: pearson_rolling
-    hidden_dim: 512
-    head: 1
-    K: 1
-    dropout_rate: 0.0
-    num_GNN_layers: 2
-    activation_function: leaky_relu
-    weight_decay: 0.0001
-    seeds:
-    - 100
-    - 123
-    - 15
-    - 257
-    - 2
-    - 2012
-    - 3752
-    - 350
-    - 843
-    - 621
-    standardise_aevs: false
-    standardise_targets: true
-    scaling_stats_pt: data/scaling/OOD_Test_legacy_scaling.pt
-    train_data_csv: data/OOD_Test_processed_train.csv
-    val_data_csv: data/OOD_Test_processed_val.csv
-    test_data_csv: data/OOD_Test_processed_test.csv
-    train_graphs_dir: data/graphs/OOD_Test_legacy_train
-    val_graphs_dir: data/graphs/OOD_Test_legacy_val
-    test_graphs_dir: data/graphs/OOD_Test_legacy_test
-    model_save_dir: output/models
-    predictions_save_dir: output/predictions
-    save_training_stats_dir: output/training_stats
-    plots_dir: output/plots_dir
-- name: TAGCN-K-2-L-2-Dim-512-WD-0-30-1-Inter-OOD-Test
-  run_id: '20260317_182500'
-  args:
-    model: TAGCN
-    epochs: 300
-    batch_size: 128
-    lr: 0.001
-    early_stopping: 100
-    early_stopping_metric: pearson_rolling
-    hidden_dim: 512
-    head: 1
-    K: 2
-    dropout_rate: 0.0
-    num_GNN_layers: 2
-    activation_function: leaky_relu
-    weight_decay: 0.0001
-    seeds:
-    - 100
-    - 123
-    - 15
-    - 257
-    - 2
-    - 2012
-    - 3752
-    - 350
-    - 843
-    - 621
-    standardise_aevs: false
-    standardise_targets: true
-    scaling_stats_pt: data/scaling/OOD_Test_legacy_scaling.pt
-    train_data_csv: data/OOD_Test_processed_train.csv
-    val_data_csv: data/OOD_Test_processed_val.csv
-    test_data_csv: data/OOD_Test_processed_test.csv
-    train_graphs_dir: data/graphs/OOD_Test_legacy_train
-    val_graphs_dir: data/graphs/OOD_Test_legacy_val
-    test_graphs_dir: data/graphs/OOD_Test_legacy_test
-    model_save_dir: output/models
-    predictions_save_dir: output/predictions
-    save_training_stats_dir: output/training_stats
-    plots_dir: output/plots_dir
-- name: TAGCN-K-3-L-2-Dim-512-WD-0-30-1-Inter-OOD-Test
-  run_id: '20260317_182500'
-  args:
-    model: TAGCN
-    epochs: 300
-    batch_size: 128
-    lr: 0.001
-    early_stopping: 100
-    early_stopping_metric: pearson_rolling
-    hidden_dim: 512
-    head: 1
-    K: 3
-    dropout_rate: 0.0
-    num_GNN_layers: 2
-    activation_function: leaky_relu
-    weight_decay: 0.0001
-    seeds:
-    - 100
-    - 123
-    - 15
-    - 257
-    - 2
-    - 2012
-    - 3752
-    - 350
-    - 843
-    - 621
-    standardise_aevs: false
-    standardise_targets: true
-    scaling_stats_pt: data/scaling/OOD_Test_legacy_scaling.pt
-    train_data_csv: data/OOD_Test_processed_train.csv
-    val_data_csv: data/OOD_Test_processed_val.csv
-    test_data_csv: data/OOD_Test_processed_test.csv
-    train_graphs_dir: data/graphs/OOD_Test_legacy_train
-    val_graphs_dir: data/graphs/OOD_Test_legacy_val
-    test_graphs_dir: data/graphs/OOD_Test_legacy_test
-    model_save_dir: output/models
-    predictions_save_dir: output/predictions
-    save_training_stats_dir: output/training_stats
-    plots_dir: output/plots_dir
-- name: TAGCN-K-2-1-L-2-Dim-512-WD-0-30-1-Inter-OOD-Test
-  run_id: '20260317_182500'
+- name: TAGCN-K-3-2-1-L-3-Dim-512-WD-0-30-1-Inter-OOD-Test
+  run_id: '20260319_140200'
   args:
     model: TAGCN_v3
     epochs: 300
@@ -941,10 +226,11 @@ experiments:
     hidden_dim: 512
     head: 1
     K:
+    - 3
     - 2
     - 1
     dropout_rate: 0.0
-    num_GNN_layers: 2
+    num_GNN_layers: 3
     activation_function: leaky_relu
     weight_decay: 0.0001
     seeds:
@@ -971,128 +257,8 @@ experiments:
     predictions_save_dir: output/predictions
     save_training_stats_dir: output/training_stats
     plots_dir: output/plots_dir
-- name: TAGCN-Drop-0-2-K-1-L-2-Dim-512-Inter-OOD-Test
-  run_id: '20260317_182500'
-  args:
-    model: TAGCN_v2
-    epochs: 300
-    batch_size: 128
-    lr: 0.001
-    early_stopping: 100
-    early_stopping_metric: pearson_rolling
-    hidden_dim: 512
-    head: 1
-    K: 1
-    dropout_rate: 0.2
-    num_GNN_layers: 2
-    activation_function: leaky_relu
-    weight_decay: 0.0
-    seeds:
-    - 100
-    - 123
-    - 15
-    - 257
-    - 2
-    - 2012
-    - 3752
-    - 350
-    - 843
-    - 621
-    standardise_aevs: false
-    standardise_targets: true
-    scaling_stats_pt: data/scaling/OOD_Test_legacy_scaling.pt
-    train_data_csv: data/OOD_Test_processed_train.csv
-    val_data_csv: data/OOD_Test_processed_val.csv
-    test_data_csv: data/OOD_Test_processed_test.csv
-    train_graphs_dir: data/graphs/OOD_Test_legacy_train
-    val_graphs_dir: data/graphs/OOD_Test_legacy_val
-    test_graphs_dir: data/graphs/OOD_Test_legacy_test
-    model_save_dir: output/models
-    predictions_save_dir: output/predictions
-    save_training_stats_dir: output/training_stats
-    plots_dir: output/plots_dir
-- name: TAGCN-Drop-0-2-K-2-L-2-Dim-512-Inter-OOD-Test
-  run_id: '20260317_182500'
-  args:
-    model: TAGCN_v2
-    epochs: 300
-    batch_size: 128
-    lr: 0.001
-    early_stopping: 100
-    early_stopping_metric: pearson_rolling
-    hidden_dim: 512
-    head: 1
-    K: 2
-    dropout_rate: 0.2
-    num_GNN_layers: 2
-    activation_function: leaky_relu
-    weight_decay: 0.0
-    seeds:
-    - 100
-    - 123
-    - 15
-    - 257
-    - 2
-    - 2012
-    - 3752
-    - 350
-    - 843
-    - 621
-    standardise_aevs: false
-    standardise_targets: true
-    scaling_stats_pt: data/scaling/OOD_Test_legacy_scaling.pt
-    train_data_csv: data/OOD_Test_processed_train.csv
-    val_data_csv: data/OOD_Test_processed_val.csv
-    test_data_csv: data/OOD_Test_processed_test.csv
-    train_graphs_dir: data/graphs/OOD_Test_legacy_train
-    val_graphs_dir: data/graphs/OOD_Test_legacy_val
-    test_graphs_dir: data/graphs/OOD_Test_legacy_test
-    model_save_dir: output/models
-    predictions_save_dir: output/predictions
-    save_training_stats_dir: output/training_stats
-    plots_dir: output/plots_dir
-- name: TAGCN-Drop-0-2-K-3-L-2-Dim-512-Inter-OOD-Test
-  run_id: '20260317_182500'
-  args:
-    model: TAGCN_v2
-    epochs: 300
-    batch_size: 128
-    lr: 0.001
-    early_stopping: 100
-    early_stopping_metric: pearson_rolling
-    hidden_dim: 512
-    head: 1
-    K: 3
-    dropout_rate: 0.2
-    num_GNN_layers: 2
-    activation_function: leaky_relu
-    weight_decay: 0.0
-    seeds:
-    - 100
-    - 123
-    - 15
-    - 257
-    - 2
-    - 2012
-    - 3752
-    - 350
-    - 843
-    - 621
-    standardise_aevs: false
-    standardise_targets: true
-    scaling_stats_pt: data/scaling/OOD_Test_legacy_scaling.pt
-    train_data_csv: data/OOD_Test_processed_train.csv
-    val_data_csv: data/OOD_Test_processed_val.csv
-    test_data_csv: data/OOD_Test_processed_test.csv
-    train_graphs_dir: data/graphs/OOD_Test_legacy_train
-    val_graphs_dir: data/graphs/OOD_Test_legacy_val
-    test_graphs_dir: data/graphs/OOD_Test_legacy_test
-    model_save_dir: output/models
-    predictions_save_dir: output/predictions
-    save_training_stats_dir: output/training_stats
-    plots_dir: output/plots_dir
-- name: TAGCN-Drop-0-2-K-2-1-L-2-Dim-512-Inter-OOD-Test
-  run_id: '20260317_182500'
+- name: TAGCN-Drop-0-2-K-3-2-1-L-3-Dim-512-Inter-OOD-Test
+  run_id: '20260319_140200'
   args:
     model: TAGCN_v3
     epochs: 300
@@ -1103,10 +269,11 @@ experiments:
     hidden_dim: 512
     head: 1
     K:
+    - 3
     - 2
     - 1
     dropout_rate: 0.2
-    num_GNN_layers: 2
+    num_GNN_layers: 3
     activation_function: leaky_relu
     weight_decay: 0.0
     seeds:
@@ -1133,128 +300,8 @@ experiments:
     predictions_save_dir: output/predictions
     save_training_stats_dir: output/training_stats
     plots_dir: output/plots_dir
-- name: TAGCN-Drop-0-2-K-1-L-2-Dim-512-WD-0-30-1-Inter-OOD-Test
-  run_id: '20260317_182500'
-  args:
-    model: TAGCN_v2
-    epochs: 300
-    batch_size: 128
-    lr: 0.001
-    early_stopping: 100
-    early_stopping_metric: pearson_rolling
-    hidden_dim: 512
-    head: 1
-    K: 1
-    dropout_rate: 0.2
-    num_GNN_layers: 2
-    activation_function: leaky_relu
-    weight_decay: 0.0001
-    seeds:
-    - 100
-    - 123
-    - 15
-    - 257
-    - 2
-    - 2012
-    - 3752
-    - 350
-    - 843
-    - 621
-    standardise_aevs: false
-    standardise_targets: true
-    scaling_stats_pt: data/scaling/OOD_Test_legacy_scaling.pt
-    train_data_csv: data/OOD_Test_processed_train.csv
-    val_data_csv: data/OOD_Test_processed_val.csv
-    test_data_csv: data/OOD_Test_processed_test.csv
-    train_graphs_dir: data/graphs/OOD_Test_legacy_train
-    val_graphs_dir: data/graphs/OOD_Test_legacy_val
-    test_graphs_dir: data/graphs/OOD_Test_legacy_test
-    model_save_dir: output/models
-    predictions_save_dir: output/predictions
-    save_training_stats_dir: output/training_stats
-    plots_dir: output/plots_dir
-- name: TAGCN-Drop-0-2-K-2-L-2-Dim-512-WD-0-30-1-Inter-OOD-Test
-  run_id: '20260317_182500'
-  args:
-    model: TAGCN_v2
-    epochs: 300
-    batch_size: 128
-    lr: 0.001
-    early_stopping: 100
-    early_stopping_metric: pearson_rolling
-    hidden_dim: 512
-    head: 1
-    K: 2
-    dropout_rate: 0.2
-    num_GNN_layers: 2
-    activation_function: leaky_relu
-    weight_decay: 0.0001
-    seeds:
-    - 100
-    - 123
-    - 15
-    - 257
-    - 2
-    - 2012
-    - 3752
-    - 350
-    - 843
-    - 621
-    standardise_aevs: false
-    standardise_targets: true
-    scaling_stats_pt: data/scaling/OOD_Test_legacy_scaling.pt
-    train_data_csv: data/OOD_Test_processed_train.csv
-    val_data_csv: data/OOD_Test_processed_val.csv
-    test_data_csv: data/OOD_Test_processed_test.csv
-    train_graphs_dir: data/graphs/OOD_Test_legacy_train
-    val_graphs_dir: data/graphs/OOD_Test_legacy_val
-    test_graphs_dir: data/graphs/OOD_Test_legacy_test
-    model_save_dir: output/models
-    predictions_save_dir: output/predictions
-    save_training_stats_dir: output/training_stats
-    plots_dir: output/plots_dir
-- name: TAGCN-Drop-0-2-K-3-L-2-Dim-512-WD-0-30-1-Inter-OOD-Test
-  run_id: '20260317_182500'
-  args:
-    model: TAGCN_v2
-    epochs: 300
-    batch_size: 128
-    lr: 0.001
-    early_stopping: 100
-    early_stopping_metric: pearson_rolling
-    hidden_dim: 512
-    head: 1
-    K: 3
-    dropout_rate: 0.2
-    num_GNN_layers: 2
-    activation_function: leaky_relu
-    weight_decay: 0.0001
-    seeds:
-    - 100
-    - 123
-    - 15
-    - 257
-    - 2
-    - 2012
-    - 3752
-    - 350
-    - 843
-    - 621
-    standardise_aevs: false
-    standardise_targets: true
-    scaling_stats_pt: data/scaling/OOD_Test_legacy_scaling.pt
-    train_data_csv: data/OOD_Test_processed_train.csv
-    val_data_csv: data/OOD_Test_processed_val.csv
-    test_data_csv: data/OOD_Test_processed_test.csv
-    train_graphs_dir: data/graphs/OOD_Test_legacy_train
-    val_graphs_dir: data/graphs/OOD_Test_legacy_val
-    test_graphs_dir: data/graphs/OOD_Test_legacy_test
-    model_save_dir: output/models
-    predictions_save_dir: output/predictions
-    save_training_stats_dir: output/training_stats
-    plots_dir: output/plots_dir
-- name: TAGCN-Drop-0-2-K-2-1-L-2-Dim-512-WD-0-30-1-Inter-OOD-Test
-  run_id: '20260317_182500'
+- name: TAGCN-Drop-0-2-K-3-2-1-L-3-Dim-512-WD-0-30-1-Inter-OOD-Test
+  run_id: '20260319_140200'
   args:
     model: TAGCN_v3
     epochs: 300
@@ -1265,10 +312,11 @@ experiments:
     hidden_dim: 512
     head: 1
     K:
+    - 3
     - 2
     - 1
     dropout_rate: 0.2
-    num_GNN_layers: 2
+    num_GNN_layers: 3
     activation_function: leaky_relu
     weight_decay: 0.0001
     seeds:
@@ -1295,128 +343,8 @@ experiments:
     predictions_save_dir: output/predictions
     save_training_stats_dir: output/training_stats
     plots_dir: output/plots_dir
-- name: TAGCN-K-1-L-2-Dim-768-Inter-OOD-Test
-  run_id: '20260317_182500'
-  args:
-    model: TAGCN
-    epochs: 300
-    batch_size: 128
-    lr: 0.001
-    early_stopping: 100
-    early_stopping_metric: pearson_rolling
-    hidden_dim: 768
-    head: 1
-    K: 1
-    dropout_rate: 0.0
-    num_GNN_layers: 2
-    activation_function: leaky_relu
-    weight_decay: 0.0
-    seeds:
-    - 100
-    - 123
-    - 15
-    - 257
-    - 2
-    - 2012
-    - 3752
-    - 350
-    - 843
-    - 621
-    standardise_aevs: false
-    standardise_targets: true
-    scaling_stats_pt: data/scaling/OOD_Test_legacy_scaling.pt
-    train_data_csv: data/OOD_Test_processed_train.csv
-    val_data_csv: data/OOD_Test_processed_val.csv
-    test_data_csv: data/OOD_Test_processed_test.csv
-    train_graphs_dir: data/graphs/OOD_Test_legacy_train
-    val_graphs_dir: data/graphs/OOD_Test_legacy_val
-    test_graphs_dir: data/graphs/OOD_Test_legacy_test
-    model_save_dir: output/models
-    predictions_save_dir: output/predictions
-    save_training_stats_dir: output/training_stats
-    plots_dir: output/plots_dir
-- name: TAGCN-K-2-L-2-Dim-768-Inter-OOD-Test
-  run_id: '20260317_182500'
-  args:
-    model: TAGCN
-    epochs: 300
-    batch_size: 128
-    lr: 0.001
-    early_stopping: 100
-    early_stopping_metric: pearson_rolling
-    hidden_dim: 768
-    head: 1
-    K: 2
-    dropout_rate: 0.0
-    num_GNN_layers: 2
-    activation_function: leaky_relu
-    weight_decay: 0.0
-    seeds:
-    - 100
-    - 123
-    - 15
-    - 257
-    - 2
-    - 2012
-    - 3752
-    - 350
-    - 843
-    - 621
-    standardise_aevs: false
-    standardise_targets: true
-    scaling_stats_pt: data/scaling/OOD_Test_legacy_scaling.pt
-    train_data_csv: data/OOD_Test_processed_train.csv
-    val_data_csv: data/OOD_Test_processed_val.csv
-    test_data_csv: data/OOD_Test_processed_test.csv
-    train_graphs_dir: data/graphs/OOD_Test_legacy_train
-    val_graphs_dir: data/graphs/OOD_Test_legacy_val
-    test_graphs_dir: data/graphs/OOD_Test_legacy_test
-    model_save_dir: output/models
-    predictions_save_dir: output/predictions
-    save_training_stats_dir: output/training_stats
-    plots_dir: output/plots_dir
-- name: TAGCN-K-3-L-2-Dim-768-Inter-OOD-Test
-  run_id: '20260317_182500'
-  args:
-    model: TAGCN
-    epochs: 300
-    batch_size: 128
-    lr: 0.001
-    early_stopping: 100
-    early_stopping_metric: pearson_rolling
-    hidden_dim: 768
-    head: 1
-    K: 3
-    dropout_rate: 0.0
-    num_GNN_layers: 2
-    activation_function: leaky_relu
-    weight_decay: 0.0
-    seeds:
-    - 100
-    - 123
-    - 15
-    - 257
-    - 2
-    - 2012
-    - 3752
-    - 350
-    - 843
-    - 621
-    standardise_aevs: false
-    standardise_targets: true
-    scaling_stats_pt: data/scaling/OOD_Test_legacy_scaling.pt
-    train_data_csv: data/OOD_Test_processed_train.csv
-    val_data_csv: data/OOD_Test_processed_val.csv
-    test_data_csv: data/OOD_Test_processed_test.csv
-    train_graphs_dir: data/graphs/OOD_Test_legacy_train
-    val_graphs_dir: data/graphs/OOD_Test_legacy_val
-    test_graphs_dir: data/graphs/OOD_Test_legacy_test
-    model_save_dir: output/models
-    predictions_save_dir: output/predictions
-    save_training_stats_dir: output/training_stats
-    plots_dir: output/plots_dir
-- name: TAGCN-K-2-1-L-2-Dim-768-Inter-OOD-Test
-  run_id: '20260317_182500'
+- name: TAGCN-K-3-2-1-L-3-Dim-768-Inter-OOD-Test
+  run_id: '20260319_140200'
   args:
     model: TAGCN_v3
     epochs: 300
@@ -1427,10 +355,11 @@ experiments:
     hidden_dim: 768
     head: 1
     K:
+    - 3
     - 2
     - 1
     dropout_rate: 0.0
-    num_GNN_layers: 2
+    num_GNN_layers: 3
     activation_function: leaky_relu
     weight_decay: 0.0
     seeds:
@@ -1457,128 +386,8 @@ experiments:
     predictions_save_dir: output/predictions
     save_training_stats_dir: output/training_stats
     plots_dir: output/plots_dir
-- name: TAGCN-K-1-L-2-Dim-768-WD-0-30-1-Inter-OOD-Test
-  run_id: '20260317_182500'
-  args:
-    model: TAGCN
-    epochs: 300
-    batch_size: 128
-    lr: 0.001
-    early_stopping: 100
-    early_stopping_metric: pearson_rolling
-    hidden_dim: 768
-    head: 1
-    K: 1
-    dropout_rate: 0.0
-    num_GNN_layers: 2
-    activation_function: leaky_relu
-    weight_decay: 0.0001
-    seeds:
-    - 100
-    - 123
-    - 15
-    - 257
-    - 2
-    - 2012
-    - 3752
-    - 350
-    - 843
-    - 621
-    standardise_aevs: false
-    standardise_targets: true
-    scaling_stats_pt: data/scaling/OOD_Test_legacy_scaling.pt
-    train_data_csv: data/OOD_Test_processed_train.csv
-    val_data_csv: data/OOD_Test_processed_val.csv
-    test_data_csv: data/OOD_Test_processed_test.csv
-    train_graphs_dir: data/graphs/OOD_Test_legacy_train
-    val_graphs_dir: data/graphs/OOD_Test_legacy_val
-    test_graphs_dir: data/graphs/OOD_Test_legacy_test
-    model_save_dir: output/models
-    predictions_save_dir: output/predictions
-    save_training_stats_dir: output/training_stats
-    plots_dir: output/plots_dir
-- name: TAGCN-K-2-L-2-Dim-768-WD-0-30-1-Inter-OOD-Test
-  run_id: '20260317_182500'
-  args:
-    model: TAGCN
-    epochs: 300
-    batch_size: 128
-    lr: 0.001
-    early_stopping: 100
-    early_stopping_metric: pearson_rolling
-    hidden_dim: 768
-    head: 1
-    K: 2
-    dropout_rate: 0.0
-    num_GNN_layers: 2
-    activation_function: leaky_relu
-    weight_decay: 0.0001
-    seeds:
-    - 100
-    - 123
-    - 15
-    - 257
-    - 2
-    - 2012
-    - 3752
-    - 350
-    - 843
-    - 621
-    standardise_aevs: false
-    standardise_targets: true
-    scaling_stats_pt: data/scaling/OOD_Test_legacy_scaling.pt
-    train_data_csv: data/OOD_Test_processed_train.csv
-    val_data_csv: data/OOD_Test_processed_val.csv
-    test_data_csv: data/OOD_Test_processed_test.csv
-    train_graphs_dir: data/graphs/OOD_Test_legacy_train
-    val_graphs_dir: data/graphs/OOD_Test_legacy_val
-    test_graphs_dir: data/graphs/OOD_Test_legacy_test
-    model_save_dir: output/models
-    predictions_save_dir: output/predictions
-    save_training_stats_dir: output/training_stats
-    plots_dir: output/plots_dir
-- name: TAGCN-K-3-L-2-Dim-768-WD-0-30-1-Inter-OOD-Test
-  run_id: '20260317_182500'
-  args:
-    model: TAGCN
-    epochs: 300
-    batch_size: 128
-    lr: 0.001
-    early_stopping: 100
-    early_stopping_metric: pearson_rolling
-    hidden_dim: 768
-    head: 1
-    K: 3
-    dropout_rate: 0.0
-    num_GNN_layers: 2
-    activation_function: leaky_relu
-    weight_decay: 0.0001
-    seeds:
-    - 100
-    - 123
-    - 15
-    - 257
-    - 2
-    - 2012
-    - 3752
-    - 350
-    - 843
-    - 621
-    standardise_aevs: false
-    standardise_targets: true
-    scaling_stats_pt: data/scaling/OOD_Test_legacy_scaling.pt
-    train_data_csv: data/OOD_Test_processed_train.csv
-    val_data_csv: data/OOD_Test_processed_val.csv
-    test_data_csv: data/OOD_Test_processed_test.csv
-    train_graphs_dir: data/graphs/OOD_Test_legacy_train
-    val_graphs_dir: data/graphs/OOD_Test_legacy_val
-    test_graphs_dir: data/graphs/OOD_Test_legacy_test
-    model_save_dir: output/models
-    predictions_save_dir: output/predictions
-    save_training_stats_dir: output/training_stats
-    plots_dir: output/plots_dir
-- name: TAGCN-K-2-1-L-2-Dim-768-WD-0-30-1-Inter-OOD-Test
-  run_id: '20260317_182500'
+- name: TAGCN-K-3-2-1-L-3-Dim-768-WD-0-30-1-Inter-OOD-Test
+  run_id: '20260319_140200'
   args:
     model: TAGCN_v3
     epochs: 300
@@ -1589,10 +398,11 @@ experiments:
     hidden_dim: 768
     head: 1
     K:
+    - 3
     - 2
     - 1
     dropout_rate: 0.0
-    num_GNN_layers: 2
+    num_GNN_layers: 3
     activation_function: leaky_relu
     weight_decay: 0.0001
     seeds:
@@ -1619,128 +429,8 @@ experiments:
     predictions_save_dir: output/predictions
     save_training_stats_dir: output/training_stats
     plots_dir: output/plots_dir
-- name: TAGCN-Drop-0-2-K-1-L-2-Dim-768-Inter-OOD-Test
-  run_id: '20260317_182500'
-  args:
-    model: TAGCN_v2
-    epochs: 300
-    batch_size: 128
-    lr: 0.001
-    early_stopping: 100
-    early_stopping_metric: pearson_rolling
-    hidden_dim: 768
-    head: 1
-    K: 1
-    dropout_rate: 0.2
-    num_GNN_layers: 2
-    activation_function: leaky_relu
-    weight_decay: 0.0
-    seeds:
-    - 100
-    - 123
-    - 15
-    - 257
-    - 2
-    - 2012
-    - 3752
-    - 350
-    - 843
-    - 621
-    standardise_aevs: false
-    standardise_targets: true
-    scaling_stats_pt: data/scaling/OOD_Test_legacy_scaling.pt
-    train_data_csv: data/OOD_Test_processed_train.csv
-    val_data_csv: data/OOD_Test_processed_val.csv
-    test_data_csv: data/OOD_Test_processed_test.csv
-    train_graphs_dir: data/graphs/OOD_Test_legacy_train
-    val_graphs_dir: data/graphs/OOD_Test_legacy_val
-    test_graphs_dir: data/graphs/OOD_Test_legacy_test
-    model_save_dir: output/models
-    predictions_save_dir: output/predictions
-    save_training_stats_dir: output/training_stats
-    plots_dir: output/plots_dir
-- name: TAGCN-Drop-0-2-K-2-L-2-Dim-768-Inter-OOD-Test
-  run_id: '20260317_182500'
-  args:
-    model: TAGCN_v2
-    epochs: 300
-    batch_size: 128
-    lr: 0.001
-    early_stopping: 100
-    early_stopping_metric: pearson_rolling
-    hidden_dim: 768
-    head: 1
-    K: 2
-    dropout_rate: 0.2
-    num_GNN_layers: 2
-    activation_function: leaky_relu
-    weight_decay: 0.0
-    seeds:
-    - 100
-    - 123
-    - 15
-    - 257
-    - 2
-    - 2012
-    - 3752
-    - 350
-    - 843
-    - 621
-    standardise_aevs: false
-    standardise_targets: true
-    scaling_stats_pt: data/scaling/OOD_Test_legacy_scaling.pt
-    train_data_csv: data/OOD_Test_processed_train.csv
-    val_data_csv: data/OOD_Test_processed_val.csv
-    test_data_csv: data/OOD_Test_processed_test.csv
-    train_graphs_dir: data/graphs/OOD_Test_legacy_train
-    val_graphs_dir: data/graphs/OOD_Test_legacy_val
-    test_graphs_dir: data/graphs/OOD_Test_legacy_test
-    model_save_dir: output/models
-    predictions_save_dir: output/predictions
-    save_training_stats_dir: output/training_stats
-    plots_dir: output/plots_dir
-- name: TAGCN-Drop-0-2-K-3-L-2-Dim-768-Inter-OOD-Test
-  run_id: '20260317_182500'
-  args:
-    model: TAGCN_v2
-    epochs: 300
-    batch_size: 128
-    lr: 0.001
-    early_stopping: 100
-    early_stopping_metric: pearson_rolling
-    hidden_dim: 768
-    head: 1
-    K: 3
-    dropout_rate: 0.2
-    num_GNN_layers: 2
-    activation_function: leaky_relu
-    weight_decay: 0.0
-    seeds:
-    - 100
-    - 123
-    - 15
-    - 257
-    - 2
-    - 2012
-    - 3752
-    - 350
-    - 843
-    - 621
-    standardise_aevs: false
-    standardise_targets: true
-    scaling_stats_pt: data/scaling/OOD_Test_legacy_scaling.pt
-    train_data_csv: data/OOD_Test_processed_train.csv
-    val_data_csv: data/OOD_Test_processed_val.csv
-    test_data_csv: data/OOD_Test_processed_test.csv
-    train_graphs_dir: data/graphs/OOD_Test_legacy_train
-    val_graphs_dir: data/graphs/OOD_Test_legacy_val
-    test_graphs_dir: data/graphs/OOD_Test_legacy_test
-    model_save_dir: output/models
-    predictions_save_dir: output/predictions
-    save_training_stats_dir: output/training_stats
-    plots_dir: output/plots_dir
-- name: TAGCN-Drop-0-2-K-2-1-L-2-Dim-768-Inter-OOD-Test
-  run_id: '20260317_182500'
+- name: TAGCN-Drop-0-2-K-3-2-1-L-3-Dim-768-Inter-OOD-Test
+  run_id: '20260319_140200'
   args:
     model: TAGCN_v3
     epochs: 300
@@ -1751,10 +441,11 @@ experiments:
     hidden_dim: 768
     head: 1
     K:
+    - 3
     - 2
     - 1
     dropout_rate: 0.2
-    num_GNN_layers: 2
+    num_GNN_layers: 3
     activation_function: leaky_relu
     weight_decay: 0.0
     seeds:
@@ -1781,128 +472,8 @@ experiments:
     predictions_save_dir: output/predictions
     save_training_stats_dir: output/training_stats
     plots_dir: output/plots_dir
-- name: TAGCN-Drop-0-2-K-1-L-2-Dim-768-WD-0-30-1-Inter-OOD-Test
-  run_id: '20260317_182500'
-  args:
-    model: TAGCN_v2
-    epochs: 300
-    batch_size: 128
-    lr: 0.001
-    early_stopping: 100
-    early_stopping_metric: pearson_rolling
-    hidden_dim: 768
-    head: 1
-    K: 1
-    dropout_rate: 0.2
-    num_GNN_layers: 2
-    activation_function: leaky_relu
-    weight_decay: 0.0001
-    seeds:
-    - 100
-    - 123
-    - 15
-    - 257
-    - 2
-    - 2012
-    - 3752
-    - 350
-    - 843
-    - 621
-    standardise_aevs: false
-    standardise_targets: true
-    scaling_stats_pt: data/scaling/OOD_Test_legacy_scaling.pt
-    train_data_csv: data/OOD_Test_processed_train.csv
-    val_data_csv: data/OOD_Test_processed_val.csv
-    test_data_csv: data/OOD_Test_processed_test.csv
-    train_graphs_dir: data/graphs/OOD_Test_legacy_train
-    val_graphs_dir: data/graphs/OOD_Test_legacy_val
-    test_graphs_dir: data/graphs/OOD_Test_legacy_test
-    model_save_dir: output/models
-    predictions_save_dir: output/predictions
-    save_training_stats_dir: output/training_stats
-    plots_dir: output/plots_dir
-- name: TAGCN-Drop-0-2-K-2-L-2-Dim-768-WD-0-30-1-Inter-OOD-Test
-  run_id: '20260317_182500'
-  args:
-    model: TAGCN_v2
-    epochs: 300
-    batch_size: 128
-    lr: 0.001
-    early_stopping: 100
-    early_stopping_metric: pearson_rolling
-    hidden_dim: 768
-    head: 1
-    K: 2
-    dropout_rate: 0.2
-    num_GNN_layers: 2
-    activation_function: leaky_relu
-    weight_decay: 0.0001
-    seeds:
-    - 100
-    - 123
-    - 15
-    - 257
-    - 2
-    - 2012
-    - 3752
-    - 350
-    - 843
-    - 621
-    standardise_aevs: false
-    standardise_targets: true
-    scaling_stats_pt: data/scaling/OOD_Test_legacy_scaling.pt
-    train_data_csv: data/OOD_Test_processed_train.csv
-    val_data_csv: data/OOD_Test_processed_val.csv
-    test_data_csv: data/OOD_Test_processed_test.csv
-    train_graphs_dir: data/graphs/OOD_Test_legacy_train
-    val_graphs_dir: data/graphs/OOD_Test_legacy_val
-    test_graphs_dir: data/graphs/OOD_Test_legacy_test
-    model_save_dir: output/models
-    predictions_save_dir: output/predictions
-    save_training_stats_dir: output/training_stats
-    plots_dir: output/plots_dir
-- name: TAGCN-Drop-0-2-K-3-L-2-Dim-768-WD-0-30-1-Inter-OOD-Test
-  run_id: '20260317_182500'
-  args:
-    model: TAGCN_v2
-    epochs: 300
-    batch_size: 128
-    lr: 0.001
-    early_stopping: 100
-    early_stopping_metric: pearson_rolling
-    hidden_dim: 768
-    head: 1
-    K: 3
-    dropout_rate: 0.2
-    num_GNN_layers: 2
-    activation_function: leaky_relu
-    weight_decay: 0.0001
-    seeds:
-    - 100
-    - 123
-    - 15
-    - 257
-    - 2
-    - 2012
-    - 3752
-    - 350
-    - 843
-    - 621
-    standardise_aevs: false
-    standardise_targets: true
-    scaling_stats_pt: data/scaling/OOD_Test_legacy_scaling.pt
-    train_data_csv: data/OOD_Test_processed_train.csv
-    val_data_csv: data/OOD_Test_processed_val.csv
-    test_data_csv: data/OOD_Test_processed_test.csv
-    train_graphs_dir: data/graphs/OOD_Test_legacy_train
-    val_graphs_dir: data/graphs/OOD_Test_legacy_val
-    test_graphs_dir: data/graphs/OOD_Test_legacy_test
-    model_save_dir: output/models
-    predictions_save_dir: output/predictions
-    save_training_stats_dir: output/training_stats
-    plots_dir: output/plots_dir
-- name: TAGCN-Drop-0-2-K-2-1-L-2-Dim-768-WD-0-30-1-Inter-OOD-Test
-  run_id: '20260317_182500'
+- name: TAGCN-Drop-0-2-K-3-2-1-L-3-Dim-768-WD-0-30-1-Inter-OOD-Test
+  run_id: '20260319_140200'
   args:
     model: TAGCN_v3
     epochs: 300
@@ -1913,10 +484,11 @@ experiments:
     hidden_dim: 768
     head: 1
     K:
+    - 3
     - 2
     - 1
     dropout_rate: 0.2
-    num_GNN_layers: 2
+    num_GNN_layers: 3
     activation_function: leaky_relu
     weight_decay: 0.0001
     seeds:
@@ -1943,20 +515,23 @@ experiments:
     predictions_save_dir: output/predictions
     save_training_stats_dir: output/training_stats
     plots_dir: output/plots_dir
-- name: TAGCN-K-1-L-2-Dim-256-Intra-OOD-Test
-  run_id: '20260317_182500'
+- name: TAGCN-K-3-2-1-L-3-Dim-1024-Inter-OOD-Test
+  run_id: '20260319_140200'
   args:
-    model: TAGCN
+    model: TAGCN_v3
     epochs: 300
     batch_size: 128
     lr: 0.001
     early_stopping: 100
     early_stopping_metric: pearson_rolling
-    hidden_dim: 256
+    hidden_dim: 1024
     head: 1
-    K: 1
+    K:
+    - 3
+    - 2
+    - 1
     dropout_rate: 0.0
-    num_GNN_layers: 2
+    num_GNN_layers: 3
     activation_function: leaky_relu
     weight_decay: 0.0
     seeds:
@@ -1972,31 +547,77 @@ experiments:
     - 621
     standardise_aevs: false
     standardise_targets: true
-    scaling_stats_pt: data/scaling/OOD_Test_scaling.pt
+    scaling_stats_pt: data/scaling/OOD_Test_legacy_scaling.pt
     train_data_csv: data/OOD_Test_processed_train.csv
     val_data_csv: data/OOD_Test_processed_val.csv
     test_data_csv: data/OOD_Test_processed_test.csv
-    train_graphs_dir: data/graphs/OOD_Test_train
-    val_graphs_dir: data/graphs/OOD_Test_val
-    test_graphs_dir: data/graphs/OOD_Test_test
+    train_graphs_dir: data/graphs/OOD_Test_legacy_train
+    val_graphs_dir: data/graphs/OOD_Test_legacy_val
+    test_graphs_dir: data/graphs/OOD_Test_legacy_test
     model_save_dir: output/models
     predictions_save_dir: output/predictions
     save_training_stats_dir: output/training_stats
     plots_dir: output/plots_dir
-- name: TAGCN-K-2-L-2-Dim-256-Intra-OOD-Test
-  run_id: '20260317_182500'
+- name: TAGCN-K-3-2-1-L-3-Dim-1024-WD-0-30-1-Inter-OOD-Test
+  run_id: '20260319_140200'
   args:
-    model: TAGCN
+    model: TAGCN_v3
     epochs: 300
     batch_size: 128
     lr: 0.001
     early_stopping: 100
     early_stopping_metric: pearson_rolling
-    hidden_dim: 256
+    hidden_dim: 1024
     head: 1
-    K: 2
+    K:
+    - 3
+    - 2
+    - 1
     dropout_rate: 0.0
-    num_GNN_layers: 2
+    num_GNN_layers: 3
+    activation_function: leaky_relu
+    weight_decay: 0.0001
+    seeds:
+    - 100
+    - 123
+    - 15
+    - 257
+    - 2
+    - 2012
+    - 3752
+    - 350
+    - 843
+    - 621
+    standardise_aevs: false
+    standardise_targets: true
+    scaling_stats_pt: data/scaling/OOD_Test_legacy_scaling.pt
+    train_data_csv: data/OOD_Test_processed_train.csv
+    val_data_csv: data/OOD_Test_processed_val.csv
+    test_data_csv: data/OOD_Test_processed_test.csv
+    train_graphs_dir: data/graphs/OOD_Test_legacy_train
+    val_graphs_dir: data/graphs/OOD_Test_legacy_val
+    test_graphs_dir: data/graphs/OOD_Test_legacy_test
+    model_save_dir: output/models
+    predictions_save_dir: output/predictions
+    save_training_stats_dir: output/training_stats
+    plots_dir: output/plots_dir
+- name: TAGCN-Drop-0-2-K-3-2-1-L-3-Dim-1024-Inter-OOD-Test
+  run_id: '20260319_140200'
+  args:
+    model: TAGCN_v3
+    epochs: 300
+    batch_size: 128
+    lr: 0.001
+    early_stopping: 100
+    early_stopping_metric: pearson_rolling
+    hidden_dim: 1024
+    head: 1
+    K:
+    - 3
+    - 2
+    - 1
+    dropout_rate: 0.2
+    num_GNN_layers: 3
     activation_function: leaky_relu
     weight_decay: 0.0
     seeds:
@@ -2012,33 +633,36 @@ experiments:
     - 621
     standardise_aevs: false
     standardise_targets: true
-    scaling_stats_pt: data/scaling/OOD_Test_scaling.pt
+    scaling_stats_pt: data/scaling/OOD_Test_legacy_scaling.pt
     train_data_csv: data/OOD_Test_processed_train.csv
     val_data_csv: data/OOD_Test_processed_val.csv
     test_data_csv: data/OOD_Test_processed_test.csv
-    train_graphs_dir: data/graphs/OOD_Test_train
-    val_graphs_dir: data/graphs/OOD_Test_val
-    test_graphs_dir: data/graphs/OOD_Test_test
+    train_graphs_dir: data/graphs/OOD_Test_legacy_train
+    val_graphs_dir: data/graphs/OOD_Test_legacy_val
+    test_graphs_dir: data/graphs/OOD_Test_legacy_test
     model_save_dir: output/models
     predictions_save_dir: output/predictions
     save_training_stats_dir: output/training_stats
     plots_dir: output/plots_dir
-- name: TAGCN-K-3-L-2-Dim-256-Intra-OOD-Test
-  run_id: '20260317_182500'
+- name: TAGCN-Drop-0-2-K-3-2-1-L-3-Dim-1024-WD-0-30-1-Inter-OOD-Test
+  run_id: '20260319_140200'
   args:
-    model: TAGCN
+    model: TAGCN_v3
     epochs: 300
     batch_size: 128
     lr: 0.001
     early_stopping: 100
     early_stopping_metric: pearson_rolling
-    hidden_dim: 256
+    hidden_dim: 1024
     head: 1
-    K: 3
-    dropout_rate: 0.0
-    num_GNN_layers: 2
+    K:
+    - 3
+    - 2
+    - 1
+    dropout_rate: 0.2
+    num_GNN_layers: 3
     activation_function: leaky_relu
-    weight_decay: 0.0
+    weight_decay: 0.0001
     seeds:
     - 100
     - 123
@@ -2052,19 +676,19 @@ experiments:
     - 621
     standardise_aevs: false
     standardise_targets: true
-    scaling_stats_pt: data/scaling/OOD_Test_scaling.pt
+    scaling_stats_pt: data/scaling/OOD_Test_legacy_scaling.pt
     train_data_csv: data/OOD_Test_processed_train.csv
     val_data_csv: data/OOD_Test_processed_val.csv
     test_data_csv: data/OOD_Test_processed_test.csv
-    train_graphs_dir: data/graphs/OOD_Test_train
-    val_graphs_dir: data/graphs/OOD_Test_val
-    test_graphs_dir: data/graphs/OOD_Test_test
+    train_graphs_dir: data/graphs/OOD_Test_legacy_train
+    val_graphs_dir: data/graphs/OOD_Test_legacy_val
+    test_graphs_dir: data/graphs/OOD_Test_legacy_test
     model_save_dir: output/models
     predictions_save_dir: output/predictions
     save_training_stats_dir: output/training_stats
     plots_dir: output/plots_dir
-- name: TAGCN-K-2-1-L-2-Dim-256-Intra-OOD-Test
-  run_id: '20260317_182500'
+- name: TAGCN-K-3-2-1-L-3-Dim-256-Intra-OOD-Test
+  run_id: '20260319_140200'
   args:
     model: TAGCN_v3
     epochs: 300
@@ -2075,10 +699,11 @@ experiments:
     hidden_dim: 256
     head: 1
     K:
+    - 3
     - 2
     - 1
     dropout_rate: 0.0
-    num_GNN_layers: 2
+    num_GNN_layers: 3
     activation_function: leaky_relu
     weight_decay: 0.0
     seeds:
@@ -2105,128 +730,8 @@ experiments:
     predictions_save_dir: output/predictions
     save_training_stats_dir: output/training_stats
     plots_dir: output/plots_dir
-- name: TAGCN-K-1-L-2-Dim-256-WD-0-30-1-Intra-OOD-Test
-  run_id: '20260317_182500'
-  args:
-    model: TAGCN
-    epochs: 300
-    batch_size: 128
-    lr: 0.001
-    early_stopping: 100
-    early_stopping_metric: pearson_rolling
-    hidden_dim: 256
-    head: 1
-    K: 1
-    dropout_rate: 0.0
-    num_GNN_layers: 2
-    activation_function: leaky_relu
-    weight_decay: 0.0001
-    seeds:
-    - 100
-    - 123
-    - 15
-    - 257
-    - 2
-    - 2012
-    - 3752
-    - 350
-    - 843
-    - 621
-    standardise_aevs: false
-    standardise_targets: true
-    scaling_stats_pt: data/scaling/OOD_Test_scaling.pt
-    train_data_csv: data/OOD_Test_processed_train.csv
-    val_data_csv: data/OOD_Test_processed_val.csv
-    test_data_csv: data/OOD_Test_processed_test.csv
-    train_graphs_dir: data/graphs/OOD_Test_train
-    val_graphs_dir: data/graphs/OOD_Test_val
-    test_graphs_dir: data/graphs/OOD_Test_test
-    model_save_dir: output/models
-    predictions_save_dir: output/predictions
-    save_training_stats_dir: output/training_stats
-    plots_dir: output/plots_dir
-- name: TAGCN-K-2-L-2-Dim-256-WD-0-30-1-Intra-OOD-Test
-  run_id: '20260317_182500'
-  args:
-    model: TAGCN
-    epochs: 300
-    batch_size: 128
-    lr: 0.001
-    early_stopping: 100
-    early_stopping_metric: pearson_rolling
-    hidden_dim: 256
-    head: 1
-    K: 2
-    dropout_rate: 0.0
-    num_GNN_layers: 2
-    activation_function: leaky_relu
-    weight_decay: 0.0001
-    seeds:
-    - 100
-    - 123
-    - 15
-    - 257
-    - 2
-    - 2012
-    - 3752
-    - 350
-    - 843
-    - 621
-    standardise_aevs: false
-    standardise_targets: true
-    scaling_stats_pt: data/scaling/OOD_Test_scaling.pt
-    train_data_csv: data/OOD_Test_processed_train.csv
-    val_data_csv: data/OOD_Test_processed_val.csv
-    test_data_csv: data/OOD_Test_processed_test.csv
-    train_graphs_dir: data/graphs/OOD_Test_train
-    val_graphs_dir: data/graphs/OOD_Test_val
-    test_graphs_dir: data/graphs/OOD_Test_test
-    model_save_dir: output/models
-    predictions_save_dir: output/predictions
-    save_training_stats_dir: output/training_stats
-    plots_dir: output/plots_dir
-- name: TAGCN-K-3-L-2-Dim-256-WD-0-30-1-Intra-OOD-Test
-  run_id: '20260317_182500'
-  args:
-    model: TAGCN
-    epochs: 300
-    batch_size: 128
-    lr: 0.001
-    early_stopping: 100
-    early_stopping_metric: pearson_rolling
-    hidden_dim: 256
-    head: 1
-    K: 3
-    dropout_rate: 0.0
-    num_GNN_layers: 2
-    activation_function: leaky_relu
-    weight_decay: 0.0001
-    seeds:
-    - 100
-    - 123
-    - 15
-    - 257
-    - 2
-    - 2012
-    - 3752
-    - 350
-    - 843
-    - 621
-    standardise_aevs: false
-    standardise_targets: true
-    scaling_stats_pt: data/scaling/OOD_Test_scaling.pt
-    train_data_csv: data/OOD_Test_processed_train.csv
-    val_data_csv: data/OOD_Test_processed_val.csv
-    test_data_csv: data/OOD_Test_processed_test.csv
-    train_graphs_dir: data/graphs/OOD_Test_train
-    val_graphs_dir: data/graphs/OOD_Test_val
-    test_graphs_dir: data/graphs/OOD_Test_test
-    model_save_dir: output/models
-    predictions_save_dir: output/predictions
-    save_training_stats_dir: output/training_stats
-    plots_dir: output/plots_dir
-- name: TAGCN-K-2-1-L-2-Dim-256-WD-0-30-1-Intra-OOD-Test
-  run_id: '20260317_182500'
+- name: TAGCN-K-3-2-1-L-3-Dim-256-WD-0-30-1-Intra-OOD-Test
+  run_id: '20260319_140200'
   args:
     model: TAGCN_v3
     epochs: 300
@@ -2237,10 +742,11 @@ experiments:
     hidden_dim: 256
     head: 1
     K:
+    - 3
     - 2
     - 1
     dropout_rate: 0.0
-    num_GNN_layers: 2
+    num_GNN_layers: 3
     activation_function: leaky_relu
     weight_decay: 0.0001
     seeds:
@@ -2267,128 +773,8 @@ experiments:
     predictions_save_dir: output/predictions
     save_training_stats_dir: output/training_stats
     plots_dir: output/plots_dir
-- name: TAGCN-Drop-0-2-K-1-L-2-Dim-256-Intra-OOD-Test
-  run_id: '20260317_182500'
-  args:
-    model: TAGCN_v2
-    epochs: 300
-    batch_size: 128
-    lr: 0.001
-    early_stopping: 100
-    early_stopping_metric: pearson_rolling
-    hidden_dim: 256
-    head: 1
-    K: 1
-    dropout_rate: 0.2
-    num_GNN_layers: 2
-    activation_function: leaky_relu
-    weight_decay: 0.0
-    seeds:
-    - 100
-    - 123
-    - 15
-    - 257
-    - 2
-    - 2012
-    - 3752
-    - 350
-    - 843
-    - 621
-    standardise_aevs: false
-    standardise_targets: true
-    scaling_stats_pt: data/scaling/OOD_Test_scaling.pt
-    train_data_csv: data/OOD_Test_processed_train.csv
-    val_data_csv: data/OOD_Test_processed_val.csv
-    test_data_csv: data/OOD_Test_processed_test.csv
-    train_graphs_dir: data/graphs/OOD_Test_train
-    val_graphs_dir: data/graphs/OOD_Test_val
-    test_graphs_dir: data/graphs/OOD_Test_test
-    model_save_dir: output/models
-    predictions_save_dir: output/predictions
-    save_training_stats_dir: output/training_stats
-    plots_dir: output/plots_dir
-- name: TAGCN-Drop-0-2-K-2-L-2-Dim-256-Intra-OOD-Test
-  run_id: '20260317_182500'
-  args:
-    model: TAGCN_v2
-    epochs: 300
-    batch_size: 128
-    lr: 0.001
-    early_stopping: 100
-    early_stopping_metric: pearson_rolling
-    hidden_dim: 256
-    head: 1
-    K: 2
-    dropout_rate: 0.2
-    num_GNN_layers: 2
-    activation_function: leaky_relu
-    weight_decay: 0.0
-    seeds:
-    - 100
-    - 123
-    - 15
-    - 257
-    - 2
-    - 2012
-    - 3752
-    - 350
-    - 843
-    - 621
-    standardise_aevs: false
-    standardise_targets: true
-    scaling_stats_pt: data/scaling/OOD_Test_scaling.pt
-    train_data_csv: data/OOD_Test_processed_train.csv
-    val_data_csv: data/OOD_Test_processed_val.csv
-    test_data_csv: data/OOD_Test_processed_test.csv
-    train_graphs_dir: data/graphs/OOD_Test_train
-    val_graphs_dir: data/graphs/OOD_Test_val
-    test_graphs_dir: data/graphs/OOD_Test_test
-    model_save_dir: output/models
-    predictions_save_dir: output/predictions
-    save_training_stats_dir: output/training_stats
-    plots_dir: output/plots_dir
-- name: TAGCN-Drop-0-2-K-3-L-2-Dim-256-Intra-OOD-Test
-  run_id: '20260317_182500'
-  args:
-    model: TAGCN_v2
-    epochs: 300
-    batch_size: 128
-    lr: 0.001
-    early_stopping: 100
-    early_stopping_metric: pearson_rolling
-    hidden_dim: 256
-    head: 1
-    K: 3
-    dropout_rate: 0.2
-    num_GNN_layers: 2
-    activation_function: leaky_relu
-    weight_decay: 0.0
-    seeds:
-    - 100
-    - 123
-    - 15
-    - 257
-    - 2
-    - 2012
-    - 3752
-    - 350
-    - 843
-    - 621
-    standardise_aevs: false
-    standardise_targets: true
-    scaling_stats_pt: data/scaling/OOD_Test_scaling.pt
-    train_data_csv: data/OOD_Test_processed_train.csv
-    val_data_csv: data/OOD_Test_processed_val.csv
-    test_data_csv: data/OOD_Test_processed_test.csv
-    train_graphs_dir: data/graphs/OOD_Test_train
-    val_graphs_dir: data/graphs/OOD_Test_val
-    test_graphs_dir: data/graphs/OOD_Test_test
-    model_save_dir: output/models
-    predictions_save_dir: output/predictions
-    save_training_stats_dir: output/training_stats
-    plots_dir: output/plots_dir
-- name: TAGCN-Drop-0-2-K-2-1-L-2-Dim-256-Intra-OOD-Test
-  run_id: '20260317_182500'
+- name: TAGCN-Drop-0-2-K-3-2-1-L-3-Dim-256-Intra-OOD-Test
+  run_id: '20260319_140200'
   args:
     model: TAGCN_v3
     epochs: 300
@@ -2399,10 +785,11 @@ experiments:
     hidden_dim: 256
     head: 1
     K:
+    - 3
     - 2
     - 1
     dropout_rate: 0.2
-    num_GNN_layers: 2
+    num_GNN_layers: 3
     activation_function: leaky_relu
     weight_decay: 0.0
     seeds:
@@ -2429,128 +816,8 @@ experiments:
     predictions_save_dir: output/predictions
     save_training_stats_dir: output/training_stats
     plots_dir: output/plots_dir
-- name: TAGCN-Drop-0-2-K-1-L-2-Dim-256-WD-0-30-1-Intra-OOD-Test
-  run_id: '20260317_182500'
-  args:
-    model: TAGCN_v2
-    epochs: 300
-    batch_size: 128
-    lr: 0.001
-    early_stopping: 100
-    early_stopping_metric: pearson_rolling
-    hidden_dim: 256
-    head: 1
-    K: 1
-    dropout_rate: 0.2
-    num_GNN_layers: 2
-    activation_function: leaky_relu
-    weight_decay: 0.0001
-    seeds:
-    - 100
-    - 123
-    - 15
-    - 257
-    - 2
-    - 2012
-    - 3752
-    - 350
-    - 843
-    - 621
-    standardise_aevs: false
-    standardise_targets: true
-    scaling_stats_pt: data/scaling/OOD_Test_scaling.pt
-    train_data_csv: data/OOD_Test_processed_train.csv
-    val_data_csv: data/OOD_Test_processed_val.csv
-    test_data_csv: data/OOD_Test_processed_test.csv
-    train_graphs_dir: data/graphs/OOD_Test_train
-    val_graphs_dir: data/graphs/OOD_Test_val
-    test_graphs_dir: data/graphs/OOD_Test_test
-    model_save_dir: output/models
-    predictions_save_dir: output/predictions
-    save_training_stats_dir: output/training_stats
-    plots_dir: output/plots_dir
-- name: TAGCN-Drop-0-2-K-2-L-2-Dim-256-WD-0-30-1-Intra-OOD-Test
-  run_id: '20260317_182500'
-  args:
-    model: TAGCN_v2
-    epochs: 300
-    batch_size: 128
-    lr: 0.001
-    early_stopping: 100
-    early_stopping_metric: pearson_rolling
-    hidden_dim: 256
-    head: 1
-    K: 2
-    dropout_rate: 0.2
-    num_GNN_layers: 2
-    activation_function: leaky_relu
-    weight_decay: 0.0001
-    seeds:
-    - 100
-    - 123
-    - 15
-    - 257
-    - 2
-    - 2012
-    - 3752
-    - 350
-    - 843
-    - 621
-    standardise_aevs: false
-    standardise_targets: true
-    scaling_stats_pt: data/scaling/OOD_Test_scaling.pt
-    train_data_csv: data/OOD_Test_processed_train.csv
-    val_data_csv: data/OOD_Test_processed_val.csv
-    test_data_csv: data/OOD_Test_processed_test.csv
-    train_graphs_dir: data/graphs/OOD_Test_train
-    val_graphs_dir: data/graphs/OOD_Test_val
-    test_graphs_dir: data/graphs/OOD_Test_test
-    model_save_dir: output/models
-    predictions_save_dir: output/predictions
-    save_training_stats_dir: output/training_stats
-    plots_dir: output/plots_dir
-- name: TAGCN-Drop-0-2-K-3-L-2-Dim-256-WD-0-30-1-Intra-OOD-Test
-  run_id: '20260317_182500'
-  args:
-    model: TAGCN_v2
-    epochs: 300
-    batch_size: 128
-    lr: 0.001
-    early_stopping: 100
-    early_stopping_metric: pearson_rolling
-    hidden_dim: 256
-    head: 1
-    K: 3
-    dropout_rate: 0.2
-    num_GNN_layers: 2
-    activation_function: leaky_relu
-    weight_decay: 0.0001
-    seeds:
-    - 100
-    - 123
-    - 15
-    - 257
-    - 2
-    - 2012
-    - 3752
-    - 350
-    - 843
-    - 621
-    standardise_aevs: false
-    standardise_targets: true
-    scaling_stats_pt: data/scaling/OOD_Test_scaling.pt
-    train_data_csv: data/OOD_Test_processed_train.csv
-    val_data_csv: data/OOD_Test_processed_val.csv
-    test_data_csv: data/OOD_Test_processed_test.csv
-    train_graphs_dir: data/graphs/OOD_Test_train
-    val_graphs_dir: data/graphs/OOD_Test_val
-    test_graphs_dir: data/graphs/OOD_Test_test
-    model_save_dir: output/models
-    predictions_save_dir: output/predictions
-    save_training_stats_dir: output/training_stats
-    plots_dir: output/plots_dir
-- name: TAGCN-Drop-0-2-K-2-1-L-2-Dim-256-WD-0-30-1-Intra-OOD-Test
-  run_id: '20260317_182500'
+- name: TAGCN-Drop-0-2-K-3-2-1-L-3-Dim-256-WD-0-30-1-Intra-OOD-Test
+  run_id: '20260319_140200'
   args:
     model: TAGCN_v3
     epochs: 300
@@ -2561,10 +828,11 @@ experiments:
     hidden_dim: 256
     head: 1
     K:
+    - 3
     - 2
     - 1
     dropout_rate: 0.2
-    num_GNN_layers: 2
+    num_GNN_layers: 3
     activation_function: leaky_relu
     weight_decay: 0.0001
     seeds:
@@ -2591,128 +859,8 @@ experiments:
     predictions_save_dir: output/predictions
     save_training_stats_dir: output/training_stats
     plots_dir: output/plots_dir
-- name: TAGCN-K-1-L-2-Dim-512-Intra-OOD-Test
-  run_id: '20260317_182500'
-  args:
-    model: TAGCN
-    epochs: 300
-    batch_size: 128
-    lr: 0.001
-    early_stopping: 100
-    early_stopping_metric: pearson_rolling
-    hidden_dim: 512
-    head: 1
-    K: 1
-    dropout_rate: 0.0
-    num_GNN_layers: 2
-    activation_function: leaky_relu
-    weight_decay: 0.0
-    seeds:
-    - 100
-    - 123
-    - 15
-    - 257
-    - 2
-    - 2012
-    - 3752
-    - 350
-    - 843
-    - 621
-    standardise_aevs: false
-    standardise_targets: true
-    scaling_stats_pt: data/scaling/OOD_Test_scaling.pt
-    train_data_csv: data/OOD_Test_processed_train.csv
-    val_data_csv: data/OOD_Test_processed_val.csv
-    test_data_csv: data/OOD_Test_processed_test.csv
-    train_graphs_dir: data/graphs/OOD_Test_train
-    val_graphs_dir: data/graphs/OOD_Test_val
-    test_graphs_dir: data/graphs/OOD_Test_test
-    model_save_dir: output/models
-    predictions_save_dir: output/predictions
-    save_training_stats_dir: output/training_stats
-    plots_dir: output/plots_dir
-- name: TAGCN-K-2-L-2-Dim-512-Intra-OOD-Test
-  run_id: '20260317_182500'
-  args:
-    model: TAGCN
-    epochs: 300
-    batch_size: 128
-    lr: 0.001
-    early_stopping: 100
-    early_stopping_metric: pearson_rolling
-    hidden_dim: 512
-    head: 1
-    K: 2
-    dropout_rate: 0.0
-    num_GNN_layers: 2
-    activation_function: leaky_relu
-    weight_decay: 0.0
-    seeds:
-    - 100
-    - 123
-    - 15
-    - 257
-    - 2
-    - 2012
-    - 3752
-    - 350
-    - 843
-    - 621
-    standardise_aevs: false
-    standardise_targets: true
-    scaling_stats_pt: data/scaling/OOD_Test_scaling.pt
-    train_data_csv: data/OOD_Test_processed_train.csv
-    val_data_csv: data/OOD_Test_processed_val.csv
-    test_data_csv: data/OOD_Test_processed_test.csv
-    train_graphs_dir: data/graphs/OOD_Test_train
-    val_graphs_dir: data/graphs/OOD_Test_val
-    test_graphs_dir: data/graphs/OOD_Test_test
-    model_save_dir: output/models
-    predictions_save_dir: output/predictions
-    save_training_stats_dir: output/training_stats
-    plots_dir: output/plots_dir
-- name: TAGCN-K-3-L-2-Dim-512-Intra-OOD-Test
-  run_id: '20260317_182500'
-  args:
-    model: TAGCN
-    epochs: 300
-    batch_size: 128
-    lr: 0.001
-    early_stopping: 100
-    early_stopping_metric: pearson_rolling
-    hidden_dim: 512
-    head: 1
-    K: 3
-    dropout_rate: 0.0
-    num_GNN_layers: 2
-    activation_function: leaky_relu
-    weight_decay: 0.0
-    seeds:
-    - 100
-    - 123
-    - 15
-    - 257
-    - 2
-    - 2012
-    - 3752
-    - 350
-    - 843
-    - 621
-    standardise_aevs: false
-    standardise_targets: true
-    scaling_stats_pt: data/scaling/OOD_Test_scaling.pt
-    train_data_csv: data/OOD_Test_processed_train.csv
-    val_data_csv: data/OOD_Test_processed_val.csv
-    test_data_csv: data/OOD_Test_processed_test.csv
-    train_graphs_dir: data/graphs/OOD_Test_train
-    val_graphs_dir: data/graphs/OOD_Test_val
-    test_graphs_dir: data/graphs/OOD_Test_test
-    model_save_dir: output/models
-    predictions_save_dir: output/predictions
-    save_training_stats_dir: output/training_stats
-    plots_dir: output/plots_dir
-- name: TAGCN-K-2-1-L-2-Dim-512-Intra-OOD-Test
-  run_id: '20260317_182500'
+- name: TAGCN-K-3-2-1-L-3-Dim-512-Intra-OOD-Test
+  run_id: '20260319_140200'
   args:
     model: TAGCN_v3
     epochs: 300
@@ -2723,10 +871,11 @@ experiments:
     hidden_dim: 512
     head: 1
     K:
+    - 3
     - 2
     - 1
     dropout_rate: 0.0
-    num_GNN_layers: 2
+    num_GNN_layers: 3
     activation_function: leaky_relu
     weight_decay: 0.0
     seeds:
@@ -2753,128 +902,8 @@ experiments:
     predictions_save_dir: output/predictions
     save_training_stats_dir: output/training_stats
     plots_dir: output/plots_dir
-- name: TAGCN-K-1-L-2-Dim-512-WD-0-30-1-Intra-OOD-Test
-  run_id: '20260317_182500'
-  args:
-    model: TAGCN
-    epochs: 300
-    batch_size: 128
-    lr: 0.001
-    early_stopping: 100
-    early_stopping_metric: pearson_rolling
-    hidden_dim: 512
-    head: 1
-    K: 1
-    dropout_rate: 0.0
-    num_GNN_layers: 2
-    activation_function: leaky_relu
-    weight_decay: 0.0001
-    seeds:
-    - 100
-    - 123
-    - 15
-    - 257
-    - 2
-    - 2012
-    - 3752
-    - 350
-    - 843
-    - 621
-    standardise_aevs: false
-    standardise_targets: true
-    scaling_stats_pt: data/scaling/OOD_Test_scaling.pt
-    train_data_csv: data/OOD_Test_processed_train.csv
-    val_data_csv: data/OOD_Test_processed_val.csv
-    test_data_csv: data/OOD_Test_processed_test.csv
-    train_graphs_dir: data/graphs/OOD_Test_train
-    val_graphs_dir: data/graphs/OOD_Test_val
-    test_graphs_dir: data/graphs/OOD_Test_test
-    model_save_dir: output/models
-    predictions_save_dir: output/predictions
-    save_training_stats_dir: output/training_stats
-    plots_dir: output/plots_dir
-- name: TAGCN-K-2-L-2-Dim-512-WD-0-30-1-Intra-OOD-Test
-  run_id: '20260317_182500'
-  args:
-    model: TAGCN
-    epochs: 300
-    batch_size: 128
-    lr: 0.001
-    early_stopping: 100
-    early_stopping_metric: pearson_rolling
-    hidden_dim: 512
-    head: 1
-    K: 2
-    dropout_rate: 0.0
-    num_GNN_layers: 2
-    activation_function: leaky_relu
-    weight_decay: 0.0001
-    seeds:
-    - 100
-    - 123
-    - 15
-    - 257
-    - 2
-    - 2012
-    - 3752
-    - 350
-    - 843
-    - 621
-    standardise_aevs: false
-    standardise_targets: true
-    scaling_stats_pt: data/scaling/OOD_Test_scaling.pt
-    train_data_csv: data/OOD_Test_processed_train.csv
-    val_data_csv: data/OOD_Test_processed_val.csv
-    test_data_csv: data/OOD_Test_processed_test.csv
-    train_graphs_dir: data/graphs/OOD_Test_train
-    val_graphs_dir: data/graphs/OOD_Test_val
-    test_graphs_dir: data/graphs/OOD_Test_test
-    model_save_dir: output/models
-    predictions_save_dir: output/predictions
-    save_training_stats_dir: output/training_stats
-    plots_dir: output/plots_dir
-- name: TAGCN-K-3-L-2-Dim-512-WD-0-30-1-Intra-OOD-Test
-  run_id: '20260317_182500'
-  args:
-    model: TAGCN
-    epochs: 300
-    batch_size: 128
-    lr: 0.001
-    early_stopping: 100
-    early_stopping_metric: pearson_rolling
-    hidden_dim: 512
-    head: 1
-    K: 3
-    dropout_rate: 0.0
-    num_GNN_layers: 2
-    activation_function: leaky_relu
-    weight_decay: 0.0001
-    seeds:
-    - 100
-    - 123
-    - 15
-    - 257
-    - 2
-    - 2012
-    - 3752
-    - 350
-    - 843
-    - 621
-    standardise_aevs: false
-    standardise_targets: true
-    scaling_stats_pt: data/scaling/OOD_Test_scaling.pt
-    train_data_csv: data/OOD_Test_processed_train.csv
-    val_data_csv: data/OOD_Test_processed_val.csv
-    test_data_csv: data/OOD_Test_processed_test.csv
-    train_graphs_dir: data/graphs/OOD_Test_train
-    val_graphs_dir: data/graphs/OOD_Test_val
-    test_graphs_dir: data/graphs/OOD_Test_test
-    model_save_dir: output/models
-    predictions_save_dir: output/predictions
-    save_training_stats_dir: output/training_stats
-    plots_dir: output/plots_dir
-- name: TAGCN-K-2-1-L-2-Dim-512-WD-0-30-1-Intra-OOD-Test
-  run_id: '20260317_182500'
+- name: TAGCN-K-3-2-1-L-3-Dim-512-WD-0-30-1-Intra-OOD-Test
+  run_id: '20260319_140200'
   args:
     model: TAGCN_v3
     epochs: 300
@@ -2885,10 +914,11 @@ experiments:
     hidden_dim: 512
     head: 1
     K:
+    - 3
     - 2
     - 1
     dropout_rate: 0.0
-    num_GNN_layers: 2
+    num_GNN_layers: 3
     activation_function: leaky_relu
     weight_decay: 0.0001
     seeds:
@@ -2915,128 +945,8 @@ experiments:
     predictions_save_dir: output/predictions
     save_training_stats_dir: output/training_stats
     plots_dir: output/plots_dir
-- name: TAGCN-Drop-0-2-K-1-L-2-Dim-512-Intra-OOD-Test
-  run_id: '20260317_182500'
-  args:
-    model: TAGCN_v2
-    epochs: 300
-    batch_size: 128
-    lr: 0.001
-    early_stopping: 100
-    early_stopping_metric: pearson_rolling
-    hidden_dim: 512
-    head: 1
-    K: 1
-    dropout_rate: 0.2
-    num_GNN_layers: 2
-    activation_function: leaky_relu
-    weight_decay: 0.0
-    seeds:
-    - 100
-    - 123
-    - 15
-    - 257
-    - 2
-    - 2012
-    - 3752
-    - 350
-    - 843
-    - 621
-    standardise_aevs: false
-    standardise_targets: true
-    scaling_stats_pt: data/scaling/OOD_Test_scaling.pt
-    train_data_csv: data/OOD_Test_processed_train.csv
-    val_data_csv: data/OOD_Test_processed_val.csv
-    test_data_csv: data/OOD_Test_processed_test.csv
-    train_graphs_dir: data/graphs/OOD_Test_train
-    val_graphs_dir: data/graphs/OOD_Test_val
-    test_graphs_dir: data/graphs/OOD_Test_test
-    model_save_dir: output/models
-    predictions_save_dir: output/predictions
-    save_training_stats_dir: output/training_stats
-    plots_dir: output/plots_dir
-- name: TAGCN-Drop-0-2-K-2-L-2-Dim-512-Intra-OOD-Test
-  run_id: '20260317_182500'
-  args:
-    model: TAGCN_v2
-    epochs: 300
-    batch_size: 128
-    lr: 0.001
-    early_stopping: 100
-    early_stopping_metric: pearson_rolling
-    hidden_dim: 512
-    head: 1
-    K: 2
-    dropout_rate: 0.2
-    num_GNN_layers: 2
-    activation_function: leaky_relu
-    weight_decay: 0.0
-    seeds:
-    - 100
-    - 123
-    - 15
-    - 257
-    - 2
-    - 2012
-    - 3752
-    - 350
-    - 843
-    - 621
-    standardise_aevs: false
-    standardise_targets: true
-    scaling_stats_pt: data/scaling/OOD_Test_scaling.pt
-    train_data_csv: data/OOD_Test_processed_train.csv
-    val_data_csv: data/OOD_Test_processed_val.csv
-    test_data_csv: data/OOD_Test_processed_test.csv
-    train_graphs_dir: data/graphs/OOD_Test_train
-    val_graphs_dir: data/graphs/OOD_Test_val
-    test_graphs_dir: data/graphs/OOD_Test_test
-    model_save_dir: output/models
-    predictions_save_dir: output/predictions
-    save_training_stats_dir: output/training_stats
-    plots_dir: output/plots_dir
-- name: TAGCN-Drop-0-2-K-3-L-2-Dim-512-Intra-OOD-Test
-  run_id: '20260317_182500'
-  args:
-    model: TAGCN_v2
-    epochs: 300
-    batch_size: 128
-    lr: 0.001
-    early_stopping: 100
-    early_stopping_metric: pearson_rolling
-    hidden_dim: 512
-    head: 1
-    K: 3
-    dropout_rate: 0.2
-    num_GNN_layers: 2
-    activation_function: leaky_relu
-    weight_decay: 0.0
-    seeds:
-    - 100
-    - 123
-    - 15
-    - 257
-    - 2
-    - 2012
-    - 3752
-    - 350
-    - 843
-    - 621
-    standardise_aevs: false
-    standardise_targets: true
-    scaling_stats_pt: data/scaling/OOD_Test_scaling.pt
-    train_data_csv: data/OOD_Test_processed_train.csv
-    val_data_csv: data/OOD_Test_processed_val.csv
-    test_data_csv: data/OOD_Test_processed_test.csv
-    train_graphs_dir: data/graphs/OOD_Test_train
-    val_graphs_dir: data/graphs/OOD_Test_val
-    test_graphs_dir: data/graphs/OOD_Test_test
-    model_save_dir: output/models
-    predictions_save_dir: output/predictions
-    save_training_stats_dir: output/training_stats
-    plots_dir: output/plots_dir
-- name: TAGCN-Drop-0-2-K-2-1-L-2-Dim-512-Intra-OOD-Test
-  run_id: '20260317_182500'
+- name: TAGCN-Drop-0-2-K-3-2-1-L-3-Dim-512-Intra-OOD-Test
+  run_id: '20260319_140200'
   args:
     model: TAGCN_v3
     epochs: 300
@@ -3047,10 +957,11 @@ experiments:
     hidden_dim: 512
     head: 1
     K:
+    - 3
     - 2
     - 1
     dropout_rate: 0.2
-    num_GNN_layers: 2
+    num_GNN_layers: 3
     activation_function: leaky_relu
     weight_decay: 0.0
     seeds:
@@ -3077,128 +988,8 @@ experiments:
     predictions_save_dir: output/predictions
     save_training_stats_dir: output/training_stats
     plots_dir: output/plots_dir
-- name: TAGCN-Drop-0-2-K-1-L-2-Dim-512-WD-0-30-1-Intra-OOD-Test
-  run_id: '20260317_182500'
-  args:
-    model: TAGCN_v2
-    epochs: 300
-    batch_size: 128
-    lr: 0.001
-    early_stopping: 100
-    early_stopping_metric: pearson_rolling
-    hidden_dim: 512
-    head: 1
-    K: 1
-    dropout_rate: 0.2
-    num_GNN_layers: 2
-    activation_function: leaky_relu
-    weight_decay: 0.0001
-    seeds:
-    - 100
-    - 123
-    - 15
-    - 257
-    - 2
-    - 2012
-    - 3752
-    - 350
-    - 843
-    - 621
-    standardise_aevs: false
-    standardise_targets: true
-    scaling_stats_pt: data/scaling/OOD_Test_scaling.pt
-    train_data_csv: data/OOD_Test_processed_train.csv
-    val_data_csv: data/OOD_Test_processed_val.csv
-    test_data_csv: data/OOD_Test_processed_test.csv
-    train_graphs_dir: data/graphs/OOD_Test_train
-    val_graphs_dir: data/graphs/OOD_Test_val
-    test_graphs_dir: data/graphs/OOD_Test_test
-    model_save_dir: output/models
-    predictions_save_dir: output/predictions
-    save_training_stats_dir: output/training_stats
-    plots_dir: output/plots_dir
-- name: TAGCN-Drop-0-2-K-2-L-2-Dim-512-WD-0-30-1-Intra-OOD-Test
-  run_id: '20260317_182500'
-  args:
-    model: TAGCN_v2
-    epochs: 300
-    batch_size: 128
-    lr: 0.001
-    early_stopping: 100
-    early_stopping_metric: pearson_rolling
-    hidden_dim: 512
-    head: 1
-    K: 2
-    dropout_rate: 0.2
-    num_GNN_layers: 2
-    activation_function: leaky_relu
-    weight_decay: 0.0001
-    seeds:
-    - 100
-    - 123
-    - 15
-    - 257
-    - 2
-    - 2012
-    - 3752
-    - 350
-    - 843
-    - 621
-    standardise_aevs: false
-    standardise_targets: true
-    scaling_stats_pt: data/scaling/OOD_Test_scaling.pt
-    train_data_csv: data/OOD_Test_processed_train.csv
-    val_data_csv: data/OOD_Test_processed_val.csv
-    test_data_csv: data/OOD_Test_processed_test.csv
-    train_graphs_dir: data/graphs/OOD_Test_train
-    val_graphs_dir: data/graphs/OOD_Test_val
-    test_graphs_dir: data/graphs/OOD_Test_test
-    model_save_dir: output/models
-    predictions_save_dir: output/predictions
-    save_training_stats_dir: output/training_stats
-    plots_dir: output/plots_dir
-- name: TAGCN-Drop-0-2-K-3-L-2-Dim-512-WD-0-30-1-Intra-OOD-Test
-  run_id: '20260317_182500'
-  args:
-    model: TAGCN_v2
-    epochs: 300
-    batch_size: 128
-    lr: 0.001
-    early_stopping: 100
-    early_stopping_metric: pearson_rolling
-    hidden_dim: 512
-    head: 1
-    K: 3
-    dropout_rate: 0.2
-    num_GNN_layers: 2
-    activation_function: leaky_relu
-    weight_decay: 0.0001
-    seeds:
-    - 100
-    - 123
-    - 15
-    - 257
-    - 2
-    - 2012
-    - 3752
-    - 350
-    - 843
-    - 621
-    standardise_aevs: false
-    standardise_targets: true
-    scaling_stats_pt: data/scaling/OOD_Test_scaling.pt
-    train_data_csv: data/OOD_Test_processed_train.csv
-    val_data_csv: data/OOD_Test_processed_val.csv
-    test_data_csv: data/OOD_Test_processed_test.csv
-    train_graphs_dir: data/graphs/OOD_Test_train
-    val_graphs_dir: data/graphs/OOD_Test_val
-    test_graphs_dir: data/graphs/OOD_Test_test
-    model_save_dir: output/models
-    predictions_save_dir: output/predictions
-    save_training_stats_dir: output/training_stats
-    plots_dir: output/plots_dir
-- name: TAGCN-Drop-0-2-K-2-1-L-2-Dim-512-WD-0-30-1-Intra-OOD-Test
-  run_id: '20260317_182500'
+- name: TAGCN-Drop-0-2-K-3-2-1-L-3-Dim-512-WD-0-30-1-Intra-OOD-Test
+  run_id: '20260319_140200'
   args:
     model: TAGCN_v3
     epochs: 300
@@ -3209,10 +1000,11 @@ experiments:
     hidden_dim: 512
     head: 1
     K:
+    - 3
     - 2
     - 1
     dropout_rate: 0.2
-    num_GNN_layers: 2
+    num_GNN_layers: 3
     activation_function: leaky_relu
     weight_decay: 0.0001
     seeds:
@@ -3239,128 +1031,8 @@ experiments:
     predictions_save_dir: output/predictions
     save_training_stats_dir: output/training_stats
     plots_dir: output/plots_dir
-- name: TAGCN-K-1-L-2-Dim-768-Intra-OOD-Test
-  run_id: '20260317_182500'
-  args:
-    model: TAGCN
-    epochs: 300
-    batch_size: 128
-    lr: 0.001
-    early_stopping: 100
-    early_stopping_metric: pearson_rolling
-    hidden_dim: 768
-    head: 1
-    K: 1
-    dropout_rate: 0.0
-    num_GNN_layers: 2
-    activation_function: leaky_relu
-    weight_decay: 0.0
-    seeds:
-    - 100
-    - 123
-    - 15
-    - 257
-    - 2
-    - 2012
-    - 3752
-    - 350
-    - 843
-    - 621
-    standardise_aevs: false
-    standardise_targets: true
-    scaling_stats_pt: data/scaling/OOD_Test_scaling.pt
-    train_data_csv: data/OOD_Test_processed_train.csv
-    val_data_csv: data/OOD_Test_processed_val.csv
-    test_data_csv: data/OOD_Test_processed_test.csv
-    train_graphs_dir: data/graphs/OOD_Test_train
-    val_graphs_dir: data/graphs/OOD_Test_val
-    test_graphs_dir: data/graphs/OOD_Test_test
-    model_save_dir: output/models
-    predictions_save_dir: output/predictions
-    save_training_stats_dir: output/training_stats
-    plots_dir: output/plots_dir
-- name: TAGCN-K-2-L-2-Dim-768-Intra-OOD-Test
-  run_id: '20260317_182500'
-  args:
-    model: TAGCN
-    epochs: 300
-    batch_size: 128
-    lr: 0.001
-    early_stopping: 100
-    early_stopping_metric: pearson_rolling
-    hidden_dim: 768
-    head: 1
-    K: 2
-    dropout_rate: 0.0
-    num_GNN_layers: 2
-    activation_function: leaky_relu
-    weight_decay: 0.0
-    seeds:
-    - 100
-    - 123
-    - 15
-    - 257
-    - 2
-    - 2012
-    - 3752
-    - 350
-    - 843
-    - 621
-    standardise_aevs: false
-    standardise_targets: true
-    scaling_stats_pt: data/scaling/OOD_Test_scaling.pt
-    train_data_csv: data/OOD_Test_processed_train.csv
-    val_data_csv: data/OOD_Test_processed_val.csv
-    test_data_csv: data/OOD_Test_processed_test.csv
-    train_graphs_dir: data/graphs/OOD_Test_train
-    val_graphs_dir: data/graphs/OOD_Test_val
-    test_graphs_dir: data/graphs/OOD_Test_test
-    model_save_dir: output/models
-    predictions_save_dir: output/predictions
-    save_training_stats_dir: output/training_stats
-    plots_dir: output/plots_dir
-- name: TAGCN-K-3-L-2-Dim-768-Intra-OOD-Test
-  run_id: '20260317_182500'
-  args:
-    model: TAGCN
-    epochs: 300
-    batch_size: 128
-    lr: 0.001
-    early_stopping: 100
-    early_stopping_metric: pearson_rolling
-    hidden_dim: 768
-    head: 1
-    K: 3
-    dropout_rate: 0.0
-    num_GNN_layers: 2
-    activation_function: leaky_relu
-    weight_decay: 0.0
-    seeds:
-    - 100
-    - 123
-    - 15
-    - 257
-    - 2
-    - 2012
-    - 3752
-    - 350
-    - 843
-    - 621
-    standardise_aevs: false
-    standardise_targets: true
-    scaling_stats_pt: data/scaling/OOD_Test_scaling.pt
-    train_data_csv: data/OOD_Test_processed_train.csv
-    val_data_csv: data/OOD_Test_processed_val.csv
-    test_data_csv: data/OOD_Test_processed_test.csv
-    train_graphs_dir: data/graphs/OOD_Test_train
-    val_graphs_dir: data/graphs/OOD_Test_val
-    test_graphs_dir: data/graphs/OOD_Test_test
-    model_save_dir: output/models
-    predictions_save_dir: output/predictions
-    save_training_stats_dir: output/training_stats
-    plots_dir: output/plots_dir
-- name: TAGCN-K-2-1-L-2-Dim-768-Intra-OOD-Test
-  run_id: '20260317_182500'
+- name: TAGCN-K-3-2-1-L-3-Dim-768-Intra-OOD-Test
+  run_id: '20260319_140200'
   args:
     model: TAGCN_v3
     epochs: 300
@@ -3371,10 +1043,11 @@ experiments:
     hidden_dim: 768
     head: 1
     K:
+    - 3
     - 2
     - 1
     dropout_rate: 0.0
-    num_GNN_layers: 2
+    num_GNN_layers: 3
     activation_function: leaky_relu
     weight_decay: 0.0
     seeds:
@@ -3401,128 +1074,8 @@ experiments:
     predictions_save_dir: output/predictions
     save_training_stats_dir: output/training_stats
     plots_dir: output/plots_dir
-- name: TAGCN-K-1-L-2-Dim-768-WD-0-30-1-Intra-OOD-Test
-  run_id: '20260317_182500'
-  args:
-    model: TAGCN
-    epochs: 300
-    batch_size: 128
-    lr: 0.001
-    early_stopping: 100
-    early_stopping_metric: pearson_rolling
-    hidden_dim: 768
-    head: 1
-    K: 1
-    dropout_rate: 0.0
-    num_GNN_layers: 2
-    activation_function: leaky_relu
-    weight_decay: 0.0001
-    seeds:
-    - 100
-    - 123
-    - 15
-    - 257
-    - 2
-    - 2012
-    - 3752
-    - 350
-    - 843
-    - 621
-    standardise_aevs: false
-    standardise_targets: true
-    scaling_stats_pt: data/scaling/OOD_Test_scaling.pt
-    train_data_csv: data/OOD_Test_processed_train.csv
-    val_data_csv: data/OOD_Test_processed_val.csv
-    test_data_csv: data/OOD_Test_processed_test.csv
-    train_graphs_dir: data/graphs/OOD_Test_train
-    val_graphs_dir: data/graphs/OOD_Test_val
-    test_graphs_dir: data/graphs/OOD_Test_test
-    model_save_dir: output/models
-    predictions_save_dir: output/predictions
-    save_training_stats_dir: output/training_stats
-    plots_dir: output/plots_dir
-- name: TAGCN-K-2-L-2-Dim-768-WD-0-30-1-Intra-OOD-Test
-  run_id: '20260317_182500'
-  args:
-    model: TAGCN
-    epochs: 300
-    batch_size: 128
-    lr: 0.001
-    early_stopping: 100
-    early_stopping_metric: pearson_rolling
-    hidden_dim: 768
-    head: 1
-    K: 2
-    dropout_rate: 0.0
-    num_GNN_layers: 2
-    activation_function: leaky_relu
-    weight_decay: 0.0001
-    seeds:
-    - 100
-    - 123
-    - 15
-    - 257
-    - 2
-    - 2012
-    - 3752
-    - 350
-    - 843
-    - 621
-    standardise_aevs: false
-    standardise_targets: true
-    scaling_stats_pt: data/scaling/OOD_Test_scaling.pt
-    train_data_csv: data/OOD_Test_processed_train.csv
-    val_data_csv: data/OOD_Test_processed_val.csv
-    test_data_csv: data/OOD_Test_processed_test.csv
-    train_graphs_dir: data/graphs/OOD_Test_train
-    val_graphs_dir: data/graphs/OOD_Test_val
-    test_graphs_dir: data/graphs/OOD_Test_test
-    model_save_dir: output/models
-    predictions_save_dir: output/predictions
-    save_training_stats_dir: output/training_stats
-    plots_dir: output/plots_dir
-- name: TAGCN-K-3-L-2-Dim-768-WD-0-30-1-Intra-OOD-Test
-  run_id: '20260317_182500'
-  args:
-    model: TAGCN
-    epochs: 300
-    batch_size: 128
-    lr: 0.001
-    early_stopping: 100
-    early_stopping_metric: pearson_rolling
-    hidden_dim: 768
-    head: 1
-    K: 3
-    dropout_rate: 0.0
-    num_GNN_layers: 2
-    activation_function: leaky_relu
-    weight_decay: 0.0001
-    seeds:
-    - 100
-    - 123
-    - 15
-    - 257
-    - 2
-    - 2012
-    - 3752
-    - 350
-    - 843
-    - 621
-    standardise_aevs: false
-    standardise_targets: true
-    scaling_stats_pt: data/scaling/OOD_Test_scaling.pt
-    train_data_csv: data/OOD_Test_processed_train.csv
-    val_data_csv: data/OOD_Test_processed_val.csv
-    test_data_csv: data/OOD_Test_processed_test.csv
-    train_graphs_dir: data/graphs/OOD_Test_train
-    val_graphs_dir: data/graphs/OOD_Test_val
-    test_graphs_dir: data/graphs/OOD_Test_test
-    model_save_dir: output/models
-    predictions_save_dir: output/predictions
-    save_training_stats_dir: output/training_stats
-    plots_dir: output/plots_dir
-- name: TAGCN-K-2-1-L-2-Dim-768-WD-0-30-1-Intra-OOD-Test
-  run_id: '20260317_182500'
+- name: TAGCN-K-3-2-1-L-3-Dim-768-WD-0-30-1-Intra-OOD-Test
+  run_id: '20260319_140200'
   args:
     model: TAGCN_v3
     epochs: 300
@@ -3533,10 +1086,11 @@ experiments:
     hidden_dim: 768
     head: 1
     K:
+    - 3
     - 2
     - 1
     dropout_rate: 0.0
-    num_GNN_layers: 2
+    num_GNN_layers: 3
     activation_function: leaky_relu
     weight_decay: 0.0001
     seeds:
@@ -3563,128 +1117,8 @@ experiments:
     predictions_save_dir: output/predictions
     save_training_stats_dir: output/training_stats
     plots_dir: output/plots_dir
-- name: TAGCN-Drop-0-2-K-1-L-2-Dim-768-Intra-OOD-Test
-  run_id: '20260317_182500'
-  args:
-    model: TAGCN_v2
-    epochs: 300
-    batch_size: 128
-    lr: 0.001
-    early_stopping: 100
-    early_stopping_metric: pearson_rolling
-    hidden_dim: 768
-    head: 1
-    K: 1
-    dropout_rate: 0.2
-    num_GNN_layers: 2
-    activation_function: leaky_relu
-    weight_decay: 0.0
-    seeds:
-    - 100
-    - 123
-    - 15
-    - 257
-    - 2
-    - 2012
-    - 3752
-    - 350
-    - 843
-    - 621
-    standardise_aevs: false
-    standardise_targets: true
-    scaling_stats_pt: data/scaling/OOD_Test_scaling.pt
-    train_data_csv: data/OOD_Test_processed_train.csv
-    val_data_csv: data/OOD_Test_processed_val.csv
-    test_data_csv: data/OOD_Test_processed_test.csv
-    train_graphs_dir: data/graphs/OOD_Test_train
-    val_graphs_dir: data/graphs/OOD_Test_val
-    test_graphs_dir: data/graphs/OOD_Test_test
-    model_save_dir: output/models
-    predictions_save_dir: output/predictions
-    save_training_stats_dir: output/training_stats
-    plots_dir: output/plots_dir
-- name: TAGCN-Drop-0-2-K-2-L-2-Dim-768-Intra-OOD-Test
-  run_id: '20260317_182500'
-  args:
-    model: TAGCN_v2
-    epochs: 300
-    batch_size: 128
-    lr: 0.001
-    early_stopping: 100
-    early_stopping_metric: pearson_rolling
-    hidden_dim: 768
-    head: 1
-    K: 2
-    dropout_rate: 0.2
-    num_GNN_layers: 2
-    activation_function: leaky_relu
-    weight_decay: 0.0
-    seeds:
-    - 100
-    - 123
-    - 15
-    - 257
-    - 2
-    - 2012
-    - 3752
-    - 350
-    - 843
-    - 621
-    standardise_aevs: false
-    standardise_targets: true
-    scaling_stats_pt: data/scaling/OOD_Test_scaling.pt
-    train_data_csv: data/OOD_Test_processed_train.csv
-    val_data_csv: data/OOD_Test_processed_val.csv
-    test_data_csv: data/OOD_Test_processed_test.csv
-    train_graphs_dir: data/graphs/OOD_Test_train
-    val_graphs_dir: data/graphs/OOD_Test_val
-    test_graphs_dir: data/graphs/OOD_Test_test
-    model_save_dir: output/models
-    predictions_save_dir: output/predictions
-    save_training_stats_dir: output/training_stats
-    plots_dir: output/plots_dir
-- name: TAGCN-Drop-0-2-K-3-L-2-Dim-768-Intra-OOD-Test
-  run_id: '20260317_182500'
-  args:
-    model: TAGCN_v2
-    epochs: 300
-    batch_size: 128
-    lr: 0.001
-    early_stopping: 100
-    early_stopping_metric: pearson_rolling
-    hidden_dim: 768
-    head: 1
-    K: 3
-    dropout_rate: 0.2
-    num_GNN_layers: 2
-    activation_function: leaky_relu
-    weight_decay: 0.0
-    seeds:
-    - 100
-    - 123
-    - 15
-    - 257
-    - 2
-    - 2012
-    - 3752
-    - 350
-    - 843
-    - 621
-    standardise_aevs: false
-    standardise_targets: true
-    scaling_stats_pt: data/scaling/OOD_Test_scaling.pt
-    train_data_csv: data/OOD_Test_processed_train.csv
-    val_data_csv: data/OOD_Test_processed_val.csv
-    test_data_csv: data/OOD_Test_processed_test.csv
-    train_graphs_dir: data/graphs/OOD_Test_train
-    val_graphs_dir: data/graphs/OOD_Test_val
-    test_graphs_dir: data/graphs/OOD_Test_test
-    model_save_dir: output/models
-    predictions_save_dir: output/predictions
-    save_training_stats_dir: output/training_stats
-    plots_dir: output/plots_dir
-- name: TAGCN-Drop-0-2-K-2-1-L-2-Dim-768-Intra-OOD-Test
-  run_id: '20260317_182500'
+- name: TAGCN-Drop-0-2-K-3-2-1-L-3-Dim-768-Intra-OOD-Test
+  run_id: '20260319_140200'
   args:
     model: TAGCN_v3
     epochs: 300
@@ -3695,10 +1129,11 @@ experiments:
     hidden_dim: 768
     head: 1
     K:
+    - 3
     - 2
     - 1
     dropout_rate: 0.2
-    num_GNN_layers: 2
+    num_GNN_layers: 3
     activation_function: leaky_relu
     weight_decay: 0.0
     seeds:
@@ -3725,128 +1160,8 @@ experiments:
     predictions_save_dir: output/predictions
     save_training_stats_dir: output/training_stats
     plots_dir: output/plots_dir
-- name: TAGCN-Drop-0-2-K-1-L-2-Dim-768-WD-0-30-1-Intra-OOD-Test
-  run_id: '20260317_182500'
-  args:
-    model: TAGCN_v2
-    epochs: 300
-    batch_size: 128
-    lr: 0.001
-    early_stopping: 100
-    early_stopping_metric: pearson_rolling
-    hidden_dim: 768
-    head: 1
-    K: 1
-    dropout_rate: 0.2
-    num_GNN_layers: 2
-    activation_function: leaky_relu
-    weight_decay: 0.0001
-    seeds:
-    - 100
-    - 123
-    - 15
-    - 257
-    - 2
-    - 2012
-    - 3752
-    - 350
-    - 843
-    - 621
-    standardise_aevs: false
-    standardise_targets: true
-    scaling_stats_pt: data/scaling/OOD_Test_scaling.pt
-    train_data_csv: data/OOD_Test_processed_train.csv
-    val_data_csv: data/OOD_Test_processed_val.csv
-    test_data_csv: data/OOD_Test_processed_test.csv
-    train_graphs_dir: data/graphs/OOD_Test_train
-    val_graphs_dir: data/graphs/OOD_Test_val
-    test_graphs_dir: data/graphs/OOD_Test_test
-    model_save_dir: output/models
-    predictions_save_dir: output/predictions
-    save_training_stats_dir: output/training_stats
-    plots_dir: output/plots_dir
-- name: TAGCN-Drop-0-2-K-2-L-2-Dim-768-WD-0-30-1-Intra-OOD-Test
-  run_id: '20260317_182500'
-  args:
-    model: TAGCN_v2
-    epochs: 300
-    batch_size: 128
-    lr: 0.001
-    early_stopping: 100
-    early_stopping_metric: pearson_rolling
-    hidden_dim: 768
-    head: 1
-    K: 2
-    dropout_rate: 0.2
-    num_GNN_layers: 2
-    activation_function: leaky_relu
-    weight_decay: 0.0001
-    seeds:
-    - 100
-    - 123
-    - 15
-    - 257
-    - 2
-    - 2012
-    - 3752
-    - 350
-    - 843
-    - 621
-    standardise_aevs: false
-    standardise_targets: true
-    scaling_stats_pt: data/scaling/OOD_Test_scaling.pt
-    train_data_csv: data/OOD_Test_processed_train.csv
-    val_data_csv: data/OOD_Test_processed_val.csv
-    test_data_csv: data/OOD_Test_processed_test.csv
-    train_graphs_dir: data/graphs/OOD_Test_train
-    val_graphs_dir: data/graphs/OOD_Test_val
-    test_graphs_dir: data/graphs/OOD_Test_test
-    model_save_dir: output/models
-    predictions_save_dir: output/predictions
-    save_training_stats_dir: output/training_stats
-    plots_dir: output/plots_dir
-- name: TAGCN-Drop-0-2-K-3-L-2-Dim-768-WD-0-30-1-Intra-OOD-Test
-  run_id: '20260317_182500'
-  args:
-    model: TAGCN_v2
-    epochs: 300
-    batch_size: 128
-    lr: 0.001
-    early_stopping: 100
-    early_stopping_metric: pearson_rolling
-    hidden_dim: 768
-    head: 1
-    K: 3
-    dropout_rate: 0.2
-    num_GNN_layers: 2
-    activation_function: leaky_relu
-    weight_decay: 0.0001
-    seeds:
-    - 100
-    - 123
-    - 15
-    - 257
-    - 2
-    - 2012
-    - 3752
-    - 350
-    - 843
-    - 621
-    standardise_aevs: false
-    standardise_targets: true
-    scaling_stats_pt: data/scaling/OOD_Test_scaling.pt
-    train_data_csv: data/OOD_Test_processed_train.csv
-    val_data_csv: data/OOD_Test_processed_val.csv
-    test_data_csv: data/OOD_Test_processed_test.csv
-    train_graphs_dir: data/graphs/OOD_Test_train
-    val_graphs_dir: data/graphs/OOD_Test_val
-    test_graphs_dir: data/graphs/OOD_Test_test
-    model_save_dir: output/models
-    predictions_save_dir: output/predictions
-    save_training_stats_dir: output/training_stats
-    plots_dir: output/plots_dir
-- name: TAGCN-Drop-0-2-K-2-1-L-2-Dim-768-WD-0-30-1-Intra-OOD-Test
-  run_id: '20260317_182500'
+- name: TAGCN-Drop-0-2-K-3-2-1-L-3-Dim-768-WD-0-30-1-Intra-OOD-Test
+  run_id: '20260319_140200'
   args:
     model: TAGCN_v3
     epochs: 300
@@ -3857,10 +1172,183 @@ experiments:
     hidden_dim: 768
     head: 1
     K:
+    - 3
     - 2
     - 1
     dropout_rate: 0.2
-    num_GNN_layers: 2
+    num_GNN_layers: 3
+    activation_function: leaky_relu
+    weight_decay: 0.0001
+    seeds:
+    - 100
+    - 123
+    - 15
+    - 257
+    - 2
+    - 2012
+    - 3752
+    - 350
+    - 843
+    - 621
+    standardise_aevs: false
+    standardise_targets: true
+    scaling_stats_pt: data/scaling/OOD_Test_scaling.pt
+    train_data_csv: data/OOD_Test_processed_train.csv
+    val_data_csv: data/OOD_Test_processed_val.csv
+    test_data_csv: data/OOD_Test_processed_test.csv
+    train_graphs_dir: data/graphs/OOD_Test_train
+    val_graphs_dir: data/graphs/OOD_Test_val
+    test_graphs_dir: data/graphs/OOD_Test_test
+    model_save_dir: output/models
+    predictions_save_dir: output/predictions
+    save_training_stats_dir: output/training_stats
+    plots_dir: output/plots_dir
+- name: TAGCN-K-3-2-1-L-3-Dim-1024-Intra-OOD-Test
+  run_id: '20260319_140200'
+  args:
+    model: TAGCN_v3
+    epochs: 300
+    batch_size: 128
+    lr: 0.001
+    early_stopping: 100
+    early_stopping_metric: pearson_rolling
+    hidden_dim: 1024
+    head: 1
+    K:
+    - 3
+    - 2
+    - 1
+    dropout_rate: 0.0
+    num_GNN_layers: 3
+    activation_function: leaky_relu
+    weight_decay: 0.0
+    seeds:
+    - 100
+    - 123
+    - 15
+    - 257
+    - 2
+    - 2012
+    - 3752
+    - 350
+    - 843
+    - 621
+    standardise_aevs: false
+    standardise_targets: true
+    scaling_stats_pt: data/scaling/OOD_Test_scaling.pt
+    train_data_csv: data/OOD_Test_processed_train.csv
+    val_data_csv: data/OOD_Test_processed_val.csv
+    test_data_csv: data/OOD_Test_processed_test.csv
+    train_graphs_dir: data/graphs/OOD_Test_train
+    val_graphs_dir: data/graphs/OOD_Test_val
+    test_graphs_dir: data/graphs/OOD_Test_test
+    model_save_dir: output/models
+    predictions_save_dir: output/predictions
+    save_training_stats_dir: output/training_stats
+    plots_dir: output/plots_dir
+- name: TAGCN-K-3-2-1-L-3-Dim-1024-WD-0-30-1-Intra-OOD-Test
+  run_id: '20260319_140200'
+  args:
+    model: TAGCN_v3
+    epochs: 300
+    batch_size: 128
+    lr: 0.001
+    early_stopping: 100
+    early_stopping_metric: pearson_rolling
+    hidden_dim: 1024
+    head: 1
+    K:
+    - 3
+    - 2
+    - 1
+    dropout_rate: 0.0
+    num_GNN_layers: 3
+    activation_function: leaky_relu
+    weight_decay: 0.0001
+    seeds:
+    - 100
+    - 123
+    - 15
+    - 257
+    - 2
+    - 2012
+    - 3752
+    - 350
+    - 843
+    - 621
+    standardise_aevs: false
+    standardise_targets: true
+    scaling_stats_pt: data/scaling/OOD_Test_scaling.pt
+    train_data_csv: data/OOD_Test_processed_train.csv
+    val_data_csv: data/OOD_Test_processed_val.csv
+    test_data_csv: data/OOD_Test_processed_test.csv
+    train_graphs_dir: data/graphs/OOD_Test_train
+    val_graphs_dir: data/graphs/OOD_Test_val
+    test_graphs_dir: data/graphs/OOD_Test_test
+    model_save_dir: output/models
+    predictions_save_dir: output/predictions
+    save_training_stats_dir: output/training_stats
+    plots_dir: output/plots_dir
+- name: TAGCN-Drop-0-2-K-3-2-1-L-3-Dim-1024-Intra-OOD-Test
+  run_id: '20260319_140200'
+  args:
+    model: TAGCN_v3
+    epochs: 300
+    batch_size: 128
+    lr: 0.001
+    early_stopping: 100
+    early_stopping_metric: pearson_rolling
+    hidden_dim: 1024
+    head: 1
+    K:
+    - 3
+    - 2
+    - 1
+    dropout_rate: 0.2
+    num_GNN_layers: 3
+    activation_function: leaky_relu
+    weight_decay: 0.0
+    seeds:
+    - 100
+    - 123
+    - 15
+    - 257
+    - 2
+    - 2012
+    - 3752
+    - 350
+    - 843
+    - 621
+    standardise_aevs: false
+    standardise_targets: true
+    scaling_stats_pt: data/scaling/OOD_Test_scaling.pt
+    train_data_csv: data/OOD_Test_processed_train.csv
+    val_data_csv: data/OOD_Test_processed_val.csv
+    test_data_csv: data/OOD_Test_processed_test.csv
+    train_graphs_dir: data/graphs/OOD_Test_train
+    val_graphs_dir: data/graphs/OOD_Test_val
+    test_graphs_dir: data/graphs/OOD_Test_test
+    model_save_dir: output/models
+    predictions_save_dir: output/predictions
+    save_training_stats_dir: output/training_stats
+    plots_dir: output/plots_dir
+- name: TAGCN-Drop-0-2-K-3-2-1-L-3-Dim-1024-WD-0-30-1-Intra-OOD-Test
+  run_id: '20260319_140200'
+  args:
+    model: TAGCN_v3
+    epochs: 300
+    batch_size: 128
+    lr: 0.001
+    early_stopping: 100
+    early_stopping_metric: pearson_rolling
+    hidden_dim: 1024
+    head: 1
+    K:
+    - 3
+    - 2
+    - 1
+    dropout_rate: 0.2
+    num_GNN_layers: 3
     activation_function: leaky_relu
     weight_decay: 0.0001
     seeds:
