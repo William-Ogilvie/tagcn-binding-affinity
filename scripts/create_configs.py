@@ -12,14 +12,16 @@ EXPERIMENT_NAME = "experiments_grid_search.yml"
 PROCESS_NAME = "process_grid_search.yml"
 CASF_PLOT_NAME = "plotting_grid_search_casf.yml"
 OOD_PLOT_NAME = "plotting_grid_search_ood.yml"
+ZERO_PLOT_NAME = "plotting_grid_search_zero_ligand_bias.yml"
 BUBBLES = True
 TRUEVPRED = True
 METRICOEPOCH = True # metrics over epochs
 
-TIME_STAMP = "20260319_140200" 
+TIME_STAMP = "20260321_161700" 
 #"20260308_185500"
-TIME_STAMP_OOD = "20260319_140300" 
+TIME_STAMP_OOD = "20260321_161800" 
 #"20260308_185600"
+TIME_STAMP_ZERO = "20260321_161900"
 
 # - name: AEV-PLIG-Intra-Graphs-No-Scale-Rolling
 #   args:
@@ -275,18 +277,30 @@ def main():
     # It seems from the above that models like TAGCN-Drop-0-2-K-2-1-L-2-Dim-512-Inter-OOD-Test, TAGCN-Drop-0-2-K-2-1-L-2-Dim-768-Intra-OOD-Test
     # and TAGCN-Drop-0-2-K-2-1-L-2-Dim-768-WD-0-30-1-Intra-OOD-Test work very well
     # Just for fun we would like to try a 3-2-1 model just to see what that is like
-    benchmarks = ["OOD-Test"]
+    # benchmarks = ["OOD-Test"]
+    # graphs = ["inter", "intra"]
+    # models = ["TAGCN"]
+    # hidden_dim = [256, 512, 768, 1024] # also tried [512]
+    # layers = [3]
+    # K_values = [[3, 2, 1]] # this means first layer K=2 second layer K=1
+    # heads_values = [1]
+    # dropout_values = [0.0, 0.2]
+    # dropout_values_strings = ["0-0", "0-2"]
+    # weight_decay_values = [0.0, 0.0001]
+    # weight_decay_values_strings = ["0-0", "0-30-1"]
+    # The above kinda worked? timestampe = "20260319_140200"
+    # We are now going to try running some of the models on zero ligand bias
+    benchmarks = ["Zero-Ligand-Bias"]
     graphs = ["inter", "intra"]
     models = ["TAGCN"]
-    hidden_dim = [256, 512, 768, 1024] # also tried [512]
-    layers = [3]
-    K_values = [[3, 2, 1]] # this means first layer K=2 second layer K=1
-    heads_values = [1]
+    hidden_dim = [256, 512] # also tried [512]
+    layers = [2, 5]
+    K_values = [1, 2, 3] # this means first layer K=2 second layer K=1
+    heads_values = [1, 1, 1]
     dropout_values = [0.0, 0.2]
     dropout_values_strings = ["0-0", "0-2"]
     weight_decay_values = [0.0, 0.0001]
     weight_decay_values_strings = ["0-0", "0-30-1"]
-
 
 
     # It is worth pre-defining the arguments for the different graphs and benchmarks
@@ -326,12 +340,31 @@ def main():
         "val_graphs_dir": "data/graphs/OOD_Test_legacy_val",
         "test_graphs_dir": "data/graphs/OOD_Test_legacy_test"
     }
+    args_zero_ligand_bias_intra = {
+        "scaling_stats_pt": "data/scaling/Zero_Ligand_Bias_scaling.pt", 
+        "train_data_csv": "data/Zero_Ligand_Bias_processed_train.csv",
+        "val_data_csv": "data/Zero_Ligand_Bias_processed_val.csv",
+        "test_data_csv": "data/Zero_Ligand_Bias_processed_test.csv",    
+        "train_graphs_dir": "data/graphs/Zero_Ligand_Bias_train", 
+        "val_graphs_dir": "data/graphs/Zero_Ligand_Bias_val",
+        "test_graphs_dir": "data/graphs/Zero_Ligand_Bias_test"
+    }
+    args_zero_ligand_bias_inter = {
+        "scaling_stats_pt": "data/scaling/Zero_Ligand_Bias_legacy_scaling.pt", 
+        "train_data_csv": "data/Zero_Ligand_Bias_processed_train.csv",
+        "val_data_csv": "data/Zero_Ligand_Bias_processed_val.csv",
+        "test_data_csv": "data/Zero_Ligand_Bias_processed_test.csv",    
+        "train_graphs_dir": "data/graphs/Zero_Ligand_Bias_legacy_train", 
+        "val_graphs_dir": "data/graphs/Zero_Ligand_Bias_legacy_val",
+        "test_graphs_dir": "data/graphs/Zero_Ligand_Bias_legacy_test"
+    }
 
    
     new_experiments = []
     new_processes = []
     new_plotting_casf = []
     new_plotting_OOD = []
+    new_plotting_zero_ligand_bias = []
     # mega for loop!
     for benchmark in benchmarks:
         for model in models:
@@ -410,6 +443,17 @@ def main():
                                         experiment_name += "-Inter-OOD-Test"
                                         plotting_experiment = create_plotting_config(name=experiment_name, time_stamp=TIME_STAMP)
                                         new_plotting_OOD.append(plotting_experiment)
+                                    elif benchmark == "Zero-Ligand-Bias" and graph == "intra":
+                                        args_bench_args = copy.deepcopy(args_zero_ligand_bias_intra)
+                                        experiment_name += "-Intra-Zero-Ligand-Bias"
+                                        plotting_experiment = create_plotting_config(name=experiment_name, time_stamp=TIME_STAMP)
+                                        new_plotting_zero_ligand_bias.append(plotting_experiment)
+                                    elif benchmark == "Zero-Ligand-Bias" and graph == "inter":
+                                        args_bench_args = copy.deepcopy(args_zero_ligand_bias_inter)
+                                        experiment_name += "-Inter-Zero-Ligand-Bias"
+                                        plotting_experiment = create_plotting_config(name=experiment_name, time_stamp=TIME_STAMP)
+                                        new_plotting_zero_ligand_bias.append(plotting_experiment)
+
 
                                     experiment_args = {**experiment_args, **copy.deepcopy(args_base), **args_bench_args}
                                     
@@ -422,7 +466,7 @@ def main():
     # Get the directory where this script is located
     script_dir = os.path.dirname(os.path.abspath(__file__))
 
-    for i, (config_name, configs_to_save) in enumerate(zip([EXPERIMENT_NAME, PROCESS_NAME, CASF_PLOT_NAME, OOD_PLOT_NAME], [new_experiments, new_processes, new_plotting_casf, new_plotting_OOD])):
+    for i, (config_name, configs_to_save) in enumerate(zip([EXPERIMENT_NAME, PROCESS_NAME, CASF_PLOT_NAME, OOD_PLOT_NAME, ZERO_PLOT_NAME], [new_experiments, new_processes, new_plotting_casf, new_plotting_OOD, new_plotting_zero_ligand_bias])):
         # Go up one level to the project root, then into config
         config_path = os.path.join(script_dir, "..", "config", config_name)
         
@@ -451,6 +495,19 @@ def main():
                     "stats_dir": "output/training_stats",
                     "predictions_dir": "output/predictions",
                     "file_name_tag": TIME_STAMP_OOD,
+                    "plots": {
+                        "bubble": BUBBLES,
+                        "metrics_over_epochs": METRICOEPOCH,
+                        "true_vs_predicted": TRUEVPRED 
+                    }
+                }
+            elif i == 4:
+                # Need a slightly different time stamp for 0 Ligand Bias to avoid overlapping file names
+                config = {
+                    "output_dir": "output/summary_plots",
+                    "stats_dir": "output/training_stats",
+                    "predictions_dir": "output/predictions",
+                    "file_name_tag": TIME_STAMP_ZERO,
                     "plots": {
                         "bubble": BUBBLES,
                         "metrics_over_epochs": METRICOEPOCH,
