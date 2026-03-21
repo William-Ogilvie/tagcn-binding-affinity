@@ -91,6 +91,7 @@ def main():
 
     df_train = pd.read_csv(zero_train_path)
     df_val = df_train.sample(frac=args.split_ratio, random_state=args.seed)
+    df_train = df_train.drop(df_val.index) 
     df_test = pd.read_csv(zero_test_path)
 
 

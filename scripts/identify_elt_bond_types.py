@@ -6,6 +6,8 @@ It will return a csv giving the number of each unique element and also the numbe
 
 Usage:
     python identify_elt_bond_types.py --processed_file data/PDBbind_minus_CASF_2016_processed.csv --output_dir data/graph_stats --output_tag PDBbind_train
+
+    python identify_elt_bond_types.py --processed_file data/Zero_Ligand_Bias_processed_train.csv --second_processed_file data/Zero_Ligand_Bias_processed_val.csv --output_dir data/graph_stats --output_tag Zero_Ligand_Bias_train
 """
 
 import argparse
