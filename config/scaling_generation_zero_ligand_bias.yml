@@ -1,0 +1,9 @@
+datasets:
+  - name: "Zero_Ligand_Bias"
+    dataset_paths: ["data/graphs/Zero_Ligand_Bias_train", "data/graphs/Zero_Ligand_Bias_val"]
+    output_dir: "data/scaling"
+    output_file_name: "Zero_Ligand_Bias_scaling"
+  - name: "Zero_Ligand_Bias_legacy"
+    dataset_paths: ["data/graphs/Zero_Ligand_Bias_legacy_train", "data/graphs/Zero_Ligand_Bias_legacy_val"]
+    output_dir: "data/scaling"
+    output_file_name: "Zero_Ligand_Bias_legacy_scaling"
