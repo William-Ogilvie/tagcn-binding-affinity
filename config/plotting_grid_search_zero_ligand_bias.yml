@@ -1,7 +1,7 @@
 output_dir: output/summary_plots
 stats_dir: output/training_stats
 predictions_dir: output/predictions
-file_name_tag: AEV-PLIG-OG-Zero-Ligand-Bias-20260322_182400
+file_name_tag: 'AEV-PLIG-OG-Zero-Ligand-Bias-20260322_182400'
 plots:
   bubble: true
   metrics_over_epochs: true
