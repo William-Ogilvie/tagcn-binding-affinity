@@ -1,6 +1,6 @@
 experiments:
 - name: GATv2-H-3-L-5-Dim-256-Inter-Zero-Ligand-Bias
-  run_id: '20260321_161700'
+  run_id: '20260322_175700'
   args:
     model: GATv2
     epochs: 300
@@ -40,7 +40,7 @@ experiments:
     save_training_stats_dir: output/training_stats
     plots_dir: output/plots_dir
 - name: GATv2-H-3-L-5-Dim-256-Intra-Zero-Ligand-Bias
-  run_id: '20260321_161700'
+  run_id: '20260322_175700'
   args:
     model: GATv2
     epochs: 300

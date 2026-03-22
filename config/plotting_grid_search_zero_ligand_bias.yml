@@ -1,13 +1,15 @@
 output_dir: output/summary_plots
 stats_dir: output/training_stats
 predictions_dir: output/predictions
-file_name_tag: '20260321_161900'
+file_name_tag: 'AEV-PLIG-Zero-Ligand-Bias'
 plots:
   bubble: true
   metrics_over_epochs: true
   true_vs_predicted: true
 experiments:
 - name: GATv2-H-3-L-5-Dim-256-Inter-Zero-Ligand-Bias
-  time_stamp: '20260321_161700'
+  time_stamp: '20260322_175700'
 - name: GATv2-H-3-L-5-Dim-256-Intra-Zero-Ligand-Bias
+  time_stamp: '20260322_175700'
+- name: TAGCN-Drop-0-2-K-3-L-5-Dim-256-Intra-Zero-Ligand-Bias
   time_stamp: '20260321_161700'

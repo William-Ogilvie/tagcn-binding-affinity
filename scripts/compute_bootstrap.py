@@ -258,6 +258,9 @@ def main():
         df = pd.DataFrame(confidence_intervals)
         df.to_csv(output_path, mode="a", index=False, header=not output_path.exists())
 
+if __name__ == "__main__":
+    main()
+
 
 
 
