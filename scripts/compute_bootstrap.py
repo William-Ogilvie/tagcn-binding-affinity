@@ -32,6 +32,7 @@ from pathlib import Path
 import numpy as np
 from scipy.stats import pearsonr, kendalltau
 import sys
+from tqdm import tqdm
 import yaml
 
 # Get the absolute path of the current script
@@ -157,8 +158,7 @@ def main():
     # Store a list of dicts for the confidence intervals and comparissions
     confidence_intervals = []
     comparisons = []
-
-    for experiment in config["experiments"]:
+    for experiment in tqdm(config["experiments"], desc="Running bootstrap computations", file=sys.stdout):
         seed = experiment["seed"]
         n_bootstraps = experiment["n_bootstraps"]
 
@@ -234,12 +234,12 @@ def main():
                 "pearson_97_5th_percentile": comparison_results["95_confint_pearson"][1],
                 "p_value_kendall": comparison_results["p_value_kendall"],
                 "mean_delta_kendall": comparison_results["mean_delta_kendall"],
-                "kendall_2_5th_percentile": comparison_results["95_confint_kendalls"][0],
-                "kendall_97_5th_percentile": comparison_results["95_confint_kendalls"][1],
+                "kendall_2_5th_percentile": comparison_results["95_confint_kendall"][0],
+                "kendall_97_5th_percentile": comparison_results["95_confint_kendall"][1],
                 "p_value_rmse": comparison_results["p_value_rmse"],
                 "mean_delta_rmse": comparison_results["mean_delta_rmse"],
-                "rmse_2_5th_percentile": comparison_results["95_confint_rmses"][0],
-                "rmse_97_5th_precentile": comparison_results["95_confint_rmses"][1]  
+                "rmse_2_5th_percentile": comparison_results["95_confint_rmse"][0],
+                "rmse_97_5th_precentile": comparison_results["95_confint_rmse"][1]  
             } 
             comparisons.append(tmp_dict)
 
