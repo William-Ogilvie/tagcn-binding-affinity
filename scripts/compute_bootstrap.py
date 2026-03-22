@@ -81,8 +81,8 @@ def bootstrap_comparison(m1_preds, m2_preds, targets, seed, n_bootstraps=10000):
         rho_m2 = pearsonr(m2_preds[idx], targets[idx])[0]
         tau_m1 = kendalltau(m1_preds[idx], targets[idx])[0]
         tau_m2 = kendalltau(m1_preds[idx], targets[idx])[0]
-        rmse_m1 = np.sqrt(np.mean(m1_preds[idx] - targets[idx]))
-        rmse_m2 = np.sqrt(np.mean(m2_preds[idx] - targets[idx])) 
+        rmse_m1 = np.sqrt(np.mean((m1_preds[idx] - targets[idx])**2))
+        rmse_m2 = np.sqrt(np.mean((m2_preds[idx] - targets[idx])**2)) 
         
         deltas_pearson.append(rho_m1 - rho_m2)
         deltas_kendall.append(tau_m1 - tau_m2)
@@ -125,7 +125,7 @@ def bootstrap_confint(preds, targets, seed, n_bootstraps=10000):
 
         rho = pearsonr(preds[idx], targets[idx])[0]
         tau = kendalltau(preds[idx], targets[idx])[0]
-        rmse = np.sqrt(np.mean(preds[idx] - targets[idx]))
+        rmse = np.sqrt(np.mean((preds[idx] - targets[idx])**2))
 
         pearsons.append(rho)
         kendalls.append(tau)
