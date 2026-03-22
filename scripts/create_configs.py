@@ -295,12 +295,26 @@ def main():
     models = ["TAGCN"]
     hidden_dim = [256, 512] # also tried [512]
     layers = [2, 5]
-    K_values = [1, 2, 3] # this means first layer K=2 second layer K=1
+    K_values = [1, 2, 3] 
     heads_values = [1, 1, 1]
     dropout_values = [0.0, 0.2]
     dropout_values_strings = ["0-0", "0-2"]
     weight_decay_values = [0.0, 0.0001]
     weight_decay_values_strings = ["0-0", "0-30-1"]
+    # The above worked!!!! we are able to match AEV-PLIG and even do slightly better 0.40 pearson and 0.25 kendalls tau
+    # timestamp is 20260321_161700
+    benchmarks = ["Zero-Ligand-Bias"]
+    graphs = ["inter", "intra"]
+    models = ["GATv2"]
+    hidden_dim = [256] # also tried [512]
+    layers = [5]
+    K_values = [3] 
+    heads_values = [3]
+    dropout_values = [0.0]
+    dropout_values_strings = ["0-0"]
+    weight_decay_values = [0.0]
+    weight_decay_values_strings = ["0-0"]
+    # We edited the above to use batchsize 32 and lr 1.03x10^{-4} as in supplemntary to AEV-PLIG
 
 
     # It is worth pre-defining the arguments for the different graphs and benchmarks
