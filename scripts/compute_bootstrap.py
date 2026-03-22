@@ -80,7 +80,7 @@ def bootstrap_comparison(m1_preds, m2_preds, targets, seed, n_bootstraps=10000):
         rho_m1 = pearsonr(m1_preds[idx], targets[idx])[0]
         rho_m2 = pearsonr(m2_preds[idx], targets[idx])[0]
         tau_m1 = kendalltau(m1_preds[idx], targets[idx])[0]
-        tau_m2 = kendalltau(m1_preds[idx], targets[idx])[0]
+        tau_m2 = kendalltau(m2_preds[idx], targets[idx])[0]
         rmse_m1 = np.sqrt(np.mean((m1_preds[idx] - targets[idx])**2))
         rmse_m2 = np.sqrt(np.mean((m2_preds[idx] - targets[idx])**2)) 
         
@@ -201,7 +201,7 @@ def main():
                 "kendall_2_5th_percentile": model_1_confint["95_confint_kendalls"][0],
                 "kendall_97_5th_percentile": model_1_confint["95_confint_kendalls"][1],
                 "rmse_2_5th_percentile": model_1_confint["95_confint_rmses"][0],
-                "rmse_97_5th_precentile": model_1_confint["95_confint_rmses"][1]  
+                "rmse_97_5th_percentile": model_1_confint["95_confint_rmses"][1]  
             }
             confidence_intervals.append(tmp_dict)
 
@@ -216,7 +216,7 @@ def main():
                 "kendall_2_5th_percentile": model_2_confint["95_confint_kendalls"][0],
                 "kendall_97_5th_percentile": model_2_confint["95_confint_kendalls"][1],
                 "rmse_2_5th_percentile": model_2_confint["95_confint_rmses"][0],
-                "rmse_97_5th_precentile": model_2_confint["95_confint_rmses"][1]  
+                "rmse_97_5th_percentile": model_2_confint["95_confint_rmses"][1]  
             }
             confidence_intervals.append(tmp_dict)
 
@@ -239,7 +239,7 @@ def main():
                 "p_value_rmse": comparison_results["p_value_rmse"],
                 "mean_delta_rmse": comparison_results["mean_delta_rmse"],
                 "rmse_2_5th_percentile": comparison_results["95_confint_rmse"][0],
-                "rmse_97_5th_precentile": comparison_results["95_confint_rmse"][1]  
+                "rmse_97_5th_percentile": comparison_results["95_confint_rmse"][1]  
             } 
             comparisons.append(tmp_dict)
 
