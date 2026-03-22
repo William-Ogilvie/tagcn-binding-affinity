@@ -255,7 +255,7 @@ def main():
 
         output_path = (bootstrap_dir / config["output_comparission"]).resolve()
 
-        df = pd.DataFrame(confidence_intervals)
+        df = pd.DataFrame(comparisons)
         df.to_csv(output_path, mode="a", index=False, header=not output_path.exists())
 
 if __name__ == "__main__":

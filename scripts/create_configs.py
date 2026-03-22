@@ -149,8 +149,8 @@ def main():
     # Args that remain constant:
     args_base = {
         "epochs": 300,
-        "batch_size": 128,
-        "lr": 0.001,
+        "batch_size": 32, # in our setup we use 128, traditional setup may have been 32 for AEV-PLIG see S1 of https://www.nature.com/articles/s42004-025-01428-y
+        "lr": 0.000103, # in our setup use 0.001 tradiational setup may have been 0.000103 for AEV-PLIG
         "early_stopping": 100, # this doesn't actually matter if you use the rolling metric
         "early_stopping_metric": "pearson_rolling",
         "activation_function": "leaky_relu",
@@ -290,31 +290,32 @@ def main():
     # weight_decay_values_strings = ["0-0", "0-30-1"]
     # The above kinda worked? timestampe = "20260319_140200"
     # We are now going to try running some of the models on zero ligand bias
-    benchmarks = ["Zero-Ligand-Bias"]
-    graphs = ["inter", "intra"]
-    models = ["TAGCN"]
-    hidden_dim = [256, 512] # also tried [512]
-    layers = [2, 5]
-    K_values = [1, 2, 3] 
-    heads_values = [1, 1, 1]
-    dropout_values = [0.0, 0.2]
-    dropout_values_strings = ["0-0", "0-2"]
-    weight_decay_values = [0.0, 0.0001]
-    weight_decay_values_strings = ["0-0", "0-30-1"]
+    # benchmarks = ["Zero-Ligand-Bias"]
+    # graphs = ["inter", "intra"]
+    # models = ["TAGCN"]
+    # hidden_dim = [256, 512] # also tried [512]
+    # layers = [2, 5]
+    # K_values = [1, 2, 3] 
+    # heads_values = [1, 1, 1]
+    # dropout_values = [0.0, 0.2]
+    # dropout_values_strings = ["0-0", "0-2"]
+    # weight_decay_values = [0.0, 0.0001]
+    # weight_decay_values_strings = ["0-0", "0-30-1"]
     # The above worked!!!! we are able to match AEV-PLIG and even do slightly better 0.40 pearson and 0.25 kendalls tau
     # timestamp is 20260321_161700
-    benchmarks = ["Zero-Ligand-Bias"]
+    benchmarks = ["CASF-16", "OOD-Test", "Zero-Ligand-Bias"]
     graphs = ["inter", "intra"]
-    models = ["GATv2"]
+    models = ["GATv2", "TAGCN"]
     hidden_dim = [256] # also tried [512]
     layers = [5]
     K_values = [3] 
     heads_values = [3]
-    dropout_values = [0.0]
-    dropout_values_strings = ["0-0"]
-    weight_decay_values = [0.0]
-    weight_decay_values_strings = ["0-0"]
+    dropout_values = [0.0, 0.2]
+    dropout_values_strings = ["0-0", "0-2"]
+    weight_decay_values = [0.0, 0.0001]
+    weight_decay_values_strings = ["0-0", "0-30-1"]
     # We edited the above to use batchsize 32 and lr 1.03x10^{-4} as in supplemntary to AEV-PLIG
+    # This is basically to test the original AEV-PLIG across all three benchmarks alongside our newer TAGCN model
 
 
     # It is worth pre-defining the arguments for the different graphs and benchmarks
