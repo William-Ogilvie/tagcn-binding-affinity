@@ -1,0 +1,9 @@
+experiments:
+- model_name_1: TAGCN-Drop-0-2-K-2-L-5-Dim-256-WD-0-30-1-Inter-Zero-Ligand-Bias
+  time_stamp_1: '20260321_161700'
+  model_name_2: ""
+  time_stamp_2: ""
+  confidence_interval: false
+  comparison: false 
+  metrics: ["RMSE", "Pearson", "Kendall"]
+  seed: 37
