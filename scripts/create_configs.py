@@ -17,11 +17,11 @@ BUBBLES = True
 TRUEVPRED = True
 METRICOEPOCH = True # metrics over epochs
 
-TIME_STAMP = "20260322_182400" 
+TIME_STAMP = "20260324_092900" 
 #"20260308_185500"
-TIME_STAMP_OOD = "20260322_182500" 
+TIME_STAMP_OOD = "20260324_093000" 
 #"20260308_185600"
-TIME_STAMP_ZERO = "20260322_182600"
+TIME_STAMP_ZERO = "20260324_093100"
 
 # - name: AEV-PLIG-Intra-Graphs-No-Scale-Rolling
 #   args:
@@ -149,8 +149,8 @@ def main():
     # Args that remain constant:
     args_base = {
         "epochs": 300,
-        "batch_size": 32, # in our setup we use 128, traditional setup may have been 32 for AEV-PLIG see S1 of https://www.nature.com/articles/s42004-025-01428-y
-        "lr": 0.000103, # in our setup use 0.001 tradiational setup may have been 0.000103 for AEV-PLIG
+        "batch_size": 128, # in our setup we use 128, traditional setup may have been 32 for AEV-PLIG see S1 of https://www.nature.com/articles/s42004-025-01428-y
+        "lr": 0.001, # in our setup use 0.001 tradiational setup may have been 0.000103 for AEV-PLIG
         "early_stopping": 100, # this doesn't actually matter if you use the rolling metric
         "early_stopping_metric": "pearson_rolling",
         "activation_function": "leaky_relu",
@@ -316,6 +316,8 @@ def main():
     weight_decay_values_strings = ["0-0", "0-30-1"]
     # We edited the above to use batchsize 32 and lr 1.03x10^{-4} as in supplemntary to AEV-PLIG
     # This is basically to test the original AEV-PLIG across all three benchmarks alongside our newer TAGCN model
+    # This sorta works and is under timestamp 20260322_182400
+    # we will re run with batch size 128 and lr 0.001 to see if results are better
 
 
     # It is worth pre-defining the arguments for the different graphs and benchmarks

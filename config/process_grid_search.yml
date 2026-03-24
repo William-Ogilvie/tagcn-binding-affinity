@@ -1,11 +1,11 @@
 experiments:
 - name: GATv2-H-3-L-5-Dim-256-Inter-CASF-2016
-  run_id: '20260322_182400'
+  run_id: '20260324_092900'
   args:
     model: GATv2
     epochs: 300
-    batch_size: 32
-    lr: 0.000103
+    batch_size: 128
+    lr: 0.001
     early_stopping: 100
     early_stopping_metric: pearson_rolling
     hidden_dim: 256
@@ -40,12 +40,12 @@ experiments:
     save_training_stats_dir: output/training_stats
     plots_dir: output/plots_dir
 - name: GATv2-H-3-L-5-Dim-256-WD-0-30-1-Inter-CASF-2016
-  run_id: '20260322_182400'
+  run_id: '20260324_092900'
   args:
     model: GATv2
     epochs: 300
-    batch_size: 32
-    lr: 0.000103
+    batch_size: 128
+    lr: 0.001
     early_stopping: 100
     early_stopping_metric: pearson_rolling
     hidden_dim: 256
@@ -80,12 +80,12 @@ experiments:
     save_training_stats_dir: output/training_stats
     plots_dir: output/plots_dir
 - name: GATv2-Drop-0-2-H-3-L-5-Dim-256-Inter-CASF-2016
-  run_id: '20260322_182400'
+  run_id: '20260324_092900'
   args:
     model: GATv2_v2
     epochs: 300
-    batch_size: 32
-    lr: 0.000103
+    batch_size: 128
+    lr: 0.001
     early_stopping: 100
     early_stopping_metric: pearson_rolling
     hidden_dim: 256
@@ -120,12 +120,12 @@ experiments:
     save_training_stats_dir: output/training_stats
     plots_dir: output/plots_dir
 - name: GATv2-Drop-0-2-H-3-L-5-Dim-256-WD-0-30-1-Inter-CASF-2016
-  run_id: '20260322_182400'
+  run_id: '20260324_092900'
   args:
     model: GATv2_v2
     epochs: 300
-    batch_size: 32
-    lr: 0.000103
+    batch_size: 128
+    lr: 0.001
     early_stopping: 100
     early_stopping_metric: pearson_rolling
     hidden_dim: 256
@@ -160,12 +160,12 @@ experiments:
     save_training_stats_dir: output/training_stats
     plots_dir: output/plots_dir
 - name: GATv2-H-3-L-5-Dim-256-Intra-CASF-2016
-  run_id: '20260322_182400'
+  run_id: '20260324_092900'
   args:
     model: GATv2
     epochs: 300
-    batch_size: 32
-    lr: 0.000103
+    batch_size: 128
+    lr: 0.001
     early_stopping: 100
     early_stopping_metric: pearson_rolling
     hidden_dim: 256
@@ -200,12 +200,12 @@ experiments:
     save_training_stats_dir: output/training_stats
     plots_dir: output/plots_dir
 - name: GATv2-H-3-L-5-Dim-256-WD-0-30-1-Intra-CASF-2016
-  run_id: '20260322_182400'
+  run_id: '20260324_092900'
   args:
     model: GATv2
     epochs: 300
-    batch_size: 32
-    lr: 0.000103
+    batch_size: 128
+    lr: 0.001
     early_stopping: 100
     early_stopping_metric: pearson_rolling
     hidden_dim: 256
@@ -240,12 +240,12 @@ experiments:
     save_training_stats_dir: output/training_stats
     plots_dir: output/plots_dir
 - name: GATv2-Drop-0-2-H-3-L-5-Dim-256-Intra-CASF-2016
-  run_id: '20260322_182400'
+  run_id: '20260324_092900'
   args:
     model: GATv2_v2
     epochs: 300
-    batch_size: 32
-    lr: 0.000103
+    batch_size: 128
+    lr: 0.001
     early_stopping: 100
     early_stopping_metric: pearson_rolling
     hidden_dim: 256
@@ -280,12 +280,12 @@ experiments:
     save_training_stats_dir: output/training_stats
     plots_dir: output/plots_dir
 - name: GATv2-Drop-0-2-H-3-L-5-Dim-256-WD-0-30-1-Intra-CASF-2016
-  run_id: '20260322_182400'
+  run_id: '20260324_092900'
   args:
     model: GATv2_v2
     epochs: 300
-    batch_size: 32
-    lr: 0.000103
+    batch_size: 128
+    lr: 0.001
     early_stopping: 100
     early_stopping_metric: pearson_rolling
     hidden_dim: 256
@@ -320,12 +320,12 @@ experiments:
     save_training_stats_dir: output/training_stats
     plots_dir: output/plots_dir
 - name: TAGCN-K-3-L-5-Dim-256-Inter-CASF-2016
-  run_id: '20260322_182400'
+  run_id: '20260324_092900'
   args:
     model: TAGCN
     epochs: 300
-    batch_size: 32
-    lr: 0.000103
+    batch_size: 128
+    lr: 0.001
     early_stopping: 100
     early_stopping_metric: pearson_rolling
     hidden_dim: 256
@@ -360,12 +360,12 @@ experiments:
     save_training_stats_dir: output/training_stats
     plots_dir: output/plots_dir
 - name: TAGCN-K-3-L-5-Dim-256-WD-0-30-1-Inter-CASF-2016
-  run_id: '20260322_182400'
+  run_id: '20260324_092900'
   args:
     model: TAGCN
     epochs: 300
-    batch_size: 32
-    lr: 0.000103
+    batch_size: 128
+    lr: 0.001
     early_stopping: 100
     early_stopping_metric: pearson_rolling
     hidden_dim: 256
@@ -400,12 +400,12 @@ experiments:
     save_training_stats_dir: output/training_stats
     plots_dir: output/plots_dir
 - name: TAGCN-Drop-0-2-K-3-L-5-Dim-256-Inter-CASF-2016
-  run_id: '20260322_182400'
+  run_id: '20260324_092900'
   args:
     model: TAGCN_v2
     epochs: 300
-    batch_size: 32
-    lr: 0.000103
+    batch_size: 128
+    lr: 0.001
     early_stopping: 100
     early_stopping_metric: pearson_rolling
     hidden_dim: 256
@@ -440,12 +440,12 @@ experiments:
     save_training_stats_dir: output/training_stats
     plots_dir: output/plots_dir
 - name: TAGCN-Drop-0-2-K-3-L-5-Dim-256-WD-0-30-1-Inter-CASF-2016
-  run_id: '20260322_182400'
+  run_id: '20260324_092900'
   args:
     model: TAGCN_v2
     epochs: 300
-    batch_size: 32
-    lr: 0.000103
+    batch_size: 128
+    lr: 0.001
     early_stopping: 100
     early_stopping_metric: pearson_rolling
     hidden_dim: 256
@@ -480,12 +480,12 @@ experiments:
     save_training_stats_dir: output/training_stats
     plots_dir: output/plots_dir
 - name: TAGCN-K-3-L-5-Dim-256-Intra-CASF-2016
-  run_id: '20260322_182400'
+  run_id: '20260324_092900'
   args:
     model: TAGCN
     epochs: 300
-    batch_size: 32
-    lr: 0.000103
+    batch_size: 128
+    lr: 0.001
     early_stopping: 100
     early_stopping_metric: pearson_rolling
     hidden_dim: 256
@@ -520,12 +520,12 @@ experiments:
     save_training_stats_dir: output/training_stats
     plots_dir: output/plots_dir
 - name: TAGCN-K-3-L-5-Dim-256-WD-0-30-1-Intra-CASF-2016
-  run_id: '20260322_182400'
+  run_id: '20260324_092900'
   args:
     model: TAGCN
     epochs: 300
-    batch_size: 32
-    lr: 0.000103
+    batch_size: 128
+    lr: 0.001
     early_stopping: 100
     early_stopping_metric: pearson_rolling
     hidden_dim: 256
@@ -560,12 +560,12 @@ experiments:
     save_training_stats_dir: output/training_stats
     plots_dir: output/plots_dir
 - name: TAGCN-Drop-0-2-K-3-L-5-Dim-256-Intra-CASF-2016
-  run_id: '20260322_182400'
+  run_id: '20260324_092900'
   args:
     model: TAGCN_v2
     epochs: 300
-    batch_size: 32
-    lr: 0.000103
+    batch_size: 128
+    lr: 0.001
     early_stopping: 100
     early_stopping_metric: pearson_rolling
     hidden_dim: 256
@@ -600,12 +600,12 @@ experiments:
     save_training_stats_dir: output/training_stats
     plots_dir: output/plots_dir
 - name: TAGCN-Drop-0-2-K-3-L-5-Dim-256-WD-0-30-1-Intra-CASF-2016
-  run_id: '20260322_182400'
+  run_id: '20260324_092900'
   args:
     model: TAGCN_v2
     epochs: 300
-    batch_size: 32
-    lr: 0.000103
+    batch_size: 128
+    lr: 0.001
     early_stopping: 100
     early_stopping_metric: pearson_rolling
     hidden_dim: 256
@@ -640,12 +640,12 @@ experiments:
     save_training_stats_dir: output/training_stats
     plots_dir: output/plots_dir
 - name: GATv2-H-3-L-5-Dim-256-Inter-OOD-Test
-  run_id: '20260322_182400'
+  run_id: '20260324_092900'
   args:
     model: GATv2
     epochs: 300
-    batch_size: 32
-    lr: 0.000103
+    batch_size: 128
+    lr: 0.001
     early_stopping: 100
     early_stopping_metric: pearson_rolling
     hidden_dim: 256
@@ -680,12 +680,12 @@ experiments:
     save_training_stats_dir: output/training_stats
     plots_dir: output/plots_dir
 - name: GATv2-H-3-L-5-Dim-256-WD-0-30-1-Inter-OOD-Test
-  run_id: '20260322_182400'
+  run_id: '20260324_092900'
   args:
     model: GATv2
     epochs: 300
-    batch_size: 32
-    lr: 0.000103
+    batch_size: 128
+    lr: 0.001
     early_stopping: 100
     early_stopping_metric: pearson_rolling
     hidden_dim: 256
@@ -720,12 +720,12 @@ experiments:
     save_training_stats_dir: output/training_stats
     plots_dir: output/plots_dir
 - name: GATv2-Drop-0-2-H-3-L-5-Dim-256-Inter-OOD-Test
-  run_id: '20260322_182400'
+  run_id: '20260324_092900'
   args:
     model: GATv2_v2
     epochs: 300
-    batch_size: 32
-    lr: 0.000103
+    batch_size: 128
+    lr: 0.001
     early_stopping: 100
     early_stopping_metric: pearson_rolling
     hidden_dim: 256
@@ -760,12 +760,12 @@ experiments:
     save_training_stats_dir: output/training_stats
     plots_dir: output/plots_dir
 - name: GATv2-Drop-0-2-H-3-L-5-Dim-256-WD-0-30-1-Inter-OOD-Test
-  run_id: '20260322_182400'
+  run_id: '20260324_092900'
   args:
     model: GATv2_v2
     epochs: 300
-    batch_size: 32
-    lr: 0.000103
+    batch_size: 128
+    lr: 0.001
     early_stopping: 100
     early_stopping_metric: pearson_rolling
     hidden_dim: 256
@@ -800,12 +800,12 @@ experiments:
     save_training_stats_dir: output/training_stats
     plots_dir: output/plots_dir
 - name: GATv2-H-3-L-5-Dim-256-Intra-OOD-Test
-  run_id: '20260322_182400'
+  run_id: '20260324_092900'
   args:
     model: GATv2
     epochs: 300
-    batch_size: 32
-    lr: 0.000103
+    batch_size: 128
+    lr: 0.001
     early_stopping: 100
     early_stopping_metric: pearson_rolling
     hidden_dim: 256
@@ -840,12 +840,12 @@ experiments:
     save_training_stats_dir: output/training_stats
     plots_dir: output/plots_dir
 - name: GATv2-H-3-L-5-Dim-256-WD-0-30-1-Intra-OOD-Test
-  run_id: '20260322_182400'
+  run_id: '20260324_092900'
   args:
     model: GATv2
     epochs: 300
-    batch_size: 32
-    lr: 0.000103
+    batch_size: 128
+    lr: 0.001
     early_stopping: 100
     early_stopping_metric: pearson_rolling
     hidden_dim: 256
@@ -880,12 +880,12 @@ experiments:
     save_training_stats_dir: output/training_stats
     plots_dir: output/plots_dir
 - name: GATv2-Drop-0-2-H-3-L-5-Dim-256-Intra-OOD-Test
-  run_id: '20260322_182400'
+  run_id: '20260324_092900'
   args:
     model: GATv2_v2
     epochs: 300
-    batch_size: 32
-    lr: 0.000103
+    batch_size: 128
+    lr: 0.001
     early_stopping: 100
     early_stopping_metric: pearson_rolling
     hidden_dim: 256
@@ -920,12 +920,12 @@ experiments:
     save_training_stats_dir: output/training_stats
     plots_dir: output/plots_dir
 - name: GATv2-Drop-0-2-H-3-L-5-Dim-256-WD-0-30-1-Intra-OOD-Test
-  run_id: '20260322_182400'
+  run_id: '20260324_092900'
   args:
     model: GATv2_v2
     epochs: 300
-    batch_size: 32
-    lr: 0.000103
+    batch_size: 128
+    lr: 0.001
     early_stopping: 100
     early_stopping_metric: pearson_rolling
     hidden_dim: 256
@@ -960,12 +960,12 @@ experiments:
     save_training_stats_dir: output/training_stats
     plots_dir: output/plots_dir
 - name: TAGCN-K-3-L-5-Dim-256-Inter-OOD-Test
-  run_id: '20260322_182400'
+  run_id: '20260324_092900'
   args:
     model: TAGCN
     epochs: 300
-    batch_size: 32
-    lr: 0.000103
+    batch_size: 128
+    lr: 0.001
     early_stopping: 100
     early_stopping_metric: pearson_rolling
     hidden_dim: 256
@@ -1000,12 +1000,12 @@ experiments:
     save_training_stats_dir: output/training_stats
     plots_dir: output/plots_dir
 - name: TAGCN-K-3-L-5-Dim-256-WD-0-30-1-Inter-OOD-Test
-  run_id: '20260322_182400'
+  run_id: '20260324_092900'
   args:
     model: TAGCN
     epochs: 300
-    batch_size: 32
-    lr: 0.000103
+    batch_size: 128
+    lr: 0.001
     early_stopping: 100
     early_stopping_metric: pearson_rolling
     hidden_dim: 256
@@ -1040,12 +1040,12 @@ experiments:
     save_training_stats_dir: output/training_stats
     plots_dir: output/plots_dir
 - name: TAGCN-Drop-0-2-K-3-L-5-Dim-256-Inter-OOD-Test
-  run_id: '20260322_182400'
+  run_id: '20260324_092900'
   args:
     model: TAGCN_v2
     epochs: 300
-    batch_size: 32
-    lr: 0.000103
+    batch_size: 128
+    lr: 0.001
     early_stopping: 100
     early_stopping_metric: pearson_rolling
     hidden_dim: 256
@@ -1080,12 +1080,12 @@ experiments:
     save_training_stats_dir: output/training_stats
     plots_dir: output/plots_dir
 - name: TAGCN-Drop-0-2-K-3-L-5-Dim-256-WD-0-30-1-Inter-OOD-Test
-  run_id: '20260322_182400'
+  run_id: '20260324_092900'
   args:
     model: TAGCN_v2
     epochs: 300
-    batch_size: 32
-    lr: 0.000103
+    batch_size: 128
+    lr: 0.001
     early_stopping: 100
     early_stopping_metric: pearson_rolling
     hidden_dim: 256
@@ -1120,12 +1120,12 @@ experiments:
     save_training_stats_dir: output/training_stats
     plots_dir: output/plots_dir
 - name: TAGCN-K-3-L-5-Dim-256-Intra-OOD-Test
-  run_id: '20260322_182400'
+  run_id: '20260324_092900'
   args:
     model: TAGCN
     epochs: 300
-    batch_size: 32
-    lr: 0.000103
+    batch_size: 128
+    lr: 0.001
     early_stopping: 100
     early_stopping_metric: pearson_rolling
     hidden_dim: 256
@@ -1160,12 +1160,12 @@ experiments:
     save_training_stats_dir: output/training_stats
     plots_dir: output/plots_dir
 - name: TAGCN-K-3-L-5-Dim-256-WD-0-30-1-Intra-OOD-Test
-  run_id: '20260322_182400'
+  run_id: '20260324_092900'
   args:
     model: TAGCN
     epochs: 300
-    batch_size: 32
-    lr: 0.000103
+    batch_size: 128
+    lr: 0.001
     early_stopping: 100
     early_stopping_metric: pearson_rolling
     hidden_dim: 256
@@ -1200,12 +1200,12 @@ experiments:
     save_training_stats_dir: output/training_stats
     plots_dir: output/plots_dir
 - name: TAGCN-Drop-0-2-K-3-L-5-Dim-256-Intra-OOD-Test
-  run_id: '20260322_182400'
+  run_id: '20260324_092900'
   args:
     model: TAGCN_v2
     epochs: 300
-    batch_size: 32
-    lr: 0.000103
+    batch_size: 128
+    lr: 0.001
     early_stopping: 100
     early_stopping_metric: pearson_rolling
     hidden_dim: 256
@@ -1240,12 +1240,12 @@ experiments:
     save_training_stats_dir: output/training_stats
     plots_dir: output/plots_dir
 - name: TAGCN-Drop-0-2-K-3-L-5-Dim-256-WD-0-30-1-Intra-OOD-Test
-  run_id: '20260322_182400'
+  run_id: '20260324_092900'
   args:
     model: TAGCN_v2
     epochs: 300
-    batch_size: 32
-    lr: 0.000103
+    batch_size: 128
+    lr: 0.001
     early_stopping: 100
     early_stopping_metric: pearson_rolling
     hidden_dim: 256
@@ -1280,12 +1280,12 @@ experiments:
     save_training_stats_dir: output/training_stats
     plots_dir: output/plots_dir
 - name: GATv2-H-3-L-5-Dim-256-Inter-Zero-Ligand-Bias
-  run_id: '20260322_182400'
+  run_id: '20260324_092900'
   args:
     model: GATv2
     epochs: 300
-    batch_size: 32
-    lr: 0.000103
+    batch_size: 128
+    lr: 0.001
     early_stopping: 100
     early_stopping_metric: pearson_rolling
     hidden_dim: 256
@@ -1320,12 +1320,12 @@ experiments:
     save_training_stats_dir: output/training_stats
     plots_dir: output/plots_dir
 - name: GATv2-H-3-L-5-Dim-256-WD-0-30-1-Inter-Zero-Ligand-Bias
-  run_id: '20260322_182400'
+  run_id: '20260324_092900'
   args:
     model: GATv2
     epochs: 300
-    batch_size: 32
-    lr: 0.000103
+    batch_size: 128
+    lr: 0.001
     early_stopping: 100
     early_stopping_metric: pearson_rolling
     hidden_dim: 256
@@ -1360,12 +1360,12 @@ experiments:
     save_training_stats_dir: output/training_stats
     plots_dir: output/plots_dir
 - name: GATv2-Drop-0-2-H-3-L-5-Dim-256-Inter-Zero-Ligand-Bias
-  run_id: '20260322_182400'
+  run_id: '20260324_092900'
   args:
     model: GATv2_v2
     epochs: 300
-    batch_size: 32
-    lr: 0.000103
+    batch_size: 128
+    lr: 0.001
     early_stopping: 100
     early_stopping_metric: pearson_rolling
     hidden_dim: 256
@@ -1400,12 +1400,12 @@ experiments:
     save_training_stats_dir: output/training_stats
     plots_dir: output/plots_dir
 - name: GATv2-Drop-0-2-H-3-L-5-Dim-256-WD-0-30-1-Inter-Zero-Ligand-Bias
-  run_id: '20260322_182400'
+  run_id: '20260324_092900'
   args:
     model: GATv2_v2
     epochs: 300
-    batch_size: 32
-    lr: 0.000103
+    batch_size: 128
+    lr: 0.001
     early_stopping: 100
     early_stopping_metric: pearson_rolling
     hidden_dim: 256
@@ -1440,12 +1440,12 @@ experiments:
     save_training_stats_dir: output/training_stats
     plots_dir: output/plots_dir
 - name: GATv2-H-3-L-5-Dim-256-Intra-Zero-Ligand-Bias
-  run_id: '20260322_182400'
+  run_id: '20260324_092900'
   args:
     model: GATv2
     epochs: 300
-    batch_size: 32
-    lr: 0.000103
+    batch_size: 128
+    lr: 0.001
     early_stopping: 100
     early_stopping_metric: pearson_rolling
     hidden_dim: 256
@@ -1480,12 +1480,12 @@ experiments:
     save_training_stats_dir: output/training_stats
     plots_dir: output/plots_dir
 - name: GATv2-H-3-L-5-Dim-256-WD-0-30-1-Intra-Zero-Ligand-Bias
-  run_id: '20260322_182400'
+  run_id: '20260324_092900'
   args:
     model: GATv2
     epochs: 300
-    batch_size: 32
-    lr: 0.000103
+    batch_size: 128
+    lr: 0.001
     early_stopping: 100
     early_stopping_metric: pearson_rolling
     hidden_dim: 256
@@ -1520,12 +1520,12 @@ experiments:
     save_training_stats_dir: output/training_stats
     plots_dir: output/plots_dir
 - name: GATv2-Drop-0-2-H-3-L-5-Dim-256-Intra-Zero-Ligand-Bias
-  run_id: '20260322_182400'
+  run_id: '20260324_092900'
   args:
     model: GATv2_v2
     epochs: 300
-    batch_size: 32
-    lr: 0.000103
+    batch_size: 128
+    lr: 0.001
     early_stopping: 100
     early_stopping_metric: pearson_rolling
     hidden_dim: 256
@@ -1560,12 +1560,12 @@ experiments:
     save_training_stats_dir: output/training_stats
     plots_dir: output/plots_dir
 - name: GATv2-Drop-0-2-H-3-L-5-Dim-256-WD-0-30-1-Intra-Zero-Ligand-Bias
-  run_id: '20260322_182400'
+  run_id: '20260324_092900'
   args:
     model: GATv2_v2
     epochs: 300
-    batch_size: 32
-    lr: 0.000103
+    batch_size: 128
+    lr: 0.001
     early_stopping: 100
     early_stopping_metric: pearson_rolling
     hidden_dim: 256
@@ -1600,12 +1600,12 @@ experiments:
     save_training_stats_dir: output/training_stats
     plots_dir: output/plots_dir
 - name: TAGCN-K-3-L-5-Dim-256-Inter-Zero-Ligand-Bias
-  run_id: '20260322_182400'
+  run_id: '20260324_092900'
   args:
     model: TAGCN
     epochs: 300
-    batch_size: 32
-    lr: 0.000103
+    batch_size: 128
+    lr: 0.001
     early_stopping: 100
     early_stopping_metric: pearson_rolling
     hidden_dim: 256
@@ -1640,12 +1640,12 @@ experiments:
     save_training_stats_dir: output/training_stats
     plots_dir: output/plots_dir
 - name: TAGCN-K-3-L-5-Dim-256-WD-0-30-1-Inter-Zero-Ligand-Bias
-  run_id: '20260322_182400'
+  run_id: '20260324_092900'
   args:
     model: TAGCN
     epochs: 300
-    batch_size: 32
-    lr: 0.000103
+    batch_size: 128
+    lr: 0.001
     early_stopping: 100
     early_stopping_metric: pearson_rolling
     hidden_dim: 256
@@ -1680,12 +1680,12 @@ experiments:
     save_training_stats_dir: output/training_stats
     plots_dir: output/plots_dir
 - name: TAGCN-Drop-0-2-K-3-L-5-Dim-256-Inter-Zero-Ligand-Bias
-  run_id: '20260322_182400'
+  run_id: '20260324_092900'
   args:
     model: TAGCN_v2
     epochs: 300
-    batch_size: 32
-    lr: 0.000103
+    batch_size: 128
+    lr: 0.001
     early_stopping: 100
     early_stopping_metric: pearson_rolling
     hidden_dim: 256
@@ -1720,12 +1720,12 @@ experiments:
     save_training_stats_dir: output/training_stats
     plots_dir: output/plots_dir
 - name: TAGCN-Drop-0-2-K-3-L-5-Dim-256-WD-0-30-1-Inter-Zero-Ligand-Bias
-  run_id: '20260322_182400'
+  run_id: '20260324_092900'
   args:
     model: TAGCN_v2
     epochs: 300
-    batch_size: 32
-    lr: 0.000103
+    batch_size: 128
+    lr: 0.001
     early_stopping: 100
     early_stopping_metric: pearson_rolling
     hidden_dim: 256
@@ -1760,12 +1760,12 @@ experiments:
     save_training_stats_dir: output/training_stats
     plots_dir: output/plots_dir
 - name: TAGCN-K-3-L-5-Dim-256-Intra-Zero-Ligand-Bias
-  run_id: '20260322_182400'
+  run_id: '20260324_092900'
   args:
     model: TAGCN
     epochs: 300
-    batch_size: 32
-    lr: 0.000103
+    batch_size: 128
+    lr: 0.001
     early_stopping: 100
     early_stopping_metric: pearson_rolling
     hidden_dim: 256
@@ -1800,12 +1800,12 @@ experiments:
     save_training_stats_dir: output/training_stats
     plots_dir: output/plots_dir
 - name: TAGCN-K-3-L-5-Dim-256-WD-0-30-1-Intra-Zero-Ligand-Bias
-  run_id: '20260322_182400'
+  run_id: '20260324_092900'
   args:
     model: TAGCN
     epochs: 300
-    batch_size: 32
-    lr: 0.000103
+    batch_size: 128
+    lr: 0.001
     early_stopping: 100
     early_stopping_metric: pearson_rolling
     hidden_dim: 256
@@ -1840,12 +1840,12 @@ experiments:
     save_training_stats_dir: output/training_stats
     plots_dir: output/plots_dir
 - name: TAGCN-Drop-0-2-K-3-L-5-Dim-256-Intra-Zero-Ligand-Bias
-  run_id: '20260322_182400'
+  run_id: '20260324_092900'
   args:
     model: TAGCN_v2
     epochs: 300
-    batch_size: 32
-    lr: 0.000103
+    batch_size: 128
+    lr: 0.001
     early_stopping: 100
     early_stopping_metric: pearson_rolling
     hidden_dim: 256
@@ -1880,12 +1880,12 @@ experiments:
     save_training_stats_dir: output/training_stats
     plots_dir: output/plots_dir
 - name: TAGCN-Drop-0-2-K-3-L-5-Dim-256-WD-0-30-1-Intra-Zero-Ligand-Bias
-  run_id: '20260322_182400'
+  run_id: '20260324_092900'
   args:
     model: TAGCN_v2
     epochs: 300
-    batch_size: 32
-    lr: 0.000103
+    batch_size: 128
+    lr: 0.001
     early_stopping: 100
     early_stopping_metric: pearson_rolling
     hidden_dim: 256
