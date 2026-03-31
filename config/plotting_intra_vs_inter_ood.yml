@@ -1,0 +1,19 @@
+output_dir: output/summary_plots
+stats_dir: output/training_stats
+predictions_dir: output/predictions
+file_name_tag: 'Intra_vs_Inter_OOD'
+plots:
+  bubble: true
+  metrics_over_epochs: false
+  true_vs_predicted: true
+  bubble_labels: false
+experiments:
+
+- name: GATv2-H-3-L-5-Dim-256-Inter-OOD-Test
+  time_stamp: '20260324_092900'
+- name: GATv2-H-3-L-5-Dim-256-Intra-OOD-Test
+  time_stamp: '20260324_092900'
+- name: TAGCN-K-3-L-5-Dim-256-Inter-OOD-Test
+  time_stamp: '20260324_092900'
+- name: TAGCN-K-3-L-5-Dim-256-Intra-OOD-Test
+  time_stamp: '20260324_092900'

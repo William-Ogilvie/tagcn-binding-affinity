@@ -24,10 +24,10 @@ project_root = script_path.parent.parent
 
 def parse_args():
     parser = argparse.ArgumentParser(description="Generate plots from training statistics.")
-    parser.add_argument("--config_path", type=str, required=True, help="Relative path to the plotting config file.")
+    parser.add_argument("--config_path", type=str, required=True, help="Relative path to the plotting config file.") 
     return parser.parse_args()
 
-def plot_bubble(experiments_config, stats_dir, output_dir, file_name_tag, type_x, type_x_name, type_y, type_y_name, training_time):
+def plot_bubble(experiments_config, stats_dir, output_dir, file_name_tag, type_x, type_x_name, type_y, type_y_name, training_time, label_points=True):
     """
     Generates a bubble plot comparing experiments, does one both with training_time for size and another with a fixed size.
     X-axis: type_x (function parameter)
@@ -77,17 +77,18 @@ def plot_bubble(experiments_config, stats_dir, output_dir, file_name_tag, type_x
         )
 
         # Label points
-        for line in range(0, plot_df.shape[0]):
-            plt.text(
-                plot_df.iloc[line][type_x], 
-                plot_df.iloc[line][type_y], 
-                plot_df.iloc[line]["experiment_name"],
-                plot_df.iloc[line]["training_time_seconds"], 
-                horizontalalignment='center', 
-                size='small', 
-                color='black', 
-                weight='semibold'
-            )
+        if label_points:
+            for line in range(0, plot_df.shape[0]):
+                plt.text(
+                    plot_df.iloc[line][type_x], 
+                    plot_df.iloc[line][type_y], 
+                    plot_df.iloc[line]["experiment_name"],
+                    plot_df.iloc[line]["training_time_seconds"], 
+                    horizontalalignment='center', 
+                    size='small', 
+                    color='black', 
+                    weight='semibold'
+                )
 
         plt.title(f"Model Comparison: {type_x_name} vs {type_y_name}", fontsize=16)
         plt.xlabel(f"{type_x_name}", fontsize=12)
@@ -115,16 +116,17 @@ def plot_bubble(experiments_config, stats_dir, output_dir, file_name_tag, type_x
         )
 
         # Label points
-        for line in range(0, plot_df.shape[0]):
-            plt.text(
-                plot_df.iloc[line][type_x], 
-                plot_df.iloc[line][type_y], 
-                plot_df.iloc[line]["experiment_name"], 
-                horizontalalignment='center', 
-                size='small', 
-                color='black', 
-                weight='semibold'
-            )
+        if label_points:
+            for line in range(0, plot_df.shape[0]):
+                plt.text(
+                    plot_df.iloc[line][type_x], 
+                    plot_df.iloc[line][type_y], 
+                    plot_df.iloc[line]["experiment_name"], 
+                    horizontalalignment='center', 
+                    size='small', 
+                    color='black', 
+                    weight='semibold'
+                )
 
         plt.title(f"Model Comparison: {type_x_name} vs {type_y_name}", fontsize=16)
         plt.xlabel(f"{type_x_name}", fontsize=12)
@@ -280,9 +282,10 @@ def main():
 
     # Check which plots to generate
     if config["plots"].get("bubble", False):
-        plot_bubble(experiments_config=config["experiments"], stats_dir=stats_dir, output_dir=output_dir, file_name_tag=file_name_tag, type_y="test_set_rmse", type_y_name="Test Set RMSE", type_x="test_set_pearson", type_x_name="Test Set Pearson", training_time=False)
-        plot_bubble(experiments_config=config["experiments"], stats_dir=stats_dir, output_dir=output_dir, file_name_tag=file_name_tag, type_y="test_set_rmse", type_y_name="Test Set RMSE", type_x="test_set_kendall", type_x_name="Test Set Kendall", training_time=False)
-        plot_bubble(experiments_config=config["experiments"], stats_dir=stats_dir, output_dir=output_dir, file_name_tag=file_name_tag, type_x="test_set_pearson", type_x_name="Test Set Pearson", type_y="test_set_kendall", type_y_name="Test Set Kendall", training_time=False)
+        label_points = config["plots"].get("bubble_labels", True)
+        plot_bubble(experiments_config=config["experiments"], stats_dir=stats_dir, output_dir=output_dir, file_name_tag=file_name_tag, type_y="test_set_rmse", type_y_name="Test Set RMSE", type_x="test_set_pearson", type_x_name="Test Set Pearson", training_time=False, label_points=label_points)
+        plot_bubble(experiments_config=config["experiments"], stats_dir=stats_dir, output_dir=output_dir, file_name_tag=file_name_tag, type_y="test_set_rmse", type_y_name="Test Set RMSE", type_x="test_set_kendall", type_x_name="Test Set Kendall", training_time=False, label_points=label_points)
+        plot_bubble(experiments_config=config["experiments"], stats_dir=stats_dir, output_dir=output_dir, file_name_tag=file_name_tag, type_x="test_set_pearson", type_x_name="Test Set Pearson", type_y="test_set_kendall", type_y_name="Test Set Kendall", training_time=False, label_points=label_points)
         
         
     if config["plots"].get("metrics_over_epochs", False):

@@ -23,7 +23,7 @@ experiments:
   n_bootstraps: 10000
 
 Usage:
-    python compute_bootstrap --config_path config/bootstrap_config.yml
+    python compute_bootstrap.py --config_path config/bootstrap_config.yml
 """
 
 import argparse
@@ -62,7 +62,7 @@ def parse_args():
 
 def bootstrap_comparison(m1_preds, m2_preds, targets, seed, n_bootstraps=10000):
     """ Performs the computations for the hypothesis test found in: https://www.nature.com/articles/s42004-025-01428-y. Comparing
-    the performance metrics of two models. 
+    the performance metrics of two models. Null hypothesis is that model 2 is better than model 1, we get significance if that is not the case. 
     """ 
     
     np.random.seed(seed=seed)
@@ -133,12 +133,20 @@ def bootstrap_confint(preds, targets, seed, n_bootstraps=10000):
 
     pearsons = np.array(pearsons)
     kendalls = np.array(kendalls)
-    rmses = np.array(rmses)    
+    rmses = np.array(rmses)
+
+    # Also compute the pearson, kendalls tau and RMSE 
+    rho_og = pearsonr(preds, targets)[0]
+    tau_og = kendalltau(preds, targets)[0]
+    rmse_og = np.sqrt(np.mean((preds - targets)**2))    
 
     return_dict = {
         "95_confint_pearson": np.percentile(pearsons, [2.5, 97.5]),
+        "pearson_original": rho_og,
         "95_confint_kendalls": np.percentile(kendalls, [2.5, 97.5]),
-        "95_confint_rmses": np.percentile(rmses, [2.5, 97.5])
+        "kendall_original": tau_og,
+        "95_confint_rmses": np.percentile(rmses, [2.5, 97.5]),
+        "rmse_original": rmse_og
     }
 
     return return_dict
@@ -196,10 +204,13 @@ def main():
             tmp_dict = {
                 "timestamp": timestamp_1,
                 "experiment_name": model_name_1,
+                "pearson_original": model_1_confint["pearson_original"],
                 "pearson_2_5th_percentile": model_1_confint["95_confint_pearson"][0],
                 "pearson_97_5th_percentile": model_1_confint["95_confint_pearson"][1],
+                "kendall_original": model_1_confint["kendall_original"],  
                 "kendall_2_5th_percentile": model_1_confint["95_confint_kendalls"][0],
                 "kendall_97_5th_percentile": model_1_confint["95_confint_kendalls"][1],
+                "rmse_original": model_1_confint["rmse_original"], 
                 "rmse_2_5th_percentile": model_1_confint["95_confint_rmses"][0],
                 "rmse_97_5th_percentile": model_1_confint["95_confint_rmses"][1]  
             }
@@ -211,10 +222,13 @@ def main():
             tmp_dict = {
                 "timestamp": timestamp_2,
                 "experiment_name": model_name_2,
+                "pearson_original": model_2_confint["pearson_original"],
                 "pearson_2_5th_percentile": model_2_confint["95_confint_pearson"][0],
                 "pearson_97_5th_percentile": model_2_confint["95_confint_pearson"][1],
+                "kendall_original": model_2_confint["kendall_original"],   
                 "kendall_2_5th_percentile": model_2_confint["95_confint_kendalls"][0],
                 "kendall_97_5th_percentile": model_2_confint["95_confint_kendalls"][1],
+                "rmse_original": model_2_confint["rmse_original"],  
                 "rmse_2_5th_percentile": model_2_confint["95_confint_rmses"][0],
                 "rmse_97_5th_percentile": model_2_confint["95_confint_rmses"][1]  
             }
