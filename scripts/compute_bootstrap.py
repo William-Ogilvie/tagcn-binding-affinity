@@ -30,6 +30,7 @@ import argparse
 import pandas as pd
 from pathlib import Path
 import numpy as np
+from scipy.stats import bootstrap
 from scipy.stats import pearsonr, kendalltau
 import sys
 from tqdm import tqdm
@@ -59,6 +60,41 @@ def parse_args():
         help="Relative path to the config."
     )     
     return parser.parse_args()
+
+def pearson(x, y):
+    return pearsonr(x, y)[0]
+
+def kendall(x, y):
+    return kendalltau(x, y)[0]
+
+def rmse(x, y):
+    return np.sqrt(np.mean((x-y)**2))
+
+def bootstrap_confint(preds, targets, seed, n_bootstraps=10000):
+    """ compute bootstrap confidence intervals for all three performance metrics 
+    """
+    data = (preds, targets)
+
+    pearsons_bca = bootstrap(data=data, statistic=pearson, confidence_level=0.95, method="BCa", paired=True, random_state=seed, n_resamples=n_bootstraps)
+    kendalls_bca = bootstrap(data=data, statistic=kendall, confidence_level=0.95, method="BCa", paired=True, random_state=seed, n_resamples=n_bootstraps)
+    rmse_bca = bootstrap(data=data, statistic=rmse, confidence_level=0.95, method="BCa", paired=True, random_state=seed, n_resamples=n_bootstraps)
+    
+
+    # Also compute the pearson, kendalls tau and RMSE 
+    rho_og = pearson(preds, targets)
+    tau_og = kendall(preds, targets)
+    rmse_og = rmse(preds, targets)    
+
+    return_dict = {
+        "95_confint_pearson": (pearsons_bca.confidence_interval.low, pearsons_bca.confidence_interval.high),
+        "pearson_original": rho_og,
+        "95_confint_kendalls": (kendalls_bca.confidence_interval.low, kendalls_bca.confidence_interval.high),
+        "kendall_original": tau_og,
+        "95_confint_rmses": (rmse_bca.confidence_interval.low, rmse_bca.confidence_interval.high),
+        "rmse_original": rmse_og
+    }
+
+    return return_dict
 
 def bootstrap_comparison(m1_preds, m2_preds, targets, seed, n_bootstraps=10000):
     """ Performs the computations for the hypothesis test found in: https://www.nature.com/articles/s42004-025-01428-y. Comparing
@@ -110,42 +146,28 @@ def bootstrap_comparison(m1_preds, m2_preds, targets, seed, n_bootstraps=10000):
     
     return return_dict 
 
+
 def bootstrap_confint(preds, targets, seed, n_bootstraps=10000):
     """ compute bootstrap confidence intervals for all three performance metrics 
     """
-    np.random.seed(seed=seed)
-    pearsons = []
-    kendalls = []
-    rmses = []
-    n = len(targets)
+    data = (preds, targets)
 
-    for _ in range(n_bootstraps):
-        # Sample indicies with replacement
-        idx = np.random.choice(n, n, replace=True)
-
-        rho = pearsonr(preds[idx], targets[idx])[0]
-        tau = kendalltau(preds[idx], targets[idx])[0]
-        rmse = np.sqrt(np.mean((preds[idx] - targets[idx])**2))
-
-        pearsons.append(rho)
-        kendalls.append(tau)
-        rmses.append(rmse)
-
-    pearsons = np.array(pearsons)
-    kendalls = np.array(kendalls)
-    rmses = np.array(rmses)
+    pearsons_bca = bootstrap(data=data, statistic=pearson, confidence_level=0.95, method="BCa", paired=True, random_state=seed, n_resamples=n_bootstraps)
+    kendalls_bca = bootstrap(data=data, statistic=kendall, confidence_level=0.95, method="BCa", paired=True, random_state=seed, n_resamples=n_bootstraps)
+    rmse_bca = bootstrap(data=data, statistic=rmse, confidence_level=0.95, method="BCa", paired=True, random_state=seed, n_resamples=n_bootstraps)
+    
 
     # Also compute the pearson, kendalls tau and RMSE 
-    rho_og = pearsonr(preds, targets)[0]
-    tau_og = kendalltau(preds, targets)[0]
-    rmse_og = np.sqrt(np.mean((preds - targets)**2))    
+    rho_og = pearson(preds, targets)
+    tau_og = kendall(preds, targets)
+    rmse_og = rmse(preds, targets)    
 
     return_dict = {
-        "95_confint_pearson": np.percentile(pearsons, [2.5, 97.5]),
+        "95_confint_pearson": (pearsons_bca.confidence_interval.low, pearsons_bca.confidence_interval.high),
         "pearson_original": rho_og,
-        "95_confint_kendalls": np.percentile(kendalls, [2.5, 97.5]),
+        "95_confint_kendalls": (kendalls_bca.confidence_interval.low, kendalls_bca.confidence_interval.high),
         "kendall_original": tau_og,
-        "95_confint_rmses": np.percentile(rmses, [2.5, 97.5]),
+        "95_confint_rmses": (rmse_bca.confidence_interval.low, rmse_bca.confidence_interval.high),
         "rmse_original": rmse_og
     }
 
