@@ -49,4 +49,4 @@ dependencies:
 # git clean -fdx
 # Finally you will need to install tagcn-bind, to do this run:
 # pip install -e . 
-# inside the project root
+# inside the project root 

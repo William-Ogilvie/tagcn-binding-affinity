@@ -7,13 +7,18 @@ plots:
   metrics_over_epochs: false
   true_vs_predicted: true
   bubble_labels: false
+  alternate_labels: true
 experiments:
 
 - name: GATv2-H-3-L-5-Dim-256-Inter-OOD-Test
+  alternate_label: GATv2-Inter-OOD-Test
   time_stamp: '20260324_092900'
 - name: GATv2-H-3-L-5-Dim-256-Intra-OOD-Test
+  alternate_label: GATv2-Intra-OOD-Test
   time_stamp: '20260324_092900'
 - name: TAGCN-K-3-L-5-Dim-256-Inter-OOD-Test
+  alternate_label: TAGCN-Inter-OOD-Test
   time_stamp: '20260324_092900'
 - name: TAGCN-K-3-L-5-Dim-256-Intra-OOD-Test
+  alternate_label: TAGCN-Intra-OOD-Test
   time_stamp: '20260324_092900'

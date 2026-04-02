@@ -27,7 +27,7 @@ def parse_args():
     parser.add_argument("--config_path", type=str, required=True, help="Relative path to the plotting config file.") 
     return parser.parse_args()
 
-def plot_bubble(experiments_config, stats_dir, output_dir, file_name_tag, type_x, type_x_name, type_y, type_y_name, training_time, label_points=True):
+def plot_bubble(experiments_config, stats_dir, output_dir, file_name_tag, type_x, type_x_name, type_y, type_y_name, training_time, label_points=True, alternate_labels=False, bootstrap_bars=False):
     """
     Generates a bubble plot comparing experiments, does one both with training_time for size and another with a fixed size.
     X-axis: type_x (function parameter)
@@ -53,6 +53,28 @@ def plot_bubble(experiments_config, stats_dir, output_dir, file_name_tag, type_x
     mask = df.apply(lambda x: (x["experiment_name"], str(x["timestamp"])) in target_experiments, axis=1)
     plot_df = df[mask].copy()
 
+    # Map experiment_name and timestamp to plot_labels
+    label_map = {}
+    for exp in experiments_config:
+        name = exp["name"]
+        ts = str(exp["time_stamp"])
+        label_map[(name, ts)] = exp.get("alternate_label", name) if alternate_labels else name
+
+    plot_df["plot_labels"] = plot_df.apply(
+        lambda x: label_map.get((x["experiment_name"], str(x["timestamp"])), x["experiment_name"]), 
+        axis=1
+    )
+
+    if bootstrap_bars:
+        bootstrap_path = project_root / "output" / "bootstrap" / "bootstrap_stats_confint.csv"
+        if bootstrap_path.exists():
+            boot_df = pd.read_csv(bootstrap_path)
+            boot_df["timestamp"] = boot_df["timestamp"].astype(str)
+            plot_df = plot_df.merge(boot_df, on=["experiment_name", "timestamp"], how="left")
+        else:
+            print(f"Warning: {bootstrap_path} not found. Skipping bootstrap bars.")
+            bootstrap_bars = False
+
     if plot_df.empty:
         print("No matching experiments found in training_stats.csv for bubble plot.")
         return
@@ -69,28 +91,51 @@ def plot_bubble(experiments_config, stats_dir, output_dir, file_name_tag, type_x
             data=plot_df,
             x=type_x,
             y=type_y,
-            hue="experiment_name", 
+            hue="plot_labels", 
             size="training_time_seconds",
             sizes=(100, 1000),
             alpha=0.7,
             palette="viridis"
         )
 
+        if bootstrap_bars:
+            metric_map = {"test_set_pearson": "pearson", "test_set_kendall": "kendall", "test_set_rmse": "rmse"}
+            x_prefix = metric_map.get(type_x)
+            y_prefix = metric_map.get(type_y)
+            
+            xerr, yerr = None, None
+            if x_prefix and f"{x_prefix}_2_5th_percentile" in plot_df.columns:
+                x_err_low = np.maximum(0, plot_df[type_x] - plot_df[f"{x_prefix}_2_5th_percentile"].fillna(plot_df[type_x]))
+                x_err_high = np.maximum(0, plot_df[f"{x_prefix}_97_5th_percentile"].fillna(plot_df[type_x]) - plot_df[type_x])
+                xerr = [x_err_low, x_err_high]
+            if y_prefix and f"{y_prefix}_2_5th_percentile" in plot_df.columns:
+                y_err_low = np.maximum(0, plot_df[type_y] - plot_df[f"{y_prefix}_2_5th_percentile"].fillna(plot_df[type_y]))
+                y_err_high = np.maximum(0, plot_df[f"{y_prefix}_97_5th_percentile"].fillna(plot_df[type_y]) - plot_df[type_y])
+                yerr = [y_err_low, y_err_high]
+                
+            plt.errorbar(
+                x=plot_df[type_x], y=plot_df[type_y],
+                xerr=xerr, yerr=yerr,
+                fmt='none', ecolor='gray', alpha=0.5, capsize=3, zorder=0
+            )
+
         # Label points
         if label_points:
+            
             for line in range(0, plot_df.shape[0]):
                 plt.text(
                     plot_df.iloc[line][type_x], 
                     plot_df.iloc[line][type_y], 
-                    plot_df.iloc[line]["experiment_name"],
+                    plot_df.iloc[line]["plot_labels"],
                     plot_df.iloc[line]["training_time_seconds"], 
                     horizontalalignment='center', 
                     size='small', 
                     color='black', 
                     weight='semibold'
                 )
-
-        plt.title(f"Model Comparison: {type_x_name} vs {type_y_name}", fontsize=16)
+            
+            
+        #plt.title(f"Model Comparison: {type_x_name} vs {type_y_name}", fontsize=16)
         plt.xlabel(f"{type_x_name}", fontsize=12)
         plt.ylabel(f"{type_y_name}", fontsize=12)
         plt.legend(bbox_to_anchor=(1.05, 1), loc='upper left')
@@ -109,11 +154,32 @@ def plot_bubble(experiments_config, stats_dir, output_dir, file_name_tag, type_x
             data=plot_df,
             x=type_x,
             y=type_y,
-            hue="experiment_name",
+            hue="plot_labels",
             s = 200, 
             alpha=0.7,
             palette="viridis"
         )
+
+        if bootstrap_bars:
+            metric_map = {"test_set_pearson": "pearson", "test_set_kendall": "kendall", "test_set_rmse": "rmse"}
+            x_prefix = metric_map.get(type_x)
+            y_prefix = metric_map.get(type_y)
+            
+            xerr, yerr = None, None
+            if x_prefix and f"{x_prefix}_2_5th_percentile" in plot_df.columns:
+                x_err_low = np.maximum(0, plot_df[type_x] - plot_df[f"{x_prefix}_2_5th_percentile"].fillna(plot_df[type_x]))
+                x_err_high = np.maximum(0, plot_df[f"{x_prefix}_97_5th_percentile"].fillna(plot_df[type_x]) - plot_df[type_x])
+                xerr = [x_err_low, x_err_high]
+            if y_prefix and f"{y_prefix}_2_5th_percentile" in plot_df.columns:
+                y_err_low = np.maximum(0, plot_df[type_y] - plot_df[f"{y_prefix}_2_5th_percentile"].fillna(plot_df[type_y]))
+                y_err_high = np.maximum(0, plot_df[f"{y_prefix}_97_5th_percentile"].fillna(plot_df[type_y]) - plot_df[type_y])
+                yerr = [y_err_low, y_err_high]
+                
+            plt.errorbar(
+                x=plot_df[type_x], y=plot_df[type_y],
+                xerr=xerr, yerr=yerr,
+                fmt='none', ecolor='gray', alpha=0.5, capsize=3, zorder=0
+            )
 
         # Label points
         if label_points:
@@ -121,14 +187,17 @@ def plot_bubble(experiments_config, stats_dir, output_dir, file_name_tag, type_x
                 plt.text(
                     plot_df.iloc[line][type_x], 
                     plot_df.iloc[line][type_y], 
-                    plot_df.iloc[line]["experiment_name"], 
+                    plot_df.iloc[line]["plot_labels"], 
                     horizontalalignment='center', 
                     size='small', 
                     color='black', 
                     weight='semibold'
                 )
+            
+            
 
-        plt.title(f"Model Comparison: {type_x_name} vs {type_y_name}", fontsize=16)
+
+        # plt.title(f"Model Comparison: {type_x_name} vs {type_y_name}", fontsize=16)
         plt.xlabel(f"{type_x_name}", fontsize=12)
         plt.ylabel(f"{type_y_name}", fontsize=12)
         plt.legend(bbox_to_anchor=(1.05, 1), loc='upper left')
@@ -283,9 +352,10 @@ def main():
     # Check which plots to generate
     if config["plots"].get("bubble", False):
         label_points = config["plots"].get("bubble_labels", True)
-        plot_bubble(experiments_config=config["experiments"], stats_dir=stats_dir, output_dir=output_dir, file_name_tag=file_name_tag, type_y="test_set_rmse", type_y_name="Test Set RMSE", type_x="test_set_pearson", type_x_name="Test Set Pearson", training_time=False, label_points=label_points)
-        plot_bubble(experiments_config=config["experiments"], stats_dir=stats_dir, output_dir=output_dir, file_name_tag=file_name_tag, type_y="test_set_rmse", type_y_name="Test Set RMSE", type_x="test_set_kendall", type_x_name="Test Set Kendall", training_time=False, label_points=label_points)
-        plot_bubble(experiments_config=config["experiments"], stats_dir=stats_dir, output_dir=output_dir, file_name_tag=file_name_tag, type_x="test_set_pearson", type_x_name="Test Set Pearson", type_y="test_set_kendall", type_y_name="Test Set Kendall", training_time=False, label_points=label_points)
+        alternate_labels = config["plots"].get("alternate_labels", False)
+        plot_bubble(experiments_config=config["experiments"], stats_dir=stats_dir, output_dir=output_dir, file_name_tag=file_name_tag, type_y="test_set_rmse", type_y_name="Test Set RMSE", type_x="test_set_pearson", type_x_name="Test Set PCC", training_time=False, label_points=label_points, alternate_labels=alternate_labels)
+        plot_bubble(experiments_config=config["experiments"], stats_dir=stats_dir, output_dir=output_dir, file_name_tag=file_name_tag, type_y="test_set_rmse", type_y_name="Test Set RMSE", type_x="test_set_kendall", type_x_name=r"Test Set K$\tau$", training_time=False, label_points=label_points, alternate_labels=alternate_labels)
+        plot_bubble(experiments_config=config["experiments"], stats_dir=stats_dir, output_dir=output_dir, file_name_tag=file_name_tag, type_x="test_set_pearson", type_x_name="Test Set PCC", type_y="test_set_kendall", type_y_name=r"Test Set K$\tau$", training_time=False, label_points=label_points, alternate_labels=alternate_labels)
         
         
     if config["plots"].get("metrics_over_epochs", False):
