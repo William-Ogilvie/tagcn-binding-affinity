@@ -13,6 +13,7 @@ import argparse
 import yaml
 import pandas as pd
 import matplotlib.pyplot as plt
+from adjustText import adjust_text
 import seaborn as sns
 from pathlib import Path
 import numpy as np
@@ -27,7 +28,7 @@ def parse_args():
     parser.add_argument("--config_path", type=str, required=True, help="Relative path to the plotting config file.") 
     return parser.parse_args()
 
-def plot_bubble(experiments_config, stats_dir, output_dir, file_name_tag, type_x, type_x_name, type_y, type_y_name, training_time, label_points=True, alternate_labels=False, bootstrap_bars=False):
+def plot_bubble(experiments_config, stats_dir, output_dir, file_name_tag, type_x, type_x_name, type_y, type_y_name, training_time, title, label_points=True, alternate_labels=False, bootstrap_bars=False):
     """
     Generates a bubble plot comparing experiments, does one both with training_time for size and another with a fixed size.
     X-axis: type_x (function parameter)
@@ -121,9 +122,9 @@ def plot_bubble(experiments_config, stats_dir, output_dir, file_name_tag, type_x
 
         # Label points
         if label_points:
-            
+            labels_list = [] 
             for line in range(0, plot_df.shape[0]):
-                plt.text(
+                labels_list.append(plt.text(
                     plot_df.iloc[line][type_x], 
                     plot_df.iloc[line][type_y], 
                     plot_df.iloc[line]["plot_labels"],
@@ -132,12 +133,18 @@ def plot_bubble(experiments_config, stats_dir, output_dir, file_name_tag, type_x
                     size='small', 
                     color='black', 
                     weight='semibold'
-                )
+                ))
+            adjust_text(labels_list, 
+                        only_move={'points':'y', 'texts':'xy'}, # Focus on moving text
+                        arrowprops=dict(arrowstyle='->', color='gray', lw=0.5))
             
             
-        #plt.title(f"Model Comparison: {type_x_name} vs {type_y_name}", fontsize=16)
-        plt.xlabel(f"{type_x_name}", fontsize=12)
-        plt.ylabel(f"{type_y_name}", fontsize=12)
+        plt.rcParams.update({'font.size': 20}) 
+        plt.rcParams.update({'axes.labelsize': 22})
+        plt.rcParams.update({'xtick.labelsize': 18})
+        #plt.title(title, fontsize=16)
+        plt.xlabel(f"{type_x_name}", fontsize=22)
+        plt.ylabel(f"{type_y_name}", fontsize=22)
         plt.legend(bbox_to_anchor=(1.05, 1), loc='upper left')
         plt.tight_layout()
         
@@ -155,7 +162,7 @@ def plot_bubble(experiments_config, stats_dir, output_dir, file_name_tag, type_x
             x=type_x,
             y=type_y,
             hue="plot_labels",
-            s = 200, 
+            s = 400, 
             alpha=0.7,
             palette="viridis"
         )
@@ -183,8 +190,9 @@ def plot_bubble(experiments_config, stats_dir, output_dir, file_name_tag, type_x
 
         # Label points
         if label_points:
+            labels_list = []
             for line in range(0, plot_df.shape[0]):
-                plt.text(
+                labels_list.append(plt.text(
                     plot_df.iloc[line][type_x], 
                     plot_df.iloc[line][type_y], 
                     plot_df.iloc[line]["plot_labels"], 
@@ -192,14 +200,21 @@ def plot_bubble(experiments_config, stats_dir, output_dir, file_name_tag, type_x
                     size='small', 
                     color='black', 
                     weight='semibold'
-                )
+                ))
+
+            adjust_text(labels_list, 
+                        only_move={'points':'y', 'texts':'xy'}, # Focus on moving text
+                        arrowprops=dict(arrowstyle='->', color='gray', lw=0.5))
             
             
-
-
-        # plt.title(f"Model Comparison: {type_x_name} vs {type_y_name}", fontsize=16)
-        plt.xlabel(f"{type_x_name}", fontsize=12)
-        plt.ylabel(f"{type_y_name}", fontsize=12)
+            
+        plt.rcParams.update({'font.size': 20}) 
+        plt.rcParams.update({'axes.labelsize': 22})
+        plt.rcParams.update({'xtick.labelsize': 18})
+        
+        #plt.title(title, fontsize=16)
+        plt.xlabel(f"{type_x_name}", fontsize=22)
+        plt.ylabel(f"{type_y_name}", fontsize=22)
         plt.legend(bbox_to_anchor=(1.05, 1), loc='upper left')
         plt.tight_layout()
         
@@ -353,9 +368,11 @@ def main():
     if config["plots"].get("bubble", False):
         label_points = config["plots"].get("bubble_labels", True)
         alternate_labels = config["plots"].get("alternate_labels", False)
-        plot_bubble(experiments_config=config["experiments"], stats_dir=stats_dir, output_dir=output_dir, file_name_tag=file_name_tag, type_y="test_set_rmse", type_y_name="Test Set RMSE", type_x="test_set_pearson", type_x_name="Test Set PCC", training_time=False, label_points=label_points, alternate_labels=alternate_labels)
-        plot_bubble(experiments_config=config["experiments"], stats_dir=stats_dir, output_dir=output_dir, file_name_tag=file_name_tag, type_y="test_set_rmse", type_y_name="Test Set RMSE", type_x="test_set_kendall", type_x_name=r"Test Set K$\tau$", training_time=False, label_points=label_points, alternate_labels=alternate_labels)
-        plot_bubble(experiments_config=config["experiments"], stats_dir=stats_dir, output_dir=output_dir, file_name_tag=file_name_tag, type_x="test_set_pearson", type_x_name="Test Set PCC", type_y="test_set_kendall", type_y_name=r"Test Set K$\tau$", training_time=False, label_points=label_points, alternate_labels=alternate_labels)
+        bootstrap_bars = config["plots"].get("bootstrap_bars", False)
+        title = config["plots"].get("title", "")
+        plot_bubble(experiments_config=config["experiments"], stats_dir=stats_dir, output_dir=output_dir, file_name_tag=file_name_tag, type_y="test_set_rmse", type_y_name="RMSE", type_x="test_set_pearson", type_x_name="TPCC", training_time=False, title=title, label_points=label_points, alternate_labels=alternate_labels, bootstrap_bars=bootstrap_bars)
+        plot_bubble(experiments_config=config["experiments"], stats_dir=stats_dir, output_dir=output_dir, file_name_tag=file_name_tag, type_y="test_set_rmse", type_y_name="RMSE", type_x="test_set_kendall", type_x_name=r"K$\tau$", training_time=False, title=title, label_points=label_points, alternate_labels=alternate_labels, bootstrap_bars=bootstrap_bars)
+        plot_bubble(experiments_config=config["experiments"], stats_dir=stats_dir, output_dir=output_dir, file_name_tag=file_name_tag, type_x="test_set_pearson", type_x_name="PCC", type_y="test_set_kendall", type_y_name=r"K$\tau$", training_time=False, title=title, label_points=label_points, alternate_labels=alternate_labels, bootstrap_bars=bootstrap_bars)
         
         
     if config["plots"].get("metrics_over_epochs", False):

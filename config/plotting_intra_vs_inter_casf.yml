@@ -8,6 +8,8 @@ plots:
   true_vs_predicted: true
   bubble_labels: true
   alternate_labels: true
+  bootstrap_bars: false
+  title: "CASF-2016"
 experiments:
 - name: GATv2-H-3-L-5-Dim-256-Inter-CASF-2016
   alternate_label: GATv2 (Inter)
