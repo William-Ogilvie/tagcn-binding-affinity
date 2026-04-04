@@ -142,10 +142,11 @@ def plot_bubble(experiments_config, stats_dir, output_dir, file_name_tag, type_x
         plt.rcParams.update({'font.size': 20}) 
         plt.rcParams.update({'axes.labelsize': 22})
         plt.rcParams.update({'xtick.labelsize': 18})
-        #plt.title(title, fontsize=16)
+        #plt.title(title, fontsize=22)
         plt.xlabel(f"{type_x_name}", fontsize=22)
         plt.ylabel(f"{type_y_name}", fontsize=22)
-        plt.legend(bbox_to_anchor=(1.05, 1), loc='upper left')
+        # plt.legend(bbox_to_anchor=(1.05, 1), loc='upper left')
+        plt.legend(loc='lower left')
         plt.tight_layout()
         
         plt.savefig(output_dir / f"{file_name_tag}_comparison_bubble_plot_{type_y}_against_{type_x}_with_training_time.pdf")
@@ -212,10 +213,11 @@ def plot_bubble(experiments_config, stats_dir, output_dir, file_name_tag, type_x
         plt.rcParams.update({'axes.labelsize': 22})
         plt.rcParams.update({'xtick.labelsize': 18})
         
-        #plt.title(title, fontsize=16)
+        # plt.title(title, fontsize=22)
         plt.xlabel(f"{type_x_name}", fontsize=22)
         plt.ylabel(f"{type_y_name}", fontsize=22)
-        plt.legend(bbox_to_anchor=(1.05, 1), loc='upper left')
+        # plt.legend(bbox_to_anchor=(1.05, 1), loc='upper left')
+        plt.legend(loc='lower right')
         plt.tight_layout()
         
         plt.savefig(output_dir / f"{file_name_tag}_comparison_bubble_plot_{type_y}_against_{type_x}_without_training_time.pdf")

@@ -1,0 +1,26 @@
+output_dir: output/summary_plots
+stats_dir: output/training_stats
+predictions_dir: output/predictions
+file_name_tag: 'TAGCN_Reg_OOD'
+plots:
+  bubble: true
+  metrics_over_epochs: false
+  true_vs_predicted: true
+  bubble_labels: true
+  alternate_labels: true
+  bootstrap_bars: false
+  title: "OOD Test"
+experiments:
+- name: TAGCN-K-3-L-5-Dim-256-Intra-OOD-Test
+  alternate_label: TAGCN (Base)
+  time_stamp: '20260324_092900'
+- name: TAGCN-K-3-L-5-Dim-256-WD-0-30-1-Intra-OOD-Test
+  alternate_label: TAGCN (Weight Decay)
+  time_stamp: '20260324_092900'
+- name: TAGCN-Drop-0-2-K-3-L-5-Dim-256-Intra-OOD-Test
+  alternate_label: TAGCN (Dropout)
+  time_stamp: '20260324_092900'
+- name: GATv2-Drop-0-2-H-3-L-5-Dim-256-WD-0-30-1-Intra-OOD-Test
+  alternate_label: TAGCN (Dropout + Weight Decay)
+  time_stamp: '20260324_092900'
+
