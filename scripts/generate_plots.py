@@ -139,12 +139,12 @@ def plot_bubble(experiments_config, stats_dir, output_dir, file_name_tag, type_x
                         arrowprops=dict(arrowstyle='->', color='gray', lw=0.5))
             
             
-        plt.rcParams.update({'font.size': 20}) 
-        plt.rcParams.update({'axes.labelsize': 22})
-        plt.rcParams.update({'xtick.labelsize': 18})
+        plt.rcParams.update({'font.size': 12}) # 20 
+        plt.rcParams.update({'axes.labelsize': 14}) # 22
+        plt.rcParams.update({'xtick.labelsize': 10}) # 18
         #plt.title(title, fontsize=22)
-        plt.xlabel(f"{type_x_name}", fontsize=22)
-        plt.ylabel(f"{type_y_name}", fontsize=22)
+        plt.xlabel(f"{type_x_name}", fontsize=14) # 22
+        plt.ylabel(f"{type_y_name}", fontsize=14) # 22
         # plt.legend(bbox_to_anchor=(1.05, 1), loc='upper left')
         plt.legend(loc='lower left')
         plt.tight_layout()
@@ -209,13 +209,13 @@ def plot_bubble(experiments_config, stats_dir, output_dir, file_name_tag, type_x
             
             
             
-        plt.rcParams.update({'font.size': 20}) 
-        plt.rcParams.update({'axes.labelsize': 22})
-        plt.rcParams.update({'xtick.labelsize': 18})
+        plt.rcParams.update({'font.size': 12}) # 20 
+        plt.rcParams.update({'axes.labelsize': 14}) # 22
+        plt.rcParams.update({'xtick.labelsize': 10}) # 18
         
         # plt.title(title, fontsize=22)
-        plt.xlabel(f"{type_x_name}", fontsize=22)
-        plt.ylabel(f"{type_y_name}", fontsize=22)
+        plt.xlabel(f"{type_x_name}", fontsize=14) # 22
+        plt.ylabel(f"{type_y_name}", fontsize=14) # 22
         # plt.legend(bbox_to_anchor=(1.05, 1), loc='upper left')
         plt.legend(loc='lower right')
         plt.tight_layout()
