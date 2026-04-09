@@ -17,11 +17,11 @@ BUBBLES = True
 TRUEVPRED = True
 METRICOEPOCH = True # metrics over epochs
 
-TIME_STAMP = "20260406_163300" 
+TIME_STAMP = "20260409_163400" 
 #"20260308_185500"
-TIME_STAMP_OOD = "20260406_163400" 
+TIME_STAMP_OOD = "20260409_163500" 
 #"20260308_185600"
-TIME_STAMP_ZERO = "20260406_163500"
+TIME_STAMP_ZERO = "20260409_163600"
 
 # - name: AEV-PLIG-Intra-Graphs-No-Scale-Rolling
 #   args:
@@ -322,22 +322,22 @@ def main():
     # Below we run a mixed config for the final dissertation, here the goal is to do some basic tests of things like hidden dim, fewer layers, and K=2,1 patterns with a focus on
     # models we identified as possibly good candidates
     # Testing hidden dim
-    benchmarks = ["CASF-16", "OOD-Test", "Zero-Ligand-Bias"]
-    graphs = ["intra"]
-    models = ["TAGCN"]
-    hidden_dim = [768] # also tried [512]
-    layers = [5]
-    K_values = [3] 
-    heads_values = [3]
-    dropout_values = [0.2]
-    dropout_values_strings = ["0-2"]
-    weight_decay_values = [0.0]
-    weight_decay_values_strings = ["0-0"]
+    # benchmarks = ["CASF-16", "OOD-Test", "Zero-Ligand-Bias"]
+    # graphs = ["intra"]
+    # models = ["TAGCN"]
+    # hidden_dim = [256, 512, 768] # also tried [512]
+    # layers = [5]
+    # K_values = [3] 
+    # heads_values = [3]
+    # dropout_values = [0.2]
+    # dropout_values_strings = ["0-2"]
+    # weight_decay_values = [0.0]
+    # weight_decay_values_strings = ["0-0"]
     # Testing K=2
     # benchmarks = ["CASF-16", "OOD-Test", "Zero-Ligand-Bias"]
     # graphs = ["intra"]
     # models = ["TAGCN"]
-    # hidden_dim = [256, 768] # also tried [512]
+    # hidden_dim = [256, 512, 768] # also tried [512]
     # layers = [5]
     # K_values = [2] 
     # heads_values = [3]
@@ -349,7 +349,7 @@ def main():
     # benchmarks = ["CASF-16", "OOD-Test", "Zero-Ligand-Bias"]
     # graphs = ["intra"]
     # models = ["TAGCN"]
-    # hidden_dim = [256, 768] # also tried [512]
+    # hidden_dim = [256, 512, 768] # also tried [512]
     # layers = [2, 3]
     # K_values = [2, 3] 
     # heads_values = [3, 3]
@@ -373,26 +373,26 @@ def main():
     # benchmarks = ["CASF-16", "OOD-Test", "Zero-Ligand-Bias"]
     # graphs = ["intra"]
     # models = ["TAGCN"]
-    # hidden_dim = [768] # also tried [512]
+    # hidden_dim = [256, 768] # also tried [512]
     # layers = [2]
     # K_values = [[2,1]] 
-    # heads_values = [3]
-    # dropout_values = [0.2]
-    # dropout_values_strings = ["0-0", "0-2"]
-    # weight_decay_values = [0.0]
-    # weight_decay_values_strings = ["0-0"]
-    # Testing K=3,2,1
-    # benchmarks = ["CASF-16", "OOD-Test", "Zero-Ligand-Bias"]
-    # graphs = ["intra"]
-    # models = ["TAGCN"]
-    # hidden_dim = [768] # also tried [512]
-    # layers = [3]
-    # K_values = [[3,2,1]] 
     # heads_values = [3]
     # dropout_values = [0.2]
     # dropout_values_strings = ["0-2"]
     # weight_decay_values = [0.0]
     # weight_decay_values_strings = ["0-0"]
+    # Testing K=3,2,1
+    benchmarks = ["CASF-16", "OOD-Test", "Zero-Ligand-Bias"]
+    graphs = ["intra"]
+    models = ["TAGCN"]
+    hidden_dim = [256, 768] # also tried [512]
+    layers = [3]
+    K_values = [[3,2,1]] 
+    heads_values = [3]
+    dropout_values = [0.2]
+    dropout_values_strings = ["0-2"]
+    weight_decay_values = [0.0]
+    weight_decay_values_strings = ["0-0"]
 
     # It is worth pre-defining the arguments for the different graphs and benchmarks
     args_casf_intra = {

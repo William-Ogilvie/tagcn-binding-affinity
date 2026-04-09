@@ -54,6 +54,9 @@ def plot_bubble(experiments_config, stats_dir, output_dir, file_name_tag, type_x
     mask = df.apply(lambda x: (x["experiment_name"], str(x["timestamp"])) in target_experiments, axis=1)
     plot_df = df[mask].copy()
 
+    # Drop duplicates in case training_stats.csv has multiple entries for the same experiment run
+    plot_df = plot_df.drop_duplicates(subset=["experiment_name", "timestamp"], keep="last")
+
     # Map experiment_name and timestamp to plot_labels
     label_map = {}
     for exp in experiments_config:
@@ -71,6 +74,8 @@ def plot_bubble(experiments_config, stats_dir, output_dir, file_name_tag, type_x
         if bootstrap_path.exists():
             boot_df = pd.read_csv(bootstrap_path)
             boot_df["timestamp"] = boot_df["timestamp"].astype(str)
+            # Drop duplicates in case compute_bootstrap.py appended stats multiple times
+            boot_df = boot_df.drop_duplicates(subset=["experiment_name", "timestamp"], keep="last")
             plot_df = plot_df.merge(boot_df, on=["experiment_name", "timestamp"], how="left")
         else:
             print(f"Warning: {bootstrap_path} not found. Skipping bootstrap bars.")
@@ -128,7 +133,6 @@ def plot_bubble(experiments_config, stats_dir, output_dir, file_name_tag, type_x
                     plot_df.iloc[line][type_x], 
                     plot_df.iloc[line][type_y], 
                     plot_df.iloc[line]["plot_labels"],
-                    plot_df.iloc[line]["training_time_seconds"], 
                     horizontalalignment='center', 
                     size='small', 
                     color='black', 
@@ -136,15 +140,15 @@ def plot_bubble(experiments_config, stats_dir, output_dir, file_name_tag, type_x
                 ))
             adjust_text(labels_list, 
                         only_move={'points':'y', 'texts':'xy'}, # Focus on moving text
-                        arrowprops=dict(arrowstyle='->', color='gray', lw=0.5))
+                        arrowprops=dict(arrowstyle='->', color='gray', lw=1.0))
             
             
-        plt.rcParams.update({'font.size': 12}) # 20 
-        plt.rcParams.update({'axes.labelsize': 14}) # 22
-        plt.rcParams.update({'xtick.labelsize': 10}) # 18
+        plt.rcParams.update({'font.size': 20}) # 20 
+        plt.rcParams.update({'axes.labelsize': 22}) # 22
+        plt.rcParams.update({'xtick.labelsize': 18}) # 18
         #plt.title(title, fontsize=22)
-        plt.xlabel(f"{type_x_name}", fontsize=14) # 22
-        plt.ylabel(f"{type_y_name}", fontsize=14) # 22
+        plt.xlabel(f"{type_x_name}", fontsize=22) # 22
+        plt.ylabel(f"{type_y_name}", fontsize=22) # 22
         # plt.legend(bbox_to_anchor=(1.05, 1), loc='upper left')
         plt.legend(loc='lower left')
         plt.tight_layout()
@@ -198,24 +202,24 @@ def plot_bubble(experiments_config, stats_dir, output_dir, file_name_tag, type_x
                     plot_df.iloc[line][type_y], 
                     plot_df.iloc[line]["plot_labels"], 
                     horizontalalignment='center', 
-                    size='small', 
+                    size="small", 
                     color='black', 
                     weight='semibold'
                 ))
 
             adjust_text(labels_list, 
                         only_move={'points':'y', 'texts':'xy'}, # Focus on moving text
-                        arrowprops=dict(arrowstyle='->', color='gray', lw=0.5))
+                        arrowprops=dict(arrowstyle='->', color='gray', lw=1.0))
             
             
             
-        plt.rcParams.update({'font.size': 12}) # 20 
-        plt.rcParams.update({'axes.labelsize': 14}) # 22
-        plt.rcParams.update({'xtick.labelsize': 10}) # 18
+        plt.rcParams.update({'font.size': 20}) # 20 
+        plt.rcParams.update({'axes.labelsize': 22}) # 22
+        plt.rcParams.update({'xtick.labelsize': 18}) # 18
         
         # plt.title(title, fontsize=22)
-        plt.xlabel(f"{type_x_name}", fontsize=14) # 22
-        plt.ylabel(f"{type_y_name}", fontsize=14) # 22
+        plt.xlabel(f"{type_x_name}", fontsize=22) # 22
+        plt.ylabel(f"{type_y_name}", fontsize=22) # 22
         # plt.legend(bbox_to_anchor=(1.05, 1), loc='upper left')
         plt.legend(loc='lower right')
         plt.tight_layout()

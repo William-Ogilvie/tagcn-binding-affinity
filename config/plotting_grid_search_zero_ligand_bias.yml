@@ -1,39 +1,25 @@
 output_dir: output/summary_plots
 stats_dir: output/training_stats
 predictions_dir: output/predictions
-file_name_tag: 'zero_experimental_20260406_163300'
+file_name_tag: '20260409_163600'
 plots:
   bubble: true
   metrics_over_epochs: true
   true_vs_predicted: true
 experiments:
-- name: TAGCN-Drop-0-2-K-3-2-1-L-3-Dim-768-Intra-Zero-Ligand-Bias
-  time_stamp: '20260406_163300'
-- name: TAGCN-Drop-0-0-K-2-1-L-2-Dim-768-Intra-Zero-Ligand-Bias
-  time_stamp: '20260406_163300'
-- name: TAGCN-Drop-0-2-K-3-3-2-2-1-L-5-Dim-256-Intra-Zero-Ligand-Bias
-  time_stamp: '20260406_163300'
-- name: TAGCN-Drop-0-2-K-3-3-2-2-1-L-5-Dim-768-Intra-Zero-Ligand-Bias
-  time_stamp: '20260406_163300'
-- name: TAGCN-Drop-0-2-K-2-L-2-Dim-256-Intra-Zero-Ligand-Bias
-  time_stamp: '20260406_163300'
-- name: TAGCN-Drop-0-2-K-3-L-2-Dim-256-Intra-Zero-Ligand-Bias
-  time_stamp: '20260406_163300'
-- name: TAGCN-Drop-0-2-K-2-L-2-Dim-768-Intra-Zero-Ligand-Bias
-  time_stamp: '20260406_163300'
-- name: TAGCN-Drop-0-2-K-3-L-2-Dim-768-Intra-Zero-Ligand-Bias
-  time_stamp: '20260406_163300'
-- name: TAGCN-Drop-0-2-K-2-L-3-Dim-256-Intra-Zero-Ligand-Bias
-  time_stamp: '20260406_163300'
-- name: TAGCN-Drop-0-2-K-3-L-3-Dim-256-Intra-Zero-Ligand-Bias
-  time_stamp: '20260406_163300'
-- name: TAGCN-Drop-0-2-K-2-L-3-Dim-768-Intra-Zero-Ligand-Bias
-  time_stamp: '20260406_163300'
-- name: TAGCN-Drop-0-2-K-3-L-3-Dim-768-Intra-Zero-Ligand-Bias
-  time_stamp: '20260406_163300'
-- name: TAGCN-Drop-0-2-K-2-L-5-Dim-256-Intra-Zero-Ligand-Bias
-  time_stamp: '20260406_163300'
-- name: TAGCN-Drop-0-2-K-2-L-5-Dim-768-Intra-Zero-Ligand-Bias
-  time_stamp: '20260406_163300'
-- name: TAGCN-Drop-0-2-K-3-L-5-Dim-768-Intra-Zero-Ligand-Bias
-  time_stamp: '20260406_163300'
+- name: TAGCN-Drop-0-2-K-3-2-1-L-3-Dim-256-Intra-Zero-Ligand-Bias
+  time_stamp: '20260409_163400'
+- name: TAGCN-Drop-0-2-K-2-1-L-2-Dim-256-Intra-Zero-Ligand-Bias
+  time_stamp: '20260409_163400'
+- name: TAGCN-Drop-0-2-K-3-L-5-Dim-512-Intra-Zero-Ligand-Bias
+  time_stamp: '20260409_163400'
+- name: TAGCN-Drop-0-2-K-2-L-5-Dim-512-Intra-Zero-Ligand-Bias
+  time_stamp: '20260409_163400'
+- name: TAGCN-Drop-0-2-K-2-L-2-Dim-512-Intra-Zero-Ligand-Bias
+  time_stamp: '20260409_163400'
+- name: TAGCN-Drop-0-2-K-3-L-2-Dim-512-Intra-Zero-Ligand-Bias
+  time_stamp: '20260409_163400'
+- name: TAGCN-Drop-0-2-K-2-L-3-Dim-512-Intra-Zero-Ligand-Bias
+  time_stamp: '20260409_163400'
+- name: TAGCN-Drop-0-2-K-3-L-3-Dim-512-Intra-Zero-Ligand-Bias
+  time_stamp: '20260409_163400'

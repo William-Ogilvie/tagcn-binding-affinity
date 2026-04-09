@@ -1,0 +1,31 @@
+output_dir: output/summary_plots
+stats_dir: output/training_stats
+predictions_dir: output/predictions
+file_name_tag: 'h_weird_and_wonderfull_ood'
+plots:
+  bubble: true
+  metrics_over_epochs: false
+  true_vs_predicted: true
+  bubble_labels: true
+  alternate_labels: true
+  bootstrap_bars: false
+  title: "OOD Test" 
+experiments:
+- name: TAGCN-Drop-0-2-K-3-2-1-L-3-Dim-768-Intra-OOD-Test
+  alternate_label: "TAGCN (K=[3,2,1] Dim 768)"
+  time_stamp: '20260406_163300'
+- name: TAGCN-Drop-0-0-K-2-1-L-2-Dim-768-Intra-OOD-Test
+  alternate_label: "TAGCN (K=[2,1] Dim 768)" 
+  time_stamp: '20260406_163300'
+- name: TAGCN-Drop-0-2-K-3-3-2-2-1-L-5-Dim-256-Intra-OOD-Test
+  alternate_label: "TAGCN (K=[3,3,2,2,1] Dim 256)" 
+  time_stamp: '20260406_163300'
+- name: TAGCN-Drop-0-2-K-3-3-2-2-1-L-5-Dim-768-Intra-OOD-Test
+  alternate_label: "TAGCN (K=[3,3,2,2,1] Dim 768)" 
+  time_stamp: '20260406_163300'
+- name: TAGCN-Drop-0-2-K-3-L-5-Dim-768-Intra-OOD-Test
+  alternate_label: "TAGCN (K=3 L=5 768 Dim)"
+  time_stamp: '20260406_163300'
+- name: TAGCN-Drop-0-2-K-3-L-5-Dim-256-Intra-OOD-Test
+  alternate_label: "TAGCN (K=3 L=5 256 Dim)"
+  time_stamp: '20260324_092900'
