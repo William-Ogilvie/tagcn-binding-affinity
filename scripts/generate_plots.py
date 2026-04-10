@@ -138,9 +138,6 @@ def plot_bubble(experiments_config, stats_dir, output_dir, file_name_tag, type_x
                     color='black', 
                     weight='semibold'
                 ))
-            adjust_text(labels_list, 
-                        only_move={'points':'y', 'texts':'xy'}, # Focus on moving text
-                        arrowprops=dict(arrowstyle='->', color='gray', lw=1.0))
             
             
         plt.rcParams.update({'font.size': 20}) # 20 
@@ -149,11 +146,15 @@ def plot_bubble(experiments_config, stats_dir, output_dir, file_name_tag, type_x
         #plt.title(title, fontsize=22)
         plt.xlabel(f"{type_x_name}", fontsize=22) # 22
         plt.ylabel(f"{type_y_name}", fontsize=22) # 22
-        # plt.legend(bbox_to_anchor=(1.05, 1), loc='upper left')
-        plt.legend(loc='lower left')
+        plt.legend(bbox_to_anchor=(1.05, 1), loc='upper left')
         plt.tight_layout()
         
-        plt.savefig(output_dir / f"{file_name_tag}_comparison_bubble_plot_{type_y}_against_{type_x}_with_training_time.pdf")
+        if label_points:
+            adjust_text(labels_list, 
+                        only_move={'points':'y', 'texts':'xy'}, # Focus on moving text
+                        arrowprops=dict(arrowstyle='->', color='firebrick', lw=1.5, zorder=0))
+
+        plt.savefig(output_dir / f"{file_name_tag}_comparison_bubble_plot_{type_y}_against_{type_x}_with_training_time.pdf", bbox_inches='tight')
         plt.close()
         print("Bubble plot saved with training time.")
     else:
@@ -206,10 +207,6 @@ def plot_bubble(experiments_config, stats_dir, output_dir, file_name_tag, type_x
                     color='black', 
                     weight='semibold'
                 ))
-
-            adjust_text(labels_list, 
-                        only_move={'points':'y', 'texts':'xy'}, # Focus on moving text
-                        arrowprops=dict(arrowstyle='->', color='gray', lw=1.0))
             
             
             
@@ -220,11 +217,15 @@ def plot_bubble(experiments_config, stats_dir, output_dir, file_name_tag, type_x
         # plt.title(title, fontsize=22)
         plt.xlabel(f"{type_x_name}", fontsize=22) # 22
         plt.ylabel(f"{type_y_name}", fontsize=22) # 22
-        # plt.legend(bbox_to_anchor=(1.05, 1), loc='upper left')
-        plt.legend(loc='lower right')
+        plt.legend(bbox_to_anchor=(1.05, 1), loc='upper left') # to move the legend back into the plot remove the bbox_to_anchor
         plt.tight_layout()
         
-        plt.savefig(output_dir / f"{file_name_tag}_comparison_bubble_plot_{type_y}_against_{type_x}_without_training_time.pdf")
+        if label_points:
+            adjust_text(labels_list, 
+                        only_move={'points':'y', 'texts':'xy'}, # Focus on moving text
+                        arrowprops=dict(arrowstyle='->', color='firebrick', lw=1.5, zorder=0))
+
+        plt.savefig(output_dir / f"{file_name_tag}_comparison_bubble_plot_{type_y}_against_{type_x}_without_training_time.pdf", bbox_inches='tight')
         plt.close()
 
     

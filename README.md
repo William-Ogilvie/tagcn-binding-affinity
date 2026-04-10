@@ -61,18 +61,6 @@ python scripts/generate_plots.py --config_path config/plotting_config.yml
 
 If you plan on adding more features to the model please see src/tagcn_bind/utils/scaling.py. Specifically the calculate_stats method docstring as it contains important information on how to add continuous vs categorical node features to ensure we standardise properly. 
 
-
-## TODO
-Remeber to look at the EtaR, i suspect 19.7 is too high and causes the sparsity in AEVs we observe.
-
-It seems the models overfit to the training data quite considerable (see models.py), have introduced new models to help combat this but could also look at increased weight decay etc. However these may need to be tuned? Have run experiments with 50% dropout and gotten slightly worse results so maybe only 20% needed, same with weight decay originally tried 0.01 have set to 0.0001. Also previously tried dropout in convolution layers have since moved to only MLP. 
-
-Another important thing is that TAG doesn't include edge attributes like GAT does, so the edge features (bond types) aren't being passed to the model. If TAG can still perform well this would suggest these are maybe redundant if you already have AEVs as node features?
-
-AEV-PLIG currently doesn't process hydrogens and instead has them implicitly with a hydrogen count at each heavy atom, it could be worth having explicit hydrogens? althought it will make the graphs a lot bigger...
-
-Look at batch size. We are using the default of AEV-PLIG of 128 but it could be worth dropping to say 64 or even 32 as it may avoid oversmoothing although it would increase training time.
-
 # Acknowledgments
 
 ## AEV-PLIG

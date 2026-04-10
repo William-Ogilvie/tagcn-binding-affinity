@@ -23,3 +23,9 @@ experiments:
 - name: TAGCN-Drop-0-2-K-2-L-5-Dim-768-Intra-Zero-Ligand-Bias
   alternate_label: "TAGCN (K=2 768 Dim)" 
   time_stamp: '20260406_163300'
+- name: TAGCN-Drop-0-2-K-3-L-5-Dim-512-Intra-Zero-Ligand-Bias
+  alternate_label: "TAGCN (K=3 512 Dim)" 
+  time_stamp: '20260409_163400'
+- name: TAGCN-Drop-0-2-K-2-L-5-Dim-512-Intra-Zero-Ligand-Bias
+  alternate_label: "TAGCN (K=2 512 Dim)" 
+  time_stamp: '20260409_163400'
