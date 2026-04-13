@@ -11,20 +11,8 @@ plots:
   bootstrap_bars: false
   title: "OOD Test" 
 experiments:
-- name: TAGCN-Drop-0-2-K-3-2-1-L-3-Dim-768-Intra-OOD-Test
-  alternate_label: "TAGCN (K=[3,2,1] 768 Dim)"
-  time_stamp: '20260406_163300'
-- name: TAGCN-Drop-0-0-K-2-1-L-2-Dim-768-Intra-OOD-Test
-  alternate_label: "TAGCN (K=[2,1] 768 Dim)" 
-  time_stamp: '20260406_163300'
 - name: TAGCN-Drop-0-2-K-3-3-2-2-1-L-5-Dim-256-Intra-OOD-Test
   alternate_label: "TAGCN (K=[3,3,2,2,1] 256 Dim)" 
-  time_stamp: '20260406_163300'
-- name: TAGCN-Drop-0-2-K-3-3-2-2-1-L-5-Dim-768-Intra-OOD-Test
-  alternate_label: "TAGCN (K=[3,3,2,2,1] 768 Dim)" 
-  time_stamp: '20260406_163300'
-- name: TAGCN-Drop-0-2-K-3-L-5-Dim-768-Intra-OOD-Test
-  alternate_label: "TAGCN (K=3 L=5 768 Dim)"
   time_stamp: '20260406_163300'
 - name: TAGCN-Drop-0-2-K-3-L-5-Dim-256-Intra-OOD-Test
   alternate_label: "TAGCN (K=3 L=5 256 Dim)"
@@ -32,6 +20,12 @@ experiments:
 - name: TAGCN-Drop-0-2-K-3-2-1-L-3-Dim-256-Intra-OOD-Test
   alternate_label: "TAGCN (K=[3,2,1] 256 Dim)" 
   time_stamp: '20260409_163400'
+- name: TAGCN-Drop-0-2-K-3-L-3-Dim-256-Intra-OOD-Test
+  alternate_label: "TAGCN (K=3 L=3 256 Dim)"
+  time_stamp: '20260406_163300'
 - name: TAGCN-Drop-0-2-K-2-1-L-2-Dim-256-Intra-OOD-Test
   alternate_label: "TAGCN (K=[2,1] 256 Dim)"
   time_stamp: '20260409_163400'
+- name: TAGCN-Drop-0-2-K-2-L-2-Dim-256-Intra-OOD-Test
+  alternate_label: "TAGCN (K=2 L=2 256 Dim)"
+  time_stamp: '20260406_163300'

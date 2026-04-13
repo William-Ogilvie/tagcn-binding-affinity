@@ -11,9 +11,6 @@ plots:
   bootstrap_bars: false
   title: "OOD Test" 
 experiments:
-- name: TAGCN-Drop-0-2-K-3-L-5-Dim-768-Intra-OOD-Test
-  alternate_label: "TAGCN (K=3 L=5 768 Dim)"
-  time_stamp: '20260406_163300'
 - name: TAGCN-Drop-0-2-K-3-L-5-Dim-256-Intra-OOD-Test
   alternate_label: "TAGCN (K=3 L=5 256 Dim)"
   time_stamp: '20260324_092900'

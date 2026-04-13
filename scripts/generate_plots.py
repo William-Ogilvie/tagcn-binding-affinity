@@ -134,7 +134,7 @@ def plot_bubble(experiments_config, stats_dir, output_dir, file_name_tag, type_x
                     plot_df.iloc[line][type_y], 
                     plot_df.iloc[line]["plot_labels"],
                     horizontalalignment='center', 
-                    size='small', 
+                    size=14, 
                     color='black', 
                     weight='semibold'
                 ))
@@ -150,8 +150,7 @@ def plot_bubble(experiments_config, stats_dir, output_dir, file_name_tag, type_x
         plt.tight_layout()
         
         if label_points:
-            adjust_text(labels_list, 
-                        only_move={'points':'y', 'texts':'xy'}, # Focus on moving text
+            adjust_text(labels_list,
                         arrowprops=dict(arrowstyle='->', color='firebrick', lw=1.5, zorder=0))
 
         plt.savefig(output_dir / f"{file_name_tag}_comparison_bubble_plot_{type_y}_against_{type_x}_with_training_time.pdf", bbox_inches='tight')
@@ -203,7 +202,7 @@ def plot_bubble(experiments_config, stats_dir, output_dir, file_name_tag, type_x
                     plot_df.iloc[line][type_y], 
                     plot_df.iloc[line]["plot_labels"], 
                     horizontalalignment='center', 
-                    size="small", 
+                    size=14, 
                     color='black', 
                     weight='semibold'
                 ))
@@ -221,8 +220,7 @@ def plot_bubble(experiments_config, stats_dir, output_dir, file_name_tag, type_x
         plt.tight_layout()
         
         if label_points:
-            adjust_text(labels_list, 
-                        only_move={'points':'y', 'texts':'xy'}, # Focus on moving text
+            adjust_text(labels_list,
                         arrowprops=dict(arrowstyle='->', color='firebrick', lw=1.5, zorder=0))
 
         plt.savefig(output_dir / f"{file_name_tag}_comparison_bubble_plot_{type_y}_against_{type_x}_without_training_time.pdf", bbox_inches='tight')

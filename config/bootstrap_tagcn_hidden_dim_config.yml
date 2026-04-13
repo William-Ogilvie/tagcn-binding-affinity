@@ -1,0 +1,38 @@
+output_confint: "bootstrap_stats_confint.csv"
+output_comparission: "bootstrap_stats_comparision.csv"
+
+experiments:
+- model_name_1: TAGCN-Drop-0-2-K-3-L-5-Dim-256-Intra-Zero-Ligand-Bias
+  timestamp_1: '20260324_092900'
+  model_name_2: TAGCN-Drop-0-2-K-2-L-5-Dim-256-Intra-Zero-Ligand-Bias
+  timestamp_2: '20260406_163300' 
+  confidence_interval_1: true
+  confidence_interval_2: true
+  comparison: true 
+  metrics: ["RMSE", "Pearson", "Kendall"]
+  seed: 37  
+  n_bootstraps: 10000
+
+
+- model_name_1: TAGCN-Drop-0-2-K-3-L-5-Dim-256-Intra-OOD-Test
+  timestamp_1: '20260324_092900'
+  model_name_2: TAGCN-Drop-0-2-K-2-L-5-Dim-256-Intra-OOD-Test
+  timestamp_2: '20260406_163300' 
+  confidence_interval_1: true
+  confidence_interval_2: true
+  comparison: true 
+  metrics: ["RMSE", "Pearson", "Kendall"]
+  seed: 37  
+  n_bootstraps: 10000
+- model_name_1: TAGCN-Drop-0-2-K-3-L-5-Dim-256-Intra-CASF-2016
+  timestamp_1: '20260324_092900'
+  model_name_2: TAGCN-Drop-0-2-K-2-L-5-Dim-256-Intra-CASF-2016
+  timestamp_2: '20260406_163300' 
+  confidence_interval_1: true
+  confidence_interval_2: true
+  comparison: true 
+  metrics: ["RMSE", "Pearson", "Kendall"]
+  seed: 37  
+  n_bootstraps: 10000
+
+
