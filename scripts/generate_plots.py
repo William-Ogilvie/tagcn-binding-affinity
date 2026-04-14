@@ -134,7 +134,7 @@ def plot_bubble(experiments_config, stats_dir, output_dir, file_name_tag, type_x
                     plot_df.iloc[line][type_y], 
                     plot_df.iloc[line]["plot_labels"],
                     horizontalalignment='center', 
-                    size=14, 
+                    size=16, 
                     color='black', 
                     weight='semibold'
                 ))
@@ -146,7 +146,8 @@ def plot_bubble(experiments_config, stats_dir, output_dir, file_name_tag, type_x
         #plt.title(title, fontsize=22)
         plt.xlabel(f"{type_x_name}", fontsize=22) # 22
         plt.ylabel(f"{type_y_name}", fontsize=22) # 22
-        plt.legend(bbox_to_anchor=(1.05, 1), loc='upper left')
+        plt.legend(loc='lower right') 
+        # plt.legend(bbox_to_anchor=(1.05, 1), loc='upper left')
         plt.tight_layout()
         
         if label_points:
@@ -202,7 +203,7 @@ def plot_bubble(experiments_config, stats_dir, output_dir, file_name_tag, type_x
                     plot_df.iloc[line][type_y], 
                     plot_df.iloc[line]["plot_labels"], 
                     horizontalalignment='center', 
-                    size=14, 
+                    size=16, 
                     color='black', 
                     weight='semibold'
                 ))
@@ -216,7 +217,8 @@ def plot_bubble(experiments_config, stats_dir, output_dir, file_name_tag, type_x
         # plt.title(title, fontsize=22)
         plt.xlabel(f"{type_x_name}", fontsize=22) # 22
         plt.ylabel(f"{type_y_name}", fontsize=22) # 22
-        plt.legend(bbox_to_anchor=(1.05, 1), loc='upper left') # to move the legend back into the plot remove the bbox_to_anchor
+        plt.legend(loc='lower right') 
+        # plt.legend(bbox_to_anchor=(1.05, 1), loc='upper left') # to move the legend back into the plot remove the bbox_to_anchor
         plt.tight_layout()
         
         if label_points:
